@@ -16,12 +16,12 @@ return new class extends Migration
             $table->decimal('total_price', $precision = 8, $scale = 2); //se si spacca lui torna qui e sistema
             $table->date('date');
             $table->string('notes');
-            $table->string('guest_name');
-            $table->string('guest_surname');
-            $table->string('guest_telephone');
-            $table->string('guest_email');
-            $table->string('guest_address');
-            $table->string('guest_city');
+            $table->string('guest_name', 100);
+            $table->string('guest_surname', 100);
+            $table->string('guest_telephone', 100);
+            $table->string('guest_email', 100);
+            $table->string('guest_address', 255);
+            $table->string('guest_city', 100);
             $table->timestamps();
         });
     }

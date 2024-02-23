@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('restaurant_id')->constrained()->onDelete('cascade')->after("id");
-            $table->string('name');
+            $table->string('name', 100);
             $table->string('description');
             $table->decimal('price', $precision = 8, $scale = 2); //se si spacca lui torna qui e sistema
             $table->string('img');
