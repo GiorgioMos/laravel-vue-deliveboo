@@ -10,6 +10,7 @@ return [
         'img' => 'mario.jpg',
         'telephone' => '+39 06 1234567',
         'website' => 'http://www.ristoranteDaEugenio.com',
+        'category' => ['1']
     ],
     [
         'user_id' => '2',
@@ -20,6 +21,7 @@ return [
         'img' => 'delizie.jpg',
         'telephone' => '+39 055 7654321',
         'website' => 'http://www.ledelizieDiMarco.it',
+        'category' => ['1', '3']
     ],
     [
         'user_id' => '3',
@@ -30,6 +32,7 @@ return [
         'img' => 'sushi.jpg',
         'telephone' => '+39 02 9876543',
         'website' => 'http://www.sushiRaoul.com',
+        'category' => ['2', '1']
     ],
     [
         'user_id' => '4',
@@ -40,6 +43,7 @@ return [
         'img' => 'nonno.jpg',
         'telephone' => '+39 051 2345678',
         'website' => 'http://www.NonnoFrancesco.it',
+        'category' => ['4']
     ],
     [
         'user_id' => '5',
@@ -50,5 +54,6 @@ return [
         'img' => 'atlantico.jpg',
         'telephone' => '+351 21 8765432',
         'website' => 'http://www.GiorgioAtlantico.it',
+        'category' => ['3']
     ]
 ];

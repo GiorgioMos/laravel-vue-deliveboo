@@ -17,6 +17,7 @@ class Restaurant extends Model
         'img',
         'telephone',
         'website',
+        'category'
     ];
 
     public function user()
@@ -31,6 +32,6 @@ class Restaurant extends Model
 
     public function category()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class, 'restaurant_category');
     }
 }

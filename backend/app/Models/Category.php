@@ -17,6 +17,6 @@ class Category extends Model
 
     public function restaurant()
     {
-        return $this->belongsToMany(Restaurant::class);
+        return $this->belongsToMany(Restaurant::class, 'restaurant_category'); //accrocchio per ovviare ad un problema di ordine alfabetico nella tabella ponte (by pope)
     }
 }
