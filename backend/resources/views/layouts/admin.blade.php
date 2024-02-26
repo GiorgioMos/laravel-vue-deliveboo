@@ -42,14 +42,31 @@
  								</a>
  							</li>
 
-							 <li class="nav-item">
+							{{-- restaurants --}}
+							<li class="nav-item">
 								<a class="nav-link text-white {{ Route::currentRouteName() == 'admin.restaurants.index' ? 'bg-secondary' : '' }}" href="{{route('admin.restaurants.index')}}">
 									<i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Ristoranti
 								</a>
 							</li>
+
+							{{-- add restaurants --}}
 							<li class="nav-item">
 								<a class="nav-link text-white {{ Route::currentRouteName() == 'admin.restaurants.create' ? 'bg-secondary' : '' }}" href="{{route('admin.restaurants.create')}}">
 									<i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Crea Ristorante
+								</a>
+							</li>
+
+							{{-- products --}}
+							<li class="nav-item">
+								<a class="nav-link text-white {{ Route::currentRouteName() == 'admin.products.index' ? 'bg-secondary' : '' }}" href="{{route('admin.products.index')}}">
+									<i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Prodotti
+								</a>
+							</li>
+
+							{{-- add products --}}
+							<li class="nav-item">
+								<a class="nav-link text-white {{ Route::currentRouteName() == 'admin.products.create' ? 'bg-secondary' : '' }}" href="{{route('admin.products.create')}}">
+									<i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Crea Prodotti
 								</a>
 							</li>
 

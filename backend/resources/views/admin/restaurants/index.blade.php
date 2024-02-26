@@ -22,17 +22,21 @@
 								<p> {{$restaurant->address}}</p>
 								<p> {{$restaurant->telephone}}</p>
 								<p> {{$restaurant->website}}</p>
-								<a href="{{ route('admin.restaurants.edit', $restaurant->id) }}" class="btn btn-warning me-1"><i class="fa-solid fa-pencil"></i></a>
 
-								<form action="{{ route('admin.restaurants.destroy', $restaurant->id) }}" method="POST" class="d-inline-block">
-									@csrf
-									@method('DELETE')
-									<button type="submit" class="btn btn-danger inline-block">
-										<i class="fa-solid fa-trash-can"></i>
-									</button>
-								</form>
+								<div class="d-flex justify-content-center align-items-center">
+									<a href="{{ route('admin.restaurants.edit', $restaurant->id) }}" class="btn btn-warning me-1"><i class="fa-solid fa-pencil"></i></a>
+	
+									<form action="{{ route('admin.restaurants.destroy', $restaurant->id) }}" method="POST" class="d-inline-block">
+										@csrf
+										@method('DELETE')
+										<button type="submit" class="btn btn-danger inline-block">
+											<i class="fa-solid fa-trash-can"></i>
+										</button>
+									</form>
+	
+									<a href="{{ route('admin.restaurants.show', $restaurant->id) }}" class="btn info-btn my-3"><i class="fa-solid fa-circle-info fa-2xl"></i></a>
+								</div>
 
-								<a href="{{ route('admin.restaurants.show', $restaurant->id) }}" class="btn info-btn my-3"><i class="fa-solid fa-circle-info fa-2xl"></i></a>
 
 								{{-- chiusura card  --}}
 							</div>
