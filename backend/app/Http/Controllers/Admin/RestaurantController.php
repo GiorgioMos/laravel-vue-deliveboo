@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Models\Restaurant;
 use App\Http\Requests\StoreRestaurantRequest;
@@ -33,8 +34,18 @@ class RestaurantController extends Controller
      */
     public function store(StoreRestaurantRequest $request)
     {
+        $errore = '';
+        //prendo i dati della colonna user_id e li trascrivo in un array
+        $lista_id = Restaurant::pluck('user_id')->toArray();
+        // recupero e salvo in variabile l'id dell'utente corrente
+        $current_user = Auth::id();
+        // controllo se l'id utente corrente è presente nell'array degli id utente dei ristoranti esistenti
+        // se è presente reindirizzo su index, altrimenti creo il ristorante
+        if (in_array($current_user, $lista_id)) {
 
-
+            //todo fixare sto errore
+            return response()->json('Hai già creato un ristorante', 403);
+        }
 
         $validated = $request->validated();
         $validated['user_id'] = Auth::id();
@@ -45,7 +56,6 @@ class RestaurantController extends Controller
 
 
         $newRestaurant->save();
-
         return redirect()->route('admin.restaurants.index');
     }
 

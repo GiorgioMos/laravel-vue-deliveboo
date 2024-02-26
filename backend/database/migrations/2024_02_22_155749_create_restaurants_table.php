@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('img');
             $table->string('telephone', 100);
             $table->string('website', 100)->nullable();
+            // $table->boolean('has_restaurant');
+
             $table->timestamps();
         });
     }
