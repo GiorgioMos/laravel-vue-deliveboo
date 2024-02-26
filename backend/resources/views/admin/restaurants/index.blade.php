@@ -3,14 +3,16 @@
 @section('content')
 <div class="container-fluid mt-4">
 	<div class="row justify-content-center">
+
 		<div class="col-md-8">
 			<div class="card">
 				<div class="card-header">{{ __('Ristoranti') }}</div>
 				<div class="card-body">
 					<div id="cardBox" class="container">
 						<div class="row">
-						@foreach ($restaurants as $restaurant)
-							<div class="col-4 mb-4 rounded d-flex flex-column align-items-center" id="card">
+							@foreach ($restaurants as $restaurant)
+
+							<div class="col-4 mb-4 rounded d-flex flex-column align-items-center card" id="card">
 								<div class="imgBoxIndex rounded">
 									<img class="cardImg rounded" src={{$restaurant->img}} alt="">
 								</div>
@@ -22,13 +24,14 @@
 								<p> {{$restaurant->website}}</p>
 								<a href="{{ route('admin.restaurants.edit', $restaurant->id) }}" class="btn btn-warning me-1"><i class="fa-solid fa-pencil"></i></a>
 
-                                {{-- chiusura card  --}}
-                            </div>
+								{{-- chiusura card  --}}
+							</div>
+
 							@endforeach
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-@endsection
+	@endsection

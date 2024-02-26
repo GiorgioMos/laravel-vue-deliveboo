@@ -33,7 +33,7 @@ class RestaurantController extends Controller
      */
     public function store(RestaurantRequest $request)
     {
-        $errore = '';
+
         //prendo i dati della colonna user_id e li trascrivo in un array
         $lista_id = Restaurant::pluck('user_id')->toArray();
         // recupero e salvo in variabile l'id dell'utente corrente
@@ -43,7 +43,8 @@ class RestaurantController extends Controller
         if (in_array($current_user, $lista_id)) {
 
             //todo fixare sto errore
-            return response()->json('Hai già creato un ristorante', 403);
+            $errore = 'hai gia un ristorante';
+            return view('admin.restaurants.create', compact('errore'));
         }
 
         $validated = $request->validated();
