@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RestaurantController;
+use App\Http\Controllers\Admin\OrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,7 @@ Route::middleware(['auth'])
         Route::resource('restaurants', RestaurantController::class);
 
         Route::resource('products', ProductController::class);
+        Route::resource('orders', OrderController::class);
     });
 
 require __DIR__ . '/auth.php';

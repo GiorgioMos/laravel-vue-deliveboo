@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
 
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
@@ -13,7 +15,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        //todo mostrare solo ordini del singolo ristorante con l'accrocchio magico
+        $orders = Order::all();
+        return view('admin.orders.index', compact("orders"));
     }
 
     /**
@@ -37,7 +41,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view("admin.orders.show", compact("order"));
     }
 
     /**
