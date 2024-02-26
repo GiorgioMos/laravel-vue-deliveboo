@@ -11,7 +11,7 @@ class StoreRestaurantRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class StoreRestaurantRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            // "user_id" => ["required"],
+            "name" => ["required", "min:2", "max:100"],
+            "description" => ["max:255"],
+            "city" => ["required", "min:2", "max:100"],
+            "address" => ["required", "min:2", "max:255"],
+            "img" => ["required", "min:2", "max:255"],
+            "telephone" => ["required", "min:2", "max:100"],
+            "website" => ["required", "min:2", "max:100"],
         ];
     }
 }

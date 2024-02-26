@@ -41,6 +41,16 @@
  									<i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Dashboard
  								</a>
  							</li>
+							 <li class="nav-item">
+								<a class="nav-link text-white {{ Route::currentRouteName() == 'admin.restaurants.index' ? 'bg-secondary' : '' }}" href="{{route('admin.restaurants.index')}}">
+									<i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Ristoranti
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link text-white {{ Route::currentRouteName() == 'admin.restaurants.create' ? 'bg-secondary' : '' }}" href="{{route('admin.restaurants.create')}}">
+									<i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Crea Ristorante
+								</a>
+							</li>
 
  							<li class="nav-item">
  								<a class="nav-link text-white" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

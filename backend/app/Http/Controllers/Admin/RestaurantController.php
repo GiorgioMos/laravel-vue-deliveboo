@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Restaurant;
 use App\Http\Requests\StoreRestaurantRequest;
 use App\Http\Requests\UpdateRestaurantRequest;
+use Illuminate\Support\Facades\Auth;
 
 class RestaurantController extends Controller
 {
@@ -13,7 +15,8 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        //
+        $restaurants = Restaurant::all();
+        return view('admin.restaurants.index', compact("restaurants"));
     }
 
     /**
@@ -21,15 +24,29 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        //
+
+        return view('admin.restaurants.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+
      */
     public function store(StoreRestaurantRequest $request)
     {
-        //
+
+
+
+        $validated = $request->validated();
+        $validated['user_id'] = Auth::id();
+
+        $newRestaurant = new Restaurant();
+
+        $newRestaurant->fill($validated);
+
+
+        $newRestaurant->save();
+
+        return redirect()->route('admin.restaurants.index');
     }
 
     /**
