@@ -96,8 +96,11 @@
                 </div>
 
 
-
+                @if(isset($errore))
+                <button type="submit" class="btn btn-dark disabled">Create</button>
+                @else
                 <button type="submit" class="btn btn-dark">Create</button>
+                @endif
             </form>
         </div>
     </div>
