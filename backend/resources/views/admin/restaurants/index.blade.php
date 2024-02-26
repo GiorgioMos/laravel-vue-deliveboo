@@ -20,6 +20,7 @@
 								<p> {{$restaurant->address}}</p>
 								<p> {{$restaurant->telephone}}</p>
 								<p> {{$restaurant->website}}</p>
+								<a href="{{ route('admin.restaurants.edit', $restaurant->id) }}" class="btn btn-warning me-1"><i class="fa-solid fa-pencil"></i></a>
 
                                 {{-- chiusura card  --}}
                             </div>

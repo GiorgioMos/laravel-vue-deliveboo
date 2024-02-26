@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Models\Restaurant;
-use App\Http\Requests\StoreRestaurantRequest;
-use App\Http\Requests\UpdateRestaurantRequest;
+use App\Http\Requests\RestaurantRequest;
 use Illuminate\Support\Facades\Auth;
 
 class RestaurantController extends Controller
@@ -32,7 +31,7 @@ class RestaurantController extends Controller
     /**
 
      */
-    public function store(StoreRestaurantRequest $request)
+    public function store(RestaurantRequest $request)
     {
         $errore = '';
         //prendo i dati della colonna user_id e li trascrivo in un array
@@ -72,15 +71,17 @@ class RestaurantController extends Controller
      */
     public function edit(Restaurant $restaurant)
     {
-        //
+        return view('admin.restaurants.edit', compact('restaurant'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRestaurantRequest $request, Restaurant $restaurant)
+    public function update(RestaurantRequest $request, Restaurant $restaurant)
     {
-        //
+        $validated = $request->validated();
+        $restaurant->update($validated);
+        return redirect()->route('admin.restaurants.index');
     }
 
     /**
