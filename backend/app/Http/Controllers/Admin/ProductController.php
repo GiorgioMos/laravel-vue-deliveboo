@@ -7,7 +7,6 @@ use App\Models\Product;
 use App\Http\Requests\ProductRequest;
 use App\Models\Restaurant;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -23,9 +22,6 @@ class ProductController extends Controller
         $restaurant_id = $restaurant->id;
 
         $products = Product::all()->where("restaurant_id", $restaurant_id);
-        // $currentUser = Auth::id();
-        // $currentRestaurant = DB::table('restaurants')->select('id')->where('user_id', $currentUser)->get()->__toString();
-        // $products = DB::table('products')->whereIn('restaurant_id', $currentRestaurant)->get();
 
         return view('admin.products.index', compact("products"));
     }
@@ -35,9 +31,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $restaurants = Restaurant::all();
-
-        return view('admin.products.create', compact("restaurants"));
+        return view('admin.products.create');
     }
 
     /**

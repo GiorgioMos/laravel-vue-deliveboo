@@ -10,18 +10,31 @@
 				<div class="card-body">
 					<div id="cardBox" class="container">
 						<div class="row">
-							@foreach ($restaurants as $restaurant)
+							@foreach ( $restaurants as $restaurant )
 
 							<div class="col-4 mb-4 rounded d-flex flex-column align-items-center card" id="card">
 								<div class="imgBoxIndex rounded">
-									<img class="cardImg rounded" src={{$restaurant->img}} alt="">
+									<img class="cardImg rounded" src={{ $restaurant->img }} alt="">
 								</div>
 								<p class="text-capitalize fw-bold text-center my-2">{{ $restaurant->name }}</p>
-								<p> {{$restaurant->description}}</p>
-								<p> {{$restaurant->city}}</p>
-								<p> {{$restaurant->address}}</p>
-								<p> {{$restaurant->telephone}}</p>
-								<p> {{$restaurant->website}}</p>
+								<p> {{ $restaurant->description }}</p>
+								<p> {{ $restaurant->city }}</p>
+								<p> {{ $restaurant->address }}</p>
+								<p> {{ $restaurant->telephone }}</p>
+								<p> {{ $restaurant->website }}</p>
+
+								{{-- category --}}
+								{{-- <h6 class="card-subtitle mb-2 text-muted pt-2">
+									@if ( count($restaurant->categories) > 0 )
+										<ul>
+											@foreach ( $restaurant->categories as $category )
+												<li>{{ $category->name }}</li>
+											@endforeach
+										</ul>
+									@else
+										<p>No Category</p>
+									@endif
+								</h6> --}}
 
 								<div class="d-flex justify-content-center align-items-center">
 									<a href="{{ route('admin.restaurants.edit', $restaurant->id) }}" class="btn btn-warning me-1"><i class="fa-solid fa-pencil"></i></a>
@@ -36,7 +49,6 @@
 	
 									<a href="{{ route('admin.restaurants.show', $restaurant->id) }}" class="btn info-btn my-3"><i class="fa-solid fa-circle-info fa-2xl"></i></a>
 								</div>
-
 
 								{{-- chiusura card  --}}
 							</div>

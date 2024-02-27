@@ -4,7 +4,7 @@
 <div class="container py-3">
 
     <div class="row">
-        <h1>Insert new product</h1>
+        <h1>Insert new Category</h1>
         @isset($errore)
         <div class="alert alert-danger">
             <strong>{{$errore}}</strong>
@@ -14,7 +14,7 @@
 
     <div class="row">
         <div class="col-6">
-            <form action="{{ route("admin.products.store") }}" method="POST">
+            <form action="{{ route("admin.categories.store") }}" method="POST">
                 {{-- cross scripting request forgery --}}
                 @csrf
 
@@ -41,17 +41,6 @@
                     @enderror
                 </div>
 
-                {{-- price  --}}
-                <div class="mb-3">
-                    <label for="price" class="form-label">price</label>
-                    <input type="text" class="form-control @error("price") is-invalid @enderror" id="price" name="price" value="{{ old("price") }}">
-
-                    {{-- error message --}}
-                    @error("price")
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
                 {{-- img  --}}
                 <div class="mb-3">
                     <label for="img" class="form-label">img</label>
@@ -59,17 +48,6 @@
 
                     {{-- error message --}}
                     @error("img")
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                {{-- visible  --}}
-                <div class="mb-3">
-                    <label for="visible" class="form-label">visible</label>
-                    <input type="text" class="form-control @error("visible") is-invalid @enderror" id="visible" name="visible" value="{{ old("visible") }}">
-
-                    {{-- error message --}}
-                    @error("visible")
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
