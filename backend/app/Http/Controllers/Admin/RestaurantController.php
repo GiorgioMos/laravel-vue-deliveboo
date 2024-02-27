@@ -29,6 +29,7 @@ class RestaurantController extends Controller
         $categories = Category::all();
 
         // ddd($categories);
+        // test
 
         return view('admin.restaurants.create', compact("categories"));
     }
