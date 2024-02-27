@@ -23,7 +23,7 @@ class ProductRequest extends FormRequest
     {
         return [
             "name" => ["required", "min:2", "max:100"],
-            "description" => ["max:255"],
+            "description" => ["required", "max:255"],
             "price" => ["required"],
             "img" => ["required", "min:2", "max:255"],
             "visible" => ["required", "boolean"],

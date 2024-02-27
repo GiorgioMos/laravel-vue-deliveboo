@@ -26,7 +26,7 @@
                 {{-- name  --}}
                 <div class="mb-3">
                     <label for="name" class="form-label">Name <span style="color: red;">*</span></label>
-                    <input type="text" class="form-control @error(" name") is-invalid @enderror" id="name" name="name" value="{{ old("name") }}" required>
+                    <input type="text" class="form-control @error("name") is-invalid @enderror" id="name" name="name" value="{{ old("name") }}" required>
 
                     {{-- error message --}}
                     @error("name")
@@ -36,9 +36,8 @@
 
                 {{-- description  --}}
                 <div class="mb-3">
-                    <label for="description" class="form-label">Description <span style="color: red;">*</span></label>
-                    <textarea type="text" class="form-control @error(" description") is-invalid @enderror" id="description" name="description" value="{{ old("description") }}" required>
-                    </textarea>
+                    <label for="description" class="form-label">Description<span style="color: red;">*</span></label>
+                    <textarea type="text" class="form-control @error("description") is-invalid @enderror" id="description" name="description" value="{{ old("description") }}" required minlength="10" max="255"></textarea>
 
                     {{-- error message --}}
                     @error("description")
@@ -49,7 +48,7 @@
                 {{-- price  --}}
                 <div class="mb-3">
                     <label for="price" class="form-label">Price <span style="color: red;">*</span></label>
-                    <input type="number" class="form-control @error(" price") is-invalid @enderror" id="price" name="price" value="{{ old("price") }}" min="0.01" max="999.99" step="0.01" required>
+                    <input type="number" class="form-control @error("price") is-invalid @enderror" id="price" name="price" value="{{ old("price") }}" min="0.01" max="999.99" step="0.01" required>
 
                     {{-- error message --}}
                     @error("price")
@@ -59,8 +58,8 @@
 
                 {{-- img  --}}
                 <div class="mb-3">
-                    <label for="img" class="form-label">img</label>
-                    <input type="text" class="form-control @error(" img") is-invalid @enderror" id="img" name="img" value="{{ old("img") }}">
+                    <label for="img" class="form-label">img <span style="color: red;">*</span></label>
+                    <input type="text" class="form-control @error("img") is-invalid @enderror" id="img" name="img" value="{{ old("img") }}" required>
 
                     {{-- error message --}}
                     @error("img")
