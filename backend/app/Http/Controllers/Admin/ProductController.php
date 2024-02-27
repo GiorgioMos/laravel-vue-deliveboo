@@ -20,14 +20,20 @@ class ProductController extends Controller
         // prendo l'id del ristorante collegato all'utente
         $restaurant = Restaurant::select('id')->where('user_id', $currentUser)->first();
         // strapolo il valore
-        $restaurant_id = $restaurant->id;
 
-        $products = Product::all()->where("restaurant_id", $restaurant_id);
-        // $currentUser = Auth::id();
-        // $currentRestaurant = DB::table('restaurants')->select('id')->where('user_id', $currentUser)->get()->__toString();
-        // $products = DB::table('products')->whereIn('restaurant_id', $currentRestaurant)->get();
+        if (isset($restaurant)) {
 
-        return view('admin.products.index', compact("products"));
+            $restaurant_id = $restaurant->id;
+            $products = Product::all()->where("restaurant_id", $restaurant_id);
+            // $currentUser = Auth::id();
+            // $currentRestaurant = DB::table('restaurants')->select('id')->where('user_id', $currentUser)->get()->__toString();
+            // $products = DB::table('products')->whereIn('restaurant_id', $currentRestaurant)->get();
+
+            return view('admin.products.index', compact("products"));
+        } else {
+            $errore = "non hai ancora creato un ristorante";
+            return view('admin.products.index', compact("errore"));
+        }
     }
 
     /**

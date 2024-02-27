@@ -10,22 +10,31 @@
 				<div class="card-body">
 					<div id="cardBox" class="container">
 						<div class="row">
-							@foreach ($products as $product)
+							{{-- se l'utente non ha un ristorante associato vede un messaggio di errore --}}
+							@if (!isset($products))
+							<div class="alert alert-danger">
+								<strong>{{$errore}}</strong>
+							</div>
+							@else
+							
 
+
+							@foreach ($products as $product)
+							
 							<div class="col-4 mb-4 rounded d-flex flex-column align-items-center card" id="card">
 								<div class="imgBoxIndex rounded">
 									<img class="cardImg rounded" src={{$product->img}} alt="">
 								</div>
-								<p class="text-capitalize fw-bold text-center my-2">{{ $product->name }}</p>
-								<p> {{$product->description}}</p>
-								<p> {{$product->price}}</p>
-								<p> {{$product->visible}}</p>
+								<p class="text-capitalize fw-bold text-center my-2">name: {{ $product->name }}</p>
+								<p>description: {{$product->description}}</p>
+								<p>price: {{$product->price}}</p>
+								<p>visible: {{$product->visible}}</p>
 								
 								<img src="{{$product->img}}" alt="product-img">
-
+								
 								<div class="d-flex justify-content-center align-items-center">
 									<a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-warning me-1"><i class="fa-solid fa-pencil"></i></a>
-	
+									
 									<form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" class="d-inline-block">
 										@csrf
 										@method('DELETE')
@@ -33,14 +42,15 @@
 											<i class="fa-solid fa-trash-can"></i>
 										</button>
 									</form>
-	
+									
 									<a href="{{ route('admin.products.show', $product->id) }}" class="btn info-btn my-3"><i class="fa-solid fa-circle-info fa-2xl"></i></a>
 								</div>
-
+								
 								{{-- chiusura card  --}}
 							</div>
-
+							
 							@endforeach
+							@endif
 						</div>
 					</div>
 				</div>
