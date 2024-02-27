@@ -22,24 +22,9 @@ return [
         'description' => 'Speziata e ricca di sapore.'
     ],
     [
-        'name' => 'Frutti di mare',
-        'img' => 'path_to_image_seafood.jpg',
-        'description' => 'Deliziosi piatti a base di pesce e frutti di mare.'
-    ],
-    [
         'name' => 'Vegetariana',
         'img' => 'path_to_image_vegetarian.jpg',
         'description' => 'Cucina sana e gustosa a base di verdure.'
-    ],
-    [
-        'name' => 'Vegana',
-        'img' => 'path_to_image_vegan.jpg',
-        'description' => 'Scelte di cibo completamente prive di prodotti animali.'
-    ],
-    [
-        'name' => 'Tex-Mex',
-        'img' => 'path_to_image_tex_mex.jpg',
-        'description' => 'Fusion tra cucina texana e messicana.'
     ],
     [
         'name' => 'Cinese',
@@ -47,44 +32,14 @@ return [
         'description' => 'Dalla cucina tradizionale alla cucina fusion.'
     ],
     [
-        'name' => 'Brasiliana',
-        'img' => 'path_to_image_brazilian.jpg',
-        'description' => 'Carne alla griglia e altri piatti tipici del Brasile.'
-    ],
-    [
-        'name' => 'Coreana',
-        'img' => 'path_to_image_korean.jpg',
-        'description' => 'Barbecue coreano, kimchi e molto altro.'
-    ],
-    [
-        'name' => 'Libanese',
-        'img' => 'path_to_image_lebanese.jpg',
-        'description' => 'Cucina mediorientale con falafel, hummus e altro ancora.'
-    ],
-    [
-        'name' => 'Thai',
-        'img' => 'path_to_image_thai.jpg',
-        'description' => 'Spezie fragranti e sapori sorprendenti.'
-    ],
-    [
-        'name' => 'Gourmet',
-        'img' => 'path_to_image_gourmet.jpg',
-        'description' => 'Cucina sofisticata e di alta qualità.'
-    ],
-    [
         'name' => 'Fast Food',
         'img' => 'path_to_image_fast_food.jpg',
         'description' => 'Per una pausa veloce e gustosa.'
     ],
     [
-        'name' => 'Barbecue',
-        'img' => 'path_to_image_barbecue.jpg',
-        'description' => 'Grigliate succulente e salse saporite.'
-    ],
-    [
-        'name' => 'Mediorientale',
-        'img' => 'path_to_image_middle_eastern.jpg',
-        'description' => 'Cucina ricca di spezie e aromi.'
+        'name' => 'Greca',
+        'img' => 'path_to_image_greece.jpg',
+        'description' => 'Cucina caratterizzata da ingredienti freschi e semplici.'
     ],
     [
         'name' => 'Steakhouse',
@@ -96,9 +51,5 @@ return [
         'img' => 'path_to_image_pizza.jpg',
         'description' => 'Dalla tradizionale alla gourmet.'
     ],
-    [
-        'name' => 'Dessert',
-        'img' => 'path_to_image_dessert.jpg',
-        'description' => 'Dolci deliziosi per concludere il pasto.'
-    ],
+
 ];
