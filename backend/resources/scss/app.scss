@@ -1,1 +1,7 @@
-@import '~bootstrap/scss/bootstrap'
+@import '~bootstrap/scss/bootstrap';
+
+
+input[type="checkbox"]:checked+label {
+    background-color: #007bff;
+    color: #fff;
+}

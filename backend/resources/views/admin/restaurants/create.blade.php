@@ -132,10 +132,3 @@
         </div>
     </div>
 @endsection
-
-<style>
-    input[type="checkbox"]:checked+label {
-        background-color: #007bff;
-        color: #fff;
-    }
-</style>
