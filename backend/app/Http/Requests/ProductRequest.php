@@ -26,7 +26,7 @@ class ProductRequest extends FormRequest
             "description" => ["max:255"],
             "price" => ["required"],
             "img" => ["required", "min:2", "max:255"],
-            "visible" => ["required"],
+            "visible" => ["required", "boolean"],
         ];
     }
 }

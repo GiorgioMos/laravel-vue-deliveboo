@@ -90,7 +90,19 @@
                     @enderror
                 </div>
 
-                
+                {{-- modifica category  --}}
+                <div class="mb-3">
+                    <label for="categories" class="form-label">seleziona i category</label>
+                    <select multiple name="categories[]" id="categories" class="form-select">
+                        @foreach ($categories as $category)
+                            @if ($restaurant->category->contains($category))
+                                <option selected value="{{ $category->id }}">{{ $category->name }}</option>
+                            @else
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                </div>
 
                 <button type="submit" class="btn btn-dark">Edit</button>
                 </form>

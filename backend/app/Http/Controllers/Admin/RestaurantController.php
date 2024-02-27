@@ -29,6 +29,7 @@ class RestaurantController extends Controller
         $categories = Category::all();
 
         // ddd($categories);
+        // test
 
         return view('admin.restaurants.create', compact("categories"));
     }
@@ -71,8 +72,9 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
+        $categories = Category::all();
 
-        return view("admin.restaurants.show", compact("restaurant"));
+        return view("admin.restaurants.show", compact("restaurant", "categories"));
     }
 
     /**
@@ -80,7 +82,9 @@ class RestaurantController extends Controller
      */
     public function edit(Restaurant $restaurant)
     {
-        return view('admin.restaurants.edit', compact('restaurant'));
+        $categories = Category::all();
+
+        return view('admin.restaurants.edit', compact('restaurant', 'categories'));
     }
 
     /**
@@ -90,7 +94,11 @@ class RestaurantController extends Controller
     {
         $validated = $request->validated();
         $restaurant->update($validated);
-        return redirect()->route('admin.restaurants.index');
+
+        if ($request->categories) {
+            $restaurant->category()->sync($request->categories);
+        }
+        return redirect()->route('admin.restaurants.index', $restaurant->id);
     }
 
     /**
