@@ -41,9 +41,21 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $restaurants = Restaurant::all();
+        // prendo l'id dell'utente autenticato
+        $currentUser = Auth::id();
+        // prendo l'id del ristorante collegato all'utente
+        $restaurant = Restaurant::select('id')->where('user_id', $currentUser)->first();
+        if (isset($restaurant)) {
 
-        return view('admin.products.create', compact("restaurants"));
+            $restaurant_id = $restaurant->id;
+            // $currentUser = Auth::id();
+            // $currentRestaurant = DB::table('restaurants')->select('id')->where('user_id', $currentUser)->get()->__toString();
+            // $products = DB::table('products')->whereIn('restaurant_id', $currentRestaurant)->get();
+
+            return view('admin.products.create', compact("restaurant_id"));
+        } else {
+            return view('admin.products.create');
+        }
     }
 
     /**

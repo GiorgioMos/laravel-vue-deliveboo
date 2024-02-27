@@ -14,7 +14,7 @@
 
     <div class="row">
         <div class="col-6">
-            @if (!isset($restaurants))
+            @if (!isset($restaurant_id))
 			<div class="alert alert-danger">
 				<strong>non hai ancora creato un ristorante</strong>
 			</div>
