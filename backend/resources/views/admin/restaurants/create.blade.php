@@ -37,8 +37,8 @@
                     {{-- description  --}}
                     <div class="mb-3">
                         <label for="description" class="form-label">description <span style="color: red;">*</span></label>
-                        <input type="text" class="form-control @error('description') is-invalid @enderror"
-                            id="description" name="description" value="{{ old('description') }}" required minlength="10" max="255">
+                        <textarea type="text" class="form-control @error('description') is-invalid @enderror"
+                            id="description" name="description" value="{{ old('description') }}" required minlength="10" max="255"></textarea>
 
                         {{-- error message --}}
                         @error('description')
