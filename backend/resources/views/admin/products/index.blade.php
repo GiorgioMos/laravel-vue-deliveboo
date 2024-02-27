@@ -13,7 +13,7 @@
 							{{-- se l'utente non ha un ristorante associato vede un messaggio di errore --}}
 							@if (!isset($products))
 							<div class="alert alert-danger">
-								<strong>{{$errore}}</strong>
+								<strong>non hai ancora creato un ristorante</strong>
 							</div>
 							@else
 							

@@ -21,6 +21,7 @@ class ProductController extends Controller
         $restaurant = Restaurant::select('id')->where('user_id', $currentUser)->first();
         // strapolo il valore
 
+        // se non esiste un utente associato al ristorante passo alla vista un messaggio di errore
         if (isset($restaurant)) {
 
             $restaurant_id = $restaurant->id;
@@ -31,8 +32,7 @@ class ProductController extends Controller
 
             return view('admin.products.index', compact("products"));
         } else {
-            $errore = "non hai ancora creato un ristorante";
-            return view('admin.products.index', compact("errore"));
+            return view('admin.products.index');
         }
     }
 

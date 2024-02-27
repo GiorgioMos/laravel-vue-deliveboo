@@ -14,6 +14,11 @@
 
     <div class="row">
         <div class="col-6">
+            @if (!isset($restaurants))
+			<div class="alert alert-danger">
+				<strong>non hai ancora creato un ristorante</strong>
+			</div>
+			@else
             <form action="{{ route("admin.products.store") }}" method="POST">
                 {{-- cross scripting request forgery --}}
                 @csrf
@@ -76,6 +81,7 @@
 
                 <button type="submit" class="btn btn-dark">Create</button>
             </form>
+            @endif
         </div>
     </div>
 </div>
