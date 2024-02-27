@@ -20,12 +20,8 @@ class ProductController extends Controller
         $restaurant = Restaurant::select('id')->where('user_id', $currentUser)->first();
         // strapolo il valore
 
-<<<<<<< HEAD
         // se non esiste un utente associato al ristorante passo alla vista un messaggio di errore
         if (isset($restaurant)) {
-=======
-        $products = Product::all()->where("restaurant_id", $restaurant_id);
->>>>>>> feat/category
 
             $restaurant_id = $restaurant->id;
             $products = Product::all()->where("restaurant_id", $restaurant_id);
@@ -44,7 +40,6 @@ class ProductController extends Controller
      */
     public function create()
     {
-<<<<<<< HEAD
         // prendo l'id dell'utente autenticato
         $currentUser = Auth::id();
         // prendo l'id del ristorante collegato all'utente
@@ -60,9 +55,6 @@ class ProductController extends Controller
         } else {
             return view('admin.products.create');
         }
-=======
-        return view('admin.products.create');
->>>>>>> feat/category
     }
 
     /**
