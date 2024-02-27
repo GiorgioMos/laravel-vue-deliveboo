@@ -13,11 +13,11 @@
                     {{-- cross scripting request forgery --}}
                     @csrf
                     @method('PUT')
+
                     {{-- name  --}}
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                            name="name" value="{{ old('name') ?? $restaurant->name }}">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') ?? $restaurant->name }}" required>
 
                         {{-- error message --}}
                         @error('name')
@@ -28,9 +28,7 @@
                     {{-- description  --}}
                     <div class="mb-3">
                         <label for="description" class="form-label">description</label>
-                        <input type="text" class="form-control @error('description') is-invalid @enderror"
-                            id="description" name="description"
-                            value="{{ old('description') ?? $restaurant->description }}">
+                        <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" required minlength="10" max="255">{{ old('description') ?? $restaurant->description }}</textarea>
 
                         {{-- error message --}}
                         @error('description')
@@ -42,7 +40,7 @@
                     <div class="mb-3">
                         <label for="city" class="form-label">city</label>
                         <input type="text" class="form-control @error('city') is-invalid @enderror" id="city"
-                            name="city" value="{{ old('city') ?? $restaurant->city }}">
+                            name="city" value="{{ old('city') ?? $restaurant->city }}" required>
 
                         {{-- error message --}}
                         @error('city')
@@ -54,7 +52,7 @@
                     <div class="mb-3">
                         <label for="address" class="form-label">address</label>
                         <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
-                            name="address" value="{{ old('address') ?? $restaurant->address }}">
+                            name="address" value="{{ old('address') ?? $restaurant->address }}" required>
 
                         {{-- error message --}}
                         @error('address')
@@ -66,7 +64,7 @@
                     <div class="mb-3">
                         <label for="img" class="form-label">img</label>
                         <input type="text" class="form-control @error('img') is-invalid @enderror" id="img"
-                            name="img" value="{{ old('img') ?? $restaurant->img }}">
+                            name="img" value="{{ old('img') ?? $restaurant->img }}" required>
 
                         {{-- error message --}}
                         @error('img')
@@ -78,7 +76,7 @@
                     <div class="mb-3">
                         <label for="telephone" class="form-label">telephone</label>
                         <input type="text" class="form-control @error('telephone') is-invalid @enderror" id="telephone"
-                            name="telephone" value="{{ old('telephone') ?? $restaurant->telephone }}">
+                            name="telephone" value="{{ old('telephone') ?? $restaurant->telephone }}" required minlength="6" maxlength="15">
 
                         {{-- error message --}}
                         @error('telephone')
@@ -90,7 +88,7 @@
                     <div class="mb-3">
                         <label for="website" class="form-label">website</label>
                         <input type="text" class="form-control @error('website') is-invalid @enderror" id="website"
-                            name="website" value="{{ old('website') ?? $restaurant->website }}">
+                            name="website" value="{{ old('website') ?? $restaurant->website }}" required>
 
                         {{-- error message --}}
                         @error('website')

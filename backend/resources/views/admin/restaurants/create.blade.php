@@ -24,9 +24,9 @@
 
                     {{-- name  --}}
                     <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" placeholder="*" class="form-control @error('name') is-invalid @enderror"
-                            id="name" name="name" value="{{ old('name') }}">
+                        <label for="name" class="form-label">Name <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror"
+                            id="name" name="name" value="{{ old('name') }}" required>
 
                         {{-- error message --}}
                         @error('name')
@@ -36,9 +36,9 @@
 
                     {{-- description  --}}
                     <div class="mb-3">
-                        <label for="description" class="form-label">description</label>
+                        <label for="description" class="form-label">description <span style="color: red;">*</span></label>
                         <input type="text" class="form-control @error('description') is-invalid @enderror"
-                            id="description" name="description" value="{{ old('description') }}">
+                            id="description" name="description" value="{{ old('description') }}" required minlength="10" max="255">
 
                         {{-- error message --}}
                         @error('description')
@@ -48,9 +48,8 @@
 
                     {{-- city  --}}
                     <div class="mb-3">
-                        <label for="city" class="form-label">city</label>
-                        <input type="text" placeholder="*" class="form-control @error('city') is-invalid @enderror"
-                            id="city" name="city" value="{{ old('city') }}">
+                        <label for="city" class="form-label">city <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control @error('city') is-invalid @enderror" id="city" name="city" value="{{ old('city') }}" required>
 
                         {{-- error message --}}
                         @error('city')
@@ -60,9 +59,8 @@
 
                     {{-- address  --}}
                     <div class="mb-3">
-                        <label for="address" class="form-label">address</label>
-                        <input type="text" placeholder="*" class="form-control @error('address') is-invalid @enderror"
-                            id="address" name="address" value="{{ old('address') }}">
+                        <label for="address" class="form-label">address <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}" required>
 
                         {{-- error message --}}
                         @error('address')
@@ -72,9 +70,8 @@
 
                     {{-- img  --}}
                     <div class="mb-3">
-                        <label for="img" class="form-label">img</label>
-                        <input type="text" class="form-control @error('img') is-invalid @enderror" id="img"
-                            name="img" value="{{ old('img') }}">
+                        <label for="img" class="form-label">img <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control @error('img') is-invalid @enderror" id="img" name="img" value="{{ old('img') }}" required>
 
                         {{-- error message --}}
                         @error('img')
@@ -84,9 +81,8 @@
 
                     {{-- telephone  --}}
                     <div class="mb-3">
-                        <label for="telephone" class="form-label">telephone</label>
-                        <input type="text" placeholder="*" class="form-control @error('telephone') is-invalid @enderror"
-                            id="telephone" name="telephone" value="{{ old('telephone') }}">
+                        <label for="telephone" class="form-label">telephone <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control @error('telephone') is-invalid @enderror" id="telephone" name="telephone" value="{{ old('telephone') }}" required minlength="6" maxlength="15">
 
                         {{-- error message --}}
                         @error('telephone')
@@ -96,9 +92,9 @@
 
                     {{-- website  --}}
                     <div class="mb-3">
-                        <label for="website" class="form-label">website</label>
-                        <input type="text" placeholder="*" class="form-control @error('website') is-invalid @enderror"
-                            id="website" name="website" value="{{ old('website') }}">
+                        <label for="website" class="form-label">website <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control @error('website') is-invalid @enderror"
+                            id="website" name="website" value="{{ old('website') }}" required>
 
                         {{-- error message --}}
                         @error('website')
