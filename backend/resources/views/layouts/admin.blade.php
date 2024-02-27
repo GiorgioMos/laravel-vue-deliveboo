@@ -69,12 +69,30 @@
 									<i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Crea Prodotti
 								</a>
 							</li>
+<<<<<<< HEAD
 							{{-- order --}}
 							<li class="nav-item">
 								<a class="nav-link text-white {{ Route::currentRouteName() == 'admin.orders.index' ? 'bg-secondary' : '' }}" href="{{route('admin.orders.index')}}">
 									<i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Ordini
 								</a>
 							</li>
+=======
+
+							{{-- categories --}}
+							<li class="nav-item">
+								<a class="nav-link text-white {{ Route::currentRouteName() == 'admin.categories.index' ? 'bg-secondary' : '' }}" href="{{route('admin.categories.index')}}">
+									<i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Categorie
+								</a>
+							</li>
+
+							{{-- add categories --}}
+							<li class="nav-item">
+								<a class="nav-link text-white {{ Route::currentRouteName() == 'admin.categories.create' ? 'bg-secondary' : '' }}" href="{{route('admin.categories.create')}}">
+									<i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Crea Categorie
+								</a>
+							</li>
+
+>>>>>>> feat/category
  							<li class="nav-item">
  								<a class="nav-link text-white" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
  									<i class="fa-solid fa-sign-out-alt fa-lg fa-fw"></i> {{ __('Logout') }}

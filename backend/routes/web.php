@@ -3,7 +3,11 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RestaurantController;
+<<<<<<< HEAD
 use App\Http\Controllers\Admin\OrderController;
+=======
+use App\Http\Controllers\Admin\CategoryController;
+>>>>>>> feat/category
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,7 +39,12 @@ Route::middleware(['auth'])
         Route::resource('restaurants', RestaurantController::class);
 
         Route::resource('products', ProductController::class);
+<<<<<<< HEAD
         Route::resource('orders', OrderController::class);
+=======
+
+        Route::resource('categories', CategoryController::class);
+>>>>>>> feat/category
     });
 
 require __DIR__ . '/auth.php';

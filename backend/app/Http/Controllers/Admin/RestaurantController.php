@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Models\Restaurant;
 use App\Http\Requests\RestaurantRequest;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 
 class RestaurantController extends Controller
@@ -16,7 +17,10 @@ class RestaurantController extends Controller
     public function index()
     {
         $restaurants = Restaurant::all();
-        return view('admin.restaurants.index', compact("restaurants"));
+
+        $categories = Category::all();
+
+        return view('admin.restaurants.index', compact("restaurants", "categories"));
     }
 
     /**
@@ -24,7 +28,9 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        return view('admin.restaurants.create');
+        $categories = Category::all();
+
+        return view('admin.restaurants.create', compact("categories", "categories"));
     }
 
     /**

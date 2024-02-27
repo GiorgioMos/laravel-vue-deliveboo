@@ -30,6 +30,7 @@ class RestaurantRequest extends FormRequest
             "img" => ["required", "min:2", "max:255"],
             "telephone" => ["required", "min:2", "max:100"],
             "website" => ["required", "min:2", "max:100"],
+            "category_id" => ["nullable", "exists:categories,id"]
         ];
     }
 }
