@@ -22,7 +22,6 @@ class RestaurantRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // "user_id" => ["required"],
             "name" => ["required", "min:2", "max:100"],
             "description" => ["max:255"],
             "city" => ["required", "min:2", "max:100"],
@@ -30,7 +29,7 @@ class RestaurantRequest extends FormRequest
             "img" => ["required", "min:2", "max:255"],
             "telephone" => ["required", "min:2", "max:100"],
             "website" => ["required", "min:2", "max:100"],
-            "category_id" => ["nullable", "exists:categories,id"]
+            "categories" => ["exists:categories,id"],
         ];
     }
 }

@@ -24,17 +24,17 @@
 								<p> {{ $restaurant->website }}</p>
 
 								{{-- category --}}
-								{{-- <h6 class="card-subtitle mb-2 text-muted pt-2">
-									@if ( count($restaurant->categories) > 0 )
+								<h6 class="card-subtitle mb-2 text-muted pt-2">
+									@if ( count($restaurant->category) > 0 )
 										<ul>
-											@foreach ( $restaurant->categories as $category )
+											@foreach ( $restaurant->category as $category )
 												<li>{{ $category->name }}</li>
 											@endforeach
 										</ul>
 									@else
 										<p>No Category</p>
 									@endif
-								</h6> --}}
+								</h6>
 
 								<div class="d-flex justify-content-center align-items-center">
 									<a href="{{ route('admin.restaurants.edit', $restaurant->id) }}" class="btn btn-warning me-1"><i class="fa-solid fa-pencil"></i></a>

@@ -18,9 +18,7 @@ class RestaurantController extends Controller
     {
         $restaurants = Restaurant::all();
 
-        $categories = Category::all();
-
-        return view('admin.restaurants.index', compact("restaurants", "categories"));
+        return view('admin.restaurants.index', compact("restaurants"));
     }
 
     /**
@@ -30,7 +28,9 @@ class RestaurantController extends Controller
     {
         $categories = Category::all();
 
-        return view('admin.restaurants.create', compact("categories", "categories"));
+        // ddd($categories);
+
+        return view('admin.restaurants.create', compact("categories"));
     }
 
     /**
@@ -56,12 +56,14 @@ class RestaurantController extends Controller
         $validated['user_id'] = Auth::id();
 
         $newRestaurant = new Restaurant();
-
         $newRestaurant->fill($validated);
 
-
         $newRestaurant->save();
-        return redirect()->route('admin.restaurants.index');
+
+        // relazione restaurant category
+        $newRestaurant->category()->attach($request->categories);
+
+        return redirect()->route('admin.restaurants.index', $newRestaurant->id);
     }
 
     /**
