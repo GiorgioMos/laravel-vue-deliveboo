@@ -95,16 +95,18 @@
                     @enderror
                 </div>
 
+                @isset($categories)
                 {{-- select category --}}
                 <div class="mb-3">
                     <label for="categories" class="form-label">seleziona le categorie</label>
                     <select multiple name="categories[]" id="categories" class="form-select">
-                        <option selected value="">seleziona almeno un category</option>
+                        <option value="">seleziona almeno un category</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
                 </div>
+                @endisset
 
 
                 @if(isset($errore))
