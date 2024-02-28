@@ -141,11 +141,9 @@
                         @endif
                     @endforeach
                     
-                    {{-- ToDO vedere perchè il button edit con route show lo porta all'index :') ' --}}
                     <div>
-                        <a class="{{ Route::currentRouteName() == 'admin.restaurants.show' ? 'bg-secondary' : '' }}"
-                            href="{{ route('admin.restaurants.show', $restaurant->id) }}">
-                            <button class="btn btn-dark">Edit</button>
+                        <a class="btn btn-dark{{ Route::currentRouteName() == 'admin.restaurants.show' ? 'bg-secondary' : '' }}"
+                            href="{{ route('admin.restaurants.show', $restaurant->id) }}">edit
                         </a>
                     </div>
                 </form>
