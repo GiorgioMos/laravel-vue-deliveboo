@@ -112,9 +112,9 @@
 
                     @foreach ($categories as $category)
                         @if ($restaurant->category->contains($category))
-                            <div class="btn-group mb-3 selected" checked role="group"
+                            <div class="btn-group mb-3 selected"  role="group"
                                 aria-label="Basic checkbox toggle button group">
-                                <input hidden type="checkbox" name="categories[]" id="category{{ $category->id }}"
+                                <input hidden checked type="checkbox" name="categories[]" id="category{{ $category->id }}"
                                     value="{{ $category->id }}" autocomplete="off">
                                 {{-- con queste 2 classi btn-primary text-white le categorie rimangono blu in edit, ma il sistema non si ricorda quali sono le categorie correnti --}}
                                 <label class="btn btn-outline-primary form-label rounded"
