@@ -38,26 +38,6 @@
                                 </a>
                             </li>
 
-                            {{-- il tuo ristorante --}}
-                            
-                            {{-- utilizzo il codice magico per ottenere l'id del ristorante e importo il modello --}}
-                            @php
-                            use App\Models\Restaurant;
-                            $currentUser = Auth::id();
-                            // prendo l'id del ristorante collegato all'utente
-                            $restaurant = Restaurant::select('id')->where('user_id', $currentUser)->first();
-                            @endphp
-                            {{-- controllo se esiste un ristorante associato all'utente e se esiste creo il link --}}
-                            @if (isset($restaurant->id))
-                            <li class="nav-item">
-                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.restaurants.show' ? 'bg-secondary' : '' }}"
-                                    href="{{ route('admin.restaurants.show', $restaurant->id) }}">
-                                    <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Il tuo ristorante
-                                </a>
-                            </li>
-                            @else
-                                
-                            @endif
                             <li class="nav-item">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.dashboard' ? 'bg-secondary' : '' }}"
                                     href="{{ route('admin.dashboard') }}">
@@ -65,61 +45,61 @@
                                 </a>
                             </li>
 
+                            {{-- il tuo ristorante --}}
+                            {{-- utilizzo il codice magico per ottenere l'id del ristorante e importo il modello --}}
+                            @php
+                                use App\Models\Restaurant;
+                                $currentUser = Auth::id();
+                                // prendo l'id del ristorante collegato all'utente
+                                $restaurant = Restaurant::select('id')->where('user_id', $currentUser)->first();
+                            @endphp
+                            {{-- controllo se esiste un ristorante associato all'utente e se esiste creo il link --}}
+                            @if (isset($restaurant->id))
+                                <li class="nav-item">
+                                    <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.restaurants.show' ? 'bg-secondary' : '' }}"
+                                        href="{{ route('admin.restaurants.show', $restaurant->id) }}">
+                                        <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Il tuo ristorante
+                                    </a>
+                                </li>
+
+                                {{-- products --}}
+                                <li class="nav-item">
+                                    <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.products.index' ? 'bg-secondary' : '' }}"
+                                        href="{{ route('admin.products.index') }}">
+                                        <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Prodotti
+                                    </a>
+                                </li>
+
+                                {{-- add products --}}
+                                <li class="nav-item">
+                                    <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.products.create' ? 'bg-secondary' : '' }}"
+                                        href="{{ route('admin.products.create') }}">
+                                        <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Crea Prodotti
+                                    </a>
+                                </li>
+
+                                {{-- order --}}
+                                <li class="nav-item">
+                                    <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.orders.index' ? 'bg-secondary' : '' }}"
+                                        href="{{ route('admin.orders.index') }}">
+                                        <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Ordini
+                                    </a>
+                                </li>
+                            @else
+                                {{-- add restaurants --}}
+                                <li class="nav-item">
+                                    <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.restaurants.create' ? 'bg-secondary' : '' }}"
+                                        href="{{ route('admin.restaurants.create') }}">
+                                        <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Crea Ristorante
+                                    </a>
+                                </li>
+                            @endif
                             
-
-
                             {{-- restaurants --}}
                             <li class="nav-item">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.restaurants.index' ? 'bg-secondary' : '' }}"
                                     href="{{ route('admin.restaurants.index') }}">
                                     <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Ristoranti
-                                </a>
-                            </li>
-
-                            {{-- add restaurants --}}
-                            <li class="nav-item">
-                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.restaurants.create' ? 'bg-secondary' : '' }}"
-                                    href="{{ route('admin.restaurants.create') }}">
-                                    <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Crea Ristorante
-                                </a>
-                            </li>
-
-                            {{-- products --}}
-                            <li class="nav-item">
-                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.products.index' ? 'bg-secondary' : '' }}"
-                                    href="{{ route('admin.products.index') }}">
-                                    <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Prodotti
-                                </a>
-                            </li>
-
-                            {{-- add products --}}
-                            <li class="nav-item">
-                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.products.create' ? 'bg-secondary' : '' }}"
-                                    href="{{ route('admin.products.create') }}">
-                                    <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Crea Prodotti
-                                </a>
-                            </li>
-                            {{-- order --}}
-                            <li class="nav-item">
-                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.orders.index' ? 'bg-secondary' : '' }}"
-                                    href="{{ route('admin.orders.index') }}">
-                                    <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Ordini
-                                </a>
-                            </li>
-
-                            {{-- categories --}}
-                            <li class="nav-item">
-                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.categories.index' ? 'bg-secondary' : '' }}"
-                                    href="{{ route('admin.categories.index') }}">
-                                    <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Categorie
-                                </a>
-                            </li>
-
-                            {{-- add categories --}}
-                            <li class="nav-item">
-                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.categories.create' ? 'bg-secondary' : '' }}"
-                                    href="{{ route('admin.categories.create') }}">
-                                    <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Crea Categorie
                                 </a>
                             </li>
 
