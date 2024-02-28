@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('price', $precision = 8, $scale = 2); //se si spacca lui torna qui e sistema
             $table->string('img');
             $table->boolean('visible');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -28,6 +29,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };

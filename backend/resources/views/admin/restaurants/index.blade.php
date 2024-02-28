@@ -41,22 +41,19 @@
                                                 class="btn btn-warning me-1"><i class="fa-solid fa-pencil"></i></a>
 
                                             {{-- Btn per triggerare modal --}}
-
                                             <button type="button" class="btn btn-danger inline-block"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                data-bs-toggle="modal" data-bs-target="#exampleModal{{ $restaurant->id }}">
                                                 <i class="fa-solid fa-trash-can"></i>
                                             </button>
 
                                             {{-- Modal per eliminare restaurant --}}
-
-                                            <div class="modal fade" id="exampleModal" tabindex="-1"
+                                            <div class="modal fade" id="exampleModal{{ $restaurant->id }}" tabindex="-1"
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h1 class="modal-title fs-5" id="exampleModalLabel">Elimina
                                                                 Ristorante</h1>
-
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Close"></button>
                                                         </div>
@@ -67,20 +64,18 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-bs-dismiss="modal">No</button>
-                                                            <form
+                                                            <form id="deleteForm{{ $restaurant->id }}"
                                                                 action="{{ route('admin.restaurants.destroy', $restaurant->id) }}"
                                                                 method="POST" class="d-inline-block">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger">Si</button>
+                                                                <button type="submit"
+                                                                    class="btn btn-danger btnModel">Si</button>
                                                             </form>
-
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-
-
 
                                             <a href="{{ route('admin.restaurants.show', $restaurant->id) }}"
                                                 class="btn info-btn my-3"><i class="fa-solid fa-circle-info fa-2xl"></i></a>

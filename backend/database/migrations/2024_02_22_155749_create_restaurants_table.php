@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('website', 100)->nullable();
             // $table->boolean('has_restaurant');
             $table->softDeletes();
-
             $table->timestamps();
         });
     }
