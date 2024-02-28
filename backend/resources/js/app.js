@@ -13,3 +13,7 @@ document.querySelectorAll('.btnModel').forEach(button => {
         document.querySelector(`#deleteForm${restaurantId}`).action = `{{ route('admin.restaurants.destroy', '') }}/${restaurantId}`;
     });
 });
+
+
+
+

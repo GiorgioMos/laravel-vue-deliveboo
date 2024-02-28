@@ -56,12 +56,22 @@
                             </div>
                         </div>
 
+
+                        //ToDo estendere il controllo dei campi front end a tutta la pagina per abilitare il submit
                         {{-- password --}}
                         <div class="mb-4 row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
+                            <!-- on keyup controllo che le stringhe delle password siano uguali altrimenti mostro messaggio di errore -->
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" onkeyup="if (document.getElementById('password').value ==
+                                    document.getElementById('password-confirm').value) {
+                                    document.getElementById('password-confirm').style.color = 'green';
+                                    document.getElementById('registration_submit').disabled= false;
+                                   
+                                } else {
+                                    document.getElementById('password-confirm').style.color = 'red';
+                                    document.getElementById('registration_submit').disabled= true;
+                                }">
 
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -70,14 +80,29 @@
                                 @enderror
                             </div>
                         </div>
-
                         <div class="mb-4 row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
+                            <!-- è necessario il check da entrambi i lati in caso di cabiamento della password a monte-->
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required onkeyup="if (document.getElementById('password').value ==
+                                    document.getElementById('password-confirm').value) {
+                                    document.getElementById('password-confirm').style.color = 'green';
+                                    document.getElementById('registration_submit').disabled= false;
+                                   
+                                } else {
+                                    document.getElementById('password-confirm').style.color = 'red';
+                                    document.getElementById('registration_submit').disabled= true;
+                                    
+                                }" autocomplete="new-password">
                             </div>
+
                         </div>
+
+
+
+
+
+
 
                         {{-- address --}}
                         <div class="mb-4 row">
@@ -126,7 +151,7 @@
 
                         <div class="mb-4 row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button id="registration_submit" type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
                             </div>
@@ -137,4 +162,5 @@
         </div>
     </div>
 </div>
+
 @endsection
