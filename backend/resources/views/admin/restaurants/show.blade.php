@@ -21,7 +21,7 @@
 
         </div>
         <div class="py-3 text-center">
-            <a href="{{ route('admin.restaurants.index') }}" class="btn btn-primary">Torna alla Event list</a>
+            <a href="{{ route('admin.dashboard') }}" class="btn btn-primary">Torna alla Homepage</a>
             <a href="{{ route('admin.restaurants.edit', $restaurant->id ) }}" class="btn btn-warning">Modifica</a>
         </div>
     </div>

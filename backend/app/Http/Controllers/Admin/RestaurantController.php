@@ -64,7 +64,7 @@ class RestaurantController extends Controller
         // relazione restaurant category
         $newRestaurant->category()->attach($request->categories);
 
-        return redirect()->route('admin.restaurants.index', $newRestaurant->id);
+        return redirect()->route('admin.restaurants.show', $newRestaurant->id);
     }
 
     /**
