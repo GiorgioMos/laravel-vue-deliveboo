@@ -16,8 +16,8 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus onkeyup="validateName()">
+                                <span id="name-error-message" class="invalid-feedback" role="alert"></span>
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -31,8 +31,8 @@
                             <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('Surname') }}</label>
 
                             <div class="col-md-6">
-                                <input id="surname" type="text" class="form-control @error('surname') is-invalid @enderror" name="surname" value="{{ old('surname') }}" required autocomplete="surname" autofocus>
-
+                                <input id="surname" type="text" class="form-control @error('surname') is-invalid @enderror" name="surname" value="{{ old('surname') }}" required autocomplete="surname" autofocus onkeyup="validateSurname()">
+                                <span id="surname-error-message" class="invalid-feedback" role="alert"></span>
                                 @error('surname')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -46,8 +46,8 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" onkeyup="validateEmail()">
+                                <span id="email-error-message" class="invalid-feedback" role="alert"></span>
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -57,22 +57,12 @@
                         </div>
 
 
-                        //ToDo estendere il controllo dei campi front end a tutta la pagina per abilitare il submit
                         {{-- password --}}
                         <div class="mb-4 row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-                            <!-- on keyup controllo che le stringhe delle password siano uguali altrimenti mostro messaggio di errore -->
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" onkeyup="if (document.getElementById('password').value ==
-                                    document.getElementById('password-confirm').value) {
-                                    document.getElementById('password-confirm').style.color = 'green';
-                                    document.getElementById('registration_submit').disabled= false;
-                                   
-                                } else {
-                                    document.getElementById('password-confirm').style.color = 'red';
-                                    document.getElementById('registration_submit').disabled= true;
-                                }">
-
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" onkeyup="checkPasswordMatch()">
+                                <span id="password-error-message" class="invalid-feedback" role="alert"></span>
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -82,35 +72,18 @@
                         </div>
                         <div class="mb-4 row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-                            <!-- è necessario il check da entrambi i lati in caso di cabiamento della password a monte-->
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required onkeyup="if (document.getElementById('password').value ==
-                                    document.getElementById('password-confirm').value) {
-                                    document.getElementById('password-confirm').style.color = 'green';
-                                    document.getElementById('registration_submit').disabled= false;
-                                   
-                                } else {
-                                    document.getElementById('password-confirm').style.color = 'red';
-                                    document.getElementById('registration_submit').disabled= true;
-                                    
-                                }" autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required onkeyup="checkPasswordMatch()" autocomplete="new-password">
+                                <span id="password-confirm-message" class="mt-1"></span>
                             </div>
-
                         </div>
-
-
-
-
-
-
 
                         {{-- address --}}
                         <div class="mb-4 row">
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
-
                             <div class="col-md-6">
                                 <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus>
-
+                                <span id="address-error-message" class="invalid-feedback" role="alert"></span>
                                 @error('address')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -122,10 +95,9 @@
                         {{-- p_iva --}}
                         <div class="mb-4 row">
                             <label for="p_iva" class="col-md-4 col-form-label text-md-right">{{ __('Partita IVA') }}</label>
-
                             <div class="col-md-6">
-                                <input id="p_iva" type="text" class="form-control @error('p_iva') is-invalid @enderror" name="p_iva" value="{{ old('p_iva') }}" required autocomplete="p_iva" autofocus>
-
+                                <input id="p_iva" type="text" class="form-control @error('p_iva') is-invalid @enderror" name="p_iva" value="{{ old('p_iva') }}" required autocomplete="p_iva" autofocus onkeyup="validatePiva()">
+                                <span id="p_iva-error-message" class="invalid-feedback" role="alert"></span>
                                 @error('p_iva')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -137,10 +109,9 @@
                         {{-- telephone --}}
                         <div class="mb-4 row">
                             <label for="telephone" class="col-md-4 col-form-label text-md-right">{{ __('Telefono') }}</label>
-
                             <div class="col-md-6">
-                                <input id="telephone" type="text" class="form-control @error('telephone') is-invalid @enderror" name="telephone" value="{{ old('telephone') }}" required autocomplete="telephone" autofocus>
-
+                                <input id="telephone" type="text" class="form-control @error('telephone') is-invalid @enderror" name="telephone" value="{{ old('telephone') }}" required autocomplete="telephone" autofocus onkeyup="validateTelephone()">
+                                <span id="telephone-error-message" class="invalid-feedback" role="alert"></span>
                                 @error('telephone')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -151,7 +122,7 @@
 
                         <div class="mb-4 row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button id="registration_submit" type="submit" class="btn btn-primary">
+                                <button id="registration_submit" type="submit" class="btn btn-primary" disabled>
                                     {{ __('Register') }}
                                 </button>
                             </div>
@@ -164,3 +135,99 @@
 </div>
 
 @endsection
+
+<script>
+    function checkPasswordMatch() {
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('password-confirm').value;
+        var passwordMatchMessage = document.getElementById('password-confirm-message');
+
+        if (password === confirmPassword && password !== '' && confirmPassword !== '') {
+            passwordMatchMessage.innerHTML = '';
+            document.getElementById('password').style.borderColor = 'green';
+            document.getElementById('password-confirm').style.borderColor = 'green';
+            document.getElementById('registration_submit').disabled = false;
+        } else if (password !== confirmPassword && password !== '' && confirmPassword !== '') {
+            passwordMatchMessage.innerHTML = 'Passwords do not match';
+            passwordMatchMessage.style.color = 'red';
+            document.getElementById('password').style.borderColor = 'red';
+            document.getElementById('password-confirm').style.borderColor = 'red';
+            document.getElementById('registration_submit').disabled = true;
+        } else {
+            passwordMatchMessage.innerHTML = '';
+            document.getElementById('password').style.borderColor = '';
+            document.getElementById('password-confirm').style.borderColor = '';
+            document.getElementById('registration_submit').disabled = true;
+        }
+    }
+
+    function validateName() {
+        var name = document.getElementById('name').value;
+        var nameRegex = /^[a-zA-Z ]+$/;
+        var nameErrorMessage = document.getElementById('name-error-message');
+
+        if (nameRegex.test(name)) {
+            document.getElementById('name').style.borderColor = 'green';
+            nameErrorMessage.innerHTML = '';
+        } else {
+            document.getElementById('name').style.borderColor = 'red';
+            nameErrorMessage.innerHTML = 'Name must contain only letters and spaces';
+        }
+    }
+
+    function validateSurname() {
+        var surname = document.getElementById('surname').value;
+        var surnameRegex = /^[a-zA-Z ]+$/;
+        var surnameErrorMessage = document.getElementById('surname-error-message');
+
+        if (surnameRegex.test(surname)) {
+            document.getElementById('surname').style.borderColor = 'green';
+            surnameErrorMessage.innerHTML = '';
+        } else {
+            document.getElementById('surname').style.borderColor = 'red';
+            surnameErrorMessage.innerHTML = 'Surname must contain only letters and spaces';
+        }
+    }
+
+    function validateEmail() {
+        var email = document.getElementById('email').value;
+        var emailRegex = /\S+@\S+\.\S+/;
+        var emailErrorMessage = document.getElementById('email-error-message');
+
+        if (emailRegex.test(email)) {
+            document.getElementById('email').style.borderColor = 'green';
+            emailErrorMessage.innerHTML = '';
+        } else {
+            document.getElementById('email').style.borderColor = 'red';
+            emailErrorMessage.innerHTML = 'Invalid email address';
+        }
+    }
+
+    function validatePiva() {
+        var piva = document.getElementById('p_iva').value;
+        var pivaRegex = /^\d{11}$/;
+        var pivaErrorMessage = document.getElementById('p_iva-error-message');
+
+        if (pivaRegex.test(piva)) {
+            document.getElementById('p_iva').style.borderColor = 'green';
+            pivaErrorMessage.innerHTML = '';
+        } else {
+            document.getElementById('p_iva').style.borderColor = 'red';
+            pivaErrorMessage.innerHTML = 'Partita IVA must contain exactly 11 digits';
+        }
+    }
+
+    function validateTelephone() {
+        var telephone = document.getElementById('telephone').value;
+        var telephoneRegex = /^\d+$/;
+        var telephoneErrorMessage = document.getElementById('telephone-error-message');
+
+        if (telephoneRegex.test(telephone)) {
+            document.getElementById('telephone').style.borderColor = 'green';
+            telephoneErrorMessage.innerHTML = '';
+        } else {
+            document.getElementById('telephone').style.borderColor = 'red';
+            telephoneErrorMessage.innerHTML = 'Telephone must contain only digits';
+        }
+    }
+</script>
