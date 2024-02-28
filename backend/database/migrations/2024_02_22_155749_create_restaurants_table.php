@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('telephone', 100);
             $table->string('website', 100)->nullable();
             // $table->boolean('has_restaurant');
+            $table->softDeletes();
 
             $table->timestamps();
         });
@@ -30,8 +31,10 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('restaurants');
+        Schema::table('restaurant', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };
