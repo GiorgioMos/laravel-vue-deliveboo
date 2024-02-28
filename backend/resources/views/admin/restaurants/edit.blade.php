@@ -112,7 +112,7 @@
 
                     @foreach ($categories as $category)
                         @if ($restaurant->category->contains($category))
-                            <div class="btn-group mb-3 selected"  role="group"
+                            <div class="btn-group mb-3 selected" role="group"
                                 aria-label="Basic checkbox toggle button group">
                                 <input hidden checked type="checkbox" name="categories[]" id="category{{ $category->id }}"
                                     value="{{ $category->id }}" autocomplete="off">

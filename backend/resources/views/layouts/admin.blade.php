@@ -38,12 +38,35 @@
                                 </a>
                             </li>
 
+                            {{-- il tuo ristorante --}}
+                            
+                            {{-- utilizzo il codice magico per ottenere l'id del ristorante e importo il modello --}}
+                            @php
+                            use App\Models\Restaurant;
+                            $currentUser = Auth::id();
+                            // prendo l'id del ristorante collegato all'utente
+                            $restaurant = Restaurant::select('id')->where('user_id', $currentUser)->first();
+                            @endphp
+                            {{-- controllo se esiste un ristorante associato all'utente e se esiste creo il link --}}
+                            @if (isset($restaurant->id))
+                            <li class="nav-item">
+                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.restaurants.show' ? 'bg-secondary' : '' }}"
+                                    href="{{ route('admin.restaurants.show', $restaurant->id) }}">
+                                    <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Il tuo ristorante
+                                </a>
+                            </li>
+                            @else
+                                
+                            @endif
                             <li class="nav-item">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.dashboard' ? 'bg-secondary' : '' }}"
                                     href="{{ route('admin.dashboard') }}">
                                     <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Dashboard
                                 </a>
                             </li>
+
+                            
+
 
                             {{-- restaurants --}}
                             <li class="nav-item">
