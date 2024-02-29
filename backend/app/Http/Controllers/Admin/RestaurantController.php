@@ -98,7 +98,7 @@ class RestaurantController extends Controller
         if ($request->categories) {
             $restaurant->category()->sync($request->categories);
         }
-        return redirect()->route('admin.restaurants.index', $restaurant->id);
+        return redirect()->route('admin.restaurants.show', $restaurant->id);
     }
 
     /**
