@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 
-<style>
-    @import "{{ asset('resources/scss/prova.css') }}";
-</style>
+
 
 @section('content')
     <div class="container py-3">
@@ -111,24 +109,26 @@
 
                     <p>I campi con * sono obbligatori</p>
 
+                    <p id="category-error-message" class="text-danger" >Inserisci almeno una categoria</p>
                     @isset($categories)
                         @foreach ($categories as $category)
                             <div class="btn-group mb-3" role="group" aria-label="Basic checkbox toggle button group">
                                 <input hidden type="checkbox" name="categories[]" id="category{{ $category->id }}"
-                                    value="{{ $category->id }}" autocomplete="off">
+                                    value="{{ $category->id }}" autocomplete="off" onclick="validateCategory({{$category->id}})">
                                 <label class="btn btn-outline-primary form-label rounded" for="category{{ $category->id }}">
                                     {{ $category->name }}
                                 </label>
                             </div>
                         @endforeach
-                    @endisset
+                        
+                        @endisset
 
                     <br>
 
                     @if (isset($errore))
                         <button type="submit" class="btn btn-dark disabled">Create</button>
                     @else
-                        <button type="submit" class="btn btn-dark">Create</button>
+                        <button type="submit" class="btn btn-dark" id="registration_submit" disabled>Create</button>
                     @endif
                 </form>
             </div>
@@ -145,9 +145,13 @@
         if (name === '' || nameRegex.test(name)) {
             document.getElementById('name').style.borderColor = 'green';
             nameErrorMessage.innerHTML = '';
+            document.getElementById('registration_submit').disabled=false;
+
         } else {
             document.getElementById('name').style.borderColor = 'red';
             nameErrorMessage.innerHTML = 'Name must contain only letters and spaces';
+            document.getElementById('registration_submit').disabled=true;
+
         }
     }
 
@@ -158,9 +162,13 @@
         if (description.length >= 10 && description.length <= 255) {
             document.getElementById('description').style.borderColor = 'green';
             descriptionErrorMessage.innerHTML = '';
+            document.getElementById('registration_submit').disabled=false;
+
         } else {
             document.getElementById('description').style.borderColor = 'red';
             descriptionErrorMessage.innerHTML = 'Description must be between 10 and 255 characters';
+            document.getElementById('registration_submit').disabled=true;
+
         }
     }
 
@@ -171,9 +179,13 @@
         if (city !== '' ) {
             document.getElementById('city').style.borderColor = 'green';
             cityErrorMessage.innerHTML = '';
+            document.getElementById('registration_submit').disabled=false;
+
         } else {
             document.getElementById('city').style.borderColor = 'red';
             cityErrorMessage.innerHTML = 'City must contain only letters and spaces';
+            document.getElementById('registration_submit').disabled=true;
+
         }
     }
 
@@ -184,9 +196,13 @@
         if (address !== '') {
             document.getElementById('address').style.borderColor = 'green';
             addressErrorMessage.innerHTML = '';
+            document.getElementById('registration_submit').disabled=false;
+
         } else {
             document.getElementById('address').style.borderColor = 'red';
             addressErrorMessage.innerHTML = 'Address cannot be empty';
+            document.getElementById('registration_submit').disabled=true;
+
         }
     }
 
@@ -197,9 +213,13 @@
         if (img !== '') {
             document.getElementById('img').style.borderColor = 'green';
             imgErrorMessage.innerHTML = '';
+            document.getElementById('registration_submit').disabled=false;
+
         } else {
             document.getElementById('img').style.borderColor = 'red';
             imgErrorMessage.innerHTML = 'Img cannot be empty';
+            document.getElementById('registration_submit').disabled=true;
+
         }
     }
 
@@ -211,9 +231,13 @@
         if (telephoneRegex.test(telephone)) {
             document.getElementById('telephone').style.borderColor = 'green';
             telephoneErrorMessage.innerHTML = '';
+            document.getElementById('registration_submit').disabled=false;
+
         } else {
             document.getElementById('telephone').style.borderColor = 'red';
             telephoneErrorMessage.innerHTML = 'Telephone must contain between 6 and 15 digits';
+            document.getElementById('registration_submit').disabled=true;
+
         }
     }
 
@@ -224,9 +248,53 @@
         if (website !== '') {
             document.getElementById('website').style.borderColor = 'green';
             websiteErrorMessage.innerHTML = '';
+            document.getElementById('registration_submit').disabled=false;
+
         } else {
             document.getElementById('website').style.borderColor = 'red';
             websiteErrorMessage.innerHTML = 'Invalid website URL';
+            document.getElementById('registration_submit').disabled=true;
+
         }
     }
+
+    /////////////////// funzione valdiazione categorie 
+
+
+    //passo l'array da php a js
+    var categories = <?php echo json_encode($categories); ?>;
+
+    // svuoto l'array delle checkbox
+    var array_categories_value = [];
+
+    function validateCategory(valore) {
+
+        if(array_categories_value.includes(valore)) {
+
+           let index = array_categories_value.indexOf(valore);
+           array_categories_value.splice(index, 1);
+        } else {
+
+            array_categories_value.push(valore);
+        }
+    
+    console.log(array_categories_value);
+    var categoryErrorMessage = document.getElementById('category-error-message');
+
+
+        if (array_categories_value.length >= 1) {
+            categoryErrorMessage.innerHTML = '';
+            document.getElementById('registration_submit').disabled=false;
+
+        } else {
+            categoryErrorMessage.innerHTML = 'Inserisci almeno una categoria';
+            document.getElementById('registration_submit').disabled=true;
+
+        }
+    }
+
+    function alert() {
+        alert("prova");
+    }
+
 </script>
