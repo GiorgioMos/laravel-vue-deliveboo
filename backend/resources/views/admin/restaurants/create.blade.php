@@ -1,7 +1,5 @@
 @extends('layouts.admin')
 
-
-
 @section('content')
     <div class="container py-3">
 
@@ -120,8 +118,7 @@
                                 </label>
                             </div>
                         @endforeach
-                        
-                        @endisset
+                    @endisset
 
                     <br>
 
@@ -137,6 +134,10 @@
 @endsection
 
 <script>
+    // Variabile per memorizzare i valori delle categorie selezionate
+    var array_categories_value = [];
+
+    // Funzione di validazione del nome
     function validateName() {
         var name = document.getElementById('name').value;
         var nameRegex = /^[a-zA-Z ]+$/;
@@ -145,16 +146,14 @@
         if (name === '' || nameRegex.test(name)) {
             document.getElementById('name').style.borderColor = 'green';
             nameErrorMessage.innerHTML = '';
-            document.getElementById('registration_submit').disabled=false;
-
         } else {
             document.getElementById('name').style.borderColor = 'red';
             nameErrorMessage.innerHTML = 'Name must contain only letters and spaces';
-            document.getElementById('registration_submit').disabled=true;
-
         }
+        checkFormValidity();
     }
 
+    // Funzione di validazione della descrizione
     function validateDescription() {
         var description = document.getElementById('description').value;
         var descriptionErrorMessage = document.getElementById('description-error-message');
@@ -162,33 +161,29 @@
         if (description.length >= 10 && description.length <= 255) {
             document.getElementById('description').style.borderColor = 'green';
             descriptionErrorMessage.innerHTML = '';
-            document.getElementById('registration_submit').disabled=false;
-
         } else {
             document.getElementById('description').style.borderColor = 'red';
             descriptionErrorMessage.innerHTML = 'Description must be between 10 and 255 characters';
-            document.getElementById('registration_submit').disabled=true;
-
         }
+        checkFormValidity();
     }
 
+    // Funzione di validazione della città
     function validateCity() {
         var city = document.getElementById('city').value;
         var cityErrorMessage = document.getElementById('city-error-message');
 
-        if (city !== '' ) {
+        if (city !== '') {
             document.getElementById('city').style.borderColor = 'green';
             cityErrorMessage.innerHTML = '';
-            document.getElementById('registration_submit').disabled=false;
-
         } else {
             document.getElementById('city').style.borderColor = 'red';
             cityErrorMessage.innerHTML = 'City must contain only letters and spaces';
-            document.getElementById('registration_submit').disabled=true;
-
         }
+        checkFormValidity();
     }
 
+    // Funzione di validazione dell'indirizzo
     function validateAddress() {
         var address = document.getElementById('address').value;
         var addressErrorMessage = document.getElementById('address-error-message');
@@ -196,16 +191,14 @@
         if (address !== '') {
             document.getElementById('address').style.borderColor = 'green';
             addressErrorMessage.innerHTML = '';
-            document.getElementById('registration_submit').disabled=false;
-
         } else {
             document.getElementById('address').style.borderColor = 'red';
             addressErrorMessage.innerHTML = 'Address cannot be empty';
-            document.getElementById('registration_submit').disabled=true;
-
         }
+        checkFormValidity();
     }
 
+    // Funzione di validazione dell'immagine
     function validateImg() {
         var img = document.getElementById('img').value;
         var imgErrorMessage = document.getElementById('img-error-message');
@@ -213,16 +206,14 @@
         if (img !== '') {
             document.getElementById('img').style.borderColor = 'green';
             imgErrorMessage.innerHTML = '';
-            document.getElementById('registration_submit').disabled=false;
-
         } else {
             document.getElementById('img').style.borderColor = 'red';
             imgErrorMessage.innerHTML = 'Img cannot be empty';
-            document.getElementById('registration_submit').disabled=true;
-
         }
+        checkFormValidity();
     }
 
+    // Funzione di validazione del telefono
     function validateTelephone() {
         var telephone = document.getElementById('telephone').value;
         var telephoneRegex = /^\d{6,15}$/;
@@ -231,16 +222,14 @@
         if (telephoneRegex.test(telephone)) {
             document.getElementById('telephone').style.borderColor = 'green';
             telephoneErrorMessage.innerHTML = '';
-            document.getElementById('registration_submit').disabled=false;
-
         } else {
             document.getElementById('telephone').style.borderColor = 'red';
             telephoneErrorMessage.innerHTML = 'Telephone must contain between 6 and 15 digits';
-            document.getElementById('registration_submit').disabled=true;
-
         }
+        checkFormValidity();
     }
 
+    // Funzione di validazione del sito web
     function validateWebsite() {
         var website = document.getElementById('website').value;
         var websiteErrorMessage = document.getElementById('website-error-message');
@@ -248,53 +237,81 @@
         if (website !== '') {
             document.getElementById('website').style.borderColor = 'green';
             websiteErrorMessage.innerHTML = '';
-            document.getElementById('registration_submit').disabled=false;
-
         } else {
             document.getElementById('website').style.borderColor = 'red';
             websiteErrorMessage.innerHTML = 'Invalid website URL';
-            document.getElementById('registration_submit').disabled=true;
-
         }
+        checkFormValidity();
     }
 
-    /////////////////// funzione valdiazione categorie 
-
-
-    //passo l'array da php a js
-    var categories = <?php echo json_encode($categories); ?>;
-
-    // svuoto l'array delle checkbox
-    var array_categories_value = [];
-
+    // Funzione di validazione delle categorie
     function validateCategory(valore) {
-
-        if(array_categories_value.includes(valore)) {
-
-           let index = array_categories_value.indexOf(valore);
-           array_categories_value.splice(index, 1);
+        if (array_categories_value.includes(valore)) {
+            let index = array_categories_value.indexOf(valore);
+            array_categories_value.splice(index, 1);
         } else {
-
             array_categories_value.push(valore);
         }
-    
-    console.log(array_categories_value);
-    var categoryErrorMessage = document.getElementById('category-error-message');
-
-
+        var categoryErrorMessage = document.getElementById('category-error-message');
         if (array_categories_value.length >= 1) {
             categoryErrorMessage.innerHTML = '';
-            document.getElementById('registration_submit').disabled=false;
-
         } else {
             categoryErrorMessage.innerHTML = 'Inserisci almeno una categoria';
-            document.getElementById('registration_submit').disabled=true;
-
         }
+        checkFormValidity();
     }
 
-    function alert() {
-        alert("prova");
+    // Funzione per controllare la validità complessiva del modulo
+    function checkFormValidity() {
+        var isFormValid = true;
+        // Controlla la validità di tutti i campi
+        if (document.getElementById('name').classList.contains('is-invalid') ||
+            document.getElementById('description').classList.contains('is-invalid') ||
+            document.getElementById('city').classList.contains('is-invalid') ||
+            document.getElementById('address').classList.contains('is-invalid') ||
+            document.getElementById('img').classList.contains('is-invalid') ||
+            document.getElementById('telephone').classList.contains('is-invalid') ||
+            document.getElementById('website').classList.contains('is-invalid') ||
+            array_categories_value.length < 1) {
+            isFormValid = false;
+        }
+        // Abilita o disabilita il pulsante di invio
+        document.getElementById('registration_submit').disabled = !isFormValid;
     }
 
+    // Funzione per controllare la validità complessiva del modulo
+    function checkFormValidity() {
+        var isFormValid = true;
+        
+        // Controlla la validità di tutti i campi di input di testo
+        var textInputs = document.querySelectorAll('input[type="text"]');
+        textInputs.forEach(function(input) {
+            if (input.classList.contains('is-invalid') || input.value.trim() === '') {
+                isFormValid = false;
+            }
+        });
+
+        // Controlla la validità di tutti i campi textarea
+        var textAreas = document.querySelectorAll('textarea');
+        textAreas.forEach(function(textArea) {
+            if (textArea.classList.contains('is-invalid') || textArea.value.trim() === '') {
+                isFormValid = false;
+            }
+        });
+
+        // Controlla la validità di tutti i checkbox
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        var isChecked = false;
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                isChecked = true;
+            }
+        });
+        if (!isChecked) {
+            isFormValid = false;
+        }
+
+        // Abilita o disabilita il pulsante di invio
+        document.getElementById('registration_submit').disabled = !isFormValid;
+    }
 </script>
