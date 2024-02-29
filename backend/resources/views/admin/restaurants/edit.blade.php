@@ -19,6 +19,8 @@
                         <label for="name" class="form-label">Name</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
                             name="name" value="{{ old('name') ?? $restaurant->name }}" required onkeyup="validateName()">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
+                            name="name" value="{{ old('name') ?? $restaurant->name }}" required onkeyup="validateName()">
 
                         {{-- error message --}}
                         <span id="name-error-message" class="invalid-feedback" role="alert"></span>
@@ -30,6 +32,8 @@
                     {{-- description  --}}
                     <div class="mb-3">
                         <label for="description" class="form-label">description</label>
+                        <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description"
+                            name="description" required minlength="10" max="255" onkeyup="validateDescription()">{{ old('description') ?? $restaurant->description }}</textarea>
                         <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description"
                             name="description" required minlength="10" max="255" onkeyup="validateDescription()">{{ old('description') ?? $restaurant->description }}</textarea>
 
@@ -59,6 +63,8 @@
                         <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
                             name="address" value="{{ old('address') ?? $restaurant->address }}" required
                             onkeyup="validateAddress()">
+                        name="address" value="{{ old('address') ?? $restaurant->address }}" required
+                        onkeyup="validateAddress()">
 
                         {{-- error message --}}
                         <span id="address-error-message" class="invalid-feedback" role="alert"></span>
@@ -86,6 +92,8 @@
                         <input type="text" class="form-control @error('telephone') is-invalid @enderror" id="telephone"
                             name="telephone" value="{{ old('telephone') ?? $restaurant->telephone }}" required
                             minlength="6" maxlength="15" onkeyup="validateTelephone()">
+                        name="telephone" value="{{ old('telephone') ?? $restaurant->telephone }}" required
+                        minlength="6" maxlength="15" onkeyup="validateTelephone()">
 
                         {{-- error message --}}
                         <span id="telephone-error-message" class="invalid-feedback" role="alert"></span>
@@ -100,6 +108,8 @@
                         <input type="text" class="form-control @error('website') is-invalid @enderror" id="website"
                             name="website" value="{{ old('website') ?? $restaurant->website }}" required
                             onkeyup="validateWebsite()">
+                        name="website" value="{{ old('website') ?? $restaurant->website }}" required
+                        onkeyup="validateWebsite()">
 
                         {{-- error message --}}
                         <span id="website-error-message" class="invalid-feedback" role="alert"></span>
@@ -128,6 +138,8 @@
                                 aria-label="Basic checkbox toggle button group">
                                 <input hidden checked type="checkbox" name="categories[]"
                                     id="category{{ $category->id }}" value="{{ $category->id }}" autocomplete="off">
+                                <input hidden checked type="checkbox" name="categories[]"
+                                    id="category{{ $category->id }}" value="{{ $category->id }}" autocomplete="off">
                                 {{-- con queste 2 classi btn-primary text-white le categorie rimangono blu in edit, ma il sistema non si ricorda quali sono le categorie correnti --}}
                                 <label class="btn btn-outline-primary form-label rounded"
                                     for="category{{ $category->id }}">
@@ -145,6 +157,7 @@
                             </div>
                         @endif
                     @endforeach
+
 
                     <div>
                         <button id="submitButton"
