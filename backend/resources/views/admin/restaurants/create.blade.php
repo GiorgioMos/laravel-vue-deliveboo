@@ -33,9 +33,9 @@
 
                     {{-- description  --}}
                     <div class="mb-3">
-                        <label for="description" class="form-label">description <span style="color: red;">*</span></label>
+                        <label for="description" class="form-label">Description <span style="color: red;">*</span></label>
                         <textarea type="text" class="form-control @error('description') is-invalid @enderror"
-                            id="description" name="description" value="{{ old('description') }}" required minlength="10" max="255" onkeyup="validateDescription()"></textarea>
+                            id="description" name="description" required onkeyup="validateDescription()">{{ old('description') }}</textarea>
 
                         {{-- error message --}}
                         <span id="description-error-message" class="invalid-feedback" role="alert"></span>
@@ -46,7 +46,7 @@
 
                     {{-- city  --}}
                     <div class="mb-3">
-                        <label for="city" class="form-label">city <span style="color: red;">*</span></label>
+                        <label for="city" class="form-label">City <span style="color: red;">*</span></label>
                         <input type="text" class="form-control @error('city') is-invalid @enderror" id="city" name="city" value="{{ old('city') }}" required onkeyup="validateCity()">
 
                         {{-- error message --}}
@@ -58,7 +58,7 @@
 
                     {{-- address  --}}
                     <div class="mb-3">
-                        <label for="address" class="form-label">address <span style="color: red;">*</span></label>
+                        <label for="address" class="form-label">Address <span style="color: red;">*</span></label>
                         <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}" required onkeyup="validateAddress()">
 
                         {{-- error message --}}
@@ -70,7 +70,7 @@
 
                     {{-- img  --}}
                     <div class="mb-3">
-                        <label for="img" class="form-label">img <span style="color: red;">*</span></label>
+                        <label for="img" class="form-label">Img <span style="color: red;">*</span></label>
                         <input type="text" class="form-control @error('img') is-invalid @enderror" id="img" name="img" value="{{ old('img') }}" required onkeyup="validateImg()">
 
                         {{-- error message --}}
@@ -82,7 +82,7 @@
 
                     {{-- telephone  --}}
                     <div class="mb-3">
-                        <label for="telephone" class="form-label">telephone <span style="color: red;">*</span></label>
+                        <label for="telephone" class="form-label">Telephone <span style="color: red;">*</span></label>
                         <input type="text" class="form-control @error('telephone') is-invalid @enderror" id="telephone" name="telephone" value="{{ old('telephone') }}" required minlength="6" maxlength="15" onkeyup="validateTelephone()">
 
                         {{-- error message --}}
@@ -94,7 +94,7 @@
 
                     {{-- website  --}}
                     <div class="mb-3">
-                        <label for="website" class="form-label">website <span style="color: red;">*</span></label>
+                        <label for="website" class="form-label">Website <span style="color: red;">*</span></label>
                         <input type="text" class="form-control @error('website') is-invalid @enderror"
                             id="website" name="website" value="{{ old('website') }}" required onkeyup="validateWebsite()">
 
@@ -122,11 +122,7 @@
 
                     <br>
 
-                    @if (isset($errore))
-                        <button type="submit" class="btn btn-dark disabled">Create</button>
-                    @else
-                        <button type="submit" class="btn btn-dark" id="registration_submit" disabled>Create</button>
-                    @endif
+                    <button type="submit" class="btn btn-dark" id="registration_submit" disabled>Create</button>
                 </form>
             </div>
         </div>
@@ -155,18 +151,19 @@
 
     // Funzione di validazione della descrizione
     function validateDescription() {
-        var description = document.getElementById('description').value;
-        var descriptionErrorMessage = document.getElementById('description-error-message');
+    var description = document.getElementById('description').value;
+    var descriptionErrorMessage = document.getElementById('description-error-message');
 
-        if (description.length >= 10 && description.length <= 255) {
-            document.getElementById('description').style.borderColor = 'green';
-            descriptionErrorMessage.innerHTML = '';
-        } else {
-            document.getElementById('description').style.borderColor = 'red';
-            descriptionErrorMessage.innerHTML = 'Description must be between 10 and 255 characters';
-        }
-        checkFormValidity();
+    if (description.length >= 10 && description.length <= 255) {
+        document.getElementById('description').style.borderColor = 'green';
+        descriptionErrorMessage.innerHTML = '';
+        checkFormValidity(); // Controlla la validità del modulo
+    } else {
+        document.getElementById('description').style.borderColor = 'red';
+        descriptionErrorMessage.innerHTML = 'Description must be between 10 and 255 characters';
+        document.getElementById('registration_submit').disabled = true; // Disabilita il pulsante di invio
     }
+}
 
     // Funzione di validazione della città
     function validateCity() {
@@ -259,24 +256,6 @@
             categoryErrorMessage.innerHTML = 'Inserisci almeno una categoria';
         }
         checkFormValidity();
-    }
-
-    // Funzione per controllare la validità complessiva del modulo
-    function checkFormValidity() {
-        var isFormValid = true;
-        // Controlla la validità di tutti i campi
-        if (document.getElementById('name').classList.contains('is-invalid') ||
-            document.getElementById('description').classList.contains('is-invalid') ||
-            document.getElementById('city').classList.contains('is-invalid') ||
-            document.getElementById('address').classList.contains('is-invalid') ||
-            document.getElementById('img').classList.contains('is-invalid') ||
-            document.getElementById('telephone').classList.contains('is-invalid') ||
-            document.getElementById('website').classList.contains('is-invalid') ||
-            array_categories_value.length < 1) {
-            isFormValid = false;
-        }
-        // Abilita o disabilita il pulsante di invio
-        document.getElementById('registration_submit').disabled = !isFormValid;
     }
 
     // Funzione per controllare la validità complessiva del modulo
