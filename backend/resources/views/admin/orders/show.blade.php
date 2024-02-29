@@ -23,7 +23,7 @@
                                         @php
                                             $quantity= $order->products()->where('product_id', $product->id)->where('order_id', $order->id)->first()->pivot->quantity    
                                         @endphp
-										<li><a href="" class="fw-bold">{{ $product->name }}</a> in {{$quantity}} quantità</li>
+										<li><a href="{{ route('admin.products.show', $product->id) }}" class="fw-bold">{{ $product->name }}</a> in {{$quantity}} quantità</li>
 									@endforeach
 								</ul>
 							@else
