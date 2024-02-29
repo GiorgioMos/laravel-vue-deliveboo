@@ -1,0 +1,33 @@
+<?php
+
+return [
+
+    'Senza cipolla',
+    'Piccante',
+    'Extra formaggio',
+    'Senza glutine',
+    'Da tagliare a metà',
+    'Consegna veloce',
+    'Da portare via',
+    'Prego chiamare prima di consegnare',
+    'Con salsa extra',
+    'Senza peperoni',
+    'Nota per il fattorino: parcheggio difficile',
+    'Aggiungi ketchup',
+    'Da consegnare al portone',
+    'Nota per il ristorante: contattare per conferma ordine',
+    'Con poco sale',
+    'Senza lattosio',
+    'Consegna dopo le 18:00',
+    'Con doppio ripieno',
+    'Con contorno di patatine',
+    'Senza aglio',
+    'Da mettere in una busta extra',
+    'Con extra pollo',
+    'Senza maionese',
+    'Con guarnizione di insalata',
+    'Con consegna urgente',
+    'Consegna alla reception',
+    'Da consegnare nell\'ufficio',
+    'Senza uova',
+];

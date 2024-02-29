@@ -63,9 +63,11 @@ class OrderSeeder extends Seeder
                     }
                 }
 
+                $array_notes = config('order_notes');
+
                 $new_order = new Order();
                 $new_order->date = $faker->date($format = 'Y-m-d', $max = 'now');
-                $new_order->notes = ''; // aggiungere array di note random che si ripetono, tipo 20
+                $new_order->notes = $array_notes[array_rand($array_notes)]; // aggiungere array di note random che si ripetono, tipo 20
                 $new_order->guest_name = $faker->name();
                 $new_order->guest_surname = $faker->lastname();
                 $new_order->guest_address = $faker->address();
