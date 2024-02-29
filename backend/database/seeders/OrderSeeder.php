@@ -18,85 +18,92 @@ class OrderSeeder extends Seeder
     public function run(Faker $faker): void
     {
 
-        // // multiordine random
-        // for ($i = 0; $i < 50; $i++) {
+        // ! non è costante, per funzionare bene ogni ristorante deve avere prodotti associati
 
-        //     //recupero un array con tutti gli id ristorante
-        //     $restaurants_id_array = Restaurant::pluck('id')->toArray(); //pluck al posto di select o il contrario? togliere to array?
-        //     //recupero un ristorante random
-        //     $restaurant_id = array_rand($restaurants_id_array);
-        //     // recupero array di oggetti prodotti random 
-        //     $total_price = [];
-        //     $products_array = [];
-        //     $products_used = [];
+        // decido il numero massimo di ordini
+        for ($i = 0; $i < 10; $i++) {
 
+            //recupero un ristorante random
+            $restaurant = Restaurant::inRandomOrder()->first();
 
-        //     // recupero tutti i prodotti del ristorante selezionato 
-        //     $products_id_array = Product::where('restaurant_id', $restaurant_id)->pluck('id')->toArray(); // ci va il ->get()   ?
-        //     ddd($products_id_array);
+            // recupero tutti i prodotti del ristorante selezionato 
+            $products_id_array = $restaurant->product()->pluck('id')->all();
 
-        //     for ($i = 0; $i < rand(1, 10); $i++) {
-        //         //seleziono un prodotto random
-        //         $product_id = array_rand($products_id_array);
-        //         // lo pusho nei prodotti usati
-        //         array_push($products_used, $product_id);
+            // li conto 
+            $n_product = count($products_id_array);
+            //controllo se esistono prodotti associati
+            if ($n_product > 0) {
 
-        //         //controllo se l'ho già usato
-        //         if (!in_array($product_id, $products_used)) {
+                //creo gli array
+                $total_price = [];
+                $products_array = [];
+                $products_used = [];
 
-        //             // creo oggetto prodotto 
-        //             $product_obj = [
-        //                 'id' => $product_id,
-        //                 'price' => Product::select('price')->where('restaurant_id', $restaurant_id)->where('id', $$product_id)->first(),
-        //                 'quantity' => rand(1, 10)
-        //             ];
+                for ($i = 0; $i < rand(1, $n_product); $i++) {
 
-        //             // pusho l'oggetto in un array 
-        //             array_push($products_array, $product_obj);
-        //             array_push($total_price, $product_obj['quantity'] * $product_obj['price']); // come cazzo si fa la moltiplicazione???
-        //         }
-        //     }
+                    //seleziono un prodotto random
+                    $product_id = $restaurant->product()->inRandomOrder()->pluck('id')->first();
 
+                    //controllo se l'ho già usato
+                    if (in_array($product_id, $products_used) == false) {
 
-        //     $new_order = new Order();
-        //     $new_order->date = $faker->date($format = 'Y-m-d', $max = 'now');
-        //     $new_order->notes = ''; // aggiungere array di note random che si ripetono, tipo 20
-        //     $new_order->guest_name = $faker->name();
-        //     $new_order->guest_surname = $faker->lastname();
-        //     $new_order->guest_address = $faker->address();
-        //     $new_order->guest_email = $faker->email();
-        //     $new_order->guest_city = $faker->city();
-        //     $new_order->total_price = array_sum($total_price); //inserire somma dei prodotti
+                        // lo pusho nei prodotti usati
+                        array_push($products_used, $product_id);
 
-        //     $new_order->save();
+                        // creo oggetto prodotto 
+                        $product_obj = [
+                            'id' => $product_id,
+                            'price' => Product::where('id', $product_id)->pluck('price')->first(),
+                            'quantity' => rand(1, 5)
+                        ];
 
-        //     // aggiungo i prodotti in tabella ponte 
-        //     foreach ($products_array as $product) {
+                        // pusho l'oggetto in un array 
+                        array_push($products_array, $product_obj);
+                        array_push($total_price, $product_obj['quantity'] * $product_obj['price']);
+                    }
+                }
 
-        //         //come primo argomento dell'attach passo l'id del prodotto, come secondo specifico il campo quantità e passo il valore corrispondente
-        //         $new_order->product()->attach($product['id'], ['quantity' => $product['quantity']]);
-        //     }
-        // }
+                $new_order = new Order();
+                $new_order->date = $faker->date($format = 'Y-m-d', $max = 'now');
+                $new_order->notes = ''; // aggiungere array di note random che si ripetono, tipo 20
+                $new_order->guest_name = $faker->name();
+                $new_order->guest_surname = $faker->lastname();
+                $new_order->guest_address = $faker->address();
+                $new_order->guest_email = $faker->email();
+                $new_order->guest_city = $faker->city();
+                $new_order->guest_telephone = $faker->phoneNumber();
+                $new_order->total_price = array_sum($total_price);
 
-        $array_orders = config('orders');
+                $new_order->save();
 
-        foreach ($array_orders as $order) {
-            $new_order = new Order();
-            $new_order->total_price = $order["total_price"];
-            $new_order->date = $order["date"];
-            $new_order->notes = $order["notes"];
-            $new_order->guest_name = $order["guest_name"];
-            $new_order->guest_surname = $order["guest_surname"];
-            $new_order->guest_telephone = $order["guest_telephone"];
-            $new_order->guest_email = $order["guest_email"];
-            $new_order->guest_address = $order["guest_address"];
-            $new_order->guest_city = $order["guest_city"];
-            $new_order->save();
-            //ciclo per attaccare nella tabella ponte ogni prodotto e la quantità
-            foreach ($order["products"] as $key => $value) {
-                //come primo argomento dell'attach passo l'id del prodotto, come secondo specifico il campo quantità e passo il valore corrispondente
-                $new_order->product()->attach($order["products"][$key]["product_id"], ['quantity' => $order["products"][$key]["quantity"]]);
+                // aggiungo i prodotti in tabella ponte 
+                foreach ($products_array as $product) {
+
+                    //come primo argomento dell'attach passo l'id del prodotto, come secondo specifico il campo quantità e passo il valore corrispondente
+                    $new_order->product()->attach($product['id'], ['quantity' => $product['quantity']]);
+                }
             }
         }
+
+        // $array_orders = config('orders');
+
+        // foreach ($array_orders as $order) {
+        //     $new_order = new Order();
+        //     $new_order->total_price = $order["total_price"];
+        //     $new_order->date = $order["date"];
+        //     $new_order->notes = $order["notes"];
+        //     $new_order->guest_name = $order["guest_name"];
+        //     $new_order->guest_surname = $order["guest_surname"];
+        //     $new_order->guest_telephone = $order["guest_telephone"];
+        //     $new_order->guest_email = $order["guest_email"];
+        //     $new_order->guest_address = $order["guest_address"];
+        //     $new_order->guest_city = $order["guest_city"];
+        //     $new_order->save();
+        //     //ciclo per attaccare nella tabella ponte ogni prodotto e la quantità
+        //     foreach ($order["products"] as $key => $value) {
+        //         //come primo argomento dell'attach passo l'id del prodotto, come secondo specifico il campo quantità e passo il valore corrispondente
+        //         $new_order->product()->attach($order["products"][$key]["product_id"], ['quantity' => $order["products"][$key]["quantity"]]);
+        //     }
+        // }
     }
 }
