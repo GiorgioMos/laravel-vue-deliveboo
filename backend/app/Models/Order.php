@@ -21,7 +21,7 @@ class Order extends Model
         'guest_city'
     ];
 
-    public function product()
+    public function products()
     {
         return $this->belongsToMany(Product::class)->withPivot('quantity'); //aggiunto per collegare terzo campo ai primi due, spero sia giusto
     }

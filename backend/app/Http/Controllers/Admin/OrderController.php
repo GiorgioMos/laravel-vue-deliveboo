@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Models\Order;
+use App\Models\Product;
+use App\Models\Restaurant;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -15,9 +18,13 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //todo mostrare solo ordini del singolo ristorante con l'accrocchio magico
-        $orders = Order::all();
-        return view('admin.orders.index', compact("orders"));
+        $currentUser = Auth::id();
+        // prendo l'id del ristorante collegato all'utente
+        $restaurant = Restaurant::select('id')->where('user_id', $currentUser)->first();
+        $orders = Order::whereHas('products', function ($query) use ($restaurant) {
+            $query->where('restaurant_id', $restaurant->id);
+        })->get();
+        return view('admin.orders.index', compact('orders'));
     }
 
     /**
@@ -41,6 +48,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
+
         return view("admin.orders.show", compact("order"));
     }
 

@@ -18,74 +18,83 @@ class OrderSeeder extends Seeder
     public function run(Faker $faker): void
     {
 
-        // ! non è costante, per funzionare bene ogni ristorante deve avere prodotti associati
 
-        // decido il numero massimo di ordini
-        for ($i = 0; $i < 10; $i++) {
 
-            //recupero un ristorante random
-            $restaurant = Restaurant::inRandomOrder()->first();
+        $restaurants = Restaurant::all();
 
-            // recupero tutti i prodotti del ristorante selezionato 
-            $products_id_array = $restaurant->product()->pluck('id')->all();
+        foreach ($restaurants as $restaurant) {
 
-            // li conto 
-            $n_product = count($products_id_array);
-            //controllo se esistono prodotti associati
-            if ($n_product > 0) {
+
+
+            // decido il numero massimo di ordini
+            for ($i = 0; $i < 10; $i++) {
 
                 //creo gli array
                 $total_price = [];
                 $products_array = [];
                 $products_used = [];
+                // recupero tutti i prodotti del ristorante selezionato 
+                $products = $restaurant->products()->get();
 
-                for ($i = 0; $i < rand(1, $n_product); $i++) {
 
-                    //seleziono un prodotto random
-                    $product_id = $restaurant->product()->inRandomOrder()->pluck('id')->first();
+                // li conto 
+                $n_product = count($products);
 
-                    //controllo se l'ho già usato
-                    if (in_array($product_id, $products_used) == false) {
+                //controllo se esistono prodotti associati
+                if ($n_product > 0) {
 
-                        // lo pusho nei prodotti usati
-                        array_push($products_used, $product_id);
+                    // TODO ogni ordine può non avere sempre ogni prodotto
+                    foreach ($products as $product) {
 
-                        // creo oggetto prodotto 
-                        $product_obj = [
-                            'id' => $product_id,
-                            'price' => Product::where('id', $product_id)->pluck('price')->first(),
-                            'quantity' => rand(1, 5)
-                        ];
 
-                        // pusho l'oggetto in un array 
-                        array_push($products_array, $product_obj);
-                        array_push($total_price, $product_obj['quantity'] * $product_obj['price']);
+                        //seleziono un prodotto random
+                        $product_id = $product->id;
+
+                        //controllo se l'ho già usato
+                        if (in_array($product_id, $products_used) == false) {
+
+                            // lo pusho nei prodotti usati
+                            array_push($products_used, $product_id);
+
+                            // creo oggetto prodotto 
+                            $product_obj = [
+                                'id' => $product_id,
+                                'price' => Product::where('id', $product_id)->pluck('price')->first(),
+                                'quantity' => rand(1, 7)
+                            ];
+
+                            // pusho l'oggetto in un array 
+                            array_push($products_array, $product_obj);
+                            array_push($total_price, $product_obj['quantity'] * $product_obj['price']);
+                        }
                     }
-                }
 
-                $array_notes = config('order_notes');
 
-                $new_order = new Order();
-                $new_order->date = $faker->date($format = 'Y-m-d', $max = 'now');
-                $new_order->notes = $array_notes[array_rand($array_notes)]; // aggiungere array di note random che si ripetono, tipo 20
-                $new_order->guest_name = $faker->name();
-                $new_order->guest_surname = $faker->lastname();
-                $new_order->guest_address = $faker->address();
-                $new_order->guest_email = $faker->email();
-                $new_order->guest_city = $faker->city();
-                $new_order->guest_telephone = $faker->phoneNumber();
-                $new_order->total_price = array_sum($total_price);
+                    $array_notes = config('order_notes');
 
-                $new_order->save();
+                    $new_order = new Order();
+                    $new_order->date = $faker->date($format = 'Y-m-d', $max = 'now');
+                    $new_order->notes = $array_notes[array_rand($array_notes)]; // aggiungere array di note random che si ripetono, tipo 20
+                    $new_order->guest_name = $faker->name();
+                    $new_order->guest_surname = $faker->lastname();
+                    $new_order->guest_address = $faker->address();
+                    $new_order->guest_email = $faker->email();
+                    $new_order->guest_city = $faker->city();
+                    $new_order->guest_telephone = $faker->phoneNumber();
+                    $new_order->total_price = array_sum($total_price);
 
-                // aggiungo i prodotti in tabella ponte 
-                foreach ($products_array as $product) {
+                    $new_order->save();
 
-                    //come primo argomento dell'attach passo l'id del prodotto, come secondo specifico il campo quantità e passo il valore corrispondente
-                    $new_order->product()->attach($product['id'], ['quantity' => $product['quantity']]);
+                    // aggiungo i prodotti in tabella ponte 
+                    foreach ($products_array as $product) {
+
+                        //come primo argomento dell'attach passo l'id del prodotto, come secondo specifico il campo quantità e passo il valore corrispondente
+                        $new_order->products()->attach($product['id'], ['quantity' => $product['quantity']]);
+                    }
                 }
             }
         }
+
 
         // $array_orders = config('orders');
 
@@ -104,7 +113,7 @@ class OrderSeeder extends Seeder
         //     //ciclo per attaccare nella tabella ponte ogni prodotto e la quantità
         //     foreach ($order["products"] as $key => $value) {
         //         //come primo argomento dell'attach passo l'id del prodotto, come secondo specifico il campo quantità e passo il valore corrispondente
-        //         $new_order->product()->attach($order["products"][$key]["product_id"], ['quantity' => $order["products"][$key]["quantity"]]);
+        //         $new_order->products()->attach($order["products"][$key]["product_id"], ['quantity' => $order["products"][$key]["quantity"]]);
         //     }
         // }
     }
