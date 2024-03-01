@@ -9,7 +9,7 @@
 
         <div class="row">
             <div class="col-6">
-                <form action="{{ route('admin.restaurants.update', $restaurant->id) }}" method="POST">
+                <form action="{{ route('admin.restaurants.update', $restaurant->id) }}" method="POST" enctype="multipart/form-data">
                     {{-- cross scripting request forgery --}}
                     @csrf
                     @method('PUT')
@@ -70,7 +70,7 @@
                     {{-- img  --}}
                     <div class="mb-3">
                         <label for="img" class="form-label">img</label>
-                        <input type="text" class="form-control @error('img') is-invalid @enderror" id="img"
+                        <input type="file" class="form-control @error('img') is-invalid @enderror" id="img"
                             name="img" value="{{ old('img') ?? $restaurant->img }}" required onkeyup="validateImg()">
 
                         {{-- error message --}}
@@ -220,16 +220,27 @@
         }
 
         // Funzione per validare il campo immagine
-        function validateImg() {
-            var img = document.getElementById('img').value.trim();
-            var imgField = document.getElementById('img');
+        function validateImgUpload() {
+        var imgInput = document.getElementById('img');
+        var imgErrorMessage = document.getElementById('img-error-message');
+        var file = imgInput.files[0]; // Ottieni il file selezionato
 
-            if (img !== '') {
-                imgField.style.borderColor = 'green';
+        if (file) {
+            // Se è stato selezionato un file, verifica se è un'immagine
+            if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
+                imgInput.style.borderColor = 'green';
+                imgErrorMessage.innerHTML = ''; // Rimuovi eventuali messaggi di errore precedenti
             } else {
-                imgField.style.borderColor = 'red';
+                imgInput.style.borderColor = 'red';
+                imgErrorMessage.innerHTML = 'Il file deve essere un\'immagine (formati supportati: JPEG, PNG, GIF)';
+                imgInput.value = ''; // Resetta il valore dell'input per permettere la selezione di un nuovo file
             }
+        } else {
+            // Se non è stato selezionato alcun file, mostra un messaggio di errore
+            imgInput.style.borderColor = 'red';
+            imgErrorMessage.innerHTML = 'Devi caricare un\'immagine';
         }
+    }
 
         // Funzione per validare il campo telefono
         function validateTelephone() {

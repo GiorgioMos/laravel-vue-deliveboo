@@ -99,6 +99,11 @@ class RestaurantController extends Controller
     public function update(RestaurantRequest $request, Restaurant $restaurant)
     {
         $validated = $request->validated();
+
+        // per importare img
+        $percorsoImg = Storage::disk("public")->put('/uploads', $request['img']);
+        $validated["img"] = $percorsoImg;
+        
         $restaurant->update($validated);
 
         if ($request->categories) {
