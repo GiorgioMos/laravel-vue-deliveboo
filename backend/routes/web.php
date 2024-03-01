@@ -34,7 +34,7 @@ Route::middleware(['auth'])
 
         // admin crud
         Route::resource('restaurants', RestaurantController::class);
-
+        
         Route::resource('products', ProductController::class);
         Route::resource('orders', OrderController::class);
 

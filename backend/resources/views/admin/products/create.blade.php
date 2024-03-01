@@ -6,20 +6,20 @@
     <div class="row">
         <h1>Insert new product</h1>
         @isset($errore)
-        <div class="alert alert-danger">
-            <strong>{{$errore}}</strong>
-        </div>
+            <div class="alert alert-danger">
+                <strong>{{$errore}}</strong>
+            </div>
         @endisset
     </div>
 
     <div class="row">
         <div class="col-6">
             @if (!isset($restaurant_id))
-            <div class="alert alert-danger">
-                <strong>non hai ancora creato un ristorante</strong>
-            </div>
+                <div class="alert alert-danger">
+                    <strong>non hai ancora creato un ristorante</strong>
+                </div>
             @else
-            <form action="{{ route("admin.products.store") }}" method="POST">
+                <form action="{{ route('admin.products.store') }}" method="POST">
                 {{-- cross scripting request forgery --}}
                 @csrf
 
@@ -89,7 +89,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-dark">Create</button>
-            </form>
+                </form>
             @endif
         </div>
     </div>

@@ -1,6 +1,8 @@
 @extends("layouts.admin")
 
 @section("content")
+
+
 <div class="container py-3">
 
     <div class="row">
@@ -8,8 +10,23 @@
     </div>
 
     <div class="row">
-        <div class="col-6">
-            <form action="{{ route("admin.products.update", $product->id) }}" method="POST">
+        <div class="col-6"> 
+            @php
+                use App\Models\Restaurant;
+                $currentUser = Auth::id();
+                // prendo l'id del ristorante collegato all'utente
+                $restaurant = Restaurant::select('id')->where('user_id', $currentUser)->first();
+
+            @endphp
+            @if ($restaurant !== $product->restaurant_id )
+                <div class="alert alert-danger">
+                    <strong>Hai cercato una pagina che non esiste :( </strong>
+                </div>
+                <div>
+                    <a href="{{ route('admin.products.index') }}" class="btn btn-secondary"> torna ai tuoi prodotti</a>
+                </div>
+            @else
+                <form action="{{ route("admin.products.store") }}" method="POST">
                 {{-- cross scripting request forgery --}}
                 @csrf
                 @method('PUT')
@@ -78,7 +95,8 @@
                 </div>
 
                 <button type="submit" class="btn btn-dark">Edit</button>
-            </form>
+                </form>
+            @endif
         </div>
     </div>
 </div>
@@ -149,4 +167,7 @@
             visibleErrorMessage.innerHTML = '';
         }
     }
+
+
+    
 </script>
