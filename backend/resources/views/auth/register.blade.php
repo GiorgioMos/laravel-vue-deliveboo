@@ -13,7 +13,7 @@
 
                         {{-- name --}}
                         <div class="mb-4 row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }} <span style="color: red;">*</span></label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus onkeyup="validateName()">
@@ -28,7 +28,7 @@
 
                         {{-- surname --}}
                         <div class="mb-4 row">
-                            <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('Surname') }}</label>
+                            <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('Surname') }} <span style="color: red;">*</span></label>
 
                             <div class="col-md-6">
                                 <input id="surname" type="text" class="form-control @error('surname') is-invalid @enderror" name="surname" value="{{ old('surname') }}" required autocomplete="surname" autofocus onkeyup="validateSurname()">
@@ -43,7 +43,7 @@
 
                         {{-- email --}}
                         <div class="mb-4 row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }} <span style="color: red;">*</span></label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" onkeyup="validateEmail()">
@@ -59,7 +59,7 @@
 
                         {{-- password --}}
                         <div class="mb-4 row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }} <span style="color: red;">*</span></label>
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" onkeyup="checkPasswordMatch()">
                                 <span id="password-error-message" class="invalid-feedback" role="alert"></span>
@@ -71,7 +71,7 @@
                             </div>
                         </div>
                         <div class="mb-4 row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }} <span style="color: red;">*</span></label>
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required onkeyup="checkPasswordMatch()" autocomplete="new-password">
                                 <span id="password-confirm-message" class="mt-1"></span>
@@ -80,7 +80,7 @@
 
                         {{-- address --}}
                         <div class="mb-4 row">
-                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }} <span style="color: red;">*</span></label>
                             <div class="col-md-6">
                                 <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus onkeyup="validateAddress()">
                                 <span id="address-error-message" class="invalid-feedback" role="alert"></span>
@@ -95,7 +95,7 @@
 
                         {{-- p_iva --}}
                         <div class="mb-4 row">
-                            <label for="p_iva" class="col-md-4 col-form-label text-md-right">{{ __('Partita IVA') }}</label>
+                            <label for="p_iva" class="col-md-4 col-form-label text-md-right">{{ __('Partita IVA') }} <span style="color: red;">*</span></label>
                             <div class="col-md-6">
                                 <input id="p_iva" type="text" class="form-control @error('p_iva') is-invalid @enderror" name="p_iva" value="{{ old('p_iva') }}" required autocomplete="p_iva" autofocus onkeyup="validatePiva()">
                                 <span id="p_iva-error-message" class="invalid-feedback" role="alert"></span>
@@ -109,7 +109,7 @@
 
                         {{-- telephone --}}
                         <div class="mb-4 row">
-                            <label for="telephone" class="col-md-4 col-form-label text-md-right">{{ __('Telefono') }}</label>
+                            <label for="telephone" class="col-md-4 col-form-label text-md-right">{{ __('Telefono') }} <span style="color: red;">*</span></label>
                             <div class="col-md-6">
                                 <input id="telephone" type="text" class="form-control @error('telephone') is-invalid @enderror" name="telephone" value="{{ old('telephone') }}" required autocomplete="telephone" autofocus onkeyup="validateTelephone()">
                                 <span id="telephone-error-message" class="invalid-feedback" role="alert"></span>
