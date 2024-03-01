@@ -84,15 +84,17 @@ class ProductController extends Controller
      * Display the specified resource.
      */
     public function show(Product $product)
-    {
-        return view("admin.products.show", compact("product"));
+    {   
+
+        return route("admin.products.show", compact("product"));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Product $product)
-    {
+    {   
+        
         return view('admin.products.edit', compact('product'));
     }
 
