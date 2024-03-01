@@ -10,7 +10,7 @@
 
             <img src="{{$product->img}}" alt="product-img">
 
-            <h4>visible: {{ $product->visible}}</h4>
+            <h4>visible:{{ $product->visible == 1 ? 'yes' : 'no' }}</h4>
 
 
 

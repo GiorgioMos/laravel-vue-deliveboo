@@ -27,7 +27,8 @@
                                             </p>
                                             <p>description: {{ $product->description }}</p>
                                             <p>price: {{ $product->price }}</p>
-                                            <p>visible: {{ $product->visible }}</p>
+                                            <p>visible:{{ $product->visible == 1 ? 'yes' : 'no' }}
+                                            </p>
 
                                             <img src="{{ $product->img }}" alt="product-img">
 
