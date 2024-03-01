@@ -82,15 +82,16 @@
                         <div class="mb-4 row">
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus>
+                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus onkeyup="validateAddress()">
                                 <span id="address-error-message" class="invalid-feedback" role="alert"></span>
                                 @error('address')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                 @enderror
                             </div>
                         </div>
+
 
                         {{-- p_iva --}}
                         <div class="mb-4 row">
@@ -202,6 +203,19 @@
             emailErrorMessage.innerHTML = 'Invalid email address';
         }
     }
+
+    function validateAddress() {
+    var address = document.getElementById('address').value;
+    var addressErrorMessage = document.getElementById('address-error-message');
+
+    if (address.trim() !== '') {
+        document.getElementById('address').style.borderColor = 'green';
+        addressErrorMessage.innerHTML = '';
+    } else {
+        document.getElementById('address').style.borderColor = 'red';
+        addressErrorMessage.innerHTML = 'Address cannot be empty';
+    }
+}
 
     function validatePiva() {
         var piva = document.getElementById('p_iva').value;
