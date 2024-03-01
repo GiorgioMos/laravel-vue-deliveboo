@@ -220,27 +220,27 @@
         }
 
         // Funzione per validare il campo immagine
-        function validateImgUpload() {
-        var imgInput = document.getElementById('img');
-        var imgErrorMessage = document.getElementById('img-error-message');
-        var file = imgInput.files[0]; // Ottieni il file selezionato
+        function validateImg() {
+            var imgInput = document.getElementById('img');
+            var imgErrorMessage = document.getElementById('img-error-message');
+            var file = imgInput.files[0]; // Ottieni il file selezionato
 
-        if (file) {
-            // Se è stato selezionato un file, verifica se è un'immagine
-            if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
-                imgInput.style.borderColor = 'green';
-                imgErrorMessage.innerHTML = ''; // Rimuovi eventuali messaggi di errore precedenti
+            if (file) {
+                // Se è stato selezionato un file, verifica se è un'immagine
+                if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
+                    imgInput.style.borderColor = 'green';
+                    imgErrorMessage.innerHTML = ''; // Rimuovi eventuali messaggi di errore precedenti
+                } else {
+                    imgInput.style.borderColor = 'red';
+                    imgErrorMessage.innerHTML = 'Il file deve essere un\'immagine (formati supportati: JPEG, PNG, GIF)';
+                    imgInput.value = ''; // Resetta il valore dell'input per permettere la selezione di un nuovo file
+                }
             } else {
-                imgInput.style.borderColor = 'red';
-                imgErrorMessage.innerHTML = 'Il file deve essere un\'immagine (formati supportati: JPEG, PNG, GIF)';
-                imgInput.value = ''; // Resetta il valore dell'input per permettere la selezione di un nuovo file
+                // Se non è stato selezionato alcun file, mostra un messaggio di errore
+                imgErrorMessage.innerHTML = 'Devi caricare un\'immagine';
             }
-        } else {
-            // Se non è stato selezionato alcun file, mostra un messaggio di errore
-            imgInput.style.borderColor = 'red';
-            imgErrorMessage.innerHTML = 'Devi caricare un\'immagine';
         }
-    }
+
 
         // Funzione per validare il campo telefono
         function validateTelephone() {
@@ -278,39 +278,58 @@
     });
 
     document.addEventListener('DOMContentLoaded', function() {
-        // Funzione per verificare lo stato di compilazione dei campi
-        function checkFormCompletion() {
-            var name = document.getElementById('name').value.trim();
-            var description = document.getElementById('description').value.trim();
-            var city = document.getElementById('city').value.trim();
-            var address = document.getElementById('address').value.trim();
-            var img = document.getElementById('img').value.trim();
-            var telephone = document.getElementById('telephone').value.trim();
-            var website = document.getElementById('website').value.trim();
-            var categoriesSelected = document.querySelectorAll('input[name="categories[]"]:checked').length;
+    // Funzione per verificare lo stato di compilazione dei campi
+    function checkFormCompletion() {
+        var name = document.getElementById('name').value.trim();
+        var description = document.getElementById('description').value.trim();
+        var city = document.getElementById('city').value.trim();
+        var address = document.getElementById('address').value.trim();
+        var imgInput = document.getElementById('img');
+        var telephone = document.getElementById('telephone').value.trim();
+        var website = document.getElementById('website').value.trim();
+        var categoriesSelected = document.querySelectorAll('input[name="categories[]"]:checked').length;
 
-            // Verifica se tutti i campi sono compilati e almeno una categoria è selezionata
-            if (name !== '' && description !== '' && description.length >= 10 && description.length <= 255 &&
-                city !== '' && address !== '' && img !== '' &&
-                telephone !== '' && telephone.length >= 6 && telephone.length <= 15 && /^[0-9\s+]+$/.test(
-                    telephone) && website !== '' &&
-                categoriesSelected > 0
-            ) {
-                document.getElementById('submitButton').disabled = false; // Abilita il pulsante di invio
+        var imgErrorMessage = document.getElementById('img-error-message');
+
+        // Verifica se tutti i campi sono compilati e almeno una categoria è selezionata
+        if (name !== '' && description !== '' && description.length >= 10 && description.length <= 255 &&
+            city !== '' && address !== '' &&
+            telephone !== '' && telephone.length >= 6 && telephone.length <= 15 && /^[0-9\s+]+$/.test(
+                telephone) && website !== '' &&
+            categoriesSelected > 0
+        ) {
+            // Verifica se è stato selezionato un file per l'immagine
+            if (imgInput.files.length > 0) {
+                var file = imgInput.files[0];
+                // Se è stato selezionato un file, verifica se è un'immagine
+                if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
+                    imgInput.style.borderColor = 'green';
+                    imgErrorMessage.innerHTML = ''; // Rimuovi eventuali messaggi di errore precedenti
+                    document.getElementById('submitButton').disabled = false; // Abilita il pulsante di invio
+                    return; // Esci dalla funzione
+                } else {
+                    imgInput.style.borderColor = 'red';
+                    imgErrorMessage.innerHTML = 'Il file deve essere un\'immagine (formati supportati: JPEG, PNG, GIF)';
+                }
             } else {
-                document.getElementById('submitButton').disabled = true; // Disabilita il pulsante di invio
+                imgInput.style.borderColor = 'red';
+                imgErrorMessage.innerHTML = 'Devi caricare un\'immagine';
             }
         }
 
-        // Aggiungi listener per verificare lo stato di compilazione dei campi quando vengono modificati
-        var inputs = document.querySelectorAll('input[type="text"], textarea, input[name="categories[]"]');
-        inputs.forEach(function(input) {
-            input.addEventListener('keyup', checkFormCompletion);
-            input.addEventListener('change',
-                checkFormCompletion); // Aggiungi anche un listener per 'change' per i checkbox
-        });
+        // Se non tutti i campi sono compilati o una categoria non è stata selezionata, disabilita il pulsante di invio
+        document.getElementById('submitButton').disabled = true;
+    }
 
-        // Chiamata alla funzione all'inizio per assicurarsi che il pulsante sia nel giusto stato iniziale
-        checkFormCompletion();
+    // Aggiungi listener per verificare lo stato di compilazione dei campi quando vengono modificati
+    var inputs = document.querySelectorAll('input[type="text"], textarea, input[name="categories[]"], #img');
+    inputs.forEach(function(input) {
+        input.addEventListener('keyup', checkFormCompletion);
+        input.addEventListener('change', checkFormCompletion); // Aggiungi anche un listener per 'change' per i checkbox
     });
+
+    // Chiamata alla funzione all'inizio per assicurarsi che il pulsante sia nel giusto stato iniziale
+    checkFormCompletion();
+});
+
 </script>

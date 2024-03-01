@@ -71,7 +71,7 @@
                     {{-- img  --}}
                     <div class="mb-3">
                         <label for="img" class="form-label">Img <span style="color: red;">*</span></label>
-                        <input type="file" class="form-control @error('img') is-invalid @enderror" id="img" name="img" value="{{ old('img') }}" required onkeyup="validateImg()">
+                        <input type="file" class="form-control @error('img') is-invalid @enderror" id="img" name="img" value="{{ old('img') }}" required onchange="validateImg()">
 
                         {{-- error message --}}
                         <span id="img-error-message" class="invalid-feedback" role="alert"></span>
@@ -151,19 +151,18 @@
 
     // Funzione di validazione della descrizione
     function validateDescription() {
-    var description = document.getElementById('description').value;
-    var descriptionErrorMessage = document.getElementById('description-error-message');
+        var description = document.getElementById('description').value;
+        var descriptionErrorMessage = document.getElementById('description-error-message');
 
-    if (description.length >= 10 && description.length <= 255) {
-        document.getElementById('description').style.borderColor = 'green';
-        descriptionErrorMessage.innerHTML = '';
-        checkFormValidity(); // Controlla la validità del modulo
-    } else {
-        document.getElementById('description').style.borderColor = 'red';
-        descriptionErrorMessage.innerHTML = 'Description must be between 10 and 255 characters';
-        document.getElementById('registration_submit').disabled = true; // Disabilita il pulsante di invio
+        if (description.length >= 10 && description.length <= 255) {
+            document.getElementById('description').style.borderColor = 'green';
+            descriptionErrorMessage.innerHTML = '';
+        } else {
+            document.getElementById('description').style.borderColor = 'red';
+            descriptionErrorMessage.innerHTML = 'Description is required';
+        }
+        checkFormValidity();
     }
-}
 
     // Funzione di validazione della città
     function validateCity() {
@@ -175,7 +174,7 @@
             cityErrorMessage.innerHTML = '';
         } else {
             document.getElementById('city').style.borderColor = 'red';
-            cityErrorMessage.innerHTML = 'City must contain only letters and spaces';
+            cityErrorMessage.innerHTML = 'City is required';
         }
         checkFormValidity();
     }
@@ -190,7 +189,7 @@
             addressErrorMessage.innerHTML = '';
         } else {
             document.getElementById('address').style.borderColor = 'red';
-            addressErrorMessage.innerHTML = 'Address cannot be empty';
+            addressErrorMessage.innerHTML = 'Address is required';
         }
         checkFormValidity();
     }
@@ -205,7 +204,7 @@
             imgErrorMessage.innerHTML = '';
         } else {
             document.getElementById('img').style.borderColor = 'red';
-            imgErrorMessage.innerHTML = 'Img cannot be empty';
+            imgErrorMessage.innerHTML = 'Image is required';
         }
         checkFormValidity();
     }
@@ -213,15 +212,15 @@
     // Funzione di validazione del telefono
     function validateTelephone() {
         var telephone = document.getElementById('telephone').value;
-        var telephoneRegex = /^\d{6,15}$/;
+        var telephoneRegex = /^[0-9]+$/;
         var telephoneErrorMessage = document.getElementById('telephone-error-message');
 
-        if (telephoneRegex.test(telephone)) {
+        if (telephone === '' || telephoneRegex.test(telephone)) {
             document.getElementById('telephone').style.borderColor = 'green';
             telephoneErrorMessage.innerHTML = '';
         } else {
             document.getElementById('telephone').style.borderColor = 'red';
-            telephoneErrorMessage.innerHTML = 'Telephone must contain between 6 and 15 digits';
+            telephoneErrorMessage.innerHTML = 'Telephone must contain only numbers';
         }
         checkFormValidity();
     }
@@ -229,68 +228,63 @@
     // Funzione di validazione del sito web
     function validateWebsite() {
         var website = document.getElementById('website').value;
+        var websiteRegex = /^(ftp|http|https):\/\/[^ "]+$/;
         var websiteErrorMessage = document.getElementById('website-error-message');
 
-        if (website !== '') {
+        if (website === '' || websiteRegex.test(website)) {
+            document.getElementById('website').style.borderColor = 'red';
+            websiteErrorMessage.innerHTML = 'Website format is not valid';
+        } else {
             document.getElementById('website').style.borderColor = 'green';
             websiteErrorMessage.innerHTML = '';
-        } else {
-            document.getElementById('website').style.borderColor = 'red';
-            websiteErrorMessage.innerHTML = 'Invalid website URL';
         }
         checkFormValidity();
     }
 
     // Funzione di validazione delle categorie
-    function validateCategory(valore) {
-        if (array_categories_value.includes(valore)) {
-            let index = array_categories_value.indexOf(valore);
-            array_categories_value.splice(index, 1);
+    function validateCategory(category_id) {
+        var category = document.getElementById('category' + category_id);
+
+        // Se la categoria è selezionata, la aggiungiamo all'array, altrimenti la rimuoviamo
+        if (category.checked) {
+            array_categories_value.push(category_id);
         } else {
-            array_categories_value.push(valore);
+            var index = array_categories_value.indexOf(category_id);
+            if (index > -1) {
+                array_categories_value.splice(index, 1);
+            }
         }
-        var categoryErrorMessage = document.getElementById('category-error-message');
-        if (array_categories_value.length >= 1) {
-            categoryErrorMessage.innerHTML = '';
+
+        // Se almeno una categoria è selezionata, nascondiamo il messaggio di errore
+        if (array_categories_value.length > 0) {
+            document.getElementById('category-error-message').style.display = 'none';
         } else {
-            categoryErrorMessage.innerHTML = 'Inserisci almeno una categoria';
+            document.getElementById('category-error-message').style.display = 'block';
         }
+
         checkFormValidity();
     }
 
-    // Funzione per controllare la validità complessiva del modulo
+    // Funzione per abilitare o disabilitare il pulsante di invio del form
     function checkFormValidity() {
-        var isFormValid = true;
-        
-        // Controlla la validità di tutti i campi di input di testo
-        var textInputs = document.querySelectorAll('input[type="text"]');
-        textInputs.forEach(function(input) {
-            if (input.classList.contains('is-invalid') || input.value.trim() === '') {
-                isFormValid = false;
-            }
-        });
+        var name = document.getElementById('name').value;
+        var description = document.getElementById('description').value;
+        var city = document.getElementById('city').value;
+        var address = document.getElementById('address').value;
+        var img = document.getElementById('img').value;
+        var telephone = document.getElementById('telephone').value;
+        var website = document.getElementById('website').value;
 
-        // Controlla la validità di tutti i campi textarea
-        var textAreas = document.querySelectorAll('textarea');
-        textAreas.forEach(function(textArea) {
-            if (textArea.classList.contains('is-invalid') || textArea.value.trim() === '') {
-                isFormValid = false;
-            }
-        });
+        var formIsValid = name !== '' &&
+            description !== '' &&
+            description.length >= 10 && description.length <= 255 &&
+            city !== '' &&
+            address !== '' &&
+            img !== '' &&
+            telephone !== '' &&
+            website !== '' &&
+            array_categories_value.length > 0;
 
-        // Controlla la validità di tutti i checkbox
-        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-        var isChecked = false;
-        checkboxes.forEach(function(checkbox) {
-            if (checkbox.checked) {
-                isChecked = true;
-            }
-        });
-        if (!isChecked) {
-            isFormValid = false;
-        }
-
-        // Abilita o disabilita il pulsante di invio
-        document.getElementById('registration_submit').disabled = !isFormValid;
+        document.getElementById('registration_submit').disabled = !formIsValid;
     }
 </script>
