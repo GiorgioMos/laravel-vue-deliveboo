@@ -4,7 +4,10 @@
 <div class="container">
     <div class="row d-flex justify-content-center">
         <h2 class="py-3 text-center">{{ $restaurant->name }}</h2>
-        <div class="col-3">
+        <div class="">
+
+            <img style="width: 50rem" src="{{ asset("storage/".$restaurant->img) }}" alt="img">
+
             <h4>address: {{ $restaurant->address}}</h4>
             <h4>description: {{ $restaurant->description}}</h4>
 

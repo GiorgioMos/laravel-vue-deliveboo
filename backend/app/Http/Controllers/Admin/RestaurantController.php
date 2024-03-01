@@ -8,6 +8,7 @@ use App\Models\Restaurant;
 use App\Http\Requests\RestaurantRequest;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class RestaurantController extends Controller
 {
@@ -54,7 +55,12 @@ class RestaurantController extends Controller
         }
 
         $validated = $request->validated();
+
         $validated['user_id'] = Auth::id();
+
+        // per importare img
+        $percorsoImg = Storage::disk("public")->put('/uploads', $request['img']);
+        $validated ["img"] = $percorsoImg;
 
         $newRestaurant = new Restaurant();
         $newRestaurant->fill($validated);

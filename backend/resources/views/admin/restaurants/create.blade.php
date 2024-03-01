@@ -14,7 +14,7 @@
 
         <div class="row">
             <div class="col-6">
-                <form class="needs-validation" action="{{ route('admin.restaurants.store') }}" method="POST">
+                <form class="needs-validation" action="{{ route('admin.restaurants.store') }}" method="POST" enctype="multipart/form-data">
                     {{-- cross scripting request forgery --}}
                     @csrf
 
@@ -71,7 +71,7 @@
                     {{-- img  --}}
                     <div class="mb-3">
                         <label for="img" class="form-label">Img <span style="color: red;">*</span></label>
-                        <input type="text" class="form-control @error('img') is-invalid @enderror" id="img" name="img" value="{{ old('img') }}" required onkeyup="validateImg()">
+                        <input type="file" class="form-control @error('img') is-invalid @enderror" id="img" name="img" value="{{ old('img') }}" required onkeyup="validateImg()">
 
                         {{-- error message --}}
                         <span id="img-error-message" class="invalid-feedback" role="alert"></span>
