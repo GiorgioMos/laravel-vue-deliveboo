@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\File;
 
 class ProductRequest extends FormRequest
 {
@@ -25,7 +26,7 @@ class ProductRequest extends FormRequest
             "name" => ["required", "min:2", "max:100"],
             "description" => ["required", "max:255"],
             "price" => ["required"],
-            "img" => ["required", "min:2", "max:255"],
+            "img" => ["required", File::image()->min("1kb")->max("20mb")],
             "visible" => ["required", "boolean"],
         ];
     }

@@ -30,7 +30,8 @@
                                             <p>visible:{{ $product->visible == 1 ? 'yes' : 'no' }}
                                             </p>
 
-                                            <img src="{{ $product->img }}" alt="product-img">
+                                            <img style="width: 50rem" src="{{ asset('storage/' . $product->img) }}"
+                                                alt="img">
 
                                             <div class="d-flex justify-content-center align-items-center">
                                                 <a href="{{ route('admin.products.edit', $product->id) }}"

@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Http\Requests\ProductRequest;
 use App\Models\Restaurant;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -72,6 +73,9 @@ class ProductController extends Controller
         // assegno il valore al prodotto
         $validated['restaurant_id'] = $restaurant_id;
 
+        // per importare img
+        $percorsoImg = Storage::disk("public")->put('/uploads', $request['img']);
+        $validated["img"] = $percorsoImg;
 
         $newProduct = new Product();
         $newProduct->fill($validated);
@@ -84,7 +88,7 @@ class ProductController extends Controller
      * Display the specified resource.
      */
     public function show(Product $product)
-    {   
+    {
 
         return view("admin.products.show", compact("product"));
     }
@@ -93,7 +97,7 @@ class ProductController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Product $product)
-    {   
+    {
 
         return view('admin.products.edit', compact('product'));
     }
@@ -103,7 +107,13 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, Product $product)
     {
+
         $validated = $request->validated();
+
+        // per importare img
+        $percorsoImg = Storage::disk("public")->put('/uploads', $request['img']);
+        $validated["img"] = $percorsoImg;
+
         $product->update($validated);
         return redirect()->route('admin.products.index');
     }
