@@ -14,15 +14,16 @@
 
         <div class="row">
             <div class="col-6">
-                <form class="needs-validation" action="{{ route('admin.restaurants.store') }}" method="POST" enctype="multipart/form-data">
+                <form class="needs-validation" action="{{ route('admin.restaurants.store') }}" method="POST"
+                    enctype="multipart/form-data">
                     {{-- cross scripting request forgery --}}
                     @csrf
 
                     {{-- name  --}}
                     <div class="mb-3">
                         <label for="name" class="form-label">Name <span style="color: red;">*</span></label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror"
-                            id="name" name="name" value="{{ old('name') }}" required onkeyup="validateName()">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
+                            name="name" value="{{ old('name') }}" required onkeyup="validateName()">
 
                         {{-- error message --}}
                         <span id="name-error-message" class="invalid-feedback" role="alert"></span>
@@ -34,8 +35,8 @@
                     {{-- description  --}}
                     <div class="mb-3">
                         <label for="description" class="form-label">Description <span style="color: red;">*</span></label>
-                        <textarea type="text" class="form-control @error('description') is-invalid @enderror"
-                            id="description" name="description" required onkeyup="validateDescription()">{{ old('description') }}</textarea>
+                        <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description"
+                            name="description" required onkeyup="validateDescription()">{{ old('description') }}</textarea>
 
                         {{-- error message --}}
                         <span id="description-error-message" class="invalid-feedback" role="alert"></span>
@@ -47,7 +48,8 @@
                     {{-- city  --}}
                     <div class="mb-3">
                         <label for="city" class="form-label">City <span style="color: red;">*</span></label>
-                        <input type="text" class="form-control @error('city') is-invalid @enderror" id="city" name="city" value="{{ old('city') }}" required onkeyup="validateCity()">
+                        <input type="text" class="form-control @error('city') is-invalid @enderror" id="city"
+                            name="city" value="{{ old('city') }}" required onkeyup="validateCity()">
 
                         {{-- error message --}}
                         <span id="city-error-message" class="invalid-feedback" role="alert"></span>
@@ -59,7 +61,8 @@
                     {{-- address  --}}
                     <div class="mb-3">
                         <label for="address" class="form-label">Address <span style="color: red;">*</span></label>
-                        <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}" required onkeyup="validateAddress()">
+                        <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
+                            name="address" value="{{ old('address') }}" required onkeyup="validateAddress()">
 
                         {{-- error message --}}
                         <span id="address-error-message" class="invalid-feedback" role="alert"></span>
@@ -71,7 +74,8 @@
                     {{-- img  --}}
                     <div class="mb-3">
                         <label for="img" class="form-label">Img <span style="color: red;">*</span></label>
-                        <input type="file" class="form-control @error('img') is-invalid @enderror" id="img" name="img" value="{{ old('img') }}" required onchange="validateImg()">
+                        <input type="file" class="form-control @error('img') is-invalid @enderror" id="img"
+                            name="img" value="{{ old('img') }}" required onchange="validateImg()">
 
                         {{-- error message --}}
                         <span id="img-error-message" class="invalid-feedback" role="alert"></span>
@@ -83,7 +87,9 @@
                     {{-- telephone  --}}
                     <div class="mb-3">
                         <label for="telephone" class="form-label">Telephone <span style="color: red;">*</span></label>
-                        <input type="text" class="form-control @error('telephone') is-invalid @enderror" id="telephone" name="telephone" value="{{ old('telephone') }}" required minlength="6" maxlength="15" onkeyup="validateTelephone()">
+                        <input type="text" class="form-control @error('telephone') is-invalid @enderror" id="telephone"
+                            name="telephone" value="{{ old('telephone') }}" required minlength="6" maxlength="15"
+                            onkeyup="validateTelephone()">
 
                         {{-- error message --}}
                         <span id="telephone-error-message" class="invalid-feedback" role="alert"></span>
@@ -95,8 +101,8 @@
                     {{-- website  --}}
                     <div class="mb-3">
                         <label for="website" class="form-label">Website <span style="color: red;">*</span></label>
-                        <input type="text" class="form-control @error('website') is-invalid @enderror"
-                            id="website" name="website" value="{{ old('website') }}" required onkeyup="validateWebsite()">
+                        <input type="text" class="form-control @error('website') is-invalid @enderror" id="website"
+                            name="website" value="{{ old('website') }}" required onkeyup="validateWebsite()">
 
                         {{-- error message --}}
                         <span id="website-error-message" class="invalid-feedback" role="alert"></span>
@@ -107,12 +113,13 @@
 
                     <p>I campi con * sono obbligatori</p>
 
-                    <p id="category-error-message" class="text-danger" >Inserisci almeno una categoria</p>
+                    <p id="category-error-message" class="text-danger">Inserisci almeno una categoria</p>
                     @isset($categories)
                         @foreach ($categories as $category)
                             <div class="btn-group mb-3" role="group" aria-label="Basic checkbox toggle button group">
                                 <input hidden type="checkbox" name="categories[]" id="category{{ $category->id }}"
-                                    value="{{ $category->id }}" autocomplete="off" onclick="validateCategory({{$category->id}})">
+                                    value="{{ $category->id }}" autocomplete="off"
+                                    onclick="validateCategory({{ $category->id }})">
                                 <label class="btn btn-outline-primary form-label rounded" for="category{{ $category->id }}">
                                     {{ $category->name }}
                                 </label>
@@ -139,12 +146,13 @@
         var nameRegex = /^[a-zA-Z ]+$/;
         var nameErrorMessage = document.getElementById('name-error-message');
 
-        if (name === '' || nameRegex.test(name)) {
-            document.getElementById('name').style.borderColor = 'green';
-            nameErrorMessage.innerHTML = '';
-        } else {
+        if (name === '' || !nameRegex.test(name)) {
             document.getElementById('name').style.borderColor = 'red';
             nameErrorMessage.innerHTML = 'Name must contain only letters and spaces';
+
+        } else {
+            nameErrorMessage.innerHTML = '';
+            document.getElementById('name').style.borderColor = 'green';
         }
         checkFormValidity();
     }
@@ -215,12 +223,13 @@
         var telephoneRegex = /^[0-9]+$/;
         var telephoneErrorMessage = document.getElementById('telephone-error-message');
 
-        if (telephone === '' || telephoneRegex.test(telephone)) {
-            document.getElementById('telephone').style.borderColor = 'green';
-            telephoneErrorMessage.innerHTML = '';
-        } else {
+        if (telephone === '' || !telephoneRegex.test(telephone)) {
             document.getElementById('telephone').style.borderColor = 'red';
             telephoneErrorMessage.innerHTML = 'Telephone must contain only numbers';
+        } else {
+            document.getElementById('telephone').style.borderColor = 'green';
+            telephoneErrorMessage.innerHTML = '';
+
         }
         checkFormValidity();
     }

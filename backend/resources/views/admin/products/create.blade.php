@@ -116,12 +116,12 @@
         var nameRegex = /^[a-zA-Z ]+$/;
         var nameErrorMessage = document.getElementById('name-error-message');
 
-        if (name === '' || nameRegex.test(name)) {
-            document.getElementById('name').style.borderColor = 'green';
-            nameErrorMessage.innerHTML = '';
-        } else {
+        if (name === '' || !nameRegex.test(name)) {
             document.getElementById('name').style.borderColor = 'red';
             nameErrorMessage.innerHTML = 'Name must contain only letters and spaces';
+        } else {
+            document.getElementById('name').style.borderColor = 'green';
+            nameErrorMessage.innerHTML = '';
         }
         checkFormValidity();
     }
