@@ -9,7 +9,7 @@
             $restaurant = Restaurant::select('id')->where('user_id', $currentUser)->first();
 
         @endphp
-        @if ($restaurant !== $product->restaurant_id)
+        @if ($restaurant->id !== $product->restaurant_id)
             <div class="container">
 
                 <div class="alert alert-danger my-5">
@@ -23,10 +23,12 @@
             <div class="row d-flex justify-content-center">
                 <h2 class="py-3 text-center">name: {{ $product->name }}</h2>
                 <div class="col-3">
+                    <div class="imgBoxShow rounded">
+                        <img class="cardImg rounded" src={{ asset('storage/' . $product->img) }} alt="">
+                    </div>
                     <h4>description:{{ $product->description }}</h4>
                     <h4>price: {{ $product->price }}</h4>
 
-                    <img style="width: 50rem" src="{{ asset('storage/' . $product->img) }}" alt="img">
 
                     <h4>visible:{{ $product->visible == 1 ? 'yes' : 'no' }}</h4>
 

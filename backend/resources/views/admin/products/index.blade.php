@@ -21,7 +21,8 @@
                                             id="card">
                                             <!--  -->
                                             <div class="imgBoxIndex rounded">
-                                                <img class="cardImg rounded" src={{ $product->img }} alt="">
+                                                <img class="cardImg rounded" src={{ asset('storage/' . $product->img) }}
+                                                    alt="">
                                             </div>
                                             <p class="text-capitalize fw-bold text-center my-2">name: {{ $product->name }}
                                             </p>
@@ -30,8 +31,6 @@
                                             <p>visible:{{ $product->visible == 1 ? 'yes' : 'no' }}
                                             </p>
 
-                                            <img style="width: 50rem" src="{{ asset('storage/' . $product->img) }}"
-                                                alt="img">
 
                                             <div class="d-flex justify-content-center align-items-center">
                                                 <a href="{{ route('admin.products.edit', $product->id) }}"
