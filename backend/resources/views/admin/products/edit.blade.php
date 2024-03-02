@@ -1,105 +1,113 @@
-@extends("layouts.admin")
+@extends('layouts.admin')
 
-@section("content")
+@section('content')
+    <div class="container py-3">
 
+        <div class="row">
+            <h1>Edit Product</h1>
+        </div>
 
-<div class="container py-3">
+        <div class="row">
+            <div class="col-6">
+                @php
+                    use App\Models\Restaurant;
+                    $currentUser = Auth::id();
+                    // prendo l'id del ristorante collegato all'utente
+                    $restaurant = Restaurant::select('id')->where('user_id', $currentUser)->first();
 
-    <div class="row">
-        <h1>Edit Product</h1>
-    </div>
+                @endphp
+                @if ($restaurant->id !== $product->restaurant_id)
+                    <div class="alert alert-danger">
+                        <strong>Hai cercato una pagina che non esiste :( </strong>
+                    </div>
+                    <div>
+                        <a href="{{ route('admin.products.index') }}" class="btn btn-secondary"> torna ai tuoi prodotti</a>
+                    </div>
+                @else
+                    <form action="{{ route('admin.products.update', $product->id) }}" method="POST"
+                        enctype="multipart/form-data">
+                        {{-- cross scripting request forgery --}}
+                        @csrf
+                        @method('PUT')
+                        {{-- name  --}}
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name <span style="color: red;">*</span></label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
+                                name="name" value="{{ old('name') ?? $product->name }}" required
+                                onkeyup="validateName()">
 
-    <div class="row">
-        <div class="col-6"> 
-            @php
-                use App\Models\Restaurant;
-                $currentUser = Auth::id();
-                // prendo l'id del ristorante collegato all'utente
-                $restaurant = Restaurant::select('id')->where('user_id', $currentUser)->first();
-
-            @endphp
-            @if ($restaurant !== $product->restaurant_id )
-                <div class="alert alert-danger">
-                    <strong>Hai cercato una pagina che non esiste :( </strong>
-                </div>
-                <div>
-                    <a href="{{ route('admin.products.index') }}" class="btn btn-secondary"> torna ai tuoi prodotti</a>
-                </div>
-            @else
-                <form action="{{ route("admin.products.store") }}" method="POST">
-                {{-- cross scripting request forgery --}}
-                @csrf
-                @method('PUT')
-                {{-- name  --}}
-                <div class="mb-3">
-                    <label for="name" class="form-label">Name <span style="color: red;">*</span></label>
-                    <input type="text" class="form-control @error("name") is-invalid @enderror" id="name" name="name" value="{{ old("name") ?? $product->name }}" required onkeyup="validateName()">
-
-                    {{-- error message --}}
-                    <span id="name-error-message" class="invalid-feedback" role="alert"></span>
-                    @error("name")
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                {{-- description  --}}
-                <div class="mb-3">
-                    <label for="description" class="form-label">Description <span style="color: red;">*</span></label>
-                    <textarea type="text" class="form-control @error("description") is-invalid @enderror" id="description" name="description" required minlength="10" max="255" onkeyup="validateDescription()">{{ old("description") ?? $product->description }}</textarea>
-
-                    {{-- error message --}}
-                    <span id="description-error-message" class="invalid-feedback" role="alert"></span>
-                    @error("description")
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                {{-- price  --}}
-                <div class="mb-3">
-                    <label for="price" class="form-label">Price <span style="color: red;">*</span></label>
-                    <input type="number" class="form-control @error("price") is-invalid @enderror" id="price" name="price" value="{{ old("price") ?? $product->price }}" min="0.01" max="999.99" step="0.01" required onkeyup="validatePrice()">
-
-                    {{-- error message --}}
-                    <span id="price-error-message" class="invalid-feedback" role="alert"></span>
-                    @error("price")
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                {{-- img  --}}
-                <div class="mb-3">
-                    <label for="img" class="form-label">Img <span style="color: red;">*</span></label>
-                    <input type="text" class="form-control @error("img") is-invalid @enderror" id="img" name="img" value="{{ old("img") ?? $product->img }}" required onkeyup="validateImg()">
-
-                    {{-- error message --}}
-                    <span id="img-error-message" class="invalid-feedback" role="alert"></span>
-                    @error("img")
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                {{-- visible  --}}
-                <div class="mb-3">
-                    <div class="row">
-                        <div class="col-1">
-                            <label for="visible" class="form-label">Visible</label>
-                            <input type="hidden" name="visible" class="form-check-input" value="0">
-                            <input type="checkbox" id="visible" name="visible" value="1" class="form-check-input @error('visible') is-invalid @enderror" @if(old('visible') || $product->visible) checked @endif onchange="validateVisible()">
                             {{-- error message --}}
-                            <span id="visible-error-message" class="invalid-feedback" role="alert"></span>
-                            @error('visible')
+                            <span id="name-error-message" class="invalid-feedback" role="alert"></span>
+                            @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                    </div>
-                </div>
 
-                <button type="submit" class="btn btn-dark">Edit</button>
-                </form>
-            @endif
+                        {{-- description  --}}
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description <span
+                                    style="color: red;">*</span></label>
+                            <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description"
+                                name="description" required minlength="10" max="255" onkeyup="validateDescription()">{{ old('description') ?? $product->description }}</textarea>
+
+                            {{-- error message --}}
+                            <span id="description-error-message" class="invalid-feedback" role="alert"></span>
+                            @error('description')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        {{-- price  --}}
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Price <span style="color: red;">*</span></label>
+                            <input type="number" class="form-control @error('price') is-invalid @enderror" id="price"
+                                name="price" value="{{ old('price') ?? $product->price }}" min="0.01" max="999.99"
+                                step="0.01" required onkeyup="validatePrice()">
+
+                            {{-- error message --}}
+                            <span id="price-error-message" class="invalid-feedback" role="alert"></span>
+                            @error('price')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        {{-- img  --}}
+                        <div class="mb-3">
+                            <label for="img" class="form-label">Img <span style="color: red;">*</span></label>
+                            <input type="file" class="form-control @error('img') is-invalid @enderror" id="img"
+                                name="img" value="{{ old('img') ?? $product->img }}" required onkeyup="validateImg()">
+
+                            {{-- error message --}}
+                            <span id="img-error-message" class="invalid-feedback" role="alert"></span>
+                            @error('img')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        {{-- visible  --}}
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col-1">
+                                    <label for="visible" class="form-label">Visible</label>
+                                    <input type="hidden" name="visible" class="form-check-input" value="0">
+                                    <input type="checkbox" id="visible" name="visible" value="1"
+                                        class="form-check-input @error('visible') is-invalid @enderror"
+                                        @if (old('visible') || $product->visible) checked @endif onchange="validateVisible()">
+                                    {{-- error message --}}
+                                    <span id="visible-error-message" class="invalid-feedback" role="alert"></span>
+                                    @error('visible')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-dark">Edit</button>
+                    </form>
+                @endif
+            </div>
         </div>
     </div>
-</div>
 @endsection
 
 <script>
@@ -167,7 +175,4 @@
             visibleErrorMessage.innerHTML = '';
         }
     }
-
-
-    
 </script>
