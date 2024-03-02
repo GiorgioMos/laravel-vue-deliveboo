@@ -19,7 +19,8 @@
                         <strong>non hai ancora creato un ristorante</strong>
                     </div>
                 @else
-                    <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data"
+                        class="needs-validation">
                         {{-- cross scripting request forgery --}}
                         @csrf
 
@@ -69,7 +70,7 @@
                         <div class="mb-3">
                             <label for="img" class="form-label">img <span style="color: red;">*</span></label>
                             <input type="file" class="form-control @error('img') is-invalid @enderror" id="img"
-                                name="img" value="{{ old('img') }}" required onkeyup="validateImg()">
+                                name="img" value="{{ old('img') }}" required onchange="validateImg()">
 
                             {{-- error message --}}
                             <span id="img-error-message" class="invalid-feedback" role="alert"></span>
@@ -97,7 +98,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-dark">Create</button>
+                        <button type="submit" class="btn btn-dark" id="registration_submit" disabled>Create</button>
                     </form>
                 @endif
             </div>
@@ -106,19 +107,26 @@
 @endsection
 
 <script>
+    // Variabile per memorizzare i valori delle categorie selezionate
+    var array_categories_value = [];
+
+    // Funzione di validazione del nome
     function validateName() {
         var name = document.getElementById('name').value;
+        var nameRegex = /^[a-zA-Z ]+$/;
         var nameErrorMessage = document.getElementById('name-error-message');
 
-        if (name !== '') {
+        if (name === '' || nameRegex.test(name)) {
             document.getElementById('name').style.borderColor = 'green';
             nameErrorMessage.innerHTML = '';
         } else {
             document.getElementById('name').style.borderColor = 'red';
             nameErrorMessage.innerHTML = 'Name must contain only letters and spaces';
         }
+        checkFormValidity();
     }
 
+    // Funzione di validazione della descrizione
     function validateDescription() {
         var description = document.getElementById('description').value;
         var descriptionErrorMessage = document.getElementById('description-error-message');
@@ -128,8 +136,9 @@
             descriptionErrorMessage.innerHTML = '';
         } else {
             document.getElementById('description').style.borderColor = 'red';
-            descriptionErrorMessage.innerHTML = 'Description must be between 10 and 255 characters';
+            descriptionErrorMessage.innerHTML = 'Description is required';
         }
+        checkFormValidity();
     }
 
     function validatePrice() {
@@ -143,8 +152,11 @@
             document.getElementById('price').style.borderColor = 'red';
             priceErrorMessage.innerHTML = 'Price must be between 0.01 and 999.99';
         }
+        checkFormValidity();
+
     }
 
+    // Funzione di validazione dell'immagine
     function validateImg() {
         var img = document.getElementById('img').value;
         var imgErrorMessage = document.getElementById('img-error-message');
@@ -154,20 +166,43 @@
             imgErrorMessage.innerHTML = '';
         } else {
             document.getElementById('img').style.borderColor = 'red';
-            imgErrorMessage.innerHTML = 'Img cannot be empty';
+            imgErrorMessage.innerHTML = 'Image is required';
         }
+        checkFormValidity();
     }
 
-    function validateVisible() {
-        var visible = document.getElementById('visible').checked;
-        var visibleErrorMessage = document.getElementById('visible-error-message');
 
-        if (visible) {
-            document.getElementById('visible-hidden').value = 1;
-            visibleErrorMessage.innerHTML = '';
-        } else {
-            document.getElementById('visible-hidden').value = 0;
-            visibleErrorMessage.innerHTML = '';
-        }
+    //serve?
+
+    // function validateVisible() {
+    //     var visible = document.getElementById('visible').checked;
+    //     var visibleErrorMessage = document.getElementById('visible-error-message');
+
+    //     if (visible) {
+    //         document.getElementById('visible-hidden').value = 1;
+    //         visibleErrorMessage.innerHTML = '';
+    //     } else {
+    //         document.getElementById('visible-hidden').value = 0;
+    //         visibleErrorMessage.innerHTML = '';
+    //     }
+    // }
+
+    // Funzione per abilitare o disabilitare il pulsante di invio del form
+    function checkFormValidity() {
+        var name = document.getElementById('name').value;
+        var description = document.getElementById('description').value;
+        var img = document.getElementById('img').value;
+        var price = document.getElementById('price').value;
+        var visible = document.getElementById('visible').value;
+
+
+
+        var formIsValid = name !== '' &&
+            description !== '' &&
+            description.length >= 10 && description.length <= 255 &&
+            img !== '' &&
+            price !== '' && price >= 0.01 && price <= 999.99
+
+        document.getElementById('registration_submit').disabled = !formIsValid;
     }
 </script>
