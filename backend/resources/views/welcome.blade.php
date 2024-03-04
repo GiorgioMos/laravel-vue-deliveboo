@@ -75,6 +75,8 @@
                                 @endif
                             </h6>
 
+                            <a href="{{ route('restaurant.show', ['id' => $restaurant->id]) }}"
+                                class="btn info-btn my-3">PRODOTTI</a>
                             {{-- chiusura card  --}}
                         </div>
                     @endforeach

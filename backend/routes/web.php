@@ -27,7 +27,12 @@ Route::get('/', function () {
 
     return view('welcome', compact('restaurants', 'categories'));
 });
+Route::get('/restaurant/{id}', function ($id) {
 
+    $restaurant = Restaurant::findOrFail($id);
+    $products = $restaurant->products()->get();
+    return view('show', compact('restaurant', 'products'));
+})->name('restaurant.show');;
 Route::middleware(['auth'])
     ->prefix('admin') //definisce il prefisso "admin/" per le rotte di questo gruppo
     ->name('admin.') //definisce il pattern con cui generare i nomi delle rotte cioè "admin.qualcosa"
@@ -40,7 +45,7 @@ Route::middleware(['auth'])
 
         // admin crud
         Route::resource('restaurants', RestaurantController::class);
-        
+
         Route::resource('products', ProductController::class);
         Route::resource('orders', OrderController::class);
 
