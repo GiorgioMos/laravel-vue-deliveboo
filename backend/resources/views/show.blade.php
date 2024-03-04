@@ -48,6 +48,23 @@
         </div>
     </div>
     <script>
+        function riempiCarrello() {
+            const container = document.getElementById("offcanvas-body")
+            document.getElementById("offcanvas-body").innerHTML = "";
+
+            for (let i = 0; i < localStorage.length; i++) {
+                let key = localStorage.key(i);
+                let value = localStorage.getItem(key);
+
+
+
+                var newElement = document.createElement("div");
+                newElement.setAttribute("id", key)
+                newElement.innerHTML = key + " : " + value;
+                container.appendChild(newElement)
+                // alert(`${key}: ${localStorage.getItem(key)}`);
+            }
+        }
         //controllo su ordine da singolo ristorNTE DA IMPLEMENTARE!!
         var productsQuantity = []
 
@@ -72,8 +89,9 @@
             console.log(productsQuantity);
 
 
-            localStorage.setItem("product-" + product_id, productsQuantity[index].quantity);
+            localStorage.setItem(product_name, productsQuantity[index].quantity);
             document.getElementById(product_id + 'span').innerHTML = productsQuantity[index].quantity;
+            riempiCarrello();
 
         }
 
@@ -90,9 +108,9 @@
             console.log(index)
             console.log(productsQuantity)
 
-            localStorage.setItem("product-" + product_id, productsQuantity[index].quantity);
+            localStorage.setItem(product_name, productsQuantity[index].quantity);
             document.getElementById(product_id + 'span').innerHTML = productsQuantity[index].quantity;
-
+            riempiCarrello();
         }
 
         function clearCart() {
