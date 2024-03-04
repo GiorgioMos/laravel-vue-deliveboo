@@ -42,9 +42,13 @@
             <div class="py-3 text-center">
                 <a href="/" class="btn btn-primary">Torna alla Homepage</a>
             </div>
+            <div class="py-3 text-center">
+                {{-- inserire rotta carrello --}}<a href="/" class="btn btn-primary" onclick="clearCart()">conferma ordine</a>
+            </div>
         </div>
     </div>
     <script>
+        //controllo su ordine da singolo ristorNTE DA IMPLEMENTARE!!
         var productsQuantity = []
 
         document.querySelectorAll('.product').forEach(element => {
@@ -57,7 +61,7 @@
         });
 
         console.log(productsQuantity);
-
+        //funzione che aggiunge elementi alla lista dei prodotti selezionati
         function cartAddElement(product_id, product_name) {
             let index = productsQuantity.findIndex(element => element.id === `product-` + product_id)
 
@@ -67,10 +71,13 @@
             console.log(index)
             console.log(productsQuantity);
 
+
+            localStorage.setItem("product-" + product_id, productsQuantity[index].quantity);
             document.getElementById(product_id + 'span').innerHTML = productsQuantity[index].quantity;
 
         }
 
+        //funzione che rimuove elementi alla lista dei prodotti selezionati
         function cartRemoveElement(product_id, product_name) {
             let index = productsQuantity.findIndex(element => element.id === `product-` + product_id)
 
@@ -78,13 +85,18 @@
             if (productsQuantity[index].quantity > 0) {
                 productsQuantity[index].quantity--;
             } else {
-                productsQuantity[index].quantity = 0;
+                productsQuantity[index].quantity = 0; //mai sotto lo zero !!
             }
-
             console.log(index)
             console.log(productsQuantity)
+
+            localStorage.setItem("product-" + product_id, productsQuantity[index].quantity);
             document.getElementById(product_id + 'span').innerHTML = productsQuantity[index].quantity;
 
+        }
+
+        function clearCart() {
+            localStorage.clear();
         }
     </script>
 @endsection
