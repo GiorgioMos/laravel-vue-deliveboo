@@ -4,7 +4,7 @@
     <div class="container py-3">
 
         <div class="row">
-            <h1>Edit restaurant</h1>
+            <h1>Modifica il tuo ristorante</h1>
         </div>
 
         <div class="row">
@@ -32,7 +32,7 @@
 
                         {{-- name  --}}
                         <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
+                            <label for="name" class="form-label">Nome</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
                                 name="name" value="{{ old('name') ?? $restaurant->name }}" required
                                 onkeyup="validateName()">
@@ -46,7 +46,7 @@
 
                         {{-- description  --}}
                         <div class="mb-3">
-                            <label for="description" class="form-label">description</label>
+                            <label for="description" class="form-label">Descrizione</label>
                             <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description"
                                 name="description" required minlength="10" max="255" onkeyup="validateDescription()">{{ old('description') ?? $restaurant->description }}</textarea>
 
@@ -59,7 +59,7 @@
 
                         {{-- city  --}}
                         <div class="mb-3">
-                            <label for="city" class="form-label">city</label>
+                            <label for="city" class="form-label">Città</label>
                             <input type="text" class="form-control @error('city') is-invalid @enderror" id="city"
                                 name="city" value="{{ old('city') ?? $restaurant->city }}" required
                                 onkeyup="validateCity()">
@@ -73,7 +73,7 @@
 
                         {{-- address  --}}
                         <div class="mb-3">
-                            <label for="address" class="form-label">address</label>
+                            <label for="address" class="form-label">Indirizzo</label>
                             <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
                                 name="address" value="{{ old('address') ?? $restaurant->address }}" required
                                 onkeyup="validateAddress()">
@@ -87,7 +87,7 @@
 
                         {{-- img  --}}
                         <div class="mb-3">
-                            <label for="img" class="form-label">img</label>
+                            <label for="img" class="form-label">Immagine</label>
                             <input type="file" class="form-control @error('img') is-invalid @enderror" id="img"
                                 name="img" value="{{ old('img') ?? $restaurant->img }}" required
                                 onkeyup="validateImg()">
@@ -101,7 +101,7 @@
 
                         {{-- telephone  --}}
                         <div class="mb-3">
-                            <label for="telephone" class="form-label">telephone</label>
+                            <label for="telephone" class="form-label">Telefono</label>
                             <input type="text" class="form-control @error('telephone') is-invalid @enderror"
                                 id="telephone" name="telephone" value="{{ old('telephone') ?? $restaurant->telephone }}"
                                 required minlength="6" maxlength="15" onkeyup="validateTelephone()">
@@ -115,7 +115,7 @@
 
                         {{-- website  --}}
                         <div class="mb-3">
-                            <label for="website" class="form-label">website</label>
+                            <label for="website" class="form-label">Sito web</label>
                             <input type="text" class="form-control @error('website') is-invalid @enderror" id="website"
                                 name="website" value="{{ old('website') ?? $restaurant->website }}" required
                                 onkeyup="validateWebsite()">
@@ -126,20 +126,6 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-
-                        {{-- modifica category  --}}
-                        {{-- <div class="mb-3">
-                        <label for="categories" class="form-label">seleziona i category</label>
-                        <select multiple name="categories[]" id="categories" class="form-select">
-                            @foreach ($categories as $category)
-                                @if ($restaurant->category->contains($category))
-                                    <option selected value="{{ $category->id }}">{{ $category->name }}</option>
-                                @else
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endif
-                            @endforeach
-                        </select>
-                    </div> --}}
 
                         @foreach ($categories as $category)
                             @if ($restaurant->category->contains($category))
@@ -167,6 +153,7 @@
                             @endif
                         @endforeach
 
+                        <p>Tutti i campi sono obbligatori</p>
 
                         <div>
                             <button id="submitButton"
@@ -257,7 +244,7 @@
                     imgErrorMessage.innerHTML =
                         'Il file deve essere un\'immagine (formati supportati: JPEG, PNG, GIF)';
                     imgInput.value =
-                    ''; // Resetta il valore dell'input per permettere la selezione di un nuovo file
+                        ''; // Resetta il valore dell'input per permettere la selezione di un nuovo file
                 }
             } else {
                 // Se non è stato selezionato alcun file, mostra un messaggio di errore
@@ -330,7 +317,7 @@
                         imgInput.style.borderColor = 'green';
                         imgErrorMessage.innerHTML = ''; // Rimuovi eventuali messaggi di errore precedenti
                         document.getElementById('submitButton').disabled =
-                        false; // Abilita il pulsante di invio
+                            false; // Abilita il pulsante di invio
                         return; // Esci dalla funzione
                     } else {
                         imgInput.style.borderColor = 'red';
@@ -349,11 +336,11 @@
 
         // Aggiungi listener per verificare lo stato di compilazione dei campi quando vengono modificati
         var inputs = document.querySelectorAll(
-        'input[type="text"], textarea, input[name="categories[]"], #img');
+            'input[type="text"], textarea, input[name="categories[]"], #img');
         inputs.forEach(function(input) {
             input.addEventListener('keyup', checkFormCompletion);
             input.addEventListener('change',
-            checkFormCompletion); // Aggiungi anche un listener per 'change' per i checkbox
+                checkFormCompletion); // Aggiungi anche un listener per 'change' per i checkbox
         });
 
         // Chiamata alla funzione all'inizio per assicurarsi che il pulsante sia nel giusto stato iniziale

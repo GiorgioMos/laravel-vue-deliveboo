@@ -34,7 +34,7 @@
 
                     {{-- description  --}}
                     <div class="mb-3">
-                        <label for="description" class="form-label">Description <span style="color: red;">*</span></label>
+                        <label for="description" class="form-label">Descrizione <span style="color: red;">*</span></label>
                         <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description"
                             name="description" required onkeyup="validateDescription()">{{ old('description') }}</textarea>
 
@@ -47,7 +47,7 @@
 
                     {{-- city  --}}
                     <div class="mb-3">
-                        <label for="city" class="form-label">City <span style="color: red;">*</span></label>
+                        <label for="city" class="form-label">Città <span style="color: red;">*</span></label>
                         <input type="text" class="form-control @error('city') is-invalid @enderror" id="city"
                             name="city" value="{{ old('city') }}" required onkeyup="validateCity()">
 
@@ -60,7 +60,7 @@
 
                     {{-- address  --}}
                     <div class="mb-3">
-                        <label for="address" class="form-label">Address <span style="color: red;">*</span></label>
+                        <label for="address" class="form-label">Indirizzo <span style="color: red;">*</span></label>
                         <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
                             name="address" value="{{ old('address') }}" required onkeyup="validateAddress()">
 
@@ -73,7 +73,7 @@
 
                     {{-- img  --}}
                     <div class="mb-3">
-                        <label for="img" class="form-label">Img <span style="color: red;">*</span></label>
+                        <label for="img" class="form-label">Immagine <span style="color: red;">*</span></label>
                         <input type="file" class="form-control @error('img') is-invalid @enderror" id="img"
                             name="img" value="{{ old('img') }}" required onchange="validateImg()">
 
@@ -86,7 +86,7 @@
 
                     {{-- telephone  --}}
                     <div class="mb-3">
-                        <label for="telephone" class="form-label">Telephone <span style="color: red;">*</span></label>
+                        <label for="telephone" class="form-label">Telefono <span style="color: red;">*</span></label>
                         <input type="text" class="form-control @error('telephone') is-invalid @enderror" id="telephone"
                             name="telephone" value="{{ old('telephone') }}" required minlength="6" maxlength="15"
                             onkeyup="validateTelephone()">
@@ -100,7 +100,7 @@
 
                     {{-- website  --}}
                     <div class="mb-3">
-                        <label for="website" class="form-label">Website <span style="color: red;">*</span></label>
+                        <label for="website" class="form-label">Sito web <span style="color: red;">*</span></label>
                         <input type="text" class="form-control @error('website') is-invalid @enderror" id="website"
                             name="website" value="{{ old('website') }}" required onkeyup="validateWebsite()">
 
@@ -129,7 +129,7 @@
 
                     <br>
 
-                    <button type="submit" class="btn btn-dark" id="registration_submit" disabled>Create</button>
+                    <button type="submit" class="btn btn-dark" id="registration_submit" disabled>Crea</button>
                 </form>
             </div>
         </div>

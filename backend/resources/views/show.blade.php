@@ -10,12 +10,12 @@
                     <img class="cardImg rounded" src={{ asset('storage/' . $restaurant->img) }} alt="">
                 </div>
 
-                <h4>address: {{ $restaurant->address }}</h4>
-                <h4>description: {{ $restaurant->description }}</h4>
+                <h4>Indirizzo: {{ $restaurant->address }}</h4>
+                <h4>Descrizione: {{ $restaurant->description }}</h4>
 
-                <h4>city: {{ $restaurant->city }}</h4>
-                <h4>telephone: {{ $restaurant->telephone }}</h4>
-                <h4>website: {{ $restaurant->website }}</h4>
+                <h4>Città: {{ $restaurant->city }}</h4>
+                <h4>Telefono: {{ $restaurant->telephone }}</h4>
+                <h4>Sito Web: {{ $restaurant->website }}</h4>
 
                 <h4>Categorie:</h4>
                 @foreach ($restaurant->category as $category)
@@ -29,9 +29,19 @@
                         <li class="product" id="product-{{ $product->id }}">
                             <button class="btn btn-primary"
                                 onclick="cartAddElement({{ $product->id }}, '{{ $product->name }}')">+</button>
-                            <span class="counter" id="{{ $product->id }}span">0</span>
+
+
+
+
+
+                            <span class="counter" data-name="{{ $product->name }}" id="{{ $product->id }}span">
+                                0
+                            </span>
+
+
+
                             <button class="btn btn-danger"
-                                onclick="cartRemoveElement({{ $product->id }}, '{{ $product->name }}')">-</button>
+                                onclick="cartRemoveElement({{ $product->id }}, '{{ $product->name }}' )">-</button>
                             {{ $product->name }}
                         </li>
                     @endforeach
@@ -48,73 +58,52 @@
         </div>
     </div>
     <script>
-        function riempiCarrello() {
-            const container = document.getElementById("offcanvas-body")
-            document.getElementById("offcanvas-body").innerHTML = "";
+        function aggiornaCounter() {
 
-            for (let i = 0; i < localStorage.length; i++) {
-                let key = localStorage.key(i);
-                let value = localStorage.getItem(key);
+            document.querySelectorAll('.counter').forEach(element => {
+                for (let i = 0; i < localStorage.length; i++) {
+                    let key = localStorage.key(i);
+                    name = element.getAttribute('data-name');
+                    console.log(name)
+                    let value = localStorage.getItem(key);
+                    if (name == key) {
+                        document.querySelector(`span[data-name="${name}"]`).innerHTML = value
+                    } else {
+                        console.log(`span[data-name=${name}]`);
+                    }
+                }
+            });
+
+        };
 
 
-
-                var newElement = document.createElement("div");
-                newElement.setAttribute("id", key)
-                newElement.innerHTML = key + " : " + value;
-                container.appendChild(newElement)
-                // alert(`${key}: ${localStorage.getItem(key)}`);
-            }
-        }
-        //controllo su ordine da singolo ristorNTE DA IMPLEMENTARE!!
-        var productsQuantity = []
-
-        document.querySelectorAll('.product').forEach(element => {
-            let currentElement = {
-                id: element.id,
-                quantity: 0,
-            }
-            productsQuantity.push(currentElement);
-
+        //richiama la funzione al caricamento del dom
+        document.addEventListener('DOMContentLoaded', function() {
+            aggiornaCounter();
         });
 
-        console.log(productsQuantity);
+
         //funzione che aggiunge elementi alla lista dei prodotti selezionati
         function cartAddElement(product_id, product_name) {
-            let index = productsQuantity.findIndex(element => element.id === `product-` + product_id)
+            let quantity = Number(document.querySelector(`span[data-name="${product_name}"]`).innerHTML)
+            quantity++
+            console.log(quantity);
+            localStorage.setItem(product_name, quantity)
+            document.querySelector(`span[data-name="${product_name}"]`).innerHTML = quantity
 
-
-            productsQuantity[index].quantity++;
-
-            console.log(index)
-            console.log(productsQuantity);
-
-
-            localStorage.setItem(product_name, productsQuantity[index].quantity);
-            document.getElementById(product_id + 'span').innerHTML = productsQuantity[index].quantity;
-            riempiCarrello();
+            riempiCarrello(product_name);
 
         }
 
         //funzione che rimuove elementi alla lista dei prodotti selezionati
         function cartRemoveElement(product_id, product_name) {
-            let index = productsQuantity.findIndex(element => element.id === `product-` + product_id)
+            let quantity = Number(document.querySelector(`span[data-name="${product_name}"]`).innerHTML)
+            quantity--
+            console.log(quantity);
+            localStorage.setItem(product_name, quantity)
+            document.querySelector(`span[data-name="${product_name}"]`).innerHTML = quantity
 
-
-            if (productsQuantity[index].quantity > 0) {
-                productsQuantity[index].quantity--;
-            } else {
-                productsQuantity[index].quantity = 0; //mai sotto lo zero !!
-            }
-            console.log(index)
-            console.log(productsQuantity)
-
-            localStorage.setItem(product_name, productsQuantity[index].quantity);
-            document.getElementById(product_id + 'span').innerHTML = productsQuantity[index].quantity;
-            riempiCarrello();
-        }
-
-        function clearCart() {
-            localStorage.clear();
+            riempiCarrello(product_name);
         }
     </script>
 @endsection

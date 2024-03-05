@@ -41,7 +41,13 @@
                         <div class="col-4 mb-4 rounded d-flex flex-column align-items-center card"
                             meta-categories="{{ $id_categories }}">
                             <div class="imgBoxIndex rounded">
-                                <img class="cardImg rounded" src={{ asset('storage/' . $restaurant->img) }} alt="">
+                                @if (str_starts_with($restaurant->img, 'http'))
+                                    <img class="cardImg rounded" src={{ $restaurant->img }} alt="">
+                                @else
+                                    <img class="cardImg rounded" src={{ asset('storage/' . $restaurant->img) }}
+                                        alt="">
+                                @endif
+
                             </div>
                             <p class="text-capitalize fw-bold text-center my-2">{{ $restaurant->name }}</p>
                             <p> {{ $restaurant->description }}</p>
@@ -62,9 +68,7 @@
                                     <p>No Category</p>
                                 @endif
                             </h6>
-
-                            <a href="{{ route('restaurant.show', ['id' => $restaurant->id]) }}"
-                                class="btn info-btn my-3">PRODOTTI</a>
+                            </a>
                             {{-- chiusura card  --}}
                         </div>
                     @endforeach
