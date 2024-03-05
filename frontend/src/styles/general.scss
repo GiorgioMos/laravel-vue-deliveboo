@@ -1,0 +1,17 @@
+//Importo le variabili per l'utilizzo all'interno di QUESTO file
+@use './partials/_variables.scss' as *;
+
+//Importo bootstrap per l'utilizzo nell'app
+@import "bootstrap/scss/bootstrap";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: $themeColorDark;
+    color: $themeColorLight;
+}
