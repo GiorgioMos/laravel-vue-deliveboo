@@ -1,12 +1,13 @@
 <script>
-import AppComponent from "./components/AppComponent.vue"
-
 import axios from 'axios'; //importo Axios
 import { store } from "./store.js" //state management
+import AppNavbar from "./components/AppNavbar.vue";
+import AppHomePage from './pages/AppHomePage.vue';
 
 export default {
 	components: {
-		AppComponent
+		AppNavbar,
+		AppHomePage
 	},
 	data() {
 		return {
@@ -31,10 +32,15 @@ export default {
 </script>
 
 <template>
-	<main>
-		<AppComponent />
+	<header>
+		<AppNavbar />
+	</header>
 
-		<button class="btn btn-primary">Primary button</button>
+	<main>
+
+		<AppHomePage />
+
+		
 	</main>
 </template>
 
