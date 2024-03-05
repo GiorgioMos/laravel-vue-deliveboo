@@ -21,7 +21,7 @@
                         <strong>Hai cercato una pagina che non esiste :( </strong>
                     </div>
                     <div>
-                        <a href="{{ route('admin.products.index') }}" class="btn btn-secondary"> torna ai tuoi prodotti</a>
+                        <a href="{{ route('admin.products.index') }}" class="btn btn-secondary"> Torna ai tuoi prodotti</a>
                     </div>
                 @else
                     <form action="{{ route('admin.products.update', $product->id) }}" method="POST"
@@ -31,7 +31,7 @@
                         @method('PUT')
                         {{-- name  --}}
                         <div class="mb-3">
-                            <label for="name" class="form-label">Name <span style="color: red;">*</span></label>
+                            <label for="name" class="form-label">Nome <span style="color: red;">*</span></label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
                                 name="name" value="{{ old('name') ?? $product->name }}" required
                                 onkeyup="validateName()">
@@ -45,7 +45,7 @@
 
                         {{-- description  --}}
                         <div class="mb-3">
-                            <label for="description" class="form-label">Description <span
+                            <label for="description" class="form-label">Descrizione <span
                                     style="color: red;">*</span></label>
                             <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description"
                                 name="description" required minlength="10" max="255" onkeyup="validateDescription()">{{ old('description') ?? $product->description }}</textarea>
@@ -59,7 +59,7 @@
 
                         {{-- price  --}}
                         <div class="mb-3">
-                            <label for="price" class="form-label">Price <span style="color: red;">*</span></label>
+                            <label for="price" class="form-label">Prezzo <span style="color: red;">*</span></label>
                             <input type="number" class="form-control @error('price') is-invalid @enderror" id="price"
                                 name="price" value="{{ old('price') ?? $product->price }}" min="0.01" max="999.99"
                                 step="0.01" required onkeyup="validatePrice()">
@@ -73,7 +73,7 @@
 
                         {{-- img  --}}
                         <div class="mb-3">
-                            <label for="img" class="form-label">Img <span style="color: red;">*</span></label>
+                            <label for="img" class="form-label">Immagine <span style="color: red;">*</span></label>
                             <input type="file" class="form-control @error('img') is-invalid @enderror" id="img"
                                 name="img" value="{{ old('img') ?? $product->img }}" required onchange="validateImg()">
 
@@ -88,7 +88,7 @@
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col-1">
-                                    <label for="visible" class="form-label">Visible</label>
+                                    <label for="visible" class="form-label">Visibile</label>
                                     <input type="hidden" name="visible" class="form-check-input" value="0">
                                     <input type="checkbox" id="visible" name="visible" value="1"
                                         class="form-check-input @error('visible') is-invalid @enderror"
@@ -101,6 +101,8 @@
                                 </div>
                             </div>
                         </div>
+
+                        <p>I campi con * sono obbligatori</p>
 
                         <button id="submitButton" type="submit" class="btn btn-dark" disabled>Edit</button>
                     </form>

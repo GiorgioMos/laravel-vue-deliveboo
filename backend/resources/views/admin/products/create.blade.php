@@ -26,7 +26,7 @@
 
                         {{-- name  --}}
                         <div class="mb-3">
-                            <label for="name" class="form-label">Name <span style="color: red;">*</span></label>
+                            <label for="name" class="form-label">Nome <span style="color: red;">*</span></label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
                                 name="name" value="{{ old('name') }}" required onkeyup="validateName()">
 
@@ -39,7 +39,7 @@
 
                         {{-- description  --}}
                         <div class="mb-3">
-                            <label for="description" class="form-label">Description <span
+                            <label for="description" class="form-label">Descrizione <span
                                     style="color: red;">*</span></label>
                             <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description"
                                 name="description" value="{{ old('description') }}" required minlength="10" max="255"
@@ -54,7 +54,7 @@
 
                         {{-- price  --}}
                         <div class="mb-3">
-                            <label for="price" class="form-label">Price <span style="color: red;">*</span></label>
+                            <label for="price" class="form-label">Prezzo <span style="color: red;">*</span></label>
                             <input type="number" class="form-control @error('price') is-invalid @enderror" id="price"
                                 name="price" value="{{ old('price') }}" min="0.01" max="999.99" step="0.01"
                                 required onkeyup="validatePrice()">
@@ -68,7 +68,7 @@
 
                         {{-- img  --}}
                         <div class="mb-3">
-                            <label for="img" class="form-label">img <span style="color: red;">*</span></label>
+                            <label for="img" class="form-label">Immagine <span style="color: red;">*</span></label>
                             <input type="file" class="form-control @error('img') is-invalid @enderror" id="img"
                                 name="img" value="{{ old('img') }}" required onchange="validateImg()">
 
@@ -83,7 +83,7 @@
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col-1">
-                                    <label for="visible" class="form-label">visible</label>
+                                    <label for="visible" class="form-label">Visibile</label>
                                     <input type="hidden" class="form-check-input @error(' visible') is-invalid @enderror"
                                         id="visible-hidden" name="visible" value="0">
                                     <input type="checkbox" class="form-check-input @error(' visible') is-invalid @enderror"
@@ -98,7 +98,9 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-dark" id="registration_submit" disabled>Create</button>
+                        <p>I campi con * sono obbligatori</p>
+
+                        <button type="submit" class="btn btn-dark" id="registration_submit" disabled>Crea</button>
                     </form>
                 @endif
             </div>

@@ -10,12 +10,12 @@
                     <img class="cardImg rounded" src={{ asset('storage/' . $restaurant->img) }} alt="">
                 </div>
 
-                <h4>address: {{ $restaurant->address }}</h4>
-                <h4>description: {{ $restaurant->description }}</h4>
+                <h4>Indirizzo: {{ $restaurant->address }}</h4>
+                <h4>Descrizione: {{ $restaurant->description }}</h4>
 
-                <h4>city: {{ $restaurant->city }}</h4>
-                <h4>telephone: {{ $restaurant->telephone }}</h4>
-                <h4>website: {{ $restaurant->website }}</h4>
+                <h4>Città: {{ $restaurant->city }}</h4>
+                <h4>Telefono: {{ $restaurant->telephone }}</h4>
+                <h4>Sito Web: {{ $restaurant->website }}</h4>
 
                 <h4>Categorie:</h4>
                 @foreach ($restaurant->category as $category)
