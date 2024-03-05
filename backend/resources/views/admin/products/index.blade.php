@@ -28,11 +28,11 @@
                                                         alt="">
                                                 @endif
                                             </div>
-                                            <p class="text-capitalize fw-bold text-center my-2">name: {{ $product->name }}
+                                            <p class="text-capitalize fw-bold text-center my-2">Nome: {{ $product->name }}
                                             </p>
-                                            <p>description: {{ $product->description }}</p>
-                                            <p>price: {{ $product->price }}</p>
-                                            <p>visible:{{ $product->visible == 1 ? 'yes' : 'no' }}
+                                            <p>Descrizione: {{ $product->description }}</p>
+                                            <p>Prezzo: {{ $product->price }} €</p>
+                                            <p>Visibile : {{ $product->visible == 1 ? 'Si' : 'No' }}
                                             </p>
 
 
