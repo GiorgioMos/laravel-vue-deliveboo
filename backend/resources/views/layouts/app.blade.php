@@ -114,9 +114,8 @@
 
 </body>
 
-</html>
 <script>
-    function riempiCarrello() {
+    function riempiCarrello(product_name) {
         const container = document.getElementById("offcanvas-body")
         container.innerHTML = "";
         for (let i = 0; i < localStorage.length; i++) {
@@ -143,3 +142,5 @@
         riempiCarrello()
     }
 </script>
+
+</html>

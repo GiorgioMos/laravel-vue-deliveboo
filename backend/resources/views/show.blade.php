@@ -29,9 +29,19 @@
                         <li class="product" id="product-{{ $product->id }}">
                             <button class="btn btn-primary"
                                 onclick="cartAddElement({{ $product->id }}, '{{ $product->name }}')">+</button>
-                            <span class="counter" id="{{ $product->id }}span">0</span>
+
+
+
+
+
+                            <span class="counter" id="{{ $product->id }}span">
+
+                            </span>
+
+
+
                             <button class="btn btn-danger"
-                                onclick="cartRemoveElement({{ $product->id }}, '{{ $product->name }}')">-</button>
+                                onclick="cartRemoveElement({{ $product->id }}, '{{ $product->name }}' )">-</button>
                             {{ $product->name }}
                         </li>
                     @endforeach
@@ -48,36 +58,73 @@
         </div>
     </div>
     <script>
-        function riempiCarrello() {
-            const container = document.getElementById("offcanvas-body")
-            document.getElementById("offcanvas-body").innerHTML = "";
-
-            for (let i = 0; i < localStorage.length; i++) {
-                let key = localStorage.key(i);
-                let value = localStorage.getItem(key);
-
-
-
-                var newElement = document.createElement("div");
-                newElement.setAttribute("id", key)
-                newElement.innerHTML = key + " : " + value;
-                container.appendChild(newElement)
-                // alert(`${key}: ${localStorage.getItem(key)}`);
-            }
-        }
-        //controllo su ordine da singolo ristorNTE DA IMPLEMENTARE!!
-        var productsQuantity = []
-
         document.querySelectorAll('.product').forEach(element => {
+            let productsQuantity = []
             let currentElement = {
                 id: element.id,
                 quantity: 0,
             }
-            productsQuantity.push(currentElement);
+            if (!productsQuantity.includes(currentElement.id)) {
+
+                productsQuantity.push(currentElement);
+            }
 
         });
 
+
+
+        var productDatabase = []
+
+        for (let i = 0; i < localStorage.length; i++) {
+            let key = localStorage.key(i);
+            let value = localStorage.getItem(key);
+
+            productDatabase[i] = [key, value];
+
+
+        }
+
+        function aggiornaCounter(productDatabase) {
+
+
+            document.querySelectorAll('.counter').forEach((element, index) => {
+                document.getElementById(element.id).innerHTML = productDatabase[index][1]
+            })
+
+
+
+
+
+
+
+
+
+
+
+            /*             var contatore = localStorage.product_name;
+                        console.log(localStorage.getItem(product_name))
+                        document.getElementById(product_id + 'span').innerHTML = ' ' + 1223 + ' '; */
+
+        };
+
+
+        //richiama la funzione al caricamento del dom
+        document.addEventListener('DOMContentLoaded', function() {
+            aggiornaCounter(productDatabase);
+        });
+
+        //controllo su ordine da singolo ristorNTE DA IMPLEMENTARE!!
+
+
+
+
+
+
         console.log(productsQuantity);
+
+
+
+
         //funzione che aggiunge elementi alla lista dei prodotti selezionati
         function cartAddElement(product_id, product_name) {
             let index = productsQuantity.findIndex(element => element.id === `product-` + product_id)
@@ -91,9 +138,14 @@
 
             localStorage.setItem(product_name, productsQuantity[index].quantity);
             document.getElementById(product_id + 'span').innerHTML = productsQuantity[index].quantity;
-            riempiCarrello();
+            riempiCarrello(product_name);
 
         }
+
+
+
+
+
 
         //funzione che rimuove elementi alla lista dei prodotti selezionati
         function cartRemoveElement(product_id, product_name) {
@@ -110,7 +162,7 @@
 
             localStorage.setItem(product_name, productsQuantity[index].quantity);
             document.getElementById(product_id + 'span').innerHTML = productsQuantity[index].quantity;
-            riempiCarrello();
+            riempiCarrello(product_name);
         }
 
         function clearCart() {
