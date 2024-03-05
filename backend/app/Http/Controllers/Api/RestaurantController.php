@@ -17,4 +17,15 @@ class RestaurantController extends Controller
             "payload" => $restaurants
         ]);
     }
+
+    // metodo show che usa il success true/false
+    public function show($id)
+    {
+        $restaurants = Restaurant::with("category")->find($id);
+
+        return response()->json([
+            "success" => $restaurants ? true : false,
+            "payload" => $restaurants ? $restaurants : "Nessun ristorante corrispondente all'id"
+        ]);
+    }
 }

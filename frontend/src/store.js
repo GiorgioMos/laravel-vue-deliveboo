@@ -1,5 +1,7 @@
 import { reactive } from 'vue'
 
 export const store = reactive({
-    chiave: "valore"
+    restaurants: [],
+    apiRestaurants: "http://localhost:8000/api/",
+    restaurantsEndPoint: "restaurants/",
 });
