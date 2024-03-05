@@ -8,18 +8,6 @@
                     <h2 class="d-flex justify-content-center">Cerca ristorante per tipologia</h2>
                 </div>
 
-                <div class="row">
-                    <div class="d-flex justify-content-center">
-                        <div class="col-6">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Search Restaurants"
-                                    aria-label="Recipient's username" aria-describedby="button-addon2">
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="d-flex justify-content-center gap-2">
                     @foreach ($categories as $category)
                         <div class="btn-group mb-3 category-btn" data-category-id="{{ $category->id }}" role="group"
