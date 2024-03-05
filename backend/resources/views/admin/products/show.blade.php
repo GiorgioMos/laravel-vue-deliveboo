@@ -24,7 +24,11 @@
                 <h2 class="py-3 text-center">name: {{ $product->name }}</h2>
                 <div class="col-3">
                     <div class="imgBoxShow rounded">
-                        <img class="cardImg rounded" src={{ asset('storage/' . $product->img) }} alt="">
+                        @if (str_starts_with($product->img, 'http'))
+                            <img class="cardImg rounded" src={{ $product->img }} alt="">
+                        @else
+                            <img class="cardImg rounded" src={{ asset('storage/' . $product->img) }} alt="">
+                        @endif
                     </div>
                     <h4>description:{{ $product->description }}</h4>
                     <h4>price: {{ $product->price }}</h4>

@@ -21,8 +21,12 @@
                                             id="card">
                                             <!--  -->
                                             <div class="imgBoxIndex rounded">
-                                                <img class="cardImg rounded" src={{ asset('storage/' . $product->img) }}
-                                                    alt="">
+                                                @if (str_starts_with($product->img, 'http'))
+                                                    <img class="cardImg rounded" src={{ $product->img }} alt="">
+                                                @else
+                                                    <img class="cardImg rounded" src={{ asset('storage/' . $product->img) }}
+                                                        alt="">
+                                                @endif
                                             </div>
                                             <p class="text-capitalize fw-bold text-center my-2">name: {{ $product->name }}
                                             </p>
