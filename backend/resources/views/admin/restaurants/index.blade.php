@@ -32,7 +32,7 @@
                                                     @endforeach
                                                 </ul>
                                             @else
-                                                <p>No Category</p>
+                                                <p>Nessuna Categoria</p>
                                             @endif
                                         </h6>
 

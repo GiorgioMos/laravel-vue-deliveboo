@@ -40,31 +40,32 @@
                         {{-- passo la stringa con gli id categoria in un campo ad hoc chiamato meta-categories --}}
                         <div class="col-4 mb-4 rounded d-flex flex-column align-items-center card"
                             meta-categories="{{ $id_categories }}">
-                            <div class="imgBoxIndex rounded">
-                                <img class="cardImg rounded" src={{ asset('storage/' . $restaurant->img) }} alt="">
-                            </div>
-                            <p class="text-capitalize fw-bold text-center my-2">{{ $restaurant->name }}</p>
-                            <p> {{ $restaurant->description }}</p>
-                            <p> {{ $restaurant->city }}</p>
-                            <p> {{ $restaurant->address }}</p>
-                            <p> {{ $restaurant->telephone }}</p>
-                            <p> {{ $restaurant->website }}</p>
+                            {{-- cliccando sulla card ti porta alla view del ristorante --}}
+                            <a href="{{ route('restaurant.show', ['id' => $restaurant->id]) }}" class="btn info-btn my-3">
+                                <div class="imgBoxIndex rounded">
+                                    <img class="cardImg rounded" src={{ asset('storage/' . $restaurant->img) }}
+                                        alt="">
+                                </div>
+                                <p class="text-capitalize fw-bold text-center my-2">{{ $restaurant->name }}</p>
+                                <p> {{ $restaurant->description }}</p>
+                                <p> {{ $restaurant->city }}</p>
+                                <p> {{ $restaurant->address }}</p>
+                                <p> {{ $restaurant->telephone }}</p>
+                                <p> {{ $restaurant->website }}</p>
 
-                            {{-- category --}}
-                            <h6 class="card-subtitle mb-2 text-muted pt-2">
-                                @if (count($restaurant->category) > 0)
-                                    <ul>
-                                        @foreach ($restaurant->category as $category)
-                                            <li>{{ $category->name }}</li>
-                                        @endforeach
-                                    </ul>
-                                @else
-                                    <p>No Category</p>
-                                @endif
-                            </h6>
-
-                            <a href="{{ route('restaurant.show', ['id' => $restaurant->id]) }}"
-                                class="btn info-btn my-3">PRODOTTI</a>
+                                {{-- category --}}
+                                <h6 class="card-subtitle mb-2 text-muted pt-2">
+                                    @if (count($restaurant->category) > 0)
+                                        <ul>
+                                            @foreach ($restaurant->category as $category)
+                                                <li>{{ $category->name }}</li>
+                                            @endforeach
+                                        </ul>
+                                    @else
+                                        <p>No Category</p>
+                                    @endif
+                                </h6>
+                            </a>
                             {{-- chiusura card  --}}
                         </div>
                     @endforeach
