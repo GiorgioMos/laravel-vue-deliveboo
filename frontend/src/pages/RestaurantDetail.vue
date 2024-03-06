@@ -42,7 +42,7 @@ export default {
                 }
             }).catch(errore => {
                 console.error(errore);
-				this.$router.push({ name: "restaurants" }); // redireziona alla lista eventi
+				this.$router.push({ name: "home" }); // redireziona alla lista eventi
             });
         }
 	}
@@ -63,7 +63,7 @@ export default {
 					
                     <div class="row d-flex justify-content-end">
 						<div class="col-2 py-3">
-							<router-link :to="{ name: 'restaurants' }" class="btn btn-info">
+							<router-link :to="{ name: 'home' }" class="btn btn-info">
 								<span>Go Back</span>
 							</router-link>
 						</div>
