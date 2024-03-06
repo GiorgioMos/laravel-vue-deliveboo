@@ -74,8 +74,18 @@
                         {{-- img  --}}
                         <div class="mb-3">
                             <label for="img" class="form-label">Immagine <span style="color: red;">*</span></label>
+                            <div>Tieni l'immagine caricata in precedenza -> <div class="imgEditContainer">
+                                    @if (str_starts_with($product->img, 'http'))
+                                        <img class="cardImg rounded" src={{ $product->img }} alt="">
+                                    @else
+                                        <img class="cardImg rounded" src={{ asset('storage/' . $product->img) }}
+                                            alt="">
+                                    @endif
+                                </div>
+                                <p>o carica una nuova immagine</p>
+                            </div>
                             <input type="file" class="form-control @error('img') is-invalid @enderror" id="img"
-                                name="img" value="{{ old('img') ?? $product->img }}" required onchange="validateImg()">
+                                name="img" value="{{ old('img') ?? $product->img }}">
 
                             {{-- error message --}}
                             <span id="img-error-message" class="invalid-feedback" role="alert"></span>
@@ -120,7 +130,6 @@
         function validateInputs() {
             validateName();
             validateDescription();
-            validateImg();
             validatePrice();
         }
 
@@ -160,29 +169,6 @@
             }
         }
 
-        // Funzione per validare il campo immagine
-        function validateImg() {
-            var imgInput = document.getElementById('img');
-            var imgErrorMessage = document.getElementById('img-error-message');
-            var file = imgInput.files[0]; // Ottieni il file selezionato
-
-            if (file) {
-                // Se è stato selezionato un file, verifica se è un'immagine
-                if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
-                    imgInput.style.borderColor = 'green';
-                    imgErrorMessage.innerHTML = ''; // Rimuovi eventuali messaggi di errore precedenti
-                } else {
-                    imgInput.style.borderColor = 'red';
-                    imgErrorMessage.innerHTML =
-                        'Il file deve essere un\'immagine (formati supportati: JPEG, PNG, GIF)';
-                    imgInput.value =
-                        ''; // Resetta il valore dell'input per permettere la selezione di un nuovo file
-                }
-            } else {
-                // Se non è stato selezionato alcun file, mostra un messaggio di errore
-                imgErrorMessage.innerHTML = 'Devi caricare un\'immagine';
-            }
-        }
 
         // Aggiungi listener per verificare lo stato di compilazione dei campi quando vengono modificati
         var inputs = document.querySelectorAll('input[type="text"], textarea, input[type="number"]');
@@ -199,7 +185,6 @@
         function checkFormCompletion() {
             var name = document.getElementById('name').value.trim();
             var description = document.getElementById('description').value.trim();
-            var imgInput = document.getElementById('img');
             var price = document.getElementById('price').value.trim();
 
             var imgErrorMessage = document.getElementById('img-error-message');
@@ -208,33 +193,17 @@
             if (name !== '' && description !== '' && description.length >= 10 && description.length <= 255 &&
                 price !== '' && price >= 0.01 && price <= 999.99
             ) {
-                // Verifica se è stato selezionato un file per l'immagine
-                if (imgInput.files.length > 0) {
-                    var file = imgInput.files[0];
-                    // Se è stato selezionato un file, verifica se è un'immagine
-                    if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
-                        imgInput.style.borderColor = 'green';
-                        imgErrorMessage.innerHTML = ''; // Rimuovi eventuali messaggi di errore precedenti
-                        document.getElementById('submitButton').disabled =
-                            false; // Abilita il pulsante di invio
-                        return; // Esci dalla funzione
-                    } else {
-                        imgInput.style.borderColor = 'red';
-                        imgErrorMessage.innerHTML =
-                            'Il file deve essere un\'immagine (formati supportati: JPEG, PNG, GIF)';
-                    }
-                } else {
-                    imgInput.style.borderColor = 'red';
-                    imgErrorMessage.innerHTML = 'Devi caricare un\'immagine';
-                }
+                // Abilita il pulsante di invio
+                document.getElementById('submitButton').disabled = false;
+            } else {
+                // Disabilita il pulsante di invio se non tutti i campi sono compilati o una categoria non è stata selezionata
+                document.getElementById('submitButton').disabled = true;
             }
-
-            // Se non tutti i campi sono compilati o una categoria non è stata selezionata, disabilita il pulsante di invio
-            document.getElementById('submitButton').disabled = true;
         }
 
+
         // Aggiungi listener per verificare lo stato di compilazione dei campi quando vengono modificati
-        var inputs = document.querySelectorAll('input[type="text"], textarea, input[type="number"], #img');
+        var inputs = document.querySelectorAll('input[type="text"], textarea, input[type="number"]');
         inputs.forEach(function(input) {
             input.addEventListener('keyup', checkFormCompletion);
             input.addEventListener('change',

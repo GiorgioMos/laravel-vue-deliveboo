@@ -176,6 +176,8 @@
 @endsection
 
 <script>
+    //funzione prova per mostrare la pic quando l'utente fa l'upload, magari si facesse davvero così
+    // todo fai sta funzione come bonus
     function setPreviewPic() {
         value = document.getElementById('img').files[0]
         console.log(value)

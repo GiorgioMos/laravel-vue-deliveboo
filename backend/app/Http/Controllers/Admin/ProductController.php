@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
-use App\Http\Requests\ProductRequest;
+use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
+
 use App\Models\Restaurant;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -61,7 +63,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ProductRequest $request)
+    public function store(StoreProductRequest $request)
     {
         $validated = $request->validated();
         // prendo l'id dell'utente autenticato
@@ -105,14 +107,19 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProductRequest $request, Product $product)
+    public function update(UpdateProductRequest $request, Product $product)
     {
 
         $validated = $request->validated();
 
         // per importare img
-        $percorsoImg = Storage::disk("public")->put('/uploads', $request['img']);
-        $validated["img"] = $percorsoImg;
+        //controllo se il campo del form è vuoto o meno, e se non ho caricato niente gli passo il link dell'immagine già presente
+        if ($request['img']) {
+            $percorsoImg = Storage::disk("public")->put('/uploads', $request['img']);
+            $validated["img"] = $percorsoImg;
+        } else {
+            $validated["img"] = $product->img;
+        }
 
         $product->update($validated);
         return redirect()->route('admin.products.index');
