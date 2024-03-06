@@ -62,10 +62,10 @@ export default {
           </a>
         </li>
         <li class="nav-item">
-          <a class="btn btn-outline-light rounded-pill px-4 mx-3" href="#">Accedi</a>
+          <a class="btn btn-outline-light rounded-pill px-4 mx-3" href="http://localhost:8000/login">Accedi</a>
         </li>
         <li class="nav-item">
-          <a class="btn rounded-pill bg-warning px-4" href="#">Registrati</a>
+          <a class="btn rounded-pill bg-warning px-4" href="http://localhost:8000/register">Registrati</a>
         </li>
       </ul>
     </div>
