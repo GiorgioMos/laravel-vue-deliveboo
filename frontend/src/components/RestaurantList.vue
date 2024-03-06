@@ -53,7 +53,7 @@ export default {
     <div class="container">
         <div>
             <h1 class="text-center">Restaurants</h1>
-            <div class="row">
+            <div class="row justify-content-around">
                 <RestaurantCard v-for="restaurant in store.restaurants" :item="restaurant" />
             </div>
         </div>
@@ -70,4 +70,9 @@ export default {
 // @use './styles/partials/variables' as *;
 
 // ...qui eventuale SCSS di App.vue
+
+
+.container {
+    min-height: 100vh;
+}
 </style>

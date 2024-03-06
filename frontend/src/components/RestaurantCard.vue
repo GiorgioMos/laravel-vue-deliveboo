@@ -33,10 +33,9 @@ export default {
 </script>
 
 <template>
-    <div class="col-3">
         <!-- item card -->
-        <router-link :to="{ name: 'restaurant-detail', params: { id: item.id } }">
-            <div :meta-categories="this.id_categories" class="card my-3 text-center" style="width: 18rem;">
+        <div :meta-categories="this.id_categories" class="card my-3 col-4 text-center" style="width: 18rem;">
+            <router-link :to="{ name: 'restaurant-detail', params: { id: item.id } }">
                 <div class="card-header bg-danger">
                     <h3>{{ item.name.toUpperCase() }}</h3>
                 </div>
@@ -48,9 +47,8 @@ export default {
                     <h4 class="card-title"><a href="">Posizione: {{ item.address }}</a></h4>
                     <h4 v-for="cat in item.category" class="card-title"><a href="">{{ cat.name }}</a></h4>
                 </div>
+            </router-link>
             </div>
-        </router-link>
-    </div>
 </template>
 
 <style scoped lang="scss">
