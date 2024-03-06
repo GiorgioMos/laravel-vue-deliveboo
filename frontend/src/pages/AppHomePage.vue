@@ -92,11 +92,11 @@ export default {
 
 		<!-- categories checkbox -->
 		<div class="d-flex justify-content-center gap-2">
-			<div v-for="category in store.categories" class="btn-group mb-3 category-btn" data-category-id="{{ category.id }}" role="group"
+			<div v-for="category in store.categories" class="btn-group mb-3 category-btn" :data-category-id="category.id" role="group"
 				aria-label="Basic checkbox toggle button group">
-				<input @click="search(category.id)" hidden type="checkbox" name="categories[]" id="category{{ category.id }}"
-					value="{{ category.id }}" autocomplete="off">
-				<label class="btn btn-outline-primary form-label rounded" for="category{{ category.id }}">
+				<input @click="search(category.id)" hidden type="checkbox" name="categories[]" :id="'category' + category.id"
+					:value="category.id" autocomplete="off">
+				<label class="btn btn-outline-primary form-label rounded" :for="'category' + category.id">
 					{{ category.name }}
 				</label>
 			</div>
@@ -118,5 +118,8 @@ export default {
 // @use './styles/partials/variables' as *;
 
 // ...qui eventuale SCSS di App.vue
-
+input[type="checkbox"]:checked+label {
+    background-color: #007bff;
+    color: #fff;
+}
 </style>
