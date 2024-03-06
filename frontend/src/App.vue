@@ -7,7 +7,8 @@ import AppHomePage from './pages/AppHomePage.vue';
 export default {
 	components: {
 		AppNavbar,
-		AppHomePage
+		AppHomePage,
+		
 	},
 	data() {
 		return {
@@ -37,10 +38,7 @@ export default {
 	</header>
 
 	<main>
-
-		<AppHomePage />
-
-		
+		<router-view></router-view>
 	</main>
 </template>
 
