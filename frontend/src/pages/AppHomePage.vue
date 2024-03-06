@@ -11,14 +11,20 @@ export default {
     components: {
         RestaurantList,
 		JumboSwiper,
+		
     },
 	data() {
 		return {
-			store
+			store,
+			categoriesSelected: [],
+			restaurants: [],
 		}
 	},
 	mounted() {
 		this.getCategories();
+
+		// al caricamento della pagina seleziono tutti i ristoranti 
+		this.restaurants = document.querySelectorAll(".card");
 	},
 	methods: {
 		getCategories() {
@@ -45,7 +51,36 @@ export default {
             }).catch(errore => {
                 console.error(errore);
             });
-        }
+        },
+		// funzione search 
+		search(id_categoria) {
+
+			// controllo se una categoria è presente nell'array delle categorie selezionate e in caso lo pusho o lo rimuovo 
+			if (this.categoriesSelected.includes(id_categoria)) {
+				var index = this.categoriesSelected.indexOf(id_categoria);
+				this.categoriesSelected.splice(index, 1);
+			} else {
+				this.categoriesSelected.push(id_categoria);
+			}
+
+			this.restaurants.forEach(restaurant => {
+				var metaCategories = restaurant.getAttribute('meta-categories').split(',');
+				var showRestaurant = true; // Assumiamo inizialmente che l'elemento debba essere mostrato
+
+				this.categoriesSelected.forEach(cat => {
+					if (!metaCategories.includes(cat.toString())) {
+						// Se una delle categorie selezionate non è presente nell'array di categorie dell'elemento, non mostriamo l'elemento
+						showRestaurant = false;
+					}
+				});
+
+				if (showRestaurant) {
+					restaurant.classList.remove("d-none");
+				} else {
+					restaurant.classList.add("d-none");
+				}
+			});
+		}
 	}
 }
 </script>
@@ -54,18 +89,20 @@ export default {
 	<JumboSwiper />
 
 	<div class="container">
+
 		<!-- categories checkbox -->
 		<div class="d-flex justify-content-center gap-2">
-				<div v-for="category in store.categories" class="btn-group mb-3 category-btn" data-category-id="{{ category.id }}" role="group"
-					aria-label="Basic checkbox toggle button group">
-					<input hidden type="checkbox" name="categories[]" id="category{{ category.id }}"
-						value="{{ category.id }}" autocomplete="off">
-					<label class="btn btn-outline-primary form-label rounded" for="category{{ category.id }}">
-						{{ category.name }}
-					</label>
-				</div>
+			<div v-for="category in store.categories" class="btn-group mb-3 category-btn" data-category-id="{{ category.id }}" role="group"
+				aria-label="Basic checkbox toggle button group">
+				<input @click="search(category.id)" hidden type="checkbox" name="categories[]" id="category{{ category.id }}"
+					value="{{ category.id }}" autocomplete="off">
+				<label class="btn btn-outline-primary form-label rounded" for="category{{ category.id }}">
+					{{ category.name }}
+				</label>
+			</div>
 		</div>
 
+		<!-- componente che fa lo show dei ristoranti -->
 		<RestaurantList />
 	</div>
 	

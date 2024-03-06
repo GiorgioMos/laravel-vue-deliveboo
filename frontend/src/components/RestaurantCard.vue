@@ -2,8 +2,20 @@
 export default {
     name: "RestaurantCard",
     props: ["item"],
+    data() {
+		return {
+			id_categories: [],
+		}
+	},
     mounted() {
-        
+       this.item.category.forEach(element => {
+        this.id_categories.push(element.id);
+       });
+
+       console.log(this.item);
+       
+       this.id_categories = this.id_categories.join(",");
+       console.log(this.id_categories);
     },
     methods: {
         getImage(img) {
@@ -24,7 +36,7 @@ export default {
     <div class="col-3">
         <!-- item card -->
         <router-link :to="{ name: 'restaurant-detail', params: { id: item.id } }">
-            <div class="card my-3 text-center" style="width: 18rem;">
+            <div :meta-categories="this.id_categories" class="card my-3 text-center" style="width: 18rem;">
                 <div class="card-header bg-danger">
                     <h3>{{ item.name.toUpperCase() }}</h3>
                 </div>
@@ -34,6 +46,7 @@ export default {
                 <div class="card-body">
                     <h4 class="card-title"><a href="">Descrizione: {{ item.description }}</a></h4>
                     <h4 class="card-title"><a href="">Posizione: {{ item.address }}</a></h4>
+                    <h4 v-for="cat in item.category" class="card-title"><a href="">{{ cat.name }}</a></h4>
                 </div>
             </div>
         </router-link>
