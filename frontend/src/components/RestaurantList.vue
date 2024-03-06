@@ -5,20 +5,20 @@ import axios from 'axios'; //importo Axios
 
 
 export default {
-	name: "RestaurantList",
+    name: "RestaurantList",
     components: {
         RestaurantCard
     },
-	data() {
-		return {
-			store
-		}
-	},
-	mounted() {
-		this.getRestaurants();
-	},
-	methods: {
-		getRestaurants() {
+    data() {
+        return {
+            store
+        }
+    },
+    mounted() {
+        this.getRestaurants();
+    },
+    methods: {
+        getRestaurants() {
             console.log("RestaurantList does things");
 
             let url = this.store.apiRestaurants + this.store.restaurantsEndPoint;
@@ -33,31 +33,31 @@ export default {
                         console.error("qualcosa è andato storto...");
                     }
                 } else if (result.status === 301) {
-					console.error("Ops... ciò che cerchi non si trova più qui.");
-				} else if (result.status === 400) {
-					console.error("Ops... non riusciamo a comprendere ciò che hai richiesto.");
-				} else if (result.status === 404) {
-					console.error("Ops... non riusciamo a trovare ciò che hai richiesto.");
-				} else if (result.status === 500) {
-					console.error("Ops... ci scusiamo per l'inconveniente, stiamo spegnendo l'incendio.");
-				}   
+                    console.error("Ops... ciò che cerchi non si trova più qui.");
+                } else if (result.status === 400) {
+                    console.error("Ops... non riusciamo a comprendere ciò che hai richiesto.");
+                } else if (result.status === 404) {
+                    console.error("Ops... non riusciamo a trovare ciò che hai richiesto.");
+                } else if (result.status === 500) {
+                    console.error("Ops... ci scusiamo per l'inconveniente, stiamo spegnendo l'incendio.");
+                }
             }).catch(errore => {
                 console.error(errore);
             });
         }
-	}
+    }
 }
 </script>
 
 <template>
-	<div class="container">
-		<div>
+    <div class="container">
+        <div>
             <h1 class="text-center">Restaurants</h1>
             <div class="row">
-                <RestaurantCard  v-for="restaurant in store.restaurants" :item="restaurant"/>
+                <RestaurantCard v-for="restaurant in store.restaurants" :item="restaurant" />
             </div>
         </div>
-	</div>
+    </div>
 </template>
 
 <style lang="scss">
@@ -70,5 +70,4 @@ export default {
 // @use './styles/partials/variables' as *;
 
 // ...qui eventuale SCSS di App.vue
-
-</style>./RestaurantList.vue/index.js
+</style>
