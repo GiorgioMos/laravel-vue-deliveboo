@@ -8,10 +8,6 @@ export default {
 					routeName: "home",
 					label: "home"
 				},
-				{
-					routeName: "restaurants",
-					label: "restaurants"
-				},
 			],
         }
     },

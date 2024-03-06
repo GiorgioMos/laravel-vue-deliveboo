@@ -1,5 +1,6 @@
 <script>
-import RestaurantCard from "../components/RestaurantCard.vue";
+import RestaurantList from "../components/RestaurantList.vue";
+import JumboSwiper from "../components/JumboSwiper.vue";
 import { store } from "../store.js" //state management
 
 
@@ -7,7 +8,8 @@ import { store } from "../store.js" //state management
 export default {
 	name: "AppHomePage",
     components: {
-        
+        RestaurantList,
+		JumboSwiper,
     },
 	data() {
 		return {
@@ -24,8 +26,10 @@ export default {
 </script>
 
 <template>
+	<JumboSwiper />
+
 	<div class="container">
-		<h1>GAY</h1>
+		<RestaurantList />
 	</div>
 	
 </template>

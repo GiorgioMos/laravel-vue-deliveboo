@@ -58,7 +58,6 @@ export default {
             </div>
         </div>
 	</div>
-	
 </template>
 
 <style lang="scss">
@@ -72,4 +71,4 @@ export default {
 
 // ...qui eventuale SCSS di App.vue
 
-</style>
+</style>./RestaurantList.vue/index.js
