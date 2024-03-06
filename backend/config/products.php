@@ -16,7 +16,7 @@ return
             'name' => 'Pizza Margherita',
             'description' => 'Pizza con pomodoro, mozzarella di bufala, basilico fresco e olio d\'oliva.',
             'price' => 9.99,
-            'img' => 'https://www.lemilleeunabontadifranci.it/wp-content/uploads/2021/04/Pizza-margherita-fatta-in-casa-orizzontale.jpg',
+            'img' => 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             'visible' => true,
         ],
         [
@@ -24,7 +24,7 @@ return
             'name' => 'Tiramisù',
             'description' => 'Dolce italiano composto da savoiardi inzuppati nel caffè, crema di mascarpone e cacao amaro.',
             'price' => 6.99,
-            'img' => 'tiramisu.jpg',
+            'img' => 'https://images.unsplash.com/photo-1631206753348-db44968fd440?q=80&w=1325&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             'visible' => true,
         ],
 
@@ -34,7 +34,7 @@ return
             'name' => 'Bistecca alla Fiorentina',
             'description' => 'Fiorentina di manzo grigliata, servita al sangue e condita con sale grosso e olio d\'oliva.',
             'price' => 25.99,
-            'img' => 'fiorentina.jpg',
+            'img' => 'https://images.unsplash.com/photo-1683315445782-48b2459c234d?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             'visible' => true,
         ],
         [
@@ -42,7 +42,7 @@ return
             'name' => 'Ribollita',
             'description' => 'Zuppa toscana a base di pane raffermo, verdure miste, fagioli e cavolo nero.',
             'price' => 8.99,
-            'img' => 'ribollita.jpg',
+            'img' => 'https://www.cucchiaio.it/content/cucchiaio/it/ricette/2007/12/ricetta-ribollita-semplice/_jcr_content/header-par/image_single.img.jpg/1610368905728.jpg',
             'visible' => true,
         ],
         [
@@ -50,7 +50,7 @@ return
             'name' => 'Torta della Nonna',
             'description' => 'Dolce tradizionale toscano con crema pasticcera, pinoli e scorza di limone.',
             'price' => 7.99,
-            'img' => 'torta_nonna.jpg',
+            'img' => 'https://www.lucake.it/wp-content/uploads/2022/09/torta-della-nonna.jpg',
             'visible' => true,
         ],
 
@@ -60,7 +60,7 @@ return
             'name' => 'Sushi Misto',
             'description' => 'Assortimento di sushi fresco e variegato, con nigiri, maki e sashimi.',
             'price' => 18.99,
-            'img' => 'sushi_misto.jpg',
+            'img' => 'https://www.wumilano.com/store/wp-content/uploads/2019/07/DSC_98.jpg',
             'visible' => true,
         ],
         [
@@ -68,7 +68,7 @@ return
             'name' => 'Tempura di Gamberi',
             'description' => 'Gamberi avvolti in pastella croccante e fritti, serviti con salsa agrodolce.',
             'price' => 14.99,
-            'img' => 'tempura_gamberi.jpg',
+            'img' => 'https://i0.wp.com/kungfood.info/wp-content/uploads/2021/10/Piatto-di-tempura-di-gamberi.jpg?ssl=1',
             'visible' => true,
         ],
         [
@@ -76,7 +76,7 @@ return
             'name' => 'Sashimi di Salmone',
             'description' => 'Fette di salmone crudo fresco, servite con salsa di soia e zenzero grattugiato.',
             'price' => 16.99,
-            'img' => 'sashimi_salmone.jpg',
+            'img' => 'https://www.fumara.it/wp-content/uploads/salmone-affumicato-fumara-taglio-sashimi-con-balsamico-igp-e-spuma-di-parmigiano.jpg',
             'visible' => true,
         ],
 
@@ -86,7 +86,7 @@ return
             'name' => 'Tagliatelle al Ragu',
             'description' => 'Tagliatelle fatte in casa con un ricco sugo di carne cotto lentamente.',
             'price' => 15.99,
-            'img' => 'tagliatelle.jpg',
+            'img' => 'https://www.italianstylecooking.net/wp-content/uploads/2023/07/Tagliatelle-al-ragu.jpg',
             'visible' => true,
         ],
         [
@@ -102,7 +102,7 @@ return
             'name' => 'Torta di Mele',
             'description' => 'Dolce tradizionale emiliano con fette di mela caramellate e pasta frolla croccante.',
             'price' => 6.99,
-            'img' => 'torta_mele.jpg',
+            'img' => 'https://www.ricettealvolo.it/wp-content/uploads/2023/02/lasagne-bolognese.jpg',
             'visible' => true,
         ],
 
@@ -112,7 +112,7 @@ return
             'name' => 'Spaghetti ai Frutti di Mare',
             'description' => 'Spaghetti conditi con una selezione di frutti di mare freschi, pomodorini e prezzemolo.',
             'price' => 17.99,
-            'img' => 'spaghetti_frutti_di_mare.jpg',
+            'img' => 'https://blog.giallozafferano.it/adryincucina/wp-content/uploads/2016/08/linguine-ai-frutti-di-mare.jpg',
             'visible' => true,
         ],
         [
@@ -120,7 +120,7 @@ return
             'name' => 'Cotoletta di Pesce Spada',
             'description' => 'Cotoletta di pesce spada impanata e fritta, servita con spicchi di limone e insalata mista.',
             'price' => 19.99,
-            'img' => 'cotoletta_pesce_spada.jpg',
+            'img' => 'https://staticcookist.akamaized.net/wp-content/uploads/sites/21/2023/07/Cotolette-di-pesce-spada-foto-finale-1-1200x675.jpg',
             'visible' => true,
         ],
         [
@@ -128,7 +128,7 @@ return
             'name' => 'Cannoli Siciliani',
             'description' => 'Dolce tipico siciliano con guscio di pasta fritta ripieno di ricotta dolce e scorze d\'arancia candita.',
             'price' => 7.99,
-            'img' => 'cannoli.jpg',
+            'img' => 'https://blog.giallozafferano.it/fantasiaincucina/wp-content/uploads/2020/12/Cannolo-siciliano-1.jpg',
             'visible' => true,
         ],
         // Ristorante 6
@@ -137,7 +137,7 @@ return
             'name' => 'Riso Cantonese',
             'description' => 'Riso saltato in padella con uova, piselli, gamberetti e salsa di soia.',
             'price' => 11.99,
-            'img' => 'riso_cantonese.jpg',
+            'img' => 'https://marsala.gohan-sushi.it/upload/cache/immagini/prodotti/primi_piatti/63_riso_alla_cantonese_2-1920x1187.jpg',
             'visible' => true,
         ],
         [
@@ -145,7 +145,7 @@ return
             'name' => 'Anatra all\'Arancia',
             'description' => 'Piatto tradizionale cinese con anatra arrosto servita con salsa all\'arancia.',
             'price' => 23.99,
-            'img' => 'anatra_arancia.jpg',
+            'img' => 'https://media-assets.lacucinaitaliana.it/photos/62908d7a86584f03e6efa9ee/1:1/pass/undefined',
             'visible' => true,
         ],
         [
@@ -153,7 +153,7 @@ return
             'name' => 'Gelato al Sesamo Nero',
             'description' => 'Gelato artigianale con aroma di sesamo nero, una delizia fresca e sorprendente.',
             'price' => 5.99,
-            'img' => 'gelato_sesamo.jpg',
+            'img' => 'https://rende.boasorte.eu/wp-content/uploads/2021/07/DSC04059-scaled.jpg',
             'visible' => true,
         ],
 
@@ -163,15 +163,15 @@ return
             'name' => 'Pizza Margherita',
             'description' => 'Pizza classica con salsa di pomodoro, mozzarella di bufala DOP e basilico fresco.',
             'price' => 9.99,
-            'img' => 'pizza_margherita.jpg',
+            'img' => 'https://www.antoniettapolcaro.it/wp-content/uploads/2023/09/pizza-napoletana-contemporanea-antonietta-polcaro.jpg',
             'visible' => true,
         ],
         [
             'restaurant_id' => '7',
-            'name' => 'Pizza Pepperoni',
-            'description' => 'Pizza con salsa di pomodoro, mozzarella, e peperoni piccanti.',
+            'name' => 'Pizza Salamino',
+            'description' => 'Pizza con salsa di pomodoro, mozzarella, e salamino piccante.',
             'price' => 11.99,
-            'img' => 'pizza_pepperoni.jpg',
+            'img' => 'https://images.ctfassets.net/n7hs0hadu6ro/1O0Be1dObiQBm17GQJHLj8/3fde720730f0b3616ecf5a82b928e7f9/pizza-a-domicilio-cerca-de-mi.jpg?w=1920&h=1281&fl=progressive&q=50&fm=jpg',
             'visible' => true,
         ],
         [
@@ -179,7 +179,7 @@ return
             'name' => 'Pizza Capricciosa',
             'description' => 'Pizza con salsa di pomodoro, mozzarella, funghi, prosciutto cotto e carciofini.',
             'price' => 12.99,
-            'img' => 'pizza_capricciosa.jpg',
+            'img' => 'https://wips.plug.it/cips/buonissimo.org/cms/2019/04/pizza-capricciosa.jpg',
             'visible' => true,
         ],
         // Ristorante 8
@@ -188,7 +188,7 @@ return
             'name' => 'Bistecca alla Griglia',
             'description' => 'Bistecca di manzo alla griglia servita con patate al forno e verdure di stagione.',
             'price' => 24.99,
-            'img' => 'bistecca_griglia.jpg',
+            'img' => 'https://megastore.bbq4all.it/cdn/shop/articles/bistecca-3.jpg?v=1590168872',
             'visible' => true,
         ],
         [
@@ -196,7 +196,7 @@ return
             'name' => 'Insalata Caesar',
             'description' => 'Insalata fresca con crostini di pane, parmigiano grattugiato e salsa Caesar.',
             'price' => 10.99,
-            'img' => 'insalata_caesar.jpg',
+            'img' => 'https://staticcookist.akamaized.net/wp-content/uploads/sites/21/2021/07/Caesar-salad-0D6A0393-1200x675.jpg',
             'visible' => true,
         ],
         [
@@ -204,7 +204,7 @@ return
             'name' => 'Patate al Forno',
             'description' => 'Patate tagliate a spicchi, condite con olio d\'oliva e aromi, cotte al forno fino a doratura.',
             'price' => 6.99,
-            'img' => 'patate_forno.jpg',
+            'img' => 'https://www.tuorlorosso.it/wp-content/uploads/2021/05/Patate-al-forno-1.jpg',
             'visible' => true,
         ],
 
@@ -214,7 +214,7 @@ return
             'name' => 'Souvlaki di Pollo',
             'description' => 'Spiedini di pollo marinato e grigliato, serviti con pita e salsa tzatziki.',
             'price' => 13.99,
-            'img' => 'souvlaki_pollo.jpg',
+            'img' => 'https://www.vacanzegreche.com/public/img/data/2020514151650187_souvlaki-grecia1.jpg',
             'visible' => true,
         ],
         [
@@ -222,7 +222,7 @@ return
             'name' => 'Moussaka',
             'description' => 'Piatto greco tradizionale con strati di melanzane, patate, carne macinata e bechamel.',
             'price' => 15.99,
-            'img' => 'moussaka.jpg',
+            'img' => 'https://www.mygreekdish.com/wp-content/uploads/2013/05/Moussaka-recipe-Traditional-Greek-Moussaka-with-Eggplants.jpg',
             'visible' => true,
         ],
         [
@@ -230,7 +230,7 @@ return
             'name' => 'Dolmades',
             'description' => 'Foglie di vite ripiene di riso, pinoli e erbe aromatiche, cotte lentamente in salsa di pomodoro.',
             'price' => 11.99,
-            'img' => 'dolmades.jpg',
+            'img' => 'https://staticcookist.akamaized.net/wp-content/uploads/sites/21/2017/06/istock-920393181.jpg',
             'visible' => true,
         ],
 
@@ -240,7 +240,7 @@ return
             'name' => 'Panino al Pollo',
             'description' => 'Panino con petto di pollo grigliato, lattuga, pomodoro e maionese, servito con patatine fritte.',
             'price' => 8.99,
-            'img' => 'panino_pollo.jpg',
+            'img' => 'https://www.agricolaguidi.com/wp-content/uploads/2020/04/Panino-pollo_0014.jpg',
             'visible' => true,
         ],
         [
@@ -248,7 +248,7 @@ return
             'name' => 'Insalata Greca',
             'description' => 'Insalata fresca con pomodori, cetrioli, olive, cipolla rossa, feta e condimento al limone.',
             'price' => 9.99,
-            'img' => 'insalata_greca.jpg',
+            'img' => 'https://questolhofattoio.agribologna.it/getattachment/d6f9e02c-1893-4ecf-89e3-18fa472eb91a/Insalata-greca.aspx',
             'visible' => true,
         ],
         [
@@ -256,7 +256,7 @@ return
             'name' => 'Lasagna al Forno',
             'description' => 'Lasagna tradizionale con pasta fresca, ragù di carne, besciamella e formaggio gratinato.',
             'price' => 12.99,
-            'img' => 'lasagna.jpg',
+            'img' => 'https://blog.giallozafferano.it/crisemaxincucina/wp-content/uploads/2018/11/LASAGNE-CLASSICHE-2.jpeg',
             'visible' => true,
         ],
         // Ristorante 11
@@ -265,7 +265,7 @@ return
             'name' => 'Pizza Margherita',
             'description' => 'Pizza classica con pomodoro, mozzarella di bufala DOP, basilico e olio extravergine d\'oliva.',
             'price' => 9.99,
-            'img' => 'pizza_margherita.jpg',
+            'img' => 'https://www.scattidigusto.it/wp-content/uploads/2018/03/pizza-margherita-originale-Scatti-di-Gusto.jpg',
             'visible' => true,
         ],
         [
@@ -273,7 +273,7 @@ return
             'name' => 'Pasta alla Carbonara',
             'description' => 'Pasta lunga condita con uova, guanciale, pecorino romano e pepe nero macinato fresco.',
             'price' => 12.99,
-            'img' => 'carbonara.jpg',
+            'img' => 'https://www.buttalapasta.it/wp-content/uploads/2020/04/spaghetti-alla-carbonara.jpg',
             'visible' => true,
         ],
         [
@@ -281,7 +281,7 @@ return
             'name' => 'Tiramisù',
             'description' => 'Dolce italiano classico con strati di savoiardi imbevuti di caffè, crema mascarpone e cacao amaro.',
             'price' => 7.99,
-            'img' => 'tiramisu.jpg',
+            'img' => 'https://www.cucchiaio.it/content/dam/cucchiaio/it/ricette/2023/08/tiramisu-cremoso/tiramisu-cremoso-finale.jpg',
             'visible' => true,
         ],
 
@@ -291,7 +291,7 @@ return
             'name' => 'Tortellini in Brodo',
             'description' => 'Tortellini fatti in casa ripieni di carne, serviti in brodo di carne con parmigiano grattugiato.',
             'price' => 11.99,
-            'img' => 'tortellini_brodo.jpg',
+            'img' => 'https://d2sj0xby2hzqoy.cloudfront.net/kenwood_italy/attachments/data/000/010/046/original/tortellini-brodo.jpg',
             'visible' => true,
         ],
         [
@@ -299,7 +299,7 @@ return
             'name' => 'Tagliatelle al Tartufo',
             'description' => 'Tagliatelle fatte in casa condite con crema di tartufo nero pregiato e scaglie di parmigiano.',
             'price' => 19.99,
-            'img' => 'tagliatelle_tartufo.jpg',
+            'img' => 'https://www.casapappagallo.it/storage/11554/Spaghetti-al-tartufo-nero.jpg',
             'visible' => true,
         ],
         [
@@ -307,7 +307,7 @@ return
             'name' => 'Cotoletta alla Bolognese',
             'description' => 'Cotoletta di maiale impanata e fritta, servita con contorno di patatine fritte e insalata.',
             'price' => 14.99,
-            'img' => 'cotoletta.jpg',
+            'img' => 'https://www.tortelliniandco.com/wp-content/uploads/2023/04/IMG_7837.jpeg',
             'visible' => true,
         ],
 
@@ -317,7 +317,7 @@ return
             'name' => 'Sushi Misti',
             'description' => 'Assortimento di sushi fresco, includendo nigiri, sashimi e maki vari.',
             'price' => 22.99,
-            'img' => 'sushi_misti.jpg',
+            'img' => 'https://www.nikkosushi.it/wp-content/uploads/2019/08/74.jpg',
             'visible' => true,
         ],
         [
@@ -325,7 +325,7 @@ return
             'name' => 'Tempura di Gamberi',
             'description' => 'Gamberi freschi avvolti in pastella croccante e fritti, serviti con salsa dip.',
             'price' => 15.99,
-            'img' => 'tempura_gamberi.jpg',
+            'img' => 'https://www.finedininglovers.it/sites/g/files/xknfdk1106/files/styles/recipes_1200_800_fallback/public/fdl_content_import_it/tempura-di-gamberi.jpg?itok=-JjFZyK8',
             'visible' => true,
         ],
         [
@@ -342,7 +342,7 @@ return
             'name' => 'Sashimi Misto',
             'description' => 'Assortimento di sashimi freschi, inclusi salmone, tonno e branzino.',
             'price' => 25.99,
-            'img' => 'sashimi_misto.jpg',
+            'img' => 'https://roma.boasorte.eu/wp-content/uploads/2021/07/Boa1.png',
             'visible' => true,
         ],
         [
@@ -358,7 +358,7 @@ return
             'name' => 'Gyoza',
             'description' => 'Ravioli giapponesi al vapore ripieni di carne di maiale e verdure.',
             'price' => 9.99,
-            'img' => 'gyoza.jpg',
+            'img' => 'https://staticcookist.akamaized.net/wp-content/uploads/sites/21/2022/09/Gyoza.jpg',
             'visible' => true,
         ],
 
@@ -368,7 +368,7 @@ return
             'name' => 'Pizza Napoletana',
             'description' => 'Pizza tradizionale napoletana con pomodoro, mozzarella di bufala DOP, acciughe e olive nere.',
             'price' => 10.99,
-            'img' => 'pizza_napoletana.jpg',
+            'img' => 'https://media-assets.lacucinaitaliana.it/photos/61fabea083ffd58c524a1ddb/16:9/w_2560%2Cc_limit/pizza-puttanesca.jpg',
             'visible' => true,
         ],
         [
@@ -376,7 +376,7 @@ return
             'name' => 'Pasta al Pesto',
             'description' => 'Pasta corta condita con pesto alla genovese, patate e fagiolini.',
             'price' => 11.99,
-            'img' => 'pasta_pesto.jpg',
+            'img' => 'https://wips.plug.it/cips/buonissimo.org/cms/2019/03/pasta-fredda-al-pesto.jpg',
             'visible' => true,
         ],
         [
@@ -384,7 +384,7 @@ return
             'name' => 'Cannoli Siciliani',
             'description' => 'Dolce siciliano tradizionale con guscio di pasta fritta ripieno di ricotta dolce e scorza d\'arancia candita.',
             'price' => 8.99,
-            'img' => 'cannoli_siciliani.jpg',
+            'img' => 'https://hazlovegan.com/wp-content/uploads/2021/03/cannoli-siciliani-veganos-8.jpg',
             'visible' => true,
         ],
 
@@ -394,7 +394,7 @@ return
             'name' => 'Anatra alla Pechinese',
             'description' => 'Anatra arrosto glassata con salsa di soia, miele e spezie, servita con pancake cinesi e cipollotti.',
             'price' => 27.99,
-            'img' => 'anatra_pechinese.jpg',
+            'img' => 'https://www.buttalapasta.it/wp-content/uploads/2021/02/anatra-alla-pechinese.jpg',
             'visible' => true,
         ],
         [
@@ -402,7 +402,7 @@ return
             'name' => 'Pollo alle Mandorle',
             'description' => 'Pollo fritto croccante con salsa agrodolce alle mandorle, servito con riso basmati.',
             'price' => 18.99,
-            'img' => 'pollo_mandorle.jpg',
+            'img' => 'https://media-assets.lacucinaitaliana.it/photos/61fa71d9ace1ad5f106d7903/16:9/w_2560%2Cc_limit/2_pollo-alle-mandorle.jpg',
             'visible' => true,
         ],
         [
@@ -410,7 +410,7 @@ return
             'name' => 'Gamberi in Salsa Piccante',
             'description' => 'Gamberi saltati in padella con peperoncino fresco, aglio, zenzero e salsa piccante, serviti con verdure croccanti.',
             'price' => 22.99,
-            'img' => 'gamberi_salsa_piccante.jpg',
+            'img' => 'https://www.ristorante-giapponese.it/wp-content/uploads/2020/06/249.png',
             'visible' => true,
         ],
         // Ristorante 17
@@ -419,7 +419,7 @@ return
             'name' => 'Tacos al Pastor',
             'description' => 'Tacos di maiale marinato con ananas, cipolla e coriandolo, serviti con salsa piccante.',
             'price' => 12.99,
-            'img' => 'tacos_al_pastor.jpg',
+            'img' => 'https://iamafoodblog.b-cdn.net/wp-content/uploads/2021/05/al-pastor-3507w.jpg',
             'visible' => true,
         ],
         [
@@ -427,7 +427,7 @@ return
             'name' => 'Burrito Carnitas',
             'description' => 'Burrito ripieno di carne di maiale alla carnitas, riso, fagioli, formaggio e guacamole.',
             'price' => 14.99,
-            'img' => 'burrito_carnitas.jpg',
+            'img' => 'https://twodollareats.com/wp-content/uploads/2019/10/Two-Dollar-Eats-4476-1300x867.jpg',
             'visible' => true,
         ],
         [
@@ -435,7 +435,7 @@ return
             'name' => 'Margarita alla Fragola',
             'description' => 'Cocktail classico con tequila, triple sec, succo di lime e purea di fragole.',
             'price' => 9.99,
-            'img' => 'margarita_fragola.jpg',
+            'img' => 'https://www.ricettasprint.it/wp-content/uploads/2020/08/Drink-fragola-e-basilico-FOTO-ricettasprint-3.jpg',
             'visible' => true,
         ],
 
@@ -445,7 +445,7 @@ return
             'name' => 'Sushi Sashimi Combo',
             'description' => 'Assortimento di sushi e sashimi misti freschi e prelibati.',
             'price' => 29.99,
-            'img' => 'sushi_sashimi_combo.jpg',
+            'img' => 'https://images.squarespace-cdn.com/content/v1/51d3a842e4b0d2448ac01e8d/cad0d366-f2a5-4f44-bbac-a081bf3a9e26/DeluxeSushiCombo.jpg',
             'visible' => true,
         ],
         [
@@ -453,7 +453,7 @@ return
             'name' => 'Tempura Misto',
             'description' => 'Assortimento di tempura croccante di gamberi, verdure e pesce.',
             'price' => 18.99,
-            'img' => 'tempura_misto.jpg',
+            'img' => 'https://www.ricettasprint.it/wp-content/uploads/2017/04/iStock-497180612-1280x720.jpg',
             'visible' => true,
         ],
         [
@@ -461,7 +461,7 @@ return
             'name' => 'Ramen Tonkotsu',
             'description' => 'Zuppa giapponese di ramen con brodo di maiale cremoso, tagliatelle, maiale brasato, uovo sodo, alga nori e cipollotti.',
             'price' => 16.99,
-            'img' => 'ramen_tonkotsu.jpg',
+            'img' => 'https://www.foodandwine.com/thmb/0AXGLeY6dYnY8sEXFqxBa8opDrs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Tonkotsu-Ramen-FT-BLOG1122-8fe6c12d609a4fd4ab246bea3aae140e.jpg',
             'visible' => true,
         ],
 
@@ -471,7 +471,7 @@ return
             'name' => 'Pollo Tikka Masala',
             'description' => 'Pollo marinato in una salsa cremosa di pomodoro e curry speziato, servito con riso basmati.',
             'price' => 17.99,
-            'img' => 'pollo_tikka_masala.jpg',
+            'img' => 'https://images.dissapore.com/wp-content/uploads/2023/03/pollo-tikka-masala-ricetta.jpg?width=1280&height=720&quality=75',
             'visible' => true,
         ],
         [
@@ -479,7 +479,7 @@ return
             'name' => 'Biryani di Agnello',
             'description' => 'Riso basmati cucinato con agnello speziato, uova sode, cipolle caramellate e una selezione di spezie.',
             'price' => 19.99,
-            'img' => 'biryani_agnello.jpg',
+            'img' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5XcGglASNXMJlNQy145dZMx4sdeXXe5Ycyw&usqp=CAU',
             'visible' => true,
         ],
         [
@@ -487,7 +487,7 @@ return
             'name' => 'Naan all\'Aglio',
             'description' => 'Pane indiano naan cotto in forno tandoor con burro e aglio.',
             'price' => 5.99,
-            'img' => 'naan_aglio.jpg',
+            'img' => 'https://recipecontent.fooby.ch/21239_3-2_1920-1280.jpg',
             'visible' => true,
         ],
 
@@ -497,7 +497,7 @@ return
             'name' => 'Insalata Greca',
             'description' => 'Insalata fresca con pomodori, cetrioli, olive, cipolla rossa, feta, peperoncini e condimento al limone e olio d\'oliva.',
             'price' => 12.99,
-            'img' => 'insalata_greca.jpg',
+            'img' => 'https://blog.giallozafferano.it/studentiaifornelli/wp-content/uploads/2017/08/2020-insalata-greca-con-feta-ricetta-insalata-con-pomodori-cetrioli-cipolle.jpg',
             'visible' => true,
         ],
         [
@@ -505,7 +505,7 @@ return
             'name' => 'Lasagne Vegetariane',
             'description' => 'Lasagne fatte in casa con strati di pasta, besciamella, pomodoro, melanzane, zucchine e formaggio.',
             'price' => 14.99,
-            'img' => 'lasagne_vegetariane.jpg',
+            'img' => 'https://staticcookist.akamaized.net/wp-content/uploads/sites/21/2018/06/lasagne_vegetariane_-3.jpg',
             'visible' => true,
         ],
         [
@@ -513,7 +513,7 @@ return
             'name' => 'Torta di Carote',
             'description' => 'Torta soffice e umida con carote grattugiate, noci e una spolverata di cannella.',
             'price' => 8.99,
-            'img' => 'torta_carote.jpg',
+            'img' => 'https://www.lucake.it/wp-content/uploads/2022/10/torta-di-carote.jpg',
             'visible' => true,
         ],
         // Ristorante 21
@@ -522,7 +522,7 @@ return
             'name' => 'Anatra alla Pechinese',
             'description' => 'Anatra arrosto con crosta croccante, servita con salsa alla prugna e verdure saltate.',
             'price' => 24.99,
-            'img' => 'anatra_pechinese.jpg',
+            'img' => 'https://images.rove.me/w_1920,q_85/zhieisvkt7eu3bmfw6bo/beijing-peking-duck.jpg',
             'visible' => true,
         ],
         [
@@ -530,7 +530,7 @@ return
             'name' => 'Gamberi in Salsa Agrodolce',
             'description' => 'Gamberi fritti in pastella croccante, ricoperti di salsa agrodolce e sesamo.',
             'price' => 18.99,
-            'img' => 'gamberi_salsa_agrodolce.jpg',
+            'img' => 'https://www.ristorantedong.it/wp-content/uploads/Ristorante-Dong-Menu-WEB-177.jpg',
             'visible' => true,
         ],
         [
@@ -538,7 +538,7 @@ return
             'name' => 'Riso Cantonese',
             'description' => 'Riso saltato con uova, piselli, carote, gamberetti e salsa di soia.',
             'price' => 15.99,
-            'img' => 'riso_cantonese.jpg',
+            'img' => 'https://lh3.googleusercontent.com/proxy/ZUE9PS4nLxSqRXmB5kOpiYqwE2KDn6VuFIGeyTt67UBVVxIksdf9VjEvLKoi-8KQcrJusiFw6yPE5pqtJTkHOJBgKuA2SUT8AP5aUyXhHhTbTHZr',
             'visible' => true,
         ],
 
@@ -548,7 +548,7 @@ return
             'name' => 'Whopper Burger',
             'description' => 'Hamburger alla griglia con carne 100% manzo, formaggio, lattuga, pomodoro, cipolla e maionese.',
             'price' => 11.99,
-            'img' => 'whopper_burger.jpg',
+            'img' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM-X0RG7rg5V6dnkCbYZiln8IyCX6DAsr3HQ&usqp=CAU',
             'visible' => true,
         ],
         [
@@ -556,7 +556,7 @@ return
             'name' => 'Chicken Royale',
             'description' => 'Panino con petto di pollo alla griglia, formaggio, lattuga, maionese e ketchup.',
             'price' => 9.99,
-            'img' => 'chicken_royale.jpg',
+            'img' => 'https://metro.co.uk/wp-content/uploads/2023/06/SEC_159128747-bbfb.jpg?quality=90&strip=all',
             'visible' => true,
         ],
         [
@@ -564,7 +564,7 @@ return
             'name' => 'Onion Rings',
             'description' => 'Anelli di cipolla impanati e fritti, serviti con salsa barbecue.',
             'price' => 6.99,
-            'img' => 'onion_rings.jpg',
+            'img' => 'https://kristineskitchenblog.com/wp-content/uploads/2022/03/crispy-air-fryer-onion-rings-recipe-0775.jpg',
             'visible' => true,
         ],
 
@@ -574,7 +574,7 @@ return
             'name' => 'Fajitas di Pollo',
             'description' => 'Strisce di pollo alla griglia con peperoni, cipolle e condimenti, servite con tortillas calde.',
             'price' => 16.99,
-            'img' => 'fajitas_pollo.jpg',
+            'img' => 'https://www.casapappagallo.it/storage/2510/fajitas-di-pollo.JPG',
             'visible' => true,
         ],
         [
@@ -582,7 +582,7 @@ return
             'name' => 'Burrito di Manzo',
             'description' => 'Burrito ripieno di manzo alla griglia, riso, fagioli, formaggio e salsa al peperoncino.',
             'price' => 14.99,
-            'img' => 'burrito_manzo.jpg',
+            'img' => 'https://staticcookist.akamaized.net/wp-content/uploads/sites/21/2022/05/Burrito-0D6A3943.jpg',
             'visible' => true,
         ],
         [
@@ -590,7 +590,7 @@ return
             'name' => 'Margarita al Mango',
             'description' => 'Cocktail rinfrescante con tequila, triple sec, succo di lime e purea di mango.',
             'price' => 10.99,
-            'img' => 'margarita_mango.jpg',
+            'img' => 'https://static.vecteezy.com/ti/foto-gratuito/p2/24215803-cocktail-margarita-congelati-al-mango-foto.jpg',
             'visible' => true,
         ],
 
@@ -600,7 +600,7 @@ return
             'name' => 'Asado Argentino',
             'description' => 'Assortimento di carni alla griglia tra cui salsicce, costine e bistecca, servito con chimichurri.',
             'price' => 29.99,
-            'img' => 'asado_argentino.jpg',
+            'img' => 'https://marchesestore.it/cdn/shop/articles/come-cucinare-lasado-argentino-consigli-per-un-piatto-unico.webp?v=1697419652',
             'visible' => true,
         ],
         [
@@ -608,7 +608,7 @@ return
             'name' => 'Empanadas di Carne',
             'description' => 'Fagottini di pasta sfoglia ripieni di carne tritata, olive, uova sode e spezie.',
             'price' => 12.99,
-            'img' => 'empanadas_carne.jpg',
+            'img' => 'https://www.repstatic.it/content/nazionale/img/2021/03/08/063911933-dd38aff7-bfca-4e1b-9553-f105e78f79fb.jpg',
             'visible' => true,
         ],
         [
@@ -616,7 +616,7 @@ return
             'name' => 'Milanesa alla Napolitana',
             'description' => 'Cotoletta di carne di manzo impanata, fritta e gratinata al forno con salsa di pomodoro e mozzarella.',
             'price' => 18.99,
-            'img' => 'milanesa_napolitana.jpg',
+            'img' => 'https://i0.wp.com/www.vivilargentina.com/wp-content/uploads/2014/11/maxresdefault.jpg',
             'visible' => true,
         ],
 
@@ -626,7 +626,7 @@ return
             'name' => 'Pollo al Curry',
             'description' => 'Pollo cucinato in una salsa di curry cremosa con peperoni, cipolle e spezie.',
             'price' => 17.99,
-            'img' => 'pollo_curry.jpg',
+            'img' => 'https://www.vivilight.it/wp-content/uploads/2020/05/Pollo-al-curry-light-%E2%80%93-Ricetta-asiatica-veloce-2000x1362.png',
             'visible' => true,
         ],
         [
@@ -634,7 +634,7 @@ return
             'name' => 'Pane Naan',
             'description' => 'Pane indiano soffice cotto in forno tandoor, ideale per accompagnare piatti speziati.',
             'price' => 5.99,
-            'img' => 'pane_naan.jpg',
+            'img' => 'https://i0.wp.com/paneamoreceliachia.it/wp-content/uploads/2021/02/Pane-Naan-allo-yogurt-senza-glutine-Paneamoreceliachia-sl.jpg?fit=1390%2C869&ssl=1',
             'visible' => true,
         ],
         [
@@ -642,7 +642,7 @@ return
             'name' => 'Gulab Jamun',
             'description' => 'Dolce indiano a base di latte condensato e farina, fritto e immerso in sciroppo di zucchero.',
             'price' => 8.99,
-            'img' => 'gulab_jamun.jpg',
+            'img' => 'https://upload.wikimedia.org/wikipedia/commons/c/c4/Gulab_jamun_%28Gibraltar%2C_November_2020%29.jpg',
             'visible' => true,
         ],
 
@@ -652,7 +652,7 @@ return
             'name' => 'Bistecca alla Fiorentina',
             'description' => 'Taglio di bistecca di manzo alla griglia, servito con patate al rosmarino e verdure di stagione.',
             'price' => 35.99,
-            'img' => 'bistecca_fiorentina.jpg',
+            'img' => 'https://staticcookist.akamaized.net/wp-content/uploads/sites/21/2018/08/bistecca-alla-fiorentina.jpg',
             'visible' => true,
         ],
         [
@@ -660,7 +660,7 @@ return
             'name' => 'Pasta alla Norma',
             'description' => 'Pasta con pomodori, melanzane fritte, basilico e ricotta salata, un classico della cucina siciliana.',
             'price' => 14.99,
-            'img' => 'pasta_norma.jpg',
+            'img' => 'https://www.casapappagallo.it/storage/21564/pasta-alla-norma.JPG',
             'visible' => true,
         ],
         [
@@ -668,7 +668,7 @@ return
             'name' => 'Cannoli Siciliani',
             'description' => 'Dolce siciliano a base di pasta fritta ripiena di ricotta dolce, cioccolato e scorza d\'arancia.',
             'price' => 9.99,
-            'img' => 'cannoli_siciliani.jpg',
+            'img' => 'https://www.fattoincasadabenedetta.it/wp-content/uploads/2017/03/anteprima-14-scaled.jpg',
             'visible' => true,
         ],
 
@@ -678,7 +678,7 @@ return
             'name' => 'Sashimi Misto',
             'description' => 'Assortimento di pesce crudo fresco, tagliato sottile e servito con salsa di soia e wasabi.',
             'price' => 22.99,
-            'img' => 'sashimi_misto.jpg',
+            'img' => 'https://www.ristorantedong.it/wp-content/uploads/Ristorante-Dong-Menu-WEB-54.jpg',
             'visible' => true,
         ],
         [
@@ -686,7 +686,7 @@ return
             'name' => 'Yakitori di Pollo',
             'description' => 'Spiedini di pollo grigliati e glassati con salsa teriyaki, serviti con riso al vapore.',
             'price' => 16.99,
-            'img' => 'yakitori_pollo.jpg',
+            'img' => 'https://www.corriere.it/methode_image/2023/07/06/Cucina/Foto%20Cucina%20-%20Trattate/Yakitori%20di%20pollo-397-kjzF-U34202231276633hKI-1124x631@Corriere-Web-Sezioni.jpg',
             'visible' => true,
         ],
         [
@@ -694,17 +694,17 @@ return
             'name' => 'Tempura di Gamberi',
             'description' => 'Gamberi freschi immersi in pastella leggera e fritti fino a doratura, serviti con salsa di immersione.',
             'price' => 18.99,
-            'img' => 'tempura_gamberi.jpg',
+            'img' => 'https://www.finedininglovers.it/sites/g/files/xknfdk1106/files/styles/recipes_1200_800_fallback/public/fdl_content_import_it/tempura-di-gamberi.jpg?itok=-JjFZyK8',
             'visible' => true,
         ],
 
         // Ristorante 28
         [
             'restaurant_id' => '28',
-            'name' => 'Ribollita Toscano',
+            'name' => 'Ribollita Toscana',
             'description' => 'Zuppa toscana tradizionale con verdure di stagione, pane raffermo e fagioli cannellini.',
             'price' => 12.99,
-            'img' => 'ribollita_toscano.jpg',
+            'img' => 'https://passioneperlatavola.it/wp-content/uploads/2021/11/ribollita-toscana-0-scaled.jpg',
             'visible' => true,
         ],
         [
@@ -712,7 +712,7 @@ return
             'name' => 'Tagliata di Manzo',
             'description' => 'Trancio di manzo alla griglia servito su un letto di rucola e scaglie di Parmigiano Reggiano.',
             'price' => 26.99,
-            'img' => 'tagliata_manzo.jpg',
+            'img' => 'https://www.wineandfoodtour.it/wp-content/uploads/2023/08/Come-cucinare-una-tagliata-di-manzo.jpg',
             'visible' => true,
         ],
         [
@@ -720,7 +720,7 @@ return
             'name' => 'Tiramisù Tradizionale',
             'description' => 'Dolce italiano composto da savoiardi inzuppati nel caffè, crema al mascarpone e cacao amaro.',
             'price' => 8.99,
-            'img' => 'tiramisu_tradizionale.jpg',
+            'img' => 'https://blog.giallozafferano.it/lebistro/wp-content/uploads/2018/12/tiramisu%CC%80.jpg',
             'visible' => true,
         ],
 
@@ -730,7 +730,7 @@ return
             'name' => 'Pizza Margherita',
             'description' => 'Pizza classica con pomodoro, mozzarella e basilico fresco.',
             'price' => 10.99,
-            'img' => 'pizza_margherita.jpg',
+            'img' => 'https://upload.wikimedia.org/wikipedia/commons/c/c8/Pizza_Margherita_stu_spivack.jpg',
             'visible' => true,
         ],
         [
@@ -738,7 +738,7 @@ return
             'name' => 'Spaghetti Carbonara',
             'description' => 'Pasta con pancetta croccante, uova, pecorino e pepe nero.',
             'price' => 14.99,
-            'img' => 'spaghetti_carbonara.jpg',
+            'img' => 'https://www.chompslurrpburp.com/wp-content/uploads/2021/12/spaghetti-carbonara.jpg',
             'visible' => true,
         ],
         [
@@ -746,7 +746,7 @@ return
             'name' => 'Torta della Nonna',
             'description' => 'Torta rustica con crema pasticcera, pinoli e scorza di limone, coperta di zucchero a velo.',
             'price' => 7.99,
-            'img' => 'torta_nonna.jpg',
+            'img' => 'https://www.thespruceeats.com/thmb/rdwFw3KajYxXIidcuqGN-eRGR0M=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/ahIMG_5346fhor-a02b6074d4524c898d1f9eeb91536e68.jpg',
             'visible' => true,
         ],
 
@@ -756,7 +756,7 @@ return
             'name' => 'Sushi Sashimi Combo',
             'description' => 'Assortimento di sushi e sashimi freschi, accompagnati da riso e salsa di soia.',
             'price' => 32.99,
-            'img' => 'sushi_sashimi_combo.jpg',
+            'img' => 'https://i.redd.it/auzehrt47mo01.jpg',
             'visible' => true,
         ],
         [
@@ -764,7 +764,7 @@ return
             'name' => 'Uramaki California Roll',
             'description' => 'Rotolo di sushi con gamberetti, avocado, cetriolo e maionese, ricoperto di sesamo.',
             'price' => 18.99,
-            'img' => 'uramaki_california_roll.jpg',
+            'img' => 'https://www.sidechef.com/recipe/8f379697-7d39-4f61-a336-fd4134eeee18.jpg?d=1408x1120',
             'visible' => true,
         ],
         [
@@ -772,7 +772,7 @@ return
             'name' => 'Miso Soup',
             'description' => 'Zuppa giapponese leggera e salata a base di brodo di miso, alghe e tofu.',
             'price' => 5.99,
-            'img' => 'miso_soup.jpg',
+            'img' => 'https://www.crowdedkitchen.com/wp-content/uploads/2020/08/vegan-miso-soup.jpg',
             'visible' => true,
         ],
 
@@ -782,7 +782,7 @@ return
             'name' => 'Pad Thai Gamberi',
             'description' => 'Noodle di riso saltati con gamberi freschi, uova, cipolle, germogli di soia e arachidi.',
             'price' => 16.99,
-            'img' => 'pad_thai_gamberi.jpg',
+            'img' => 'https://www.checucino.it/wp-content/uploads/2022/03/pad-thai.jpg',
             'visible' => true,
         ],
         [
@@ -790,7 +790,7 @@ return
             'name' => 'Gyoza di Verdure',
             'description' => 'Ravioli giapponesi fritti ripieni di verdure tritate e aromi orientali, serviti con salsa ponzu.',
             'price' => 12.99,
-            'img' => 'gyoza_verdure.jpg',
+            'img' => 'https://www.ginkosushi.it/wp-content/uploads/2021/12/img_0628-scaled.jpeg',
             'visible' => true,
         ],
         [
@@ -798,7 +798,7 @@ return
             'name' => 'Sake Nigiri',
             'description' => 'Salmone fresco su cuscino di riso delicatamente condito, accompagnato da wasabi e zenzero.',
             'price' => 9.99,
-            'img' => 'sake_nigiri.jpg',
+            'img' => 'https://okasan.it/tablet/wp-content/uploads/2017/02/01-nigiri-salmone_new.jpg',
             'visible' => true,
         ],
     ];
