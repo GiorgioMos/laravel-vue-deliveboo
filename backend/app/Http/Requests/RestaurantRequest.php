@@ -27,7 +27,7 @@ class RestaurantRequest extends FormRequest
             "description" => ["max:255"],
             "city" => ["required", "min:2", "max:100"],
             "address" => ["required", "min:2", "max:255"],
-            "img" => ["required", File::image()->min("1kb")->max("20mb")],
+            "img" => ["", File::image()->min("1kb")->max("20mb")], //todo rimossa img required, è protetta da validazione client ma sarebbe meglio separare le request per store e upload
             "telephone" => ["required", "min:2", "max:100"],
             "website" => ["required", "min:2", "max:100"],
             "categories" => ["exists:categories,id"],

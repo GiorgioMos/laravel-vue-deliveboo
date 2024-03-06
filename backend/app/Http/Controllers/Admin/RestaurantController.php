@@ -60,7 +60,7 @@ class RestaurantController extends Controller
 
         // per importare img
         $percorsoImg = Storage::disk("public")->put('/uploads', $request['img']);
-        $validated ["img"] = $percorsoImg;
+        $validated["img"] = $percorsoImg;
 
         $newRestaurant = new Restaurant();
         $newRestaurant->fill($validated);
@@ -101,9 +101,14 @@ class RestaurantController extends Controller
         $validated = $request->validated();
 
         // per importare img
-        $percorsoImg = Storage::disk("public")->put('/uploads', $request['img']);
-        $validated["img"] = $percorsoImg;
-        
+        //controllo se il campo del form è vuoto o meno, e se non ho caricato niente gli passo il link dell'immagine già presente
+        if ($request['img']) {
+            $percorsoImg = Storage::disk("public")->put('/uploads', $request['img']);
+            $validated["img"] = $percorsoImg;
+        } else {
+            $validated["img"] = $restaurant->img;
+        }
+
         $restaurant->update($validated);
 
         if ($request->categories) {
