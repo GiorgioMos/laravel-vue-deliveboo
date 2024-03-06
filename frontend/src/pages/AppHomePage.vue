@@ -18,13 +18,12 @@ export default {
 			store,
 			categoriesSelected: [],
 			restaurants: [],
+			visibleRestaurants: []
 		}
 	},
 	mounted() {
 		this.getCategories();
 
-		// al caricamento della pagina seleziono tutti i ristoranti 
-		this.restaurants = document.querySelectorAll(".card");
 	},
 	methods: {
 		getCategories() {
@@ -54,6 +53,10 @@ export default {
         },
 		// funzione search 
 		search(id_categoria) {
+
+			//seleziono tutti i ristoranti
+			this.restaurants = document.querySelectorAll(".card");
+
 
 			// controllo se una categoria è presente nell'array delle categorie selezionate e in caso lo pusho o lo rimuovo 
 			if (this.categoriesSelected.includes(id_categoria)) {
