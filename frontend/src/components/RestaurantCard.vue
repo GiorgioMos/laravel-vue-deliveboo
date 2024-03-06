@@ -40,7 +40,7 @@ export default {
                     <h3>{{ item.name.toUpperCase() }}</h3>
                 </div>
                 <div class="imgBoxShow rounded">
-                        <img class="cardImg rounded" :src="getImage(item.img)" alt="">
+                    <img class="cardImg rounded" :src="getImage(item.img)" alt="">
                 </div>
                 <div class="card-body">
                     <h4 class="card-title"><a href="">Descrizione: {{ item.description }}</a></h4>

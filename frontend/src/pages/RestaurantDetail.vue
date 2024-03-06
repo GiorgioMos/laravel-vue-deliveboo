@@ -44,6 +44,19 @@ export default {
                 console.error(errore);
 				this.$router.push({ name: "home" }); // redireziona alla lista eventi
             });
+        },
+		getImage(img) {
+			if (img) {
+
+				let image;
+				if (img.startsWith('http')) {
+					image = img;
+				} else {
+					image = asset('storage/'+ img)
+				}
+				
+				return new URL(image, import.meta.url).href
+			}
         }
 	}
 }
@@ -59,8 +72,11 @@ export default {
 			<h1>Loading..</h1>
 			</div>
 				<div class="row py-3 text-warning">
-					<h1>Event Name: {{ restaurant?.name }}</h1>
-					
+					<h1>Restaurant Name: {{ restaurant?.name }}</h1>
+					<div class="imgBoxShow rounded">
+                    	<img class="cardImg rounded" :src="getImage(restaurant?.img)" alt="">
+                	</div>
+					<p v-for="product in restaurant?.products">{{ product.name }}</p>
                     <div class="row d-flex justify-content-end">
 						<div class="col-2 py-3">
 							<router-link :to="{ name: 'home' }" class="btn btn-info">
