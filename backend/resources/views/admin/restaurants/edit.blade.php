@@ -98,7 +98,7 @@
                                 <p>o carica una nuova immagine</p>
                             </div>
                             <input type="file" class="form-control @error('img') is-invalid @enderror" id="img"
-                                name="img" value="{{ old('img') ?? $restaurant->img }}">
+                                name="img" value="{{ old('img') ?? $restaurant->img }}" onchange="setPreviewPic()">
 
                             {{-- error message --}}
                             <span id="img-error-message" class="invalid-feedback" role="alert"></span>
@@ -176,6 +176,10 @@
 @endsection
 
 <script>
+    function setPreviewPic() {
+        value = document.getElementById('img').files[0]
+        console.log(value)
+    };
     document.addEventListener('DOMContentLoaded', function() {
         // Funzione per verificare lo stato di compilazione dei campi e validare gli input
         function validateInputs() {

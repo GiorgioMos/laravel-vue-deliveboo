@@ -7,7 +7,7 @@ return [
         'description' => 'Un accogliente ristorante che serve cucina italiana autentica.',
         'city' => 'Roma',
         'address' => 'Via Roma, 123',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://voyageursintrepides.com/wp-content/uploads/2022/04/ou-manger-rome-meilleurs-restaurants-1.jpg',
         'telephone' => '+39 06 1234567',
         'website' => 'http://www.ristoranteDaEugenio.com',
         'category' => ['1']
@@ -18,7 +18,7 @@ return [
         'description' => 'Specialità toscane in un ambiente accogliente nel cuore di Firenze.',
         'city' => 'Firenze',
         'address' => 'Piazza del Duomo, 1',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://a.cdn-hotels.com/gdcs/production48/d483/0f6f0f60-32bd-460e-9ab5-7c748cd37545.jpg',
         'telephone' => '+39 055 7654321',
         'website' => 'http://www.ledelizieDiMarco.it',
         'category' => ['1', '3']
@@ -29,7 +29,7 @@ return [
         'description' => 'Sushi fresco e fusion food in un ambiente moderno e chic.',
         'city' => 'Milano',
         'address' => 'Via Milano, 456',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://flawless.life/wp-content/uploads/2015/05/wickys-table.jpg',
         'telephone' => '+39 02 9876543',
         'website' => 'http://www.sushiRaoul.com',
         'category' => ['2', '1']
@@ -40,7 +40,7 @@ return [
         'description' => 'Piatti tradizionali della cucina emiliana preparati con amore.',
         'city' => 'Bologna',
         'address' => 'Via Bolognese, 789',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://media-assets.lacucinaitaliana.it/photos/61fabd448f675ad335f0d998/master/pass/la-rina-new-york.jpg',
         'telephone' => '+39 051 2345678',
         'website' => 'http://www.NonnoFrancesco.it',
         'category' => ['4']
@@ -51,7 +51,7 @@ return [
         'description' => 'Autentica cucina Milanese con un\'attenzione particolare ai frutti di mare.',
         'city' => 'Milano',
         'address' => 'Via Lisbona, 101',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://flawless.life/wp-content/uploads/2019/07/i-migliori-ristoranti-di-pesce-di-milano-a-riccione.jpg',
         'telephone' => '+351 21 8765432',
         'website' => 'http://www.GiorgioAtlantico.it',
         'category' => ['3']
@@ -62,7 +62,7 @@ return [
         'description' => 'Ristorante cinese con cucina cantonese e specialità di pesce, situato a Torino.',
         'city' => 'Torino',
         'address' => 'Via Cigna, 28, 10155 Torino TO',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://www.hongkongcucciago.it/assets/img-temp/about/ristorante_cinese1.jpg',
         'telephone' => '+39 011 1234567',
         'website' => 'https://www.cittadeldragone.it/',
         'category' => ['1', '6']
@@ -73,7 +73,7 @@ return [
         'description' => 'Pizzeria con consegna rapida a domicilio, offrendo una vasta gamma di pizze classiche e speciali.',
         'city' => 'Roma',
         'address' => 'Via Napoli, 15, 00100 Roma RM',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://sagitairtest.p82.it/media/filer_public_thumbnails/filer_public/da/5f/da5ffb81-a0b3-4bfc-a357-895f9ee50399/pizzeria_charlie_one_0003.jpg__2048x1152_q85_crop_detail.jpg',
         'telephone' => '+39 06 1234567',
         'website' => 'https://www.speedypizzaroma.it/',
         'category' => ['1']
@@ -84,7 +84,7 @@ return [
         'description' => 'Ristorante specializzato in bistecche alla griglia, offrendo una vasta selezione di carni e contorni.',
         'city' => 'Milano',
         'address' => 'Via Monte Rosa, 50, 20149 Milano MI',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://criocabin.com/wp-content/uploads/2020/10/5.jpg',
         'telephone' => '+39 02 1234567',
         'website' => 'https://www.megagrillmilano.it/',
         'category' => ['7', '9', '10']
@@ -95,7 +95,7 @@ return [
         'description' => 'Ristorante greco con piatti tradizionali come souvlaki, gyros e moussaka.',
         'city' => 'Firenze',
         'address' => 'Via Sant\'Egidio, 10, 50123 Firenze FI',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://www.ellenikoristorante.it/wp-content/uploads/2020/12/IMG_20201025_134246-scaled.jpg',
         'telephone' => '+39 055 1234567',
         'website' => 'https://www.gustogrecofirenze.it/',
         'category' => ['8']
@@ -106,7 +106,7 @@ return [
         'description' => 'Ristorante fast food con una varietà di panini, insalate, e piatti pronti da asporto o da consumare sul posto.',
         'city' => 'Napoli',
         'address' => 'Via Roma, 20, 80100 Napoli NA',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://media-assets.ad-italia.it/photos/60f00993b4606eba81f3d3ef/16:9/w_2560%2Cc_limit/image00027.jpeg',
         'telephone' => '+39 081 1234567',
         'website' => 'https://www.velocesaporito.it/',
         'category' => ['7']
@@ -117,7 +117,7 @@ return [
         'description' => 'Pizzeria e ristorante con specialità di pizza rustica, pasta fresca e piatti tipici italiani.',
         'city' => 'Roma',
         'address' => 'Via Appia, 30, 00100 Roma RM',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://res.cloudinary.com/tf-lab/image/upload/restaurant/35f20cd8-c9d3-4808-afe5-5ebbb741522b/c21ee053-1b45-4d4f-903e-e76033134940.jpg',
         'telephone' => '+39 06 1234567',
         'website' => 'https://www.larusticaroma.it/',
         'category' => ['1', '10']
@@ -128,7 +128,7 @@ return [
         'description' => 'Accogliente osteria bolognese con cucina tradizionale emiliana e vasta selezione di vini locali.',
         'city' => 'Bologna',
         'address' => 'Via Mascarella, 20, 40100 Bologna BO',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://www.ristorazioneitalianamagazine.it/CMS/wp-content/uploads/2021/02/trattoria-citi.jpg',
         'telephone' => '+39 051 1234567',
         'website' => 'https://www.osteriadelsole.it/',
         'category' => ['1']
@@ -139,7 +139,7 @@ return [
         'description' => 'Ristorante cinese di lusso con specialità come anatra alla pechinese e piatti imperiali.',
         'city' => 'Milano',
         'address' => 'Via della Moscova, 25, 20121 Milano MI',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://flawless.life/wp-content/uploads/2020/02/I_migliori_ristoranti_cinesi_Milano_BonWei.jpg',
         'telephone' => '+39 02 1234567',
         'website' => 'https://www.pekingduckmilano.it/',
         'category' => ['6']
@@ -150,7 +150,7 @@ return [
         'description' => 'Ristorante giapponese con autentica cucina tradizionale, sushi fresco e piatti creativi.',
         'city' => 'Roma',
         'address' => 'Via delle Grazie, 10, 00100 Roma RM',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://firenzeurbanlifestyle.com/wp-content/uploads/2021/12/Foto-1-copertina-OK_ok-scaled-1.jpg',
         'telephone' => '+39 06 1234567',
         'website' => 'https://www.ristorantesakura.it/',
         'category' => ['3', '6']
@@ -161,7 +161,7 @@ return [
         'description' => 'Pizzeria con servizio di consegna rapida e pizza a taglio sempre calda e gustosa.',
         'city' => 'Napoli',
         'address' => 'Via Toledo, 50, 80100 Napoli NA',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://lh5.googleusercontent.com/p/AF1QipMnFUnGnjGPQpMtDbGfzb7muLPXRD6VC2r6MdZz=w1440-h1080-k-no',
         'telephone' => '+39 081 1234567',
         'website' => 'https://www.fastpizzaexpress.it/',
         'category' => ['7', '10']
@@ -172,7 +172,7 @@ return [
         'description' => 'Cucina italiana autentica con piatti della tradizione campana, situato sulla costa di Amalfi.',
         'city' => 'Amalfi',
         'address' => 'Via Positano, 15, 84011 Amalfi SA',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://travelamalficoast.travelmar.it/images/ristorante-lido-azzurro_347.jpg?v=5481',
         'telephone' => '+39 089 1234567',
         'website' => 'https://www.ristoranteamalfi.it/',
         'category' => ['1', '10']
@@ -183,7 +183,7 @@ return [
         'description' => 'Autentica cucina messicana con tacos, burritos, e margarita, situato nel cuore di Roma.',
         'city' => 'Roma',
         'address' => 'Via Guadalupe, 5, 00100 Roma RM',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://www.cucaramacara.it/wp-content/uploads/2022/02/IMG_0451-scaled.jpeg',
         'telephone' => '+39 06 1234567',
         'website' => 'https://www.casadeltacoroma.it/',
         'category' => ['2', '7', '9']
@@ -194,7 +194,7 @@ return [
         'description' => 'Ristorante giapponese con sushi fresco e creativo, preparato da chef esperti, situato a Milano.',
         'city' => 'Milano',
         'address' => 'Via Nagoya, 10, 20100 Milano MI',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://ristorantesushitake.it/wp-content/uploads/2021/06/TOD_8975.jpg',
         'telephone' => '+39 02 1234567',
         'website' => 'https://www.sushimastermilano.it/',
         'category' => ['3']
@@ -205,7 +205,7 @@ return [
         'description' => 'Cucina indiana autentica con curry, biryani e naan, situato nel centro storico di Firenze.',
         'city' => 'Firenze',
         'address' => 'Via Jaipur, 20, 50100 Firenze FI',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://www.ristorantetara.it/gallery/files/Ristorante-indiano-tara-milano-gallery-27.jpg',
         'telephone' => '+39 055 1234567',
         'website' => 'https://www.tajmahalfirenze.it/',
         'category' => ['4']
@@ -216,7 +216,7 @@ return [
         'description' => 'Ristorante vegetariano con menu stagionale e ingredienti freschi, situato a Bologna.',
         'city' => 'Bologna',
         'address' => 'Via delle Erbe, 5, 40100 Bologna BO',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://www.ilgiardinogr.it/wp-content/uploads/2020/10/ilgiardino-green-restaurant.jpg',
         'telephone' => '+39 051 1234567',
         'website' => 'https://www.greengardenbologna.it/',
         'category' => ['5']
@@ -227,7 +227,7 @@ return [
         'description' => 'Ristorante cinese con menu completo e varietà di piatti regionali, situato a Milano.',
         'city' => 'Milano',
         'address' => 'Via Beijing, 8, 20100 Milano MI',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://i1.wp.com/www.kappuccio.com/wp-content/uploads/2020/01/IMG_1437-scaled.jpeg?fit=2048%2C1536&ssl=1',
         'telephone' => '+39 02 1234567',
         'website' => 'https://www.greatwallmilano.it/',
         'category' => ['1', '6']
@@ -238,7 +238,7 @@ return [
         'description' => 'Catena internazionale di hamburger fast food, nota per i suoi burger flame-grilled.',
         'city' => 'Roma',
         'address' => 'Via Hamburg, 12, 00100 Roma RM',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://dimages2.corriereobjects.it/files/og_thumbnail/uploads/2023/10/22/6534f4865b9b0.jpeg',
         'telephone' => '+39 06 1234567',
         'website' => 'https://www.burgerkingroma.it/',
         'category' => ['7', '9']
@@ -249,7 +249,7 @@ return [
         'description' => 'Ristorante americano con cucina tex-mex e piatti barbecue, situato a Napoli.',
         'city' => 'Napoli',
         'address' => 'Via Texas, 30, 80100 Napoli NA',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://www.abc27.com/wp-content/uploads/sites/55/2021/12/OliveGardenGettyImages-1326009258.jpg',
         'telephone' => '+39 081 1234567',
         'website' => 'https://www.olivegardennapoli.it/',
         'category' => ['2', '5']
@@ -260,7 +260,7 @@ return [
         'description' => 'Ristorante sudamericano con specialità di carne alla griglia e cocktail esotici, situato a Firenze.',
         'city' => 'Firenze',
         'address' => 'Via Rio de Janeiro, 15, 50100 Firenze FI',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://cdn.website.dish.co/media/b8/01/6165348/CHACARERO-VERONA-WhatsApp-Image-2023-02-23-at-12-27-11-jpeg.jpg',
         'telephone' => '+39 055 1234567',
         'website' => 'https://www.fuegolatinofirenze.it/',
         'category' => ['2']
@@ -271,7 +271,7 @@ return [
         'description' => 'Ristorante indiano con cucina autentica e atmosfera accogliente, situato a Bari.',
         'city' => 'Bari',
         'address' => 'Via Mumbai, 10, 70100 Bari BA',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://media-assets.lacucinaitaliana.it/photos/61fa91787f6b1a31f55f22ac/16:9/w_2560%2Cc_limit/iStock-162244500.jpg',
         'telephone' => '+39 080 1234567',
         'website' => 'https://www.tasteofindiabari.it/',
         'category' => ['4', '5']
@@ -282,7 +282,7 @@ return [
         'description' => 'Ambiente elegante e romantico con cucina italiana raffinata e vini pregiati, situato a Verona.',
         'city' => 'Verona',
         'address' => 'Corso Porta Nuova, 10, 37100 Verona VR',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://www.enotecasantalucia.it/wp-content/uploads/2023/10/LOCALE.jpg',
         'telephone' => '+39 045 1234567',
         'website' => 'https://www.ristoranteromanticoverona.it/',
         'category' => ['1', '5']
@@ -293,7 +293,7 @@ return [
         'description' => 'Ristorante giapponese con sushi fresco, sashimi e altre specialità, situato a Genova.',
         'city' => 'Genova',
         'address' => 'Via Tokyo, 5, 16100 Genova GE',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://www.sosushiandsound.it/wp-content/uploads/2023/03/differenza-ristorante-giapponese-all-you-can-eat-cinese-1.png',
         'telephone' => '+39 010 1234567',
         'website' => 'https://www.sushisashimigenova.it/',
         'category' => ['3', '5', '6']
@@ -304,7 +304,7 @@ return [
         'description' => 'Ristorante toscano con piatti tradizionali come ribollita, bistecca alla fiorentina e pappa al pomodoro, situato a Siena.',
         'city' => 'Siena',
         'address' => 'Piazza del Campo, 1, 53100 Siena SI',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://static.gamberorosso.it/2020/06/toscana-casale.jpg',
         'telephone' => '+39 0577 1234567',
         'website' => 'https://www.tavernatoscanasiena.it/',
         'category' => ['1', '7', '10']
@@ -315,7 +315,7 @@ return [
         'description' => 'Cucina di mare fresca e prelibata con vista sul porto, situato a Napoli.',
         'city' => 'Napoli',
         'address' => 'Via dei Pescatori, 20, 80100 Napoli NA',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://www.osteriadelportobari.it/wp-content/uploads/2022/12/osteria-del-porto-1.jpg',
         'telephone' => '+39 081 1234567',
         'website' => 'https://www.ristorantedelmarenapoli.it/',
         'category' => ['1']
@@ -326,7 +326,7 @@ return [
         'description' => 'Ristorante siciliano con specialità come arancini, caponata e cannoli, situato a Palermo.',
         'city' => 'Palermo',
         'address' => 'Via Sicilia, 30, 90100 Palermo PA',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://siciliadagustare.com/wp-content/uploads/2020/12/giardino-di-pietra-esterno.jpg',
         'telephone' => '+39 091 1234567',
         'website' => 'https://www.ilgustodisiciliapalermo.it/',
         'category' => ['1', '7', '10']
@@ -337,7 +337,7 @@ return [
         'description' => 'Pizzeria tradizionale con forno a legna e ampia selezione di pizze classiche e gourmet, situata a Firenze.',
         'city' => 'Firenze',
         'address' => 'Piazza della Signoria, 1, 50100 Firenze FI',
-        'img' => 'https://via.placeholder.com/200',
+        'img' => 'https://malaterra.com/wp-content/uploads/2022/09/Chisiamo_slider_1_Malaterra-min-scaled.jpg',
         'telephone' => '+39 055 1234567',
         'website' => 'https://www.piazzapizzafirenze.it/',
         'category' => ['1', '5', '7', '10']

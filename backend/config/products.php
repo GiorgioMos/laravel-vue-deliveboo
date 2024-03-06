@@ -8,7 +8,7 @@ return
             'name' => 'Pasta alla Carbonara',
             'description' => 'La classica pasta italiana con uova, pancetta, formaggio e pepe nero.',
             'price' => 12.99,
-            'img' => 'carbonara.jpg',
+            'img' => 'https://www.cucchiaio.it/content/cucchiaio/it/ricette/2009/11/ricetta-spaghetti-carbonara/_jcr_content/header-par/image_single.img.jpg/1617198167116.jpg',
             'visible' => true,
         ],
         [
@@ -16,7 +16,7 @@ return
             'name' => 'Pizza Margherita',
             'description' => 'Pizza con pomodoro, mozzarella di bufala, basilico fresco e olio d\'oliva.',
             'price' => 9.99,
-            'img' => 'margherita.jpg',
+            'img' => 'https://www.lemilleeunabontadifranci.it/wp-content/uploads/2021/04/Pizza-margherita-fatta-in-casa-orizzontale.jpg',
             'visible' => true,
         ],
         [
