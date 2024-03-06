@@ -23,6 +23,11 @@ const router = createRouter({
       component: RestaurantDetail,
       props: true,
     },
+/*       path: "",
+      name: "",
+      component: ,
+      props: true,*/
+
     
   ],
 });
