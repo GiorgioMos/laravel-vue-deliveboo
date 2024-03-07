@@ -9,7 +9,7 @@ export default {
             let value = localStorage.getItem(key);
 
             // Verifica se il valore è maggiore di zero
-            if (parseInt(value) > 0) {
+            if (parseInt(value) > 0 && key!=="restaurant_id") {
                 isEmpty = false; // Il carrello non è vuoto
 
                 var newElement = document.createElement("div");
@@ -19,7 +19,8 @@ export default {
             }
         }
     },
-    clearCart: function () {
+    clearCart: function (store) {
         localStorage.clear();
-    }
+        store == ""
+    },
 }
