@@ -49,7 +49,7 @@ export default {
   <nav class="navbar navbar-expand-lg">
     <div class="container">
     <a class="navbar-brand text-light" href="/">
-      <img class="logoDeliveboo" src="src/assets/img/logoDeliveboo.png" alt="logoDeliveboo">
+      <img class="logoDeliveboo" src="public/img/logoDeliveboo.png" alt="logoDeliveboo">
     </a>
 
     <ul class="navbar-nav">
@@ -84,27 +84,27 @@ export default {
   </nav>
 
   <!--   <nav class="navbar border-body">
-                        <div class="container">
-                          <a class="navbar-brand text-light" href=".">Logo</a>
-                        </div>
-                        <div>
-                          <a href="" class="navbar-text">sdfg</a>
-                          <a href="" class="nav-link">asdf</a>
-                          <a href="" class="nav-link">asdf</a>
-                        </div>
-                      </nav> -->
+                          <div class="container">
+                            <a class="navbar-brand text-light" href=".">Logo</a>
+                          </div>
+                          <div>
+                            <a href="" class="navbar-text">sdfg</a>
+                            <a href="" class="nav-link">asdf</a>
+                            <a href="" class="nav-link">asdf</a>
+                          </div>
+                        </nav> -->
 
   <!-- <div class="col-3 text-start">
-                    						<a href=".">
-                    							<link rel="stylesheet" href="/public/router.png">
-                    							<img src="/public/router.png" alt="">
-                    						</a>
-                    					</div> -->
+                      						<a href=".">
+                      							<link rel="stylesheet" href="/public/router.png">
+                      							<img src="/public/router.png" alt="">
+                      						</a>
+                      					</div> -->
   <!-- <div v-for="(item, index) in menuItems" :key="index" class="col-2 d-flex justify-content-center align-items-center">
-                    						<router-link :to="{name: item.routeName}" class="nav-link">
-                    							<h3>{{ item.label }}</h3>
-                    						</router-link>
-                    					</div> -->
+                      						<router-link :to="{name: item.routeName}" class="nav-link">
+                      							<h3>{{ item.label }}</h3>
+                      						</router-link>
+                      					</div> -->
 
   <!-- OFFCANVAS -->
   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
