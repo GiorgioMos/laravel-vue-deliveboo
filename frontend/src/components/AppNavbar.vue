@@ -1,6 +1,13 @@
 <script>
+import  functions  from '../functions.js'
+
 export default {
   name: "AppNavbar",
+  created() { 
+      this.riempiCarrello = functions.riempiCarrello // recupera funzione in gunction.js
+      this.clearCart = functions.clearCart // recupera funzione in gunction.js
+
+    },
   data() {
     return {
       menuItems: [
@@ -56,8 +63,11 @@ export default {
       </ul>
 
       <ul class="navbar-nav">
+
+        <!-- bottone carrello offcanvas -->
         <li class="nav-item">
-          <a class="btn rounded-pill btn-outline-light px-4" href="#" id="shopping-cart">
+          <a class="btn rounded-pill btn-outline-light px-4" href="#" id="shopping-cart" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
             <font-awesome-icon icon="fa-solid fa-cart-shopping" />
           </a>
         </li>
@@ -93,6 +103,21 @@ export default {
       							<h3>{{ item.label }}</h3>
       						</router-link>
       					</div> -->
+
+                <!-- OFFCANVAS -->
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample"
+            aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Carrello</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div id="offcanvas-body">
+
+                </div>
+                <button id="clearCart" class="btn btn-primary" @click="this.clearCart(); this.riempiCarrello()"> Svuota carrello</button>
+            </div>
+        </div>
 </template>
 
 <style scoped>

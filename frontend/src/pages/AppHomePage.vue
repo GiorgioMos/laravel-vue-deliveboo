@@ -3,6 +3,7 @@ import RestaurantList from "../components/RestaurantList.vue";
 import JumboSwiper from "../components/JumboSwiper.vue";
 import { store } from "../store.js" //state management
 import axios from 'axios'; //importo Axios
+import  functions  from '../functions.js'
 
 
 
@@ -13,6 +14,11 @@ export default {
 		JumboSwiper,
 		
     },
+	created() { 
+      this.riempiCarrello = functions.riempiCarrello // recupera funzione in gunction.js
+      this.clearCart = functions.clearCart // recupera funzione in gunction.js
+
+    },
 	data() {
 		return {
 			store,
@@ -21,8 +27,11 @@ export default {
 			visibleRestaurants: []
 		}
 	},
-	mounted() {
+	beforeMount() {
 		this.getCategories();
+	},
+	mounted() {
+		this.riempiCarrello();
 
 	},
 	methods: {

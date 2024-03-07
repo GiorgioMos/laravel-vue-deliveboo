@@ -12,10 +12,8 @@ export default {
         this.id_categories.push(element.id);
        });
 
-       console.log(this.item);
        
        this.id_categories = this.id_categories.join(",");
-       console.log(this.id_categories);
     },
     methods: {
         getImage(img) {
