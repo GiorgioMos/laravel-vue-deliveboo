@@ -1,7 +1,7 @@
 export default {
-    clearCart: function (store) {
+    clearCart: function () {
         localStorage.clear();
-        store == ""
+        this.store.ArrayIdsInCart=[]
     },
     aggiornaCounter: function () {
         let spans = document.querySelectorAll('.counter');
@@ -47,13 +47,19 @@ export default {
         var valore = document.getElementById(`${id}span`).innerHTML
         // seleziono il bottone - 
         const min = document.getElementById(`product-${id}`).getElementsByClassName("remove")[0]
+        const min1 = document.getElementById(`product-${id}`).getElementsByClassName("remove")[1]
+
         if (valore == 0) {
             min.classList.add(
                 "d-none")
+                min1.classList.add(
+                    "d-none")
         } else {
             if (min.classList.contains("d-none")) {
 
                 min.classList.remove("d-none")
+                min1.classList.remove("d-none")
+
             }
         }
     },
@@ -111,5 +117,11 @@ export default {
             }
         }
 
+    },
+    fullCartRemoveElement: function(product) {
+        localStorage.removeItem(product.id)
+        document.querySelector(`span[data-id="${product.id}"]`).innerHTML = 0
+        this.ArrayCart()
+        
     }
 }

@@ -21,6 +21,8 @@ export default {
 		this.hideMinButton = functions.hideMinButton
 		this.cartAddElement = functions.cartAddElement
 		this.cartRemoveElement = functions.cartRemoveElement
+		this.fullCartRemoveElement = functions.fullCartRemoveElement
+
 
 	},
 	beforeMount() {
@@ -102,14 +104,16 @@ export default {
 				<ul>
 					<li v-for="product in restaurant?.products" class="product" :id="'product-' + product.id">
 
-						<span class="counter" :data-id="product.id" :data-name="product.name" :id="product.id + 'span'">
-							0
-						</span>
+						<span class="counter" :data-id="product.id" :data-name="product.name"
+							:id="product.id + 'span'">0</span>
 						<button class="btn btn-primary add"
 							@click="cartAddElement(product); hideMinButton(product?.id)">+</button>
 						<button class="btn btn-danger remove"
 							@click="cartRemoveElement(product); hideMinButton(product?.id)">-</button>
 						{{ product?.name }}
+						<a class="remove" href="#" @click="fullCartRemoveElement(product)">rimuovi</a>
+
+						<!-- v-if="parseInt(document.querySelector(`span[data-id='${product.id}']`).innerHTML) == 0" -->
 					</li>
 				</ul>
 				<div class="row d-flex justify-content-end">
