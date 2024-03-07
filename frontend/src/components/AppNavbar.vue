@@ -47,13 +47,14 @@ export default {
 
 <!-- logo a sinistra pagine al centro che riportano ai componenti e a destra carrello lohgin e registrazione -->
 <template>
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand">
     <div class="container">
       <a class="navbar-brand text-light" href="/">
         <img
-          class="logoDeliveboo"
           src="/img/logoDeliveboo.png"
           alt="logoDeliveboo"
+          width="50"
+          height="40"
         />
       </a>
 
@@ -157,10 +158,6 @@ export default {
 </template>
 
 <style scoped>
-.logoDeliveboo {
-  width: 8rem;
-}
-
 .page-navigation {
   color: white;
   text-decoration: none;

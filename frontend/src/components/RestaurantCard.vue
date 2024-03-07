@@ -31,32 +31,61 @@ export default {
 
 <template>
   <!-- item card -->
+  <!--   <div class="col-3">
+    <div
+      :meta-categories="this.id_categories"
+      class="text-center card m-2"
+      style="height: 30rem"
+    >
+      <router-link :to="{ name: 'restaurant-detail', params: { id: item.id } }">
+        <div class="card-header bg-transparent" style="height: 5rem">
+          <p class="fw-bold">{{ item.name.toUpperCase() }}</p>
+        </div>
+
+        <div class="imgBoxShow rounded">
+          <img class="cardImg rounded my-1" :src="getImage(item.img)" alt="" />
+        </div>
+
+        <div class="card-body">
+          <p class="fw-bold">
+            <a href=""> {{ item.description }}</a>
+          </p>
+
+          <p class="">
+            <a href="">{{ item.address }}</a>
+          </p>
+
+          <p
+            v-for="cat in item.category"
+            class="rounded-pill btn btn-outline-warning mx-1 disabled fs-6"
+          >
+            <a href="">{{ cat.name }}</a>
+          </p>
+        </div>
+      </router-link>
+    </div>
+  </div> -->
   <div
+    class="col-3 card bg-transparent border-dark"
+    id="card-display"
     :meta-categories="this.id_categories"
-    class="col-2 text-center card mx-1"
   >
-    <router-link :to="{ name: 'restaurant-detail', params: { id: item.id } }">
-      <div class="card-header bg-transparent" style="height: 5rem">
-        <p class="fw-bold my-2">{{ item.name.toUpperCase() }}</p>
-      </div>
-      <div class="imgBoxShow rounded">
-        <img class="cardImg rounded my-1" :src="getImage(item.img)" alt="" />
-      </div>
-      <div class="card-body">
-        <p class="fw-bold">
-          <a href=""> {{ item.description }}</a>
-        </p>
-        <p class="">
-          <a href="">{{ item.address }}</a>
-        </p>
-        <h4
-          v-for="cat in item.category"
-          class="rounded-pill btn btn-outline-warning mx-1 disabled"
-        >
-          <a href="">{{ cat.name }}</a>
-        </h4>
-      </div>
-    </router-link>
+    <div class="text-center m-2 __area">
+      <router-link :to="{ name: 'restaurant-detail', params: { id: item.id } }">
+        <a href="#" class="__card">
+          <div class="imageBox">
+            <img :src="getImage(item.img)" class="img-fluid __img" />
+          </div>
+          <div class="__card_detail text-left">
+            <h5>{{ item.name }}</h5>
+            <p>{{ item.address }}</p>
+            <div class="__type">
+              <span v-for="cat in item.category">{{ cat.name }}</span>
+            </div>
+          </div>
+        </a>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -70,7 +99,107 @@ a {
   color: black;
 }
 
-img {
+.imageBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  height: 10rem;
   width: 100%;
+}
+
+.imageBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.__area {
+  font-family: "Cairo", sans-serif;
+  color: #7c7671;
+  margin-top: 100px;
+}
+
+.__card {
+  max-width: 350px;
+  margin: auto;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  color: unset;
+}
+.__card:hover {
+  color: unset;
+  text-decoration: none;
+}
+.__img {
+  border-radius: 10px;
+}
+
+.__favorit {
+  background-color: #fff;
+  border-radius: 8px;
+  color: #fc9d52;
+  position: absolute;
+  right: 15px;
+  top: 8px;
+  padding: 3px 4px;
+  font-size: 22px;
+  line-height: 100%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  border: 0;
+}
+.__favorit:hover {
+  background-color: #fc9d52;
+  color: #fff;
+  text-decoration: none;
+}
+.__card_detail {
+  box-shadow: 0 4px 15px rgba(175, 77, 0, 0.13);
+  padding: 13px;
+  border-radius: 8px;
+  margin: -30px 10px 0;
+  position: relative;
+  z-index: 2;
+  background-color: #fff;
+}
+.__card_detail h4 {
+  color: #474340;
+  line-height: 100%;
+  font-weight: bold;
+}
+.__card_detail p {
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+}
+.__type span {
+  background-color: #feefe3;
+  padding: 5px 10px 7px;
+  border-radius: 5px;
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 12px;
+  color: #fc9d52;
+  font-weight: bold;
+  line-height: 100%;
+}
+.__detail {
+  margin-top: 5px;
+}
+.__detail i {
+  font-size: 21px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.__detail i:nth-child(3) {
+  margin-left: 15px;
+}
+.__detail span {
+  font-size: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 2px;
 }
 </style>
