@@ -24,7 +24,7 @@ return
             'name' => 'Tiramisù',
             'description' => 'Dolce italiano composto da savoiardi inzuppati nel caffè, crema di mascarpone e cacao amaro.',
             'price' => 6.99,
-            'img' => 'https://images.unsplash.com/photo-1631206753348-db44968fd440?q=80&w=1325&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            'img' => 'https://www.cucina-naturale.it/wp-content/uploads/2016/11/tiramisu.jpg',
             'visible' => true,
         ],
 
@@ -94,7 +94,7 @@ return
             'name' => 'Lasagne alla Bolognese',
             'description' => 'Strati di pasta all\'uovo alternati a ragù di carne, besciamella e parmigiano, gratinati al forno.',
             'price' => 13.99,
-            'img' => 'lasagne.jpg',
+            'img' => 'https://www.ricettealvolo.it/wp-content/uploads/2023/02/lasagne-bolognese.jpg',
             'visible' => true,
         ],
         [
@@ -102,7 +102,7 @@ return
             'name' => 'Torta di Mele',
             'description' => 'Dolce tradizionale emiliano con fette di mela caramellate e pasta frolla croccante.',
             'price' => 6.99,
-            'img' => 'https://www.ricettealvolo.it/wp-content/uploads/2023/02/lasagne-bolognese.jpg',
+            'img' => 'https://recipesblob.paneangeli.it/assets/7eb3315163174b0cb92f21821620379e/1272x764/torta-soffice-cuor-di-mele.jpg',
             'visible' => true,
         ],
 
@@ -333,7 +333,7 @@ return
             'name' => 'Sake Nigiri',
             'description' => 'Nigiri di salmone fresco su base di riso condito con aceto di riso.',
             'price' => 8.99,
-            'img' => 'sake_nigiri.jpg',
+            'img' => 'https://cdn.tasteatlas.com/images/dishes/29769af96b5b42f5b4955569c433aed0.jpg?w=600',
             'visible' => true,
         ],
         // Ristorante 14
@@ -350,7 +350,7 @@ return
             'name' => 'Uramaki California',
             'description' => 'Rotolo di sushi con avocado, surimi, cetriolo e maionese.',
             'price' => 14.99,
-            'img' => 'uramaki_california.jpg',
+            'img' => 'https://www.sidechef.com/recipe/8f379697-7d39-4f61-a336-fd4134eeee18.jpg?d=1408x1120',
             'visible' => true,
         ],
         [
@@ -538,7 +538,7 @@ return
             'name' => 'Riso Cantonese',
             'description' => 'Riso saltato con uova, piselli, carote, gamberetti e salsa di soia.',
             'price' => 15.99,
-            'img' => 'https://lh3.googleusercontent.com/proxy/ZUE9PS4nLxSqRXmB5kOpiYqwE2KDn6VuFIGeyTt67UBVVxIksdf9VjEvLKoi-8KQcrJusiFw6yPE5pqtJTkHOJBgKuA2SUT8AP5aUyXhHhTbTHZr',
+            'img' => 'https://www.unafamigliaincucina.com/wp-content/uploads/2022/08/IMG_9098-scaled.jpg',
             'visible' => true,
         ],
 
