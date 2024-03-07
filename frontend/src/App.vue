@@ -25,6 +25,7 @@ export default {
 		// aggiorno il carrello al caricamento dell'applicazione 
 		this.ArrayCart()
 
+		this.getProducts(); 
 	},
 	methods: {
 		doThings() {
@@ -33,7 +34,33 @@ export default {
 		ArrayCart: function () {
 			this.store.ArrayIdsInCart = Object.keys(localStorage)
 			console.log(this.store.ArrayIdsInCart)
-		}
+		},
+		// chiamata axios per i prodotti
+		getProducts() {
+			let url = this.store.apiRestaurants + this.store.productsEndPoint;
+
+			axios.get(url).then(risultato => {
+				// if di controllo
+				if (risultato.status === 200) {
+					if (risultato.data.success) {
+						this.store.categories = risultato.data.payload;
+					} else {
+						// controllare statusCode, presenza e veridicità di data.success
+						console.error("qualcosa è andato storto...");
+					}
+				} else if (result.status === 301) {
+					console.error("Ops... ciò che cerchi non si trova più qui.");
+				} else if (result.status === 400) {
+					console.error("Ops... non riusciamo a comprendere ciò che hai richiesto.");
+				} else if (result.status === 404) {
+					console.error("Ops... non riusciamo a trovare ciò che hai richiesto.");
+				} else if (result.status === 500) {
+					console.error("Ops... ci scusiamo per l'inconveniente, stiamo spegnendo l'incendio.");
+				}
+			}).catch(errore => {
+				console.error(errore);
+			});
+		},
 	}
 }
 </script>
