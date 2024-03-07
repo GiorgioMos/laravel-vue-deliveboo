@@ -1,13 +1,12 @@
 <script>
-import functions from '../functions.js'
-import { store } from "../store.js" //state management
+import functions from "../functions.js";
+import { store } from "../store.js"; //state management
 
 export default {
   name: "AppNavbar",
   created() {
-    this.riempiCarrello = functions.riempiCarrello // recupera funzione in gunction.js
-    this.clearCart = functions.clearCart // recupera funzione in gunction.js
-
+    this.riempiCarrello = functions.riempiCarrello; // recupera funzione in gunction.js
+    this.clearCart = functions.clearCart; // recupera funzione in gunction.js
   },
   data() {
     return {
@@ -51,7 +50,11 @@ export default {
   <nav class="navbar navbar-expand-lg">
     <div class="container">
       <a class="navbar-brand text-light" href="/">
-        <img class="logoDeliveboo" src="public/img/logoDeliveboo.png" alt="logoDeliveboo">
+        <img
+          class="logoDeliveboo"
+          src="/img/logoDeliveboo.png"
+          alt="logoDeliveboo"
+        />
       </a>
 
       <ul class="navbar-nav">
@@ -67,19 +70,32 @@ export default {
       </ul>
 
       <ul class="navbar-nav">
-
         <!-- bottone carrello offcanvas -->
         <li class="nav-item">
-          <a class="btn rounded-pill btn-outline-light px-4" href="#" id="shopping-cart" data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+          <a
+            class="btn rounded-pill btn-outline-light px-4"
+            href="#"
+            id="shopping-cart"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasExample"
+            aria-controls="offcanvasExample"
+          >
             <font-awesome-icon icon="fa-solid fa-cart-shopping" />
           </a>
         </li>
         <li class="nav-item">
-          <a class="btn btn-outline-light rounded-pill px-4 mx-3" href="http://localhost:8000/login">Accedi</a>
+          <a
+            class="btn btn-outline-light rounded-pill px-4 mx-3"
+            href="http://localhost:8000/login"
+            >Accedi</a
+          >
         </li>
         <li class="nav-item">
-          <a class="btn rounded-pill bg-warning px-4" href="http://localhost:8000/register">Registrati</a>
+          <a
+            class="btn rounded-pill bg-warning px-4"
+            href="http://localhost:8000/register"
+            >Registrati</a
+          >
         </li>
       </ul>
     </div>
@@ -109,21 +125,35 @@ export default {
                       					</div> -->
 
   <!-- OFFCANVAS -->
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div
+    class="offcanvas offcanvas-end"
+    tabindex="-1"
+    id="offcanvasExample"
+    aria-labelledby="offcanvasExampleLabel"
+  >
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="offcanvasExampleLabel">Carrello</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close"
+      ></button>
     </div>
     <div class="offcanvas-body">
-      <div id="offcanvas-body">
-
-      </div>
-      <button id="clearCart" class="btn btn-primary" @click="this.clearCart(); this.riempiCarrello()"> Svuota
-        carrello</button>
+      <div id="offcanvas-body"></div>
+      <button
+        id="clearCart"
+        class="btn btn-primary"
+        @click="
+          this.clearCart();
+          this.riempiCarrello();
+        "
+      >
+        Svuota carrello
+      </button>
     </div>
   </div>
-
-
 </template>
 
 <style scoped>
