@@ -293,7 +293,7 @@ return [
         'description' => 'Ristorante giapponese con sushi fresco, sashimi e altre specialità, situato a Genova.',
         'city' => 'Genova',
         'address' => 'Via Tokyo, 5, 16100 Genova GE',
-        'img' => 'https://www.sosushiandsound.it/wp-content/uploads/2023/03/differenza-ristorante-giapponese-all-you-can-eat-cinese-1.png',
+        'img' => 'https://images.squarespace-cdn.com/content/v1/63f52cb70db2e54d5c3fa9c6/fd088cf1-c2d9-4f1d-b179-72286bba52b1/IMG_6093.jpg',
         'telephone' => '+39 010 1234567',
         'website' => 'https://www.sushisashimigenova.it/',
         'category' => ['3', '5', '6']

@@ -179,6 +179,7 @@ export default {
 			}
 
 		}
+
 	}
 }
 </script>
@@ -193,24 +194,34 @@ export default {
 				<h1>Loading..</h1>
 			</div>
 			<div v-else class="row py-3 text-warning">
-				<h1>Restaurant Name: {{ restaurant?.name }}</h1>
-				<div class="imgBox rounded">
-					<img class="cardImg rounded" :src="getImage(restaurant?.img)" alt="">
+				<div class="d-flex mt-4 mb-5">
+					<div class="d-flex flex-column m-3 align-items-start p-2 justify-content-center">
+						<h1 class="mb-5"> {{ restaurant?.name }} </h1> 
+						<div class="my-4"> {{ restaurant?.description }} </div>
+						<div class="my-3"> {{ restaurant?.address }} </div>
+						<button id="button" class="btn mt-5" ><a :href="restaurant?.website">Sito Web</a></button>
+					</div>
+					<div  class="imgBox rounded m-5">
+						<img class="cardImg rounded" :src="getImage(restaurant?.img)" alt="">
+					</div>
 				</div>
-				<p>PRODOTTI:</p>
-				<ul>
-					<li v-for="product in restaurant?.products" class="product" :id="'product-' + product.id">
-
-						<span class="counter" :data-id="product.id" :data-name="product.name" :id="product.id + 'span'">
-							0
-						</span>
-						<button class="btn btn-primary add"
-							@click="cartAddElement(product?.restaurant_id, product?.name); hideMinButton(product?.id)">+</button>
-						<button class="btn btn-danger remove"
-							@click="cartRemoveElement(product?.restaurant_id, product?.name); hideMinButton(product?.id)">-</button>
-						{{ product?.name }}
-					</li>
-				</ul>
+				<h2 class="my-3">I Nostri Piatti</h2>
+					<div v-for="product in restaurant?.products" class="product card-list my-5" :id="'product-' + product.id">
+						<article class="cards">
+							<figure class="card-image">
+								<img id="product-img" :src="product?.img" alt="Immagine-ristorante">
+							</figure>
+							<div class="card-header d-flex flex-column">
+								<h4>{{ product?.name }}</h4>
+								<p>{{ product?.description }}</p>
+							</div>
+							<div class="card-footer">
+								<button class="btn btn-primary add" @click="cartAddElement(product?.restaurant_id, product?.name); hideMinButton(product?.id)">+</button>
+								<span class="counter" :data-id="product.id" :data-name="product.name" :id="product.id + 'span'">0</span>
+								<button class="btn btn-danger remove" @click="cartRemoveElement(product?.restaurant_id, product?.name); hideMinButton(product?.id)">-</button>
+							</div>
+						</article>
+					</div>
 				<div class="row d-flex justify-content-end">
 					<div class="col-2 py-3">
 						<router-link :to="{ name: 'home' }" class="btn btn-info">
@@ -234,10 +245,35 @@ export default {
 // @use './styles/partials/variables' as *;
 
 // ...qui eventuale SCSS di App.vue
+
+h2{
+	text-align: center;
+}
+button > a{
+	text-decoration: none;
+	color: white;
+}
+
+#button{
+	text-decoration: none;
+	color: white;
+	background-color: #060113;
+	border-radius: 20px;
+	padding: 10px 20px;
+}
+
 .cardImg {
 	max-width: 100%;
 	min-height: 100%;
 	object-fit: cover;
+	border-radius: 30px !important;
+}
+
+#product-img{
+	width: 22rem;
+	height: 18rem;
+	object-fit: cover;
+	border-radius: 5px;
 }
 
 .imgBox {
@@ -245,6 +281,60 @@ export default {
 	justify-content: center;
 	align-items: center;
 	overflow: hidden;
-	height: 20rem;
+	height: 35rem;
+	width: 55rem;
+}
+
+li{
+	list-style-type: none;
+}
+
+
+//css product card
+
+img {
+	max-width: 100%;
+	display: block;
+}
+
+.card-list {
+	width: 90%;
+	max-width: 400px;
+}
+
+.cards {
+	background-color: #3d3737;
+	box-shadow: 0 0 0 1px rgba(#000, .05), 0 20px 50px 0 rgba(#000, .1);
+	border-radius: 15px;
+	overflow: hidden;
+	padding: 1.25rem;
+	position: relative;
+	transition: .15s ease-in;
+	
+	&:hover, &:focus-within {
+		box-shadow: 0 0 0 2px #16C79A, 0 10px 60px 0 rgba(#000, .1);
+			transform: translatey(-5px);
+	}
+}
+
+.card-image {
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.card-header {
+	margin-top: 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.card-footer {
+	margin-top: 1.25rem;
+	border-top: 1px solid #ddd;
+	padding-top: 1.25rem;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
 }
 </style>
