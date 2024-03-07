@@ -104,8 +104,11 @@ export default {
 			});
 			} else {
 				spans.forEach(element => {
-
-element.innerHTML = 0
+	element.innerHTML = 0
+	// recupero l'id 
+	let id = element.getAttribute('data-id');
+			// richiamo la funzione per nascondere il tasto meno, e gli passo l'id 
+			this.hideMinButton(id)
 				})
 			}
 		},
