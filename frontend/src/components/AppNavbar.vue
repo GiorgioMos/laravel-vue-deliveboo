@@ -10,6 +10,10 @@ export default {
   methods: {
     getStorageValue(key) {
       return localStorage.getItem(key)
+    },
+    ArrayCart() {
+      this.store.ArrayIdsInCart = Object.keys(localStorage)
+      console.log(this.store.ArrayIdsInCart)
     }
   },
   data() {
@@ -123,13 +127,27 @@ export default {
     </div>
     <div class="offcanvas-body">
       <div id="offcanvas-body">
-        <div v-for="id in this.store.ArrayIdsInCart" :key="id">
+
+
+        <!-- ciclo su tutti i prodotti con un v-for -->
+        <div v-for="prodotto in this.store.products">
+          <!-- controllo se l'id del prodotto corrisponde ad un id in localStorage e lo creo -->
+          <div v-if="this.store.ArrayIdsInCart.includes(prodotto.id.toString())">
+
+            <!-- stampo i dati del prodotto e la quantità attraverso la funzione magica per richiamare i dati del localstorage -->
+            <p>{{ prodotto.name }} -> {{ getStorageValue(prodotto.id) }}</p>
+          </div>
+        </div>
+
+
+
+        <!-- <div v-for="id in this.store.ArrayIdsInCart" :key="id">
           <div v-if="!isNaN(id)">
             {{ id }} -> {{ getStorageValue(id) }}
           </div>
-        </div>
+        </div> -->
       </div>
-      <button id="clearCart" class="btn btn-primary" @click="this.clearCart()"> Svuota
+      <button id="clearCart" class="btn btn-primary" @click="this.clearCart(); this.ArrayCart()"> Svuota
         carrello</button>
     </div>
   </div>

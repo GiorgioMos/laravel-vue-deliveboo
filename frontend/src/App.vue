@@ -25,7 +25,7 @@ export default {
 		// aggiorno il carrello al caricamento dell'applicazione 
 		this.ArrayCart()
 
-		this.getProducts(); 
+		this.getProducts();
 	},
 	methods: {
 		doThings() {
@@ -43,7 +43,7 @@ export default {
 				// if di controllo
 				if (risultato.status === 200) {
 					if (risultato.data.success) {
-						this.store.categories = risultato.data.payload;
+						this.store.products = risultato.data.payload;
 					} else {
 						// controllare statusCode, presenza e veridicità di data.success
 						console.error("qualcosa è andato storto...");

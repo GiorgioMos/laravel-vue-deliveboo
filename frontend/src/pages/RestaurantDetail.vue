@@ -109,7 +109,10 @@ export default {
 				})
 			}
 		},
-
+		ArrayCart() {
+			this.store.ArrayIdsInCart = Object.keys(localStorage)
+			console.log(this.store.ArrayIdsInCart)
+		},
 		// nascondo il bottone se il valore è 0 
 		hideMinButton(id) {
 			var valore = document.getElementById(`${id}span`).innerHTML
@@ -140,7 +143,7 @@ export default {
 				localStorage.setItem(product.id, quantity)
 				// la sparo in pagina nello span relativo a quel prodotto
 				document.querySelector(`span[data-name="${product.name}"]`).innerHTML = quantity
-
+				this.ArrayCart()
 
 
 
@@ -155,21 +158,21 @@ export default {
 		},
 
 		//funzione che rimuove elementi alla lista dei prodotti selezionati
-		cartRemoveElement(product_id, product_name) {
-			let quantity = Number(document.querySelector(`span[data-name="${product_name}"]`).innerHTML)
-			let productAllZero = 0;
+		cartRemoveElement(product) {
+			let quantity = Number(document.querySelector(`span[data-id="${product.id}"]`).innerHTML)
 			// controllo che la quantità sia maggiore di 0, e in caso decremento, altrimenti setto il valore a 0 
 			if (quantity > 0) {
 				quantity--
 
 				if (quantity != 0) {
-					localStorage.setItem(product_name, quantity)
+					localStorage.setItem(product.id, quantity)
 
 				} else {
-					localStorage.removeItem(product_name)
+					localStorage.removeItem(product.id)
 
 				}
-				document.querySelector(`span[data-name="${product_name}"]`).innerHTML = quantity
+				document.querySelector(`span[data-id="${product.id}"]`).innerHTML = quantity
+				this.ArrayCart()
 
 				//  this.riempiCarrello(product_name);
 
@@ -208,7 +211,7 @@ export default {
 						<button class="btn btn-primary add"
 							@click="cartAddElement(product); hideMinButton(product?.id)">+</button>
 						<button class="btn btn-danger remove"
-							@click="cartRemoveElement(product?.restaurant_id, product?.name); hideMinButton(product?.id)">-</button>
+							@click="cartRemoveElement(product); hideMinButton(product?.id)">-</button>
 						{{ product?.name }}
 					</li>
 				</ul>
