@@ -5,13 +5,17 @@ import { store } from "../store.js" //state management
 export default {
   name: "AppNavbar",
   created() {
-    this.riempiCarrello = functions.riempiCarrello // recupera funzione in gunction.js
     this.clearCart = functions.clearCart // recupera funzione in gunction.js
-
+  },
+  methods: {
+    getStorageValue(key) {
+      return localStorage.getItem(key)
+    }
   },
   data() {
     return {
       store,
+
       menuItems: [
         {
           name: "registrazione",
@@ -74,6 +78,9 @@ export default {
             data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
             <font-awesome-icon icon="fa-solid fa-cart-shopping" />
           </a>
+
+
+
         </li>
         <li class="nav-item">
           <a class="btn btn-outline-light rounded-pill px-4 mx-3" href="http://localhost:8000/login">Accedi</a>
@@ -116,9 +123,13 @@ export default {
     </div>
     <div class="offcanvas-body">
       <div id="offcanvas-body">
-
+        <div v-for="id in this.store.ArrayIdsInCart" :key="id">
+          <div v-if="!isNaN(id)">
+            {{ id }} -> {{ getStorageValue(id) }}
+          </div>
+        </div>
       </div>
-      <button id="clearCart" class="btn btn-primary" @click="this.clearCart(); this.riempiCarrello()"> Svuota
+      <button id="clearCart" class="btn btn-primary" @click="this.clearCart()"> Svuota
         carrello</button>
     </div>
   </div>

@@ -16,18 +16,15 @@ export default {
 		}
 	},
 	created() {
-		this.riempiCarrello = functions.riempiCarrello // recupera funzione in function.js
 
 	},
 	beforeMount() {
 		this.getRestaurantDetail();
 	},
 	mounted() {
-
 	},
 	updated() {
 		this.aggiornaCounter();
-		this.riempiCarrello();
 
 		document.getElementById("clearCart").addEventListener("click", () =>
 			this.aggiornaCounter()
@@ -129,22 +126,26 @@ export default {
 			}
 		},
 		//funzione che aggiunge elementi alla lista dei prodotti selezionati
-		cartAddElement(restaurant_id, product_name) {
+		cartAddElement(product) {
 
 			// controllo se il ristorante corrente è vuoto o se è uguale a quello del prodotto che voglio inserire 
-			if (localStorage.getItem("restaurant_id") == null || restaurant_id == localStorage.getItem("restaurant_id")) {
-				localStorage.setItem("restaurant_id", restaurant_id)
+			if (localStorage.getItem("restaurant_id") == null || product.restaurant_id == localStorage.getItem("restaurant_id")) {
+				localStorage.setItem("restaurant_id", product.restaurant_id)
 
 				// recupero il valore della quantità
-				let quantity = Number(document.querySelector(`span[data-name="${product_name}"]`).innerHTML)
+				let quantity = Number(document.querySelector(`span[data-name="${product.name}"]`).innerHTML)
 				//incremento la quantitù
 				quantity++
 				// salvo la coppia nome-quantità nel local storage 
-				localStorage.setItem(product_name, quantity)
+				localStorage.setItem(product.id, quantity)
 				// la sparo in pagina nello span relativo a quel prodotto
-				document.querySelector(`span[data-name="${product_name}"]`).innerHTML = quantity
+				document.querySelector(`span[data-name="${product.name}"]`).innerHTML = quantity
+
+
+
+
 				// richiamo la funzione che mi aggiorna i prodotti nel carrello 
-				this.riempiCarrello(product_name);
+				// this.riempiCarrello(product.name);
 			} else {
 
 				// todo inserire alert o modal
@@ -170,7 +171,7 @@ export default {
 				}
 				document.querySelector(`span[data-name="${product_name}"]`).innerHTML = quantity
 
-				this.riempiCarrello(product_name);
+				//  this.riempiCarrello(product_name);
 
 				//se l'unico elemento del localstorage è il restaurant id allora lo rimuovo
 				if (localStorage.length == 1) {
@@ -205,7 +206,7 @@ export default {
 							0
 						</span>
 						<button class="btn btn-primary add"
-							@click="cartAddElement(product?.restaurant_id, product?.name); hideMinButton(product?.id)">+</button>
+							@click="cartAddElement(product); hideMinButton(product?.id)">+</button>
 						<button class="btn btn-danger remove"
 							@click="cartRemoveElement(product?.restaurant_id, product?.name); hideMinButton(product?.id)">-</button>
 						{{ product?.name }}

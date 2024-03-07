@@ -3,19 +3,17 @@ import axios from 'axios'; //importo Axios
 import { store } from "./store.js" //state management
 import AppNavbar from "./components/AppNavbar.vue";
 import AppHomePage from './pages/AppHomePage.vue';
-import  functions  from './functions.js'
+import functions from './functions.js'
 
 
 export default {
 	components: {
 		AppNavbar,
 		AppHomePage,
-		
-	},
-	created() { 
-      this.riempiCarrello = functions.riempiCarrello // recupera funzione in gunction.js
 
-    },
+	},
+	created() {
+	},
 	data() {
 		return {
 			store
@@ -25,12 +23,16 @@ export default {
 		this.doThings();
 
 		// aggiorno il carrello al caricamento dell'applicazione 
-		this.riempiCarrello
+		this.ArrayCart()
 
 	},
 	methods: {
 		doThings() {
 			console.log("App.vue does things");
+		},
+		ArrayCart: function () {
+			this.store.ArrayIdsInCart = Object.keys(localStorage)
+			console.log(this.store.ArrayIdsInCart)
 		}
 	}
 }
@@ -55,6 +57,4 @@ export default {
 // importo variabili
 // @use './styles/partials/variables' as *;
 
-// ...qui eventuale SCSS di App.vue
-
-</style>
+// ...qui eventuale SCSS di App.vue</style>
