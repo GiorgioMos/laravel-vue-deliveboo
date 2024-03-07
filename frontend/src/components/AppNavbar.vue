@@ -7,11 +7,7 @@ export default {
   created() {
     this.riempiCarrello = functions.riempiCarrello // recupera funzione in gunction.js
     this.clearCart = functions.clearCart // recupera funzione in gunction.js
-    created() {
-      this.riempiCarrello = functions.riempiCarrello // recupera funzione in gunction.js
-      this.clearCart = functions.clearCart // recupera funzione in gunction.js
 
-    },
   },
   data() {
     return {
@@ -120,21 +116,14 @@ export default {
     </div>
     <div class="offcanvas-body">
       <div id="offcanvas-body">
-        <!-- OFFCANVAS -->
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample"
-          aria-labelledby="offcanvasExampleLabel">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Carrello</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-          <div class="offcanvas-body">
-            <div id="offcanvas-body">
 
-            </div>
-            <button id="clearCart" class="btn btn-primary"
-              @click="this.clearCart(this.store.currentCartRestaurant); this.riempiCarrello()"> Svuota carrello</button>
-          </div>
-        </div>
+      </div>
+      <button id="clearCart" class="btn btn-primary" @click="this.clearCart(); this.riempiCarrello()"> Svuota
+        carrello</button>
+    </div>
+  </div>
+
+
 </template>
 
 <style scoped>
