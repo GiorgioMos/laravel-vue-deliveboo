@@ -13,17 +13,12 @@ export default {
 		this.cartAddElement = functions.cartAddElement
 		this.cartRemoveElement = functions.cartRemoveElement
 		this.fullCartRemoveElement = functions.fullCartRemoveElement
+		this.getStorageValue = functions.getStorageValue
 
 
 	},
 	methods: {
-		getStorageValue(key) {
-			return localStorage.getItem(key)
-		},
-		ArrayCart() {
-			this.store.ArrayIdsInCart = Object.keys(localStorage)
-			console.log(this.store.ArrayIdsInCart)
-		}
+	
 	},
 	data() {
 		return {
@@ -145,7 +140,7 @@ export default {
 					<div v-if="this.store.ArrayIdsInCart.includes(prodotto.id.toString())">
 
 						<!-- stampo i dati del prodotto e la quantità attraverso la funzione magica per richiamare i dati del localstorage -->
-						<span>{{ prodotto.name }} -> {{ getStorageValue(prodotto.id) }}</span>
+						<span>{{ prodotto.name }} -> {{ this.getStorageValue(prodotto.id) }}</span>
 						<button class="btn btn-primary add"
 							@click="cartAddElement(prodotto); hideMinButton(prodotto.id)">+</button>
 						<button class="btn btn-danger remove"

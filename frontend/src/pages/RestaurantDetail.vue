@@ -2,6 +2,7 @@
 import { store } from "../store.js" //state management
 import axios from 'axios'; //importo Axios
 import functions from '../functions.js'
+import * as bootstrap from "bootstrap";
 
 
 
@@ -22,7 +23,8 @@ export default {
 		this.cartAddElement = functions.cartAddElement
 		this.cartRemoveElement = functions.cartRemoveElement
 		this.fullCartRemoveElement = functions.fullCartRemoveElement
-
+		this.clearCart = functions.clearCart
+		this.getStorageValue = functions.getStorageValue
 
 	},
 	beforeMount() {
@@ -81,7 +83,6 @@ export default {
 				return new URL(image, import.meta.url).href
 			}
 		},
-
 	}
 }
 </script>
@@ -127,6 +128,25 @@ export default {
 		</div>
 	</div>
 
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="exampleModalLabel">Attenzione</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body text-dark">
+				Stai già ordinando da un'altro ristorante
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" @click="this.clearCart(); this.ArrayCart()" data-bs-dismiss="modal">Svuota carrello</button>
+				<a :href="'http://localhost:5000/restaurants/' + getStorageValue('restaurant_id')" class="btn btn-primary">Ristorante in corso</a>
+				
+			</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <style lang="scss">

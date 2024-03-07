@@ -1,3 +1,6 @@
+import * as bootstrap from "bootstrap";
+
+
 export default {
     clearCart: function () {
         localStorage.clear();
@@ -38,9 +41,14 @@ export default {
             })
         }
     },
+    // aggiorna l'array con i prodotti nel carrello 
     ArrayCart: function () {
         this.store.ArrayIdsInCart = Object.keys(localStorage)
         console.log(this.store.ArrayIdsInCart)
+    },
+    // recupera il valore di una chiave nel local storage
+    getStorageValue: function (key) {
+        return localStorage.getItem(key)
     },
     // nascondo il bottone se il valore è 0 
     hideMinButton: function (id) {
@@ -85,13 +93,18 @@ export default {
             // richiamo la funzione che mi aggiorna i prodotti nel carrello 
             // this.riempiCarrello(product.name);
         } else {
-
-            // todo inserire alert o modal
             console.log("non si fa");
+
+            // modal per non ordinare negli altri ristoranti
+			// Recupera l'elemento del modal utilizzando document.querySelector o utilizzando un selettore Vue.js
+			const modal = document.querySelector('.modal');
+			// Apri il modal
+			const modalInstance = new bootstrap.Modal(modal);
+			modalInstance.show();
+
         }
 
     },
-
     //funzione che rimuove elementi alla lista dei prodotti selezionati
     cartRemoveElement: function (product) {
         let quantity = Number(document.querySelector(`span[data-id="${product.id}"]`).innerHTML)
