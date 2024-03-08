@@ -58,8 +58,8 @@ export default {
 </script>
 
 <template>
-  <div class="container">
-    <h1 class="text-center">Restaurants</h1>
+  <div id="card-box" class="container d-none">
+    <h3 class="text-center my-5">Potrebbero interessarti:</h3>
     <div>
       <div class="row">
         <RestaurantCard

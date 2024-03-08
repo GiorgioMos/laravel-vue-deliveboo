@@ -68,15 +68,26 @@ export default {
     search(id_categoria) {
       //seleziono tutti i ristoranti
       this.restaurants = document.querySelectorAll(".card");
-      this.restaurants_box = document.querySelectorAll("#card-display");
+      this.restaurants_box = document.getElementById("card-box");
 
       // controllo se una categoria è presente nell'array delle categorie selezionate e in caso lo pusho o lo rimuovo
       if (this.categoriesSelected.includes(id_categoria)) {
         var index = this.categoriesSelected.indexOf(id_categoria);
         this.categoriesSelected.splice(index, 1);
+        console.log(this.categoriesSelected);
+        if (this.categoriesSelected.length == 0) {
+          this.restaurants_box.classList.add("d-none");
+        }
       } else {
         this.categoriesSelected.push(id_categoria);
+        this.restaurants_box.classList.remove("d-none");
       }
+
+      /*       if (this.categoriesSelected != []) {
+        restaurants_box.classList.remove("d-none");
+      } else if (this.categoriesSelected == []) {
+        restaurants_box.classList = "container d-none";
+      } */
 
       this.restaurants.forEach((restaurant) => {
         var metaCategories = restaurant
@@ -106,8 +117,8 @@ export default {
   <JumboSwiper />
 
   <div class="container my-5">
-    <div class="row">
-      <p>scegli una categoria, al resto ci pensiamo noi</p>
+    <div class="row text-center my-5">
+      <h2>Scegli una categoria, Al resto ci pensiamo noi</h2>
     </div>
     <!-- categories checkbox -->
     <div class="d-flex justify-content-center gap-2">
