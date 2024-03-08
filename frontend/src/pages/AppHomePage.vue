@@ -68,13 +68,16 @@ export default {
     search(id_categoria) {
       //seleziono tutti i ristoranti
       this.restaurants = document.querySelectorAll(".card");
+      this.restaurants_box = document.getElementById("card-box");
 
       // controllo se una categoria è presente nell'array delle categorie selezionate e in caso lo pusho o lo rimuovo
       if (this.categoriesSelected.includes(id_categoria)) {
         var index = this.categoriesSelected.indexOf(id_categoria);
+        //se seleziono almeno una categoria compare tutto il box
         this.categoriesSelected.splice(index, 1);
         console.log(this.categoriesSelected);
         if (this.categoriesSelected.length == 0) {
+          //se non ci sono categorie selezionate non mostro il componente
           this.restaurants_box.classList.add("d-none");
         }
       } else {
@@ -99,13 +102,20 @@ export default {
             // Se una delle categorie selezionate non è presente nell'array di categorie dell'elemento, non mostriamo l'elemento
             showRestaurant = false;
           }
-        });
+          if (showRestaurant) {
+            restaurant.classList.remove("d-none");
+            //gestisce le slide e le carte al loro interno
+            restaurant.parentNode.classList.remove("d-none");
+            restaurant.parentNode.classList.add("swiper-slide");
 
-        if (showRestaurant) {
-          restaurant.classList.remove("d-none");
-        } else {
-          restaurant.classList.add("d-none");
-        }
+            console.log(restaurant.parentNode, restaurant.parentNode.classList);
+          } else {
+            restaurant.classList.add("d-none");
+            //gestisce le slide e le carte al loro interno
+            restaurant.parentNode.classList.add("d-none");
+            restaurant.parentNode.classList.remove("swiper-slide");
+          }
+        });
       });
     },
   },

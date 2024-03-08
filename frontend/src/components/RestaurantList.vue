@@ -3,14 +3,32 @@ import RestaurantCard from "../components/RestaurantCard.vue";
 import { store } from "../store.js"; //state management
 import axios from "axios"; //importo Axios
 
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from "swiper/vue";
+
+// Import Swiper styles
+import "swiper/css";
+
+import "swiper/css/pagination";
+
+// import required modules
+import { Autoplay, Pagination } from "swiper/modules";
+
 export default {
   name: "RestaurantList",
   components: {
     RestaurantCard,
+    Swiper,
+    SwiperSlide,
   },
   data() {
     return {
       store,
+    };
+  },
+  setup() {
+    return {
+      modules: [Pagination, Autoplay],
     };
   },
   mounted() {
@@ -58,16 +76,20 @@ export default {
 </script>
 
 <template>
-  <div id="card-box" class="container d-none">
+  <div id="card-box" class="d-none">
     <h3 class="text-center my-5">Potrebbero interessarti:</h3>
-    <div>
-      <div class="row">
-        <RestaurantCard
-          v-for="restaurant in store.restaurants"
-          :item="restaurant"
-        />
-      </div>
-    </div>
+
+    <swiper
+      :slidesPerView="3"
+      :spaceBetween="30"
+      :modules="modules"
+      class="mySwiper"
+      :autoplay="{ delay: 3000, disableOnInteraction: false }"
+    >
+      <swiper-slide v-for="restaurant in store.restaurants">
+        <RestaurantCard :item="restaurant" id />
+      </swiper-slide>
+    </swiper>
   </div>
 </template>
 
@@ -84,5 +106,15 @@ export default {
 
 .container {
   min-height: 100vh;
+}
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+
+  /* Center slide text vertically */
 }
 </style>

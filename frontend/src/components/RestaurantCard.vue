@@ -66,7 +66,7 @@ export default {
     </div>
   </div> -->
   <div
-    class="col-3 card bg-transparent border-dark"
+    class="card bg-transparent border-dark"
     id="card-display"
     :meta-categories="this.id_categories"
   >
@@ -115,7 +115,6 @@ a {
 }
 
 .__area {
-  font-family: "Cairo", sans-serif;
   color: #7c7671;
   margin-top: 100px;
 }
