@@ -193,18 +193,26 @@ export default {
 			<div v-if="!restaurant" class="d-flex justify-content-center align-items-center">
 				<h1>Loading..</h1>
 			</div>
-			<div v-else class="row py-3 text-warning">
+
+			<!-- SEZIONE JUMBO RISTORANTE -->
+			<div id="spacer" v-else class="row py-3 text-warning">
 				<div class="d-flex mt-4 mb-5">
-					<div id="restaurant-desc" class="d-flex flex-column m-3 align-items-start p-5 justify-content-center">
-						<h1 class="mb-5"> {{ restaurant?.name }} </h1> 
-						<div class="my-4"> {{ restaurant?.description }} </div>
-						<div class="my-3"> {{ restaurant?.address }} </div>
-						<button id="button" class="btn mt-5" ><a :href="restaurant?.website">Sito Web</a></button>
-					</div>
-					<div id="imgbox" class="imgBox rounded m-5">
+					<div id="imgbox" class="imgBox rounded m-5 flex-column">
 						<img class="cardImg rounded" :src="getImage(restaurant?.img)" alt="">
+						<div id="restaurant-info">
+							<h1 class="mb-4 fw-bold"> {{ restaurant?.name }} </h1>
+							<p class="my-1">🏠 {{ restaurant?.address }} </p>
+							<p class="my-1">🌇 {{ restaurant?.city }}</p>
+							<p class="my-1">☎️ {{ restaurant?.telephone }}</p>
+						</div>
+					</div>
+					<div id="restaurant-desc" class="d-flex flex-column m-3 align-items-start p-5 justify-content-center">
+						<div class="my-4 mb-4 py-2 pt-5"> {{ restaurant?.description }} </div>
+						<button id="button" class="btn mt-1" ><a :href="restaurant?.website">Sito Web</a></button>
 					</div>
 				</div>
+
+				<!-- SEZIONE PRODOTTI RISTORANTE -->
 				<h2 class="my-3">I Nostri Piatti</h2>
 				<div class="d-flex justify-content-center gap-4">
 					<div v-for="product in restaurant?.products" class="product card-list my-5" :id="'product-' + product.id">
@@ -225,6 +233,7 @@ export default {
 						</article>
 					</div>
 				</div>
+				<!-- BOTTONE GO BACK TO HOMEPAGE -->
 				<div class="row d-flex justify-content-end">
 					<div class="col-2 py-3">
 						<router-link :to="{ name: 'home' }" class="btn btn-info">
@@ -257,24 +266,27 @@ button > a{
 	color: white;
 }
 
-#button{
-	background-color: #060113;
-	border: solid 1px #F59754;
-	border-radius: 20px;
-	padding: 10px 20px;
+#spacer{
+	margin-top: 3rem;
 }
 
+#button{
+	background-color: #060113;
+	border: solid 2px #066E7C;
+	border-radius: 20px;
+	padding: 10px 20px;
+	transition: .15s ease-in;
+	margin: 0 30%;
+}
+#button:hover{
+	background-color: #066E7C;
+}
 .cardImg {
 	max-width: 100%;
 	min-height: 100%;
 	object-fit: cover;
 	border-radius: 30px !important;
-}
-#imgbox{
-	transition: transform 0.2s;
-}
-#imgbox:hover{
-	transform: scale(1.05);
+	position: relative;
 }
 
 #product-img{
@@ -289,8 +301,8 @@ button > a{
 	justify-content: center;
 	align-items: center;
 	overflow: hidden;
-	height: 35rem;
-	width: 55rem;
+	height: 40rem;
+	width: 150rem;
 }
 
 li{
@@ -298,14 +310,33 @@ li{
 }
 
 #restaurant-desc{
-	font-size: 1.5rem;
-	background-color: #3d3737;
-	border: solid 1px #066E7C;
+	font-size: 1.2rem;
+	width: 60rem;
+	line-height: 2.4rem;
 	transition: transform 0.2s;
 	border-radius: 20px;
 }
+
 #restaurant-desc:hover{
-	transform: scale(1.01);
+	transform: scale(1.02);
+}
+
+//OCIO QUI CHE LE QUANDO SI FA IL SITO RESPONSIVE PARTONO LE MADONNE
+
+#restaurant-info{
+	position: absolute;
+	transition: transform 0.2s;
+	background-color: #3d3737;
+	padding: 1rem;
+	width: 35rem;
+	height: 16rem;
+	border-radius: 15px;
+	bottom: 580px;
+	left: 940px;
+	opacity: 0.85;
+}
+#restaurant-info:hover{
+	transform: scale(1.02);
 }
 
 //css product card
