@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import AppHomePage from "./pages/AppHomePage.vue";
+import Checkout from "./pages/Checkout.vue";
 import RestaurantDetail from "./pages/RestaurantDetail.vue";
 import AppAbout from "./pages/AppAbout.vue";
 
@@ -22,6 +23,11 @@ const router = createRouter({
       path: "/about",
       name: "about",
       component: AppAbout,
+    },
+    {
+      path: "/checkout",
+      name: "checkout",
+      component: Checkout,
     },
     /*       path: "",
           name: "",

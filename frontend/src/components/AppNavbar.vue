@@ -14,25 +14,13 @@ export default {
 		this.cartRemoveElement = functions.cartRemoveElement
 		this.fullCartRemoveElement = functions.fullCartRemoveElement
 		this.getStorageValue = functions.getStorageValue
+		this.cartCounter = functions.cartCounter
+
 
 
 	},
 	methods: {
-		cartCounter() {
-			//quantità totale carrello a 0
-			let quantities = 0
-			//ciclo sull'array nello store che contiene tutti gli id dei prodotti nel carrello
-			this.store.ArrayIdsInCart.forEach(element => {
-				// controllo che la chiave non sia il restaurant id
-				if (element != 'restaurant_id') {
-					//recupero il valore associato alla chiave e lo strasformo in un numero, era una stringa
-					let value = parseInt(localStorage.getItem(element))
-					// a ogni giro sommo la quantità corrente con quella totale fuori dal ciclo 
-					quantities += value
-				}
-			});
-			return quantities
-		},
+
 	},
 	data() {
 		return {
@@ -94,10 +82,10 @@ export default {
 
 			<ul class="navbar-nav">
 
-			<!-- bottone carrello offcanvas -->
-			<li class="nav-item">
-				<a class="btn rounded-pill btn-outline-light px-4" href="#" id="shopping-cart"
-					data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+				<!-- bottone carrello offcanvas -->
+				<li class="nav-item">
+					<a class="btn rounded-pill btn-outline-light px-4" href="#" id="shopping-cart"
+						data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
 						<font-awesome-icon icon="fa-solid fa-cart-shopping" />
 						<span class="text-white">{{ cartCounter() }} </span>
 
@@ -106,7 +94,8 @@ export default {
 
 				</li>
 				<li class="nav-item">
-					<a class="btn btn-outline-light rounded-pill px-4 mx-3" href="http://localhost:8000/login">Accedi</a>
+					<a class="btn btn-outline-light rounded-pill px-4 mx-3"
+						href="http://localhost:8000/login">Accedi</a>
 				</li>
 				<li class="nav-item">
 					<a class="btn rounded-pill bg-warning px-4" href="http://localhost:8000/register">Registrati</a>
@@ -155,9 +144,9 @@ export default {
 					<div v-if="this.store.ArrayIdsInCart.includes(prodotto.id.toString())">
 
 						<!-- stampo i dati del prodotto e la quantità attraverso la funzione magica per richiamare i dati del localstorage -->
-						<span>{{ prodotto.name }} -> <span class="counter" :data-id="prodotto.id" :data-name="prodotto.name"
-								:id="prodotto.id + 'span'">{{
-									this.getStorageValue(prodotto.id) ?? 0 }}</span></span>
+						<span>{{ prodotto.name }} -> <span class="counter" :data-id="prodotto.id"
+								:data-name="prodotto.name" :id="prodotto.id + 'span'">{{
+							this.getStorageValue(prodotto.id) ?? 0 }}</span></span>
 						<button class="btn btn-primary add" @click="this.cartAddElement(prodotto)">+</button>
 						<button class="btn btn-danger remove"
 							@click="cartRemoveElement(prodotto); hideMinButton(prodotto.id)">-</button>
@@ -174,8 +163,12 @@ export default {
 			  </div>
 			</div> -->
 			</div>
-			<button id="clearCart" class="btn btn-primary" @click="this.clearCart(); this.ArrayCart()"> Svuota
+			<button :class="(cartCounter() > 0) ? 'd-inline-block' : 'd-none'" id="clearCart" class="btn btn-primary"
+				@click="this.clearCart(); this.ArrayCart()"> Svuota
 				carrello</button>
+			<router-link :to="{ name: 'checkout' }">
+				<button v-if="cartCounter() > 0" id="order" class="btn btn-primary"> Procedi all'ordine</button>
+			</router-link>
 		</div>
 	</div>
 </template>
