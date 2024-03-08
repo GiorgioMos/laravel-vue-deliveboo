@@ -19,7 +19,8 @@ export default {
                 email: '',
                 telephone: '',
                 address: ''
-            }
+            },
+            isPaymentValid: false // Aggiunto per tenere traccia dello stato di validità del pagamento
         }
     },
     computed: {
@@ -51,9 +52,9 @@ export default {
             this.error = true
         }
 
-        // let braintreeScript = document.createElement('script')
-        // braintreeScript.setAttribute('src', 'https://js.braintreegateway.com/web/dropin/1.42.0/js/dropin.js')
-        // document.head.appendChild(braintreeScript)
+        let braintreeScript = document.createElement('script')
+        braintreeScript.setAttribute('src', 'https://js.braintreegateway.com/web/dropin/1.42.0/js/dropin.js')
+        document.head.appendChild(braintreeScript)
 
 
     },
@@ -77,18 +78,24 @@ export default {
             }
         },
         createBraintree() {
-
             var button = document.getElementById("submit-button")
-
+            button.classList.remove("d-none")
             braintree.dropin.create({
                 authorization: 'sandbox_g42y39zw_348pk9cgf3bgyw2b',
                 selector: '#dropin-container'
-            }, function (err, instance) {
-                button.addEventListener('click', function () {
-                    instance.requestPaymentMethod(function (err, payload) {
-                        // Submit payload.nonce to your server
+            }, (err, instance) => {
+                button.addEventListener('click', () => {
+                    instance.requestPaymentMethod((err, payload) => {
+                        if (err) {
+                            // Gestisci eventuali errori
+                            console.error(err);
+                            this.isPaymentValid = false;
+                        } else {
+                            // La carta di credito è stata validata con successo
+                            this.isPaymentValid = true;
+                        }
                     });
-                })
+                });
             });
         },
         confirmOrder() {
@@ -213,21 +220,24 @@ export default {
                         </div>
                     </div>
 
+                    <button :disabled="!isFormValid" class="btn btn-primary" @click="createBraintree()">Seleziona la
+                        modalità di pagamento</button>
                     <!-- BRAINTREE  -->
-                    <!-- <div id="braintreeContainer">
-
-                        <div id="dropin-container" class="col-8">{{ this.createBraintree() }}</div>
+                    <div id="braintreeContainer">
+                        <div id="dropin-container" class="col-8"></div>
                     </div>
--->
+
                     <!-- bottone submit per confermare i dati di pagamento  -->
-                    <!-- <button id="submit-button" class="button button--small button--green">Conferma
-                        Selezione</button> -->
+                    <button :disabled="!isFormValid" id="submit-button"
+                        class="btn button--small button--green d-none">Conferma
+                        Selezione</button>
 
 
 
                     <div class="d-flex justify-content-center">
-                        <button class="btn btn-danger my-5" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                            :disabled="!isFormValid" @click="confirmOrder">CONFERMA ORDINE</button>
+                        <button :disabled="!isFormValid || !isPaymentValid" class="btn btn-danger my-5"
+                            data-bs-toggle="modal" data-bs-target="#staticBackdrop" @click="confirmOrder">CONFERMA
+                            ORDINE</button>
                     </div>
 
 
