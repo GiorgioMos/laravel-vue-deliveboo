@@ -180,7 +180,7 @@ export default {
                 // trasformo l'id in un numero (forse non serve ma non ho voglia di controllare)
                 const id=parseInt(element) 
                 // recuper il costo del prodotto 
-                const price=this.store.products[id-1].price
+                const price=this.store.products[id-1]?.price
                 //recupero il valore associato alla chiave e lo strasformo in un numero, era una stringa
                 const value = parseInt(localStorage.getItem(element))
                 // a ogni giro sommo la quantità corrente con quella totale fuori dal ciclo 

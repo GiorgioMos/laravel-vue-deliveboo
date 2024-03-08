@@ -6,6 +6,7 @@ import * as bootstrap from "bootstrap";
 
 
 
+
 export default {
 	name: "RestaurantDetail",
 	props: ["id"],

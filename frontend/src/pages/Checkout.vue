@@ -3,6 +3,7 @@ import { store } from "../store.js" //state management
 import axios from 'axios'; //importo Axios
 import functions from '../functions.js'
 import * as bootstrap from "bootstrap";
+import { router } from '../router.js';
 
 
 
@@ -60,6 +61,24 @@ export default {
                     });
                 })
             });
+        },
+        confirmOrder() {
+
+            setTimeout(() => {
+                // var modal = document.getElementById('staticBackdrop');
+                // if (modal) {
+                var modal = document.querySelector('#staticBackdrop');
+                if (modal) {
+                    modal.style.display = 'none';
+                }
+                // }
+                // router.push({ name: 'home' })
+            }, 4000)
+
+
+
+            //svuoto il carrello
+            // this.clearCart()
         }
     }
 }
@@ -112,6 +131,56 @@ export default {
                         </div>
                     </div>
 
+                    <!-- form DATI UTENTE  -->
+                    <div class="container">
+                        <div class="row">
+
+
+                            <h2 class="mt-5">Inserisci i tuoi dati per completare l'ordine</h2>
+                            <form action="/action_page.php" method="POST" enctype="multipart/form-data"
+                                class="needs-validation col-8">
+                                <!-- cross scripting request forgery -->
+                                <!-- @csrf -->
+
+                                <!-- nome  -->
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Nome <span style="color: red;">*</span></label>
+                                    <input type="text" class="form-control" id="name" name="name" value="" required>
+                                </div>
+                                <!-- cognome  -->
+                                <div class="mb-3">
+                                    <label for="lastname" class="form-label">Cognome <span
+                                            style="color: red;">*</span></label>
+                                    <input type="text" class="form-control" id="lastname" name="lastname" value=""
+                                        required>
+                                </div>
+
+                                <!-- email  -->
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email <span
+                                            style="color: red;">*</span></label>
+                                    <input id="email" type="email" class="form-control" name="email" value="" required
+                                        autocomplete="email">
+                                </div>
+
+                                <!-- telephone  -->
+                                <div class="mb-3">
+                                    <label for="telephone" class="form-label">telephone <span
+                                            style="color: red;">*</span></label>
+                                    <input id="telephone" type="number" class="form-control" name="telephone" value=""
+                                        required autocomplete="telephone">
+                                </div>
+
+                                <!-- addresss  -->
+                                <div class="mb-3">
+                                    <label for="addresss" class="form-label">Indirizzo <span
+                                            style="color: red;">*</span></label>
+                                    <input id="addresss" type="text" class="form-control" name="addresss" value=""
+                                        required autocomplete="addresss">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                     <!-- bottone per mostrare la finestra INSERISCI DATI CARTA  -->
                     <button class="btn btn-primary mt-4" @click="createBraintree()"> Seleziona il tuo metodo di
                         pagamento
@@ -123,6 +192,33 @@ export default {
                     <!-- bottone submit per confermare i dati di pagamento  -->
                     <button id="submit-button" class="button button--small button--green d-none">Conferma
                         Selezione</button>
+
+
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-danger my-5" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                            @click="this.confirmOrder()">CONFERMA ORDINE</button>
+                    </div>
+
+
+                    <!-- MODAL CONFERMA ORDINE  -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content bg-dark">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">ORDINE COMPLETATO</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Ordine Completato con successo! stai per essere reindirizzato alla HOME.
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!------------------------------------------- FINE CORPO PAGINA  ------------------------------------->
                 </div>
             </div>
         </div>
