@@ -59,10 +59,12 @@ export default {
 
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="page-navigation" href="#">Ristoranti</a>
+					<p class="page-navigation" href="#">Ristoranti</p>
 				</li>
 				<li class="nav-item">
-					<a class="page-navigation" href="/about">Chi Siamo</a>
+					<router-link :to="{ name: 'about' }">
+						<p class="page-navigation" href="/about">Chi Siamo</p>
+					</router-link>
 				</li>
 				<li class="nav-item">
 					<a class="page-navigation" href="#">Prodotti</a>
@@ -114,14 +116,18 @@ export default {
 					<!-- controllo se l'id del prodotto corrisponde ad un id in localStorage e lo creo -->
 					<div v-if="this.store.ArrayIdsInCart.includes(prodotto.id.toString())">
 
+						<!-- DA STILICAZZOZARE -->
 						<!-- stampo i dati del prodotto e la quantità attraverso la funzione magica per richiamare i dati del localstorage -->
-						<span>{{ prodotto.name }} ({{ prodotto.price }}) -> <span class="counter" :data-id="prodotto.id"
-								:data-name="prodotto.name" :id="prodotto.id + 'span'">{{
-				this.getStorageValue(prodotto.id) ?? 0 }}</span></span>
+						<span>{{ prodotto.name }} ({{ prodotto.price }}) -> 
+							<span class="counter" :data-id="prodotto.id" :data-name="prodotto.name" :id="prodotto.id + 'span'">
+							{{this.getStorageValue(prodotto.id) ?? 0 }}</span>
+						</span>
+
 						<button class="btn btn-primary add" @click="this.cartAddElement(prodotto)">+</button>
+						
 						<button class="btn btn-danger remove"
 							@click="cartRemoveElement(prodotto); hideMinButton(prodotto.id)">-</button>
-						<a href="#" @click="fullCartRemoveElement(prodotto)">rimuovi</a>
+						<p href="#" @click="fullCartRemoveElement(prodotto)">rimuovi</p>
 
 					</div>
 				</div>
