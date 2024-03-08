@@ -24,6 +24,8 @@ export default {
         this.fullCartRemoveElement = functions.fullCartRemoveElement
         this.getStorageValue = functions.getStorageValue
         this.cartCounter = functions.cartCounter
+        this.cartTotal = functions.cartTotal
+
 
 
     },
@@ -65,37 +67,63 @@ export default {
 
 <template>
     <div class="container">
+
+        <!-- controllo se il carrello è pieno -->
         <div v-if="this.cartCounter() > 0">
+
+            <!-- controllo se la chiamata axios è andata a buon fine  -->
             <div v-if="error">
                 <h1>Si è verificato un errore</h1>
             </div>
             <div v-else>
-                <h1>checkout</h1>
-                <h2>{{ this.store.restaurants[getStorageValue('restaurant_id') - 1]?.name }}</h2>
 
-                <div>
-                    <div v-for="prodotto in this.store.products">
-                        <!-- controllo se l'id del prodotto corrisponde ad un id in localStorage e lo creo -->
-                        <div v-if="this.store.ArrayIdsInCart.includes(prodotto.id.toString())">
+                <!-- controllo se il ristorante è completamente caricato  -->
+                <div v-if="!this.store.restaurants[getStorageValue('restaurant_id') - 1]"
+                    class="d-flex justify-content-center align-items-center">
+                    <h1>Caricamento.. <div class="loader d-inline-block"></div>
+                    </h1>
+                </div>
+                <div v-else>
 
-                            <!-- stampo i dati del prodotto e la quantità attraverso la funzione magica per richiamare i dati del localstorage -->
-                            <span>{{ prodotto.name }} -> <span class="counter" :data-id="prodotto.id"
-                                    :data-name="prodotto.name" :id="prodotto.id + 'span'">{{
+                    <!------------------------------------ CORPO PAGINA  ------------------------------------------------->
+                    <h1>checkout TOTALE->{{ this.cartTotal() }}€</h1>
+
+                    <!-- nome ristorante corrente  -->
+                    <h2>{{ this.store.restaurants[getStorageValue('restaurant_id') - 1]?.name }}</h2>
+
+                    <div>
+
+                        <!-- stampo tutti i prodotti in carrello  -->
+                        <div v-for="prodotto in this.store.products">
+
+                            <!-- controllo se l'id del prodotto corrisponde ad un id in localStorage e lo creo -->
+                            <div v-if="this.store.ArrayIdsInCart.includes(prodotto.id.toString())">
+
+                                <!-- stampo i dati del prodotto e la quantità attraverso la funzione magica per richiamare i dati del localstorage -->
+                                <span>{{ prodotto.name }} ({{ prodotto.price }}) -> <span class="counter"
+                                        :data-id="prodotto.id" :data-name="prodotto.name" :id="prodotto.id + 'span'">{{
             this.getStorageValue(prodotto.id) ?? 0 }}</span></span>
-                            <button class="btn btn-primary add" @click="this.cartAddElement(prodotto)">+</button>
-                            <button class="btn btn-danger remove"
-                                @click="cartRemoveElement(prodotto); hideMinButton(prodotto.id)">-</button>
-                            <a href="#" @click="fullCartRemoveElement(prodotto)">rimuovi</a>
+                                <button class="btn btn-primary add" @click="this.cartAddElement(prodotto)">+</button>
+                                <button class="btn btn-danger remove"
+                                    @click="cartRemoveElement(prodotto); hideMinButton(prodotto.id)">-</button>
+                                <a href="#" @click="fullCartRemoveElement(prodotto)">rimuovi</a>
 
+                            </div>
                         </div>
                     </div>
+
+                    <!-- bottone per mostrare la finestra INSERISCI DATI CARTA  -->
+                    <button class="btn btn-primary mt-4" @click="createBraintree()"> Seleziona il tuo metodo di
+                        pagamento
+                    </button>
+
+                    <!-- BRAINTREE  -->
+                    <div id="dropin-container"></div>
+
+                    <!-- bottone submit per confermare i dati di pagamento  -->
+                    <button id="submit-button" class="button button--small button--green d-none">Conferma
+                        Selezione</button>
                 </div>
-                <button class="btn btn-primary mt-4" @click="createBraintree()"> Seleziona il tuo metodo di
-                    pagamento
-                </button>
-                <!-- BRAINTREE  -->
-                <div id="dropin-container"></div>
-                <button id="submit-button" class="button button--small button--green d-none">Conferma Selezione</button>
             </div>
         </div>
         <div v-else>
@@ -144,5 +172,28 @@ export default {
 .button--green:hover {
     background-color: #8bdda8;
     color: white;
+}
+
+
+// LOADER -->se si usa altrove mettere in general scss
+.loader {
+    border: 0.5rem solid #f3f3f3;
+    /* Light grey */
+    border-top: 0.5rem solid #3498db;
+    /* Blue */
+    border-radius: 50%;
+    aspect-ratio: 1;
+    height: 2rem;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 </style>

@@ -15,6 +15,8 @@ export default {
 		this.fullCartRemoveElement = functions.fullCartRemoveElement
 		this.getStorageValue = functions.getStorageValue
 		this.cartCounter = functions.cartCounter
+		this.cartTotal = functions.cartTotal
+
 
 
 
@@ -137,6 +139,9 @@ export default {
 		<div class="offcanvas-body">
 			<div id="offcanvas-body">
 
+				<!-- costo totale prodotti nel carrello  -->
+				<h5>TOTALE= {{ this.cartTotal() }}€</h5>
+
 
 				<!-- ciclo su tutti i prodotti con un v-for -->
 				<div v-for="prodotto in this.store.products">
@@ -144,7 +149,7 @@ export default {
 					<div v-if="this.store.ArrayIdsInCart.includes(prodotto.id.toString())">
 
 						<!-- stampo i dati del prodotto e la quantità attraverso la funzione magica per richiamare i dati del localstorage -->
-						<span>{{ prodotto.name }} -> <span class="counter" :data-id="prodotto.id"
+						<span>{{ prodotto.name }} ({{ prodotto.price }}) -> <span class="counter" :data-id="prodotto.id"
 								:data-name="prodotto.name" :id="prodotto.id + 'span'">{{
 							this.getStorageValue(prodotto.id) ?? 0 }}</span></span>
 						<button class="btn btn-primary add" @click="this.cartAddElement(prodotto)">+</button>
@@ -154,18 +159,14 @@ export default {
 
 					</div>
 				</div>
-
-
-
-				<!-- <div v-for="id in this.store.ArrayIdsInCart" :key="id">
-			  <div v-if="!isNaN(id)">
-				{{ id }} -> {{ getStorageValue(id) }}
-			  </div>
-			</div> -->
 			</div>
+
+			<!-- bottone svuota carrello  -->
 			<button :class="(cartCounter() > 0) ? 'd-inline-block' : 'd-none'" id="clearCart" class="btn btn-primary"
 				@click="this.clearCart(); this.ArrayCart()"> Svuota
 				carrello</button>
+
+			<!-- bottone checkout  -->
 			<router-link :to="{ name: 'checkout' }">
 				<button v-if="cartCounter() > 0" id="order" class="btn btn-primary"> Procedi all'ordine</button>
 			</router-link>
