@@ -135,6 +135,10 @@ export default {
         localStorage.removeItem(product.id)
         document.querySelector(`span[data-id="${product.id}"]`).innerHTML = 0
         this.ArrayCart()
+        //se l'unico elemento del localstorage è il restaurant id allora lo rimuovo
+        if (localStorage.length == 1) {
+            localStorage.removeItem("restaurant_id")
+        }
         
     }
 }
