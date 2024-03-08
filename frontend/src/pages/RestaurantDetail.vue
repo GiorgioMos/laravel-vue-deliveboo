@@ -99,7 +99,7 @@ export default {
 
 			<!-- SEZIONE JUMBO RISTORANTE -->
 			<div id="spacer" v-else class="row py-3 text-warning">
-				<div class="d-flex mt-4 mb-5">
+				<div class="d-flex mt-4 mb-5 position-relative">
 					<div id="imgbox" class="imgBox rounded m-5 flex-column">
 						<img class="cardImg rounded" :src="getImage(restaurant?.img)" alt="">
 						<div id="restaurant-info">
@@ -265,7 +265,7 @@ li {
 	height: 16rem;
 	border-radius: 15px;
 	bottom: 500px;
-	left: 940px;
+	left: 750px;
 	opacity: 0.85;
 }
 
