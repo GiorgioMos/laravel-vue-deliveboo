@@ -2,6 +2,21 @@ import * as bootstrap from "bootstrap";
 
 
 export default {
+    cartCounter: function() {
+        //quantità totale carrello a 0
+        let quantities = 0
+        //ciclo sull'array nello store che contiene tutti gli id dei prodotti nel carrello
+        this.store.ArrayIdsInCart.forEach(element => {
+            // controllo che la chiave non sia il restaurant id
+            if (element != 'restaurant_id') {
+                //recupero il valore associato alla chiave e lo strasformo in un numero, era una stringa
+                let value = parseInt(localStorage.getItem(element))
+                // a ogni giro sommo la quantità corrente con quella totale fuori dal ciclo 
+                quantities += value
+            }
+        });
+        return quantities
+    },
     clearCart: function () {
         localStorage.clear();
         this.store.ArrayIdsInCart=[]
@@ -156,5 +171,23 @@ export default {
             }
         });
         return value
+    },
+    cartTotal: function() {
+        let total=0
+        this.store.ArrayIdsInCart.forEach(element => {
+            if (element != 'restaurant_id') {
+
+                // trasformo l'id in un numero (forse non serve ma non ho voglia di controllare)
+                const id=parseInt(element) 
+                // recuper il costo del prodotto 
+                const price=this.store.products[id-1]?.price
+                //recupero il valore associato alla chiave e lo strasformo in un numero, era una stringa
+                const value = parseInt(localStorage.getItem(element))
+                // a ogni giro sommo la quantità corrente con quella totale fuori dal ciclo 
+                let partialSum=price*value
+                total += partialSum
+            }
+        });
+        return Math.round((total + Number.EPSILON) * 100) / 100
     }
 }

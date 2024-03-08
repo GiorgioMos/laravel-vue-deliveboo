@@ -79,13 +79,8 @@ export default {
   <div id="card-box" class="d-none">
     <h3 class="text-center my-5">Potrebbero interessarti:</h3>
 
-    <swiper
-      :slidesPerView="3"
-      :spaceBetween="30"
-      :modules="modules"
-      class="mySwiper"
-      :autoplay="{ delay: 3000, disableOnInteraction: false }"
-    >
+    <swiper :slidesPerView="3" :spaceBetween="30" :modules="modules" class="mySwiper"
+      :autoplay="{ delay: 3000, disableOnInteraction: false }">
       <swiper-slide v-for="restaurant in store.restaurants">
         <RestaurantCard :item="restaurant" id />
       </swiper-slide>
@@ -107,6 +102,7 @@ export default {
 .container {
   min-height: 100vh;
 }
+
 .swiper {
   width: 100%;
   height: 100%;
