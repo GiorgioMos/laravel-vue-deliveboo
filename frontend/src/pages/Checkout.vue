@@ -59,6 +59,7 @@ export default {
     },
     updated() {
 
+
     },
     methods: {
         validateField(field) {
@@ -76,8 +77,9 @@ export default {
             }
         },
         createBraintree() {
-            var button = document.querySelector('#submit-button');
-            button.classList.remove("d-none")
+
+            var button = document.getElementById("submit-button")
+
             braintree.dropin.create({
                 authorization: 'sandbox_g42y39zw_348pk9cgf3bgyw2b',
                 selector: '#dropin-container'
@@ -100,7 +102,7 @@ export default {
                 var myModalEl = document.getElementById('staticBackdrop');
                 var modal = bootstrap.Modal.getInstance(myModalEl)
                 modal.hide();
-                const myModal = bootstrap.Modal(document.getElementById('myModal'));
+                const myModal = new bootstrap.Modal(document.getElementById('myModal'));
                 myModal.hide();
 
             }, 4000)
@@ -210,17 +212,17 @@ export default {
                             </form>
                         </div>
                     </div>
-                    <!-- bottone per mostrare la finestra INSERISCI DATI CARTA  -->
-                    <button class="btn btn-primary mt-4" @click="createBraintree()"> Seleziona il tuo metodo di
-                        pagamento
-                    </button>
 
                     <!-- BRAINTREE  -->
-                    <div id="dropin-container" class="col-8"></div>
+                    <div id="braintreeContainer">
+
+                        <div id="dropin-container" class="col-8">{{ this.createBraintree() }}</div>
+                    </div>
 
                     <!-- bottone submit per confermare i dati di pagamento  -->
-                    <button id="submit-button" class="button button--small button--green d-none">Conferma
+                    <button id="submit-button" class="button button--small button--green">Conferma
                         Selezione</button>
+
 
 
                     <div class="d-flex justify-content-center">
