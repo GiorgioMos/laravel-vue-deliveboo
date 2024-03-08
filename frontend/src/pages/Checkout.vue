@@ -65,20 +65,16 @@ export default {
         confirmOrder() {
 
             setTimeout(() => {
-                // var modal = document.getElementById('staticBackdrop');
-                // if (modal) {
-                var modal = document.querySelector('#staticBackdrop');
-                if (modal) {
-                    modal.style.display = 'none';
-                }
+                router.push({ name: 'home' })
+
+                var myModalEl = document.getElementById('staticBackdrop');
+                var modal = bootstrap.Modal.getInstance(myModalEl)
+                modal.hide();
                 // }
-                // router.push({ name: 'home' })
             }, 4000)
 
-
-
             //svuoto il carrello
-            // this.clearCart()
+            this.clearCart()
         }
     }
 }
@@ -187,7 +183,7 @@ export default {
                     </button>
 
                     <!-- BRAINTREE  -->
-                    <div id="dropin-container"></div>
+                    <div id="dropin-container" class="col-8"></div>
 
                     <!-- bottone submit per confermare i dati di pagamento  -->
                     <button id="submit-button" class="button button--small button--green d-none">Conferma
