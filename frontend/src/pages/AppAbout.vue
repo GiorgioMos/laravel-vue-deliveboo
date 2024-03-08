@@ -180,7 +180,7 @@ export default {
                                     <img src="https://images.unsplash.com/photo-1526318896980-cf78c088247c?q=80&w=3687&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                         class="card-img-top" alt="ramen">
                                     <div class="card-body">
-                                        <h3 class="card-title">Ramen</h3>
+                                        <h3 class="card-title fw-bold">Ramen</h3>
                                         <p class="card-text">Cina</p>
                                     </div>
                                 </div>
@@ -190,7 +190,7 @@ export default {
                                     <img src="https://images.unsplash.com/photo-1604382355076-af4b0eb60143?q=80&w=3648&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                         class="card-img-top" alt="pizza">
                                     <div class="card-body">
-                                        <h3 class="card-title">Pizza</h3>
+                                        <h3 class="card-title fw-bold">Pizza</h3>
                                         <p class="card-text">Italia</p>
                                     </div>
                                 </div>
@@ -200,7 +200,7 @@ export default {
                                     <img src="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?q=80&w=2270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                         class="card-img-top" alt="sushi">
                                     <div class="card-body">
-                                        <h3 class="card-title">Sushi</h3>
+                                        <h3 class="card-title fw-bold">Sushi</h3>
                                         <p class="card-text">Giappone</p>
                                     </div>
                                 </div>
@@ -210,7 +210,7 @@ export default {
                                     <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?q=80&w=3480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                         class="card-img-top" alt="tacos">
                                     <div class="card-body">
-                                        <h3 class="card-title">Tacos</h3>
+                                        <h3 class="card-title fw-bold">Tacos</h3>
                                         <p class="card-text">Messico</p>
                                     </div>
                                 </div>
@@ -224,7 +224,7 @@ export default {
                                     <img src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?q=80&w=3570&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                         class="card-img-top" alt="gyoza">
                                     <div class="card-body">
-                                        <h3 class="card-title">Gyoza</h3>
+                                        <h3 class="card-title fw-bold">Gyoza</h3>
                                         <p class="card-text">Cina</p>
                                     </div>
                                 </div>
@@ -234,7 +234,7 @@ export default {
                                     <img src="https://images.unsplash.com/photo-1666819476628-2f3afb0ca147?q=80&w=3442&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                         class="card-img-top" alt="pita">
                                     <div class="card-body">
-                                        <h3 class="card-title">Pita Gyros</h3>
+                                        <h3 class="card-title fw-bold">Pita Gyros</h3>
                                         <p class="card-text">Grecia</p>
                                     </div>
                                 </div>
@@ -244,7 +244,7 @@ export default {
                                     <img src="https://images.unsplash.com/photo-1523798724321-364e1951df59?q=80&w=2592&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                         class="card-img-top" alt="kfc">
                                     <div class="card-body">
-                                        <h3 class="card-title">Fast Food</h3>
+                                        <h3 class="card-title fw-bold">Fast Food</h3>
                                         <p class="card-text">America</p>
                                     </div>
                                 </div>
@@ -254,7 +254,7 @@ export default {
                                     <img src="https://images.unsplash.com/photo-1606471191009-63994c53433b?q=80&w=2126&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                         class="card-img-top" alt="indian">
                                     <div class="card-body">
-                                        <h3 class="card-title">Indiano</h3>
+                                        <h3 class="card-title fw-bold">Indiano</h3>
                                         <p class="card-text">India</p>
                                     </div>
                                 </div>
@@ -362,13 +362,14 @@ h2 {
 // Sponsor section
 
 .sponsor {
-    margin-top: 140px;
+    margin-top: 200px;
 }
 
 .sponsorLogo {
+    border: 1px solid white;
     width: 100%;
     height: 200px;
-    background-color: white;
+    background-color: rgb(6, 110, 124, 0.4);
     border-radius: 30px;
 
 }
@@ -413,6 +414,10 @@ h2 {
     height: 500px;
     background-color: teal;
     margin-top: 100px;
+}
+
+.card {
+    border: none;
 }
 
 
