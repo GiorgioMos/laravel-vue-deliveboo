@@ -17,9 +17,6 @@ export default {
 		this.cartCounter = functions.cartCounter
 		this.cartTotal = functions.cartTotal
 
-
-
-
 	},
 	methods: {
 
@@ -42,19 +39,6 @@ export default {
 					label: "About Us",
 				},
 
-				/* 		{
-						  routeName: "aboutUs",
-						  label: "About Us"
-						},
-						{
-						  routeName: "login",
-						  label: "Login"
-						},
-						{
-						  routeName: "register",
-						  label: "Register"
-						},
-				 */
 			],
 		};
 	},
@@ -66,9 +50,12 @@ export default {
 <template>
 	<nav class="navbar navbar-expand-lg">
 		<div class="container">
-			<a class="navbar-brand text-light" href="/">
-				<img class="logoDeliveboo" src="/img/logoDeliveboo.png" alt="logoDeliveboo" />
-			</a>
+
+			<router-link :to="{ name: 'home' }">
+				<div class="navbar-brand text-light">
+					<img class="logoDeliveboo" src="/img/logoDeliveboo.png" alt="logoDeliveboo" />
+				</div>
+			</router-link>
 
 			<ul class="navbar-nav">
 				<li class="nav-item">
@@ -106,30 +93,9 @@ export default {
 		</div>
 	</nav>
 
-	<!--   <nav class="navbar border-body">
-	                            <div class="container">
-	                              <a class="navbar-brand text-light" href=".">Logo</a>
-	                            </div>
-	                            <div>
-	                              <a href="" class="navbar-text">sdfg</a>
-	                              <a href="" class="nav-link">asdf</a>
-	                              <a href="" class="nav-link">asdf</a>
-	                            </div>
-	                          </nav> -->
+	<!------------------------------------------------ OFFCANVAS ---------------------------------------->
+	<!-- AUMENTARE DI DIMENSIONE E ABBELLIRE  -->
 
-	<!-- <div class="col-3 text-start">
-	                        						<a href=".">
-	                        							<link rel="stylesheet" href="/public/router.png">
-	                        							<img src="/public/router.png" alt="">
-	                        						</a>
-	                        					</div> -->
-	<!-- <div v-for="(item, index) in menuItems" :key="index" class="col-2 d-flex justify-content-center align-items-center">
-	                        						<router-link :to="{name: item.routeName}" class="nav-link">
-	                        							<h3>{{ item.label }}</h3>
-	                        						</router-link>
-	                        					</div> -->
-
-	<!-- OFFCANVAS -->
 	<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
 		<div class="offcanvas-header">
 			<h5 class="offcanvas-title" id="offcanvasExampleLabel">Carrello: hai selezionato {{ cartCounter() }}
@@ -151,7 +117,7 @@ export default {
 						<!-- stampo i dati del prodotto e la quantità attraverso la funzione magica per richiamare i dati del localstorage -->
 						<span>{{ prodotto.name }} ({{ prodotto.price }}) -> <span class="counter" :data-id="prodotto.id"
 								:data-name="prodotto.name" :id="prodotto.id + 'span'">{{
-							this.getStorageValue(prodotto.id) ?? 0 }}</span></span>
+				this.getStorageValue(prodotto.id) ?? 0 }}</span></span>
 						<button class="btn btn-primary add" @click="this.cartAddElement(prodotto)">+</button>
 						<button class="btn btn-danger remove"
 							@click="cartRemoveElement(prodotto); hideMinButton(prodotto.id)">-</button>

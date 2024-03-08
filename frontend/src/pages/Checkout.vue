@@ -51,9 +51,9 @@ export default {
             this.error = true
         }
 
-        let braintreeScript = document.createElement('script')
-        braintreeScript.setAttribute('src', 'https://js.braintreegateway.com/web/dropin/1.42.0/js/dropin.js')
-        document.head.appendChild(braintreeScript)
+        // let braintreeScript = document.createElement('script')
+        // braintreeScript.setAttribute('src', 'https://js.braintreegateway.com/web/dropin/1.42.0/js/dropin.js')
+        // document.head.appendChild(braintreeScript)
 
 
     },
@@ -214,14 +214,14 @@ export default {
                     </div>
 
                     <!-- BRAINTREE  -->
-                    <div id="braintreeContainer">
+                    <!-- <div id="braintreeContainer">
 
                         <div id="dropin-container" class="col-8">{{ this.createBraintree() }}</div>
                     </div>
-
+-->
                     <!-- bottone submit per confermare i dati di pagamento  -->
-                    <button id="submit-button" class="button button--small button--green">Conferma
-                        Selezione</button>
+                    <!-- <button id="submit-button" class="button button--small button--green">Conferma
+                        Selezione</button> -->
 
 
 
