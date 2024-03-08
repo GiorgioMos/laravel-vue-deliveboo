@@ -118,13 +118,14 @@ export default {
 
 						<!-- DA STILICAZZOZARE -->
 						<!-- stampo i dati del prodotto e la quantità attraverso la funzione magica per richiamare i dati del localstorage -->
-						<span>{{ prodotto.name }} ({{ prodotto.price }}) -> 
-							<span class="counter" :data-id="prodotto.id" :data-name="prodotto.name" :id="prodotto.id + 'span'">
-							{{this.getStorageValue(prodotto.id) ?? 0 }}</span>
+						<span>{{ prodotto.name }} ({{ prodotto.price }}) ->
+							<span class="counter" :data-id="prodotto.id" :data-name="prodotto.name"
+								:id="prodotto.id + 'span'">
+								{{ this.getStorageValue(prodotto.id) ?? 0 }}</span>
 						</span>
 
 						<button class="btn btn-primary add" @click="this.cartAddElement(prodotto)">+</button>
-						
+
 						<button class="btn btn-danger remove"
 							@click="cartRemoveElement(prodotto); hideMinButton(prodotto.id)">-</button>
 						<p href="#" @click="fullCartRemoveElement(prodotto)">rimuovi</p>
@@ -134,13 +135,14 @@ export default {
 			</div>
 
 			<!-- bottone svuota carrello  -->
-			<button :class="(cartCounter() > 0) ? 'd-inline-block' : 'd-none'" id="clearCart" class="btn btn-primary"
-				@click="this.clearCart(); this.ArrayCart()"> Svuota
+			<button data-bs-dismiss="offcanvas" :class="(cartCounter() > 0) ? 'd-inline-block' : 'd-none'"
+				id="clearCart" class="btn btn-primary" @click="this.clearCart(); this.ArrayCart()"> Svuota
 				carrello</button>
 
 			<!-- bottone checkout  -->
 			<router-link :to="{ name: 'checkout' }">
-				<button v-if="cartCounter() > 0" id="order" class="btn btn-primary"> Procedi all'ordine</button>
+				<button data-bs-dismiss="offcanvas" v-if="cartCounter() > 0" id="order" class="btn btn-primary"> Procedi
+					all'ordine</button>
 			</router-link>
 		</div>
 	</div>
