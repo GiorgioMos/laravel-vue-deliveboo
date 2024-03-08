@@ -25,6 +25,8 @@ export default {
 		this.fullCartRemoveElement = functions.fullCartRemoveElement
 		this.clearCart = functions.clearCart
 		this.getStorageValue = functions.getStorageValue
+		this.currentValue = functions.currentValue
+
 
 	},
 	beforeMount() {
@@ -83,6 +85,7 @@ export default {
 				return new URL(image, import.meta.url).href
 			}
 		},
+
 	}
 }
 </script>
@@ -106,7 +109,7 @@ export default {
 					<li v-for="product in restaurant?.products" class="product" :id="'product-' + product.id">
 
 						<span class="counter" :data-id="product.id" :data-name="product.name"
-							:id="product.id + 'span'">0</span>
+							:id="product.id + 'span'">{{ this.currentValue(product) }}</span>
 						<button class="btn btn-primary add"
 							@click="cartAddElement(product); hideMinButton(product?.id)">+</button>
 						<button class="btn btn-danger remove"
@@ -132,18 +135,20 @@ export default {
 	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-			<div class="modal-header">
-				<h1 class="modal-title fs-5" id="exampleModalLabel">Attenzione</h1>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body text-dark">
-				Stai già ordinando da un'altro ristorante
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" @click="this.clearCart(); this.ArrayCart()" data-bs-dismiss="modal">Svuota carrello</button>
-				<a :href="'http://localhost:5000/restaurants/' + getStorageValue('restaurant_id')" class="btn btn-primary">Ristorante in corso</a>
-				
-			</div>
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Attenzione</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body text-dark">
+					Stai già ordinando da un'altro ristorante
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" @click="this.clearCart(); this.ArrayCart()"
+						data-bs-dismiss="modal">Svuota carrello</button>
+					<a :href="'http://localhost:5000/restaurants/' + getStorageValue('restaurant_id')"
+						class="btn btn-primary">Ristorante in corso</a>
+
+				</div>
 			</div>
 		</div>
 	</div>

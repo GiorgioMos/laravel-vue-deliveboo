@@ -41,7 +41,7 @@ export default {
             })
         }
     },
-    // aggiorna l'array con i prodotti nel carrello 
+    // aggiorna l'array nello store con gli id dei prodotti nel carrello 
     ArrayCart: function () {
         this.store.ArrayIdsInCart = Object.keys(localStorage)
         console.log(this.store.ArrayIdsInCart)
@@ -52,46 +52,49 @@ export default {
     },
     // nascondo il bottone se il valore è 0 
     hideMinButton: function (id) {
-        var valore = document.getElementById(`${id}span`).innerHTML
+
+        var valore = Number(localStorage.getItem(id))
+
         // seleziono il bottone - 
-        const min = document.getElementById(`product-${id}`).getElementsByClassName("remove")[0]
-        const min1 = document.getElementById(`product-${id}`).getElementsByClassName("remove")[1]
+        const minBtn = document.querySelectorAll(`#product-${id} .remove`);
 
-        if (valore == 0) {
-            min.classList.add(
-                "d-none")
-                min1.classList.add(
-                    "d-none")
-        } else {
-            if (min.classList.contains("d-none")) {
+        minBtn.forEach(btn => {
 
-                min.classList.remove("d-none")
-                min1.classList.remove("d-none")
-
+            if(btn) {
+                if (valore == 0) {
+                    btn.classList.add("d-none")
+                } else {
+                    if (btn.classList.contains("d-none")) {
+                        btn.classList.remove("d-none")
+        
+                    }
+                }
             }
-        }
+            
+        });
+
+        
     },
     //funzione che aggiunge elementi alla lista dei prodotti selezionati
     cartAddElement: function (product) {
 
         // controllo se il ristorante corrente è vuoto o se è uguale a quello del prodotto che voglio inserire 
-        if (localStorage.getItem("restaurant_id") == null || product.restaurant_id == localStorage.getItem("restaurant_id")) {
-            localStorage.setItem("restaurant_id", product.restaurant_id)
+       if (localStorage.getItem("restaurant_id") == null || product.restaurant_id == localStorage.getItem("restaurant_id")) {
 
+        // se entra pusho l'id del ristorante corrente nel local storage 
+        localStorage.setItem("restaurant_id", product.restaurant_id)
+
+        
+        
             // recupero il valore della quantità
-            let quantity = Number(document.querySelector(`span[data-name="${product.name}"]`).innerHTML)
-            //incremento la quantitù
+            let quantity = Number(localStorage.getItem(product.id))
+            //incremento la quantità
             quantity++
             // salvo la coppia nome-quantità nel local storage 
             localStorage.setItem(product.id, quantity)
-            // la sparo in pagina nello span relativo a quel prodotto
-            document.querySelector(`span[data-name="${product.name}"]`).innerHTML = quantity
-            this.ArrayCart()
 
+        this.ArrayCart()
 
-
-            // richiamo la funzione che mi aggiorna i prodotti nel carrello 
-            // this.riempiCarrello(product.name);
         } else {
             console.log("non si fa");
 
@@ -107,7 +110,9 @@ export default {
     },
     //funzione che rimuove elementi alla lista dei prodotti selezionati
     cartRemoveElement: function (product) {
-        let quantity = Number(document.querySelector(`span[data-id="${product.id}"]`).innerHTML)
+
+        // recupero il valore della quantità
+        let quantity = Number(localStorage.getItem(product.id))
         // controllo che la quantità sia maggiore di 0, e in caso decremento, altrimenti setto il valore a 0 
         if (quantity > 0) {
             quantity--
@@ -119,7 +124,6 @@ export default {
                 localStorage.removeItem(product.id)
 
             }
-            document.querySelector(`span[data-id="${product.id}"]`).innerHTML = quantity
             this.ArrayCart()
 
             //  this.riempiCarrello(product_name);
@@ -133,12 +137,24 @@ export default {
     },
     fullCartRemoveElement: function(product) {
         localStorage.removeItem(product.id)
-        document.querySelector(`span[data-id="${product.id}"]`).innerHTML = 0
         this.ArrayCart()
         //se l'unico elemento del localstorage è il restaurant id allora lo rimuovo
         if (localStorage.length == 1) {
             localStorage.removeItem("restaurant_id")
         }
         
+    },
+    currentValue: function(prodotto) {
+        let value = 0
+        //ciclo sull'array nello store che contiene tutti gli id dei prodotti nel carrello
+        this.store.ArrayIdsInCart.forEach(element => {
+            // controllo che la chiave non sia il restaurant id
+            if (element == prodotto.id) {
+                //recupero il valore associato alla chiave e lo strasformo in un numero, era una stringa
+                value = parseInt(localStorage.getItem(element))
+                // a ogni giro sommo la quantità corrente con quella totale fuori dal ciclo 
+            }
+        });
+        return value
     }
 }

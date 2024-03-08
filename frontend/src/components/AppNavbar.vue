@@ -32,7 +32,7 @@ export default {
 				}
 			});
 			return quantities
-		}
+		},
 	},
 	data() {
 		return {
@@ -142,7 +142,8 @@ export default {
 	<!-- OFFCANVAS -->
 	<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
 		<div class="offcanvas-header">
-			<h5 class="offcanvas-title" id="offcanvasExampleLabel">Carrello</h5>
+			<h5 class="offcanvas-title" id="offcanvasExampleLabel">Carrello: hai selezionato {{ cartCounter() }}
+				prodotti</h5>
 			<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 		</div>
 		<div class="offcanvas-body">
@@ -155,9 +156,10 @@ export default {
 					<div v-if="this.store.ArrayIdsInCart.includes(prodotto.id.toString())">
 
 						<!-- stampo i dati del prodotto e la quantità attraverso la funzione magica per richiamare i dati del localstorage -->
-						<span>{{ prodotto.name }} -> {{ this.getStorageValue(prodotto.id) }}</span>
-						<button class="btn btn-primary add"
-							@click="cartAddElement(prodotto); hideMinButton(prodotto.id)">+</button>
+						<span>{{ prodotto.name }} -> <span class="counter" :data-id="prodotto.id"
+								:data-name="prodotto.name" :id="prodotto.id + 'span'">{{
+							this.getStorageValue(prodotto.id) ?? 0 }}</span></span>
+						<button class="btn btn-primary add" @click="this.cartAddElement(prodotto)">+</button>
 						<button class="btn btn-danger remove"
 							@click="cartRemoveElement(prodotto); hideMinButton(prodotto.id)">-</button>
 						<a href="#" @click="fullCartRemoveElement(prodotto)">rimuovi</a>
