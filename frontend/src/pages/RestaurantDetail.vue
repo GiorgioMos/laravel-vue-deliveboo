@@ -195,17 +195,18 @@ export default {
 			</div>
 			<div v-else class="row py-3 text-warning">
 				<div class="d-flex mt-4 mb-5">
-					<div class="d-flex flex-column m-3 align-items-start p-2 justify-content-center">
+					<div id="restaurant-desc" class="d-flex flex-column m-3 align-items-start p-5 justify-content-center">
 						<h1 class="mb-5"> {{ restaurant?.name }} </h1> 
 						<div class="my-4"> {{ restaurant?.description }} </div>
 						<div class="my-3"> {{ restaurant?.address }} </div>
 						<button id="button" class="btn mt-5" ><a :href="restaurant?.website">Sito Web</a></button>
 					</div>
-					<div  class="imgBox rounded m-5">
+					<div id="imgbox" class="imgBox rounded m-5">
 						<img class="cardImg rounded" :src="getImage(restaurant?.img)" alt="">
 					</div>
 				</div>
 				<h2 class="my-3">I Nostri Piatti</h2>
+				<div class="d-flex justify-content-center gap-4">
 					<div v-for="product in restaurant?.products" class="product card-list my-5" :id="'product-' + product.id">
 						<article class="cards">
 							<figure class="card-image">
@@ -214,14 +215,16 @@ export default {
 							<div class="card-header d-flex flex-column">
 								<h4>{{ product?.name }}</h4>
 								<p>{{ product?.description }}</p>
+								<p>Prezzo: {{ product?.price }} €</p>
 							</div>
 							<div class="card-footer">
-								<button class="btn btn-primary add" @click="cartAddElement(product?.restaurant_id, product?.name); hideMinButton(product?.id)">+</button>
-								<span class="counter" :data-id="product.id" :data-name="product.name" :id="product.id + 'span'">0</span>
-								<button class="btn btn-danger remove" @click="cartRemoveElement(product?.restaurant_id, product?.name); hideMinButton(product?.id)">-</button>
+								<button id="cart-remove" class="btn remove" @click="cartRemoveElement(product?.restaurant_id, product?.name); hideMinButton(product?.id)">-</button>
+								<span class="counter mx-4" :data-id="product.id" :data-name="product.name" :id="product.id + 'span'"> 0 </span>
+								<button id="cart-add" class="btn add" @click="cartAddElement(product?.restaurant_id, product?.name); hideMinButton(product?.id)">+</button>
 							</div>
 						</article>
 					</div>
+				</div>
 				<div class="row d-flex justify-content-end">
 					<div class="col-2 py-3">
 						<router-link :to="{ name: 'home' }" class="btn btn-info">
@@ -255,9 +258,8 @@ button > a{
 }
 
 #button{
-	text-decoration: none;
-	color: white;
 	background-color: #060113;
+	border: solid 1px #F59754;
 	border-radius: 20px;
 	padding: 10px 20px;
 }
@@ -267,6 +269,12 @@ button > a{
 	min-height: 100%;
 	object-fit: cover;
 	border-radius: 30px !important;
+}
+#imgbox{
+	transition: transform 0.2s;
+}
+#imgbox:hover{
+	transform: scale(1.05);
 }
 
 #product-img{
@@ -289,6 +297,16 @@ li{
 	list-style-type: none;
 }
 
+#restaurant-desc{
+	font-size: 1.5rem;
+	background-color: #3d3737;
+	border: solid 1px #066E7C;
+	transition: transform 0.2s;
+	border-radius: 20px;
+}
+#restaurant-desc:hover{
+	transform: scale(1.01);
+}
 
 //css product card
 
@@ -312,7 +330,7 @@ img {
 	transition: .15s ease-in;
 	
 	&:hover, &:focus-within {
-		box-shadow: 0 0 0 2px #16C79A, 0 10px 60px 0 rgba(#000, .1);
+		box-shadow: 0 0 0 2px #066E7C, 0 10px 60px 0 rgba(#000, .1);
 			transform: translatey(-5px);
 	}
 }
@@ -335,6 +353,53 @@ img {
 	padding-top: 1.25rem;
 	display: flex;
 	align-items: center;
-	flex-wrap: wrap;
+	justify-content: center;
 }
+
+//css bottoni prodotti
+
+#cart-remove{
+
+	display: flex;
+  	align-items: center;
+  	justify-content: center;
+	background-color: #066E7C;
+	height: 2rem;
+	width: 2rem;
+	border-radius: 50%;
+	color: #F59754;
+	text-align: center;
+	line-height: 1rem;
+	border: 1px solid #F59754;
+	transition: background-color 0.3s ease;
+	transition: border 0.3s ease;
+	transition: transform 0.2s;
+}
+#cart-remove:hover{
+	background-color: #060113;
+	border: 1px solid #066E7C;
+	transform: scale(1.2);
+}
+#cart-add{
+	display: flex;
+  	align-items: center;
+  	justify-content: center;
+	background-color: #066E7C;
+	height: 2rem;
+	width: 2rem;
+	border-radius: 50%;
+	color: #F59754;
+	text-align: center;
+	line-height: 1rem;
+	border: 1px solid #F59754;
+	transition: background-color 0.3s ease;
+	transition: border 0.3s ease;
+	transition: transform 0.2s;
+}
+#cart-add:hover{
+	background-color: #060113;
+	border: 1px solid #066E7C;
+	transform: scale(1.2);
+}
+
 </style>
