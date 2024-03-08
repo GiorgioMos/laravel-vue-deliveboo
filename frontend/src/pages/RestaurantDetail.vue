@@ -39,8 +39,6 @@ export default {
 
 		document.getElementById("clearCart").addEventListener("click", () =>
 			this.aggiornaCounter()
-
-
 		)
 
 	},
@@ -84,110 +82,7 @@ export default {
 
 				return new URL(image, import.meta.url).href
 			}
-		},
-		aggiornaCounter() {
-			let spans = document.querySelectorAll('.counter');
-
-			if (localStorage.length != 0) {
-				spans.forEach(element => {
-					//ciclo sugli elementi nel local storage
-					for (let i = 0; i < localStorage.length; i++) {
-						// seleziono la key 
-						let key = localStorage.key(i);
-						// recupero il nome del prodotto 
-						let nome = element.getAttribute('data-name');
-						// salvo il valore corrispondente che si trova nel local storage in una variabile 
-						let value = localStorage.getItem(key);
-						// se il nome prodotto dello span è uguale a quello nel local storage gli sparo dentro il valore corrispondente 
-						if (nome == key) {
-							document.querySelector(`span[data-name="${nome}"]`).innerHTML = value
-						}
-
-					}
-
-					// recupero l'id 
-					let id = element.getAttribute('data-id');
-					// richiamo la funzione per nascondere il tasto meno, e gli passo l'id 
-					this.hideMinButton(id)
-				});
-			} else {
-				spans.forEach(element => {
-					element.innerHTML = 0
-					// recupero l'id 
-					let id = element.getAttribute('data-id');
-					// richiamo la funzione per nascondere il tasto meno, e gli passo l'id 
-					this.hideMinButton(id)
-				})
-			}
-		},
-
-		// nascondo il bottone se il valore è 0 
-		hideMinButton(id) {
-			var valore = document.getElementById(`${id}span`).innerHTML
-			// seleziono il bottone - 
-			const min = document.getElementById(`product-${id}`).getElementsByClassName("remove")[0]
-			if (valore == 0) {
-				min.classList.add(
-					"d-none")
-			} else {
-				if (min.classList.contains("d-none")) {
-
-					min.classList.remove("d-none")
-				}
-			}
-		},
-		//funzione che aggiunge elementi alla lista dei prodotti selezionati
-		cartAddElement(restaurant_id, product_name) {
-
-			// controllo se il ristorante corrente è vuoto o se è uguale a quello del prodotto che voglio inserire 
-			if (localStorage.getItem("restaurant_id") == null || restaurant_id == localStorage.getItem("restaurant_id")) {
-				localStorage.setItem("restaurant_id", restaurant_id)
-
-				// recupero il valore della quantità
-				let quantity = Number(document.querySelector(`span[data-name="${product_name}"]`).innerHTML)
-				//incremento la quantitù
-				quantity++
-				// salvo la coppia nome-quantità nel local storage 
-				localStorage.setItem(product_name, quantity)
-				// la sparo in pagina nello span relativo a quel prodotto
-				document.querySelector(`span[data-name="${product_name}"]`).innerHTML = quantity
-				// richiamo la funzione che mi aggiorna i prodotti nel carrello 
-				this.riempiCarrello(product_name);
-			} else {
-
-				// todo inserire alert o modal
-				console.log("non si fa");
-			}
-
-		},
-
-		//funzione che rimuove elementi alla lista dei prodotti selezionati
-		cartRemoveElement(product_id, product_name) {
-			let quantity = Number(document.querySelector(`span[data-name="${product_name}"]`).innerHTML)
-			let productAllZero = 0;
-			// controllo che la quantità sia maggiore di 0, e in caso decremento, altrimenti setto il valore a 0 
-			if (quantity > 0) {
-				quantity--
-
-				if (quantity != 0) {
-					localStorage.setItem(product_name, quantity)
-
-				} else {
-					localStorage.removeItem(product_name)
-
-				}
-				document.querySelector(`span[data-name="${product_name}"]`).innerHTML = quantity
-
-				this.riempiCarrello(product_name);
-
-				//se l'unico elemento del localstorage è il restaurant id allora lo rimuovo
-				if (localStorage.length == 1) {
-					localStorage.removeItem("restaurant_id")
-				}
-			}
-
 		}
-
 	}
 }
 </script>
@@ -214,16 +109,18 @@ export default {
 							<p class="my-1">☎️ {{ restaurant?.telephone }}</p>
 						</div>
 					</div>
-					<div id="restaurant-desc" class="d-flex flex-column m-3 align-items-start p-5 justify-content-center">
+					<div id="restaurant-desc"
+						class="d-flex flex-column m-3 align-items-start p-5 justify-content-center">
 						<div class="my-4 mb-4 py-2 pt-5"> {{ restaurant?.description }} </div>
-						<button id="button" class="btn mt-1" ><a :href="restaurant?.website">Sito Web</a></button>
+						<button id="button" class="btn mt-1"><a :href="restaurant?.website">Sito Web</a></button>
 					</div>
 				</div>
 
 				<!-- SEZIONE PRODOTTI RISTORANTE -->
 				<h2 class="my-3">I Nostri Piatti</h2>
 				<div class="d-flex justify-content-center gap-4">
-					<div v-for="product in restaurant?.products" class="product card-list my-5" :id="'product-' + product.id">
+					<div v-for="product in restaurant?.products" class="product card-list my-5"
+						:id="'product-' + product.id">
 						<article class="cards">
 							<figure class="card-image">
 								<img id="product-img" :src="product?.img" alt="Immagine-ristorante">
@@ -234,9 +131,13 @@ export default {
 								<p>Prezzo: {{ product?.price }} €</p>
 							</div>
 							<div class="card-footer">
-								<button id="cart-remove" class="btn remove" @click="cartRemoveElement(product?.restaurant_id, product?.name); hideMinButton(product?.id)">-</button>
-								<span class="counter mx-4" :data-id="product.id" :data-name="product.name" :id="product.id + 'span'"> 0 </span>
-								<button id="cart-add" class="btn add" @click="cartAddElement(product?.restaurant_id, product?.name); hideMinButton(product?.id)">+</button>
+								<button id="cart-remove" class="btn remove"
+									@click="cartRemoveElement(product); hideMinButton(product?.id)">-</button>
+								<span class="counter mx-4" :data-id="product.id" :data-name="product.name"
+									:id="product.id + 'span'"> {{ this.currentValue(product) }} </span>
+								<button id="cart-add" class="btn add"
+									@click="cartAddElement(product); hideMinButton(product?.id)">+</button>
+								<a class="remove" href="#" @click="fullCartRemoveElement(product)">rimuovi</a>
 							</div>
 						</article>
 					</div>
@@ -287,19 +188,20 @@ export default {
 
 // ...qui eventuale SCSS di App.vue
 
-h2{
+h2 {
 	text-align: center;
 }
-button > a{
+
+button>a {
 	text-decoration: none;
 	color: white;
 }
 
-#spacer{
+#spacer {
 	margin-top: 3rem;
 }
 
-#button{
+#button {
 	background-color: #060113;
 	border: solid 2px #066E7C;
 	border-radius: 20px;
@@ -307,9 +209,11 @@ button > a{
 	transition: .15s ease-in;
 	margin: 0 30%;
 }
-#button:hover{
+
+#button:hover {
 	background-color: #066E7C;
 }
+
 .cardImg {
 	max-width: 100%;
 	min-height: 100%;
@@ -318,7 +222,7 @@ button > a{
 	position: relative;
 }
 
-#product-img{
+#product-img {
 	width: 22rem;
 	height: 18rem;
 	object-fit: cover;
@@ -334,11 +238,11 @@ button > a{
 	width: 150rem;
 }
 
-li{
+li {
 	list-style-type: none;
 }
 
-#restaurant-desc{
+#restaurant-desc {
 	font-size: 1.2rem;
 	width: 60rem;
 	line-height: 2.4rem;
@@ -346,13 +250,13 @@ li{
 	border-radius: 20px;
 }
 
-#restaurant-desc:hover{
+#restaurant-desc:hover {
 	transform: scale(1.02);
 }
 
 //OCIO QUI CHE LE QUANDO SI FA IL SITO RESPONSIVE PARTONO LE MADONNE
 
-#restaurant-info{
+#restaurant-info {
 	position: absolute;
 	transition: transform 0.2s;
 	background-color: #3d3737;
@@ -364,7 +268,8 @@ li{
 	left: 940px;
 	opacity: 0.85;
 }
-#restaurant-info:hover{
+
+#restaurant-info:hover {
 	transform: scale(1.02);
 }
 
@@ -388,10 +293,11 @@ img {
 	padding: 1.25rem;
 	position: relative;
 	transition: .15s ease-in;
-	
-	&:hover, &:focus-within {
+
+	&:hover,
+	&:focus-within {
 		box-shadow: 0 0 0 2px #066E7C, 0 10px 60px 0 rgba(#000, .1);
-			transform: translatey(-5px);
+		transform: translatey(-5px);
 	}
 }
 
@@ -418,11 +324,11 @@ img {
 
 //css bottoni prodotti
 
-#cart-remove{
+#cart-remove {
 
 	display: flex;
-  	align-items: center;
-  	justify-content: center;
+	align-items: center;
+	justify-content: center;
 	background-color: #066E7C;
 	height: 2rem;
 	width: 2rem;
@@ -435,15 +341,17 @@ img {
 	transition: border 0.3s ease;
 	transition: transform 0.2s;
 }
-#cart-remove:hover{
+
+#cart-remove:hover {
 	background-color: #060113;
 	border: 1px solid #066E7C;
 	transform: scale(1.2);
 }
-#cart-add{
+
+#cart-add {
 	display: flex;
-  	align-items: center;
-  	justify-content: center;
+	align-items: center;
+	justify-content: center;
 	background-color: #066E7C;
 	height: 2rem;
 	width: 2rem;
@@ -456,10 +364,10 @@ img {
 	transition: border 0.3s ease;
 	transition: transform 0.2s;
 }
-#cart-add:hover{
+
+#cart-add:hover {
 	background-color: #060113;
 	border: 1px solid #066E7C;
 	transform: scale(1.2);
 }
-
 </style>
