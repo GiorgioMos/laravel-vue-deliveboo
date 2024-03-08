@@ -13,6 +13,19 @@ export default {
         return {
             store,
             error: false,
+            formData: {
+                name: '',
+                lastname: '',
+                email: '',
+                telephone: '',
+                address: ''
+            }
+        }
+    },
+    computed: {
+        isFormValid() {
+            // Verifichiamo che tutti i campi siano validi
+            return Object.values(this.formData).every(field => !!field);
         }
     },
     created() {
@@ -48,6 +61,20 @@ export default {
 
     },
     methods: {
+        validateField(field) {
+            // Funzione per la validazione di un campo
+            return !!field;
+        },
+        submitForm() {
+            // Gestione dell'invio del form
+            if (this.isFormValid) {
+                // Esegui azioni per inviare il form
+                this.confirmOrder();
+            } else {
+                // Gestisci l'errore, ad esempio visualizza un messaggio di errore
+                console.log('Compila tutti i campi obbligatori.');
+            }
+        },
         createBraintree() {
             var button = document.querySelector('#submit-button');
             button.classList.remove("d-none")
@@ -137,46 +164,48 @@ export default {
 
 
                             <h2 class="mt-5">Inserisci i tuoi dati per completare l'ordine</h2>
-                            <form action="/action_page.php" method="POST" enctype="multipart/form-data"
-                                class="needs-validation col-8">
-                                <!-- cross scripting request forgery -->
-                                <!-- @csrf -->
+                            <form @submit.prevent="submitForm" class="needs-validation col-8">
 
-                                <!-- nome  -->
-                                <div class="mb-3">
+                                <!-- NAME -->
+                                <div
+                                    :class="['mb-3', { 'has-error': !validateField(name), 'has-success': formData.name }]">
                                     <label for="name" class="form-label">Nome <span style="color: red;">*</span></label>
-                                    <input type="text" class="form-control" id="name" name="name" value="" required>
+                                    <input type="text" class="form-control" id="name" name="name"
+                                        v-model="formData.name" required>
                                 </div>
-                                <!-- cognome  -->
-                                <div class="mb-3">
+                                <!-- LASTNAME  -->
+
+                                <div
+                                    :class="['mb-3', { 'has-error': !validateField(lastname), 'has-success': formData.lastname }]">
                                     <label for="lastname" class="form-label">Cognome <span
                                             style="color: red;">*</span></label>
-                                    <input type="text" class="form-control" id="lastname" name="lastname" value=""
-                                        required>
+                                    <input type="text" class="form-control" id="lastname" name="lastname"
+                                        v-model="formData.lastname" required>
                                 </div>
 
-                                <!-- email  -->
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email <span
+                                <!-- EMAIL  -->
+                                <div
+                                    :class="['mb-3', { 'has-error': !validateField(email), 'has-success': formData.email }]">
+                                    <label for="email" class="form-label">email <span
                                             style="color: red;">*</span></label>
-                                    <input id="email" type="email" class="form-control" name="email" value="" required
-                                        autocomplete="email">
+                                    <input type="email" class="form-control" id="email" name="email"
+                                        v-model="formData.email" required>
                                 </div>
-
-                                <!-- telephone  -->
-                                <div class="mb-3">
-                                    <label for="telephone" class="form-label">telephone <span
+                                <!-- TELEPHONE -->
+                                <div
+                                    :class="['mb-3', { 'has-error': !validateField(telephone), 'has-success': formData.telephone }]">
+                                    <label for="telephone" class="form-label">telefono <span
                                             style="color: red;">*</span></label>
-                                    <input id="telephone" type="number" class="form-control" name="telephone" value=""
-                                        required autocomplete="telephone">
+                                    <input type="number" class="form-control" id="telephone" name="telephone"
+                                        v-model="formData.telephone" required>
                                 </div>
-
-                                <!-- addresss  -->
-                                <div class="mb-3">
-                                    <label for="addresss" class="form-label">Indirizzo <span
+                                <!-- ADDRESS -->
+                                <div
+                                    :class="['mb-3', { 'has-error': !validateField(address), 'has-success': formData.address }]">
+                                    <label for="address" class="form-label">indirizzo <span
                                             style="color: red;">*</span></label>
-                                    <input id="addresss" type="text" class="form-control" name="addresss" value=""
-                                        required autocomplete="addresss">
+                                    <input type="text" class="form-control" id="address" name="address"
+                                        v-model="formData.address" required>
                                 </div>
                             </form>
                         </div>
@@ -196,7 +225,7 @@ export default {
 
                     <div class="d-flex justify-content-center">
                         <button class="btn btn-danger my-5" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                            @click="this.confirmOrder()">CONFERMA ORDINE</button>
+                            :disabled="!isFormValid" @click="confirmOrder">CONFERMA ORDINE</button>
                     </div>
 
 
@@ -291,5 +320,17 @@ export default {
     100% {
         transform: rotate(360deg);
     }
+}
+
+
+// CSS VALIDAZIONE 
+.has-error input {
+    border-color: red !important;
+    border-width: 2px;
+}
+
+.has-success input {
+    border-color: green !important;
+    border-width: 2px;
 }
 </style>
