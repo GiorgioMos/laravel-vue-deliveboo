@@ -65,16 +65,20 @@ export default {
         confirmOrder() {
 
             setTimeout(() => {
+
+                this.clearCart()
+
                 router.push({ name: 'home' })
 
                 var myModalEl = document.getElementById('staticBackdrop');
                 var modal = bootstrap.Modal.getInstance(myModalEl)
                 modal.hide();
-                // }
+                const myModal = bootstrap.Modal(document.getElementById('myModal'));
+                myModal.hide();
+
             }, 4000)
 
             //svuoto il carrello
-            this.clearCart()
         }
     }
 }
@@ -199,7 +203,7 @@ export default {
                     <!-- MODAL CONFERMA ORDINE  -->
                     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
+                        <div id="myModal" class="modal-dialog modal-dialog-centered">
                             <div class="modal-content bg-dark">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="staticBackdropLabel">ORDINE COMPLETATO</h1>
