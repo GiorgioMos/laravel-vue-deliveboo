@@ -171,4 +171,15 @@ font-awesome-icon {
 font-awesome-icon:hover {
 	color: white;
 }
+
+
+
+#offcanvasExample {
+	width: 45rem !important;
+	background-color: #242322e5;
+}
+
+#offcanvasExample>* {
+	color: white !important;
+}
 </style>
