@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\ProductsController;
 use App\Http\Controllers\Api\RestaurantController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,3 +27,6 @@ Route::get("restaurants/{id}", [RestaurantController::class,  "show"]);
 
 // category show
 Route::get("/categories", [CategoryController::class, "index"]);
+
+// products show
+Route::get("/products", [ProductsController::class, "index"]);
