@@ -1,68 +1,79 @@
 <script>
 import RestaurantCard from "../components/RestaurantCard.vue";
-import { store } from "../store.js" //state management
-import axios from 'axios'; //importo Axios
-
+import { store } from "../store.js"; //state management
+import axios from "axios"; //importo Axios
 
 export default {
-    name: "RestaurantList",
-    components: {
-        RestaurantCard
-    },
-    data() {
-        return {
-            store
-        }
-    },
-    mounted() {
-        this.getRestaurants();
-    },
-    methods: {
-        getRestaurants() {
-            console.log("RestaurantList does things");
+  name: "RestaurantList",
+  components: {
+    RestaurantCard,
+  },
+  data() {
+    return {
+      store,
+    };
+  },
+  mounted() {
+    this.getRestaurants();
+  },
+  methods: {
+    getRestaurants() {
+      console.log("RestaurantList does things");
 
-            let url = this.store.apiRestaurants + this.store.restaurantsEndPoint;
+      let url = this.store.apiRestaurants + this.store.restaurantsEndPoint;
 
-            axios.get(url).then(risultato => {
-                // if di controllo
-                if (risultato.status === 200) {
-                    if (risultato.data.success) {
-                        this.store.restaurants = risultato.data.payload;
-                    } else {
-                        // controllare statusCode, presenza e veridicità di data.success
-                        console.error("qualcosa è andato storto...");
-                    }
-                } else if (result.status === 301) {
-                    console.error("Ops... ciò che cerchi non si trova più qui.");
-                } else if (result.status === 400) {
-                    console.error("Ops... non riusciamo a comprendere ciò che hai richiesto.");
-                } else if (result.status === 404) {
-                    console.error("Ops... non riusciamo a trovare ciò che hai richiesto.");
-                } else if (result.status === 500) {
-                    console.error("Ops... ci scusiamo per l'inconveniente, stiamo spegnendo l'incendio.");
-                }
-            }).catch(errore => {
-                console.error(errore);
-            });
-        }
-    }
-}
+      axios
+        .get(url)
+        .then((risultato) => {
+          // if di controllo
+          if (risultato.status === 200) {
+            if (risultato.data.success) {
+              this.store.restaurants = risultato.data.payload;
+            } else {
+              // controllare statusCode, presenza e veridicità di data.success
+              console.error("qualcosa è andato storto...");
+            }
+          } else if (result.status === 301) {
+            console.error("Ops... ciò che cerchi non si trova più qui.");
+          } else if (result.status === 400) {
+            console.error(
+              "Ops... non riusciamo a comprendere ciò che hai richiesto."
+            );
+          } else if (result.status === 404) {
+            console.error(
+              "Ops... non riusciamo a trovare ciò che hai richiesto."
+            );
+          } else if (result.status === 500) {
+            console.error(
+              "Ops... ci scusiamo per l'inconveniente, stiamo spegnendo l'incendio."
+            );
+          }
+        })
+        .catch((errore) => {
+          console.error(errore);
+        });
+    },
+  },
+};
 </script>
 
 <template>
-    <div class="container">
-        <div>
-            <h1 class="text-center">Restaurants</h1>
-            <div class="row justify-content-around">
-                <RestaurantCard v-for="restaurant in store.restaurants" :item="restaurant" />
-            </div>
-        </div>
+  <div id="card-box" class="container d-none">
+    <h3 class="text-center my-5">Potrebbero interessarti:</h3>
+    <div>
+      <div class="row">
+        <RestaurantCard
+          v-for="restaurant in store.restaurants"
+          :item="restaurant"
+        />
+      </div>
     </div>
+  </div>
 </template>
 
 <style lang="scss">
 // importo il foglio di stile generale dell'applicazione, non-scoped
-@use '../styles/general.scss';
+@use "../styles/general.scss";
 </style>
 
 <style scoped lang="scss">
@@ -71,8 +82,7 @@ export default {
 
 // ...qui eventuale SCSS di App.vue
 
-
 .container {
-    min-height: 100vh;
+  min-height: 100vh;
 }
 </style>
