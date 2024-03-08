@@ -360,7 +360,7 @@ li{
 	width: 35rem;
 	height: 16rem;
 	border-radius: 15px;
-	bottom: 580px;
+	bottom: 500px;
 	left: 940px;
 	opacity: 0.85;
 }
