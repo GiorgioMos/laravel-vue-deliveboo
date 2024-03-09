@@ -195,7 +195,7 @@
             border-width: 2px !important;
         }
 
-        .btn:hover {
+        .form-validation:hover {
             background-color: #f9b44d !important;
             transform: scale(1.2);
         }
