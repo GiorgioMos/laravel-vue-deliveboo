@@ -26,7 +26,7 @@
 <body>
     <div id="app">
 
-
+        {{-- NAVBAR  --}}
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
@@ -73,44 +73,14 @@
                         </li>
                     @endguest
                 </ul>
-                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </button>
+
             </div>
     </div>
     </nav>
 
     <main class="">
         @yield('content')
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample"
-            aria-labelledby="offcanvasExampleLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Carrello</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <div id="offcanvas-body">
-
-                </div>
-                <button class="btn btn-primary" onclick="clearCart()"> Svuota carrello</button>
-            </div>
-        </div>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/') }}">{{ __('Home') }}</a>
-                </li>
-            </ul>
     </main>
-    </div>
 
 </body>
 
@@ -135,15 +105,5 @@
                 container.appendChild(newElement);
             }
         }
-    }
-
-    // Richiama la funzione al caricamento del DOM
-    document.addEventListener('DOMContentLoaded', function() {
-        riempiCarrello();
-    });
-
-    function clearCart() {
-        localStorage.clear();
-        riempiCarrello();
     }
 </script>

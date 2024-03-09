@@ -3,11 +3,11 @@
 @section('content')
     <div class="container py-3">
         <div class="row">
-            <h1>Modifica il tuo ristorante</h1>
+            <h1 class="text-center textYellow">Modifica il tuo ristorante</h1>
         </div>
 
-        <div class="row">
-            <div class="col-6">
+        <div class="row justify-content-center textYellow">
+            <div class="col-10">
                 @php
                     use App\Models\Restaurant;
                     $currentUser = Auth::id();
@@ -173,6 +173,11 @@
             </div>
         </div>
     </div>
+    <style>
+        label {
+            font-weight: 800;
+        }
+    </style>
 @endsection
 
 <script>

@@ -20,13 +20,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+// TODO mettere qualcosa nella home di localhost
 
-    $restaurants = Restaurant::all();
-    $categories = Category::all();
-
-    return view('welcome', compact('restaurants', 'categories'));
-});
 Route::get('/restaurant/{id}', function ($id) {
 
     $restaurant = Restaurant::findOrFail($id);
