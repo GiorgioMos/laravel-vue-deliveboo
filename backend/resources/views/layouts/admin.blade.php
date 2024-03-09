@@ -76,7 +76,7 @@
         <div id="MainContainer" class="container-fluid vh-100">
             <div class="row h-100 ">
                 <div class="h-100 col-md-3 col-lg-2 ms-5 d-flex align-items-center">
-                    <nav id="sidebarMenu" class="rounded  bg-dark navbar-dark sidebar w-100">
+                    <nav id="sidebarMenu" class=" bg-dark navbar-dark sidebar w-100">
                         <ul class="nav h-100 flex-column justify-content-evenly">
 
 
@@ -185,6 +185,8 @@
 
     #sidebarMenu {
         height: 70%;
+        border-radius: 2rem;
+        padding: 0 1rem
     }
 
     #MainContainer {
@@ -192,7 +194,7 @@
     }
 
     .nav-link {
-        border-radius: 15px;
+        border-radius: 2rem;
         padding: 1rem 2rem;
     }
 

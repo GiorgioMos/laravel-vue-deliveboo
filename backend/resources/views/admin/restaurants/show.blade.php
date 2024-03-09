@@ -71,7 +71,7 @@
         #backsquare {
             height: 40rem;
             width: 70rem;
-            background-color: rgba(255, 255, 255, 0.509);
+            background-color: #242322e5;
             border-radius: 3rem;
             top: 70%;
             z-index: -100;

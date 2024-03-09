@@ -87,9 +87,13 @@ color: #066e7c;
         border-radius: 1.5rem;
     }
 .imgEditContainer {
-    height: 10rem;
+    height: 15rem;
     width: 20rem;
     margin-top: 1rem;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #formpic {
     height: 18rem;

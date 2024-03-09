@@ -54,16 +54,20 @@ export default {
                 <div class="heroSection d-flex">
                     <div class="col-6">
                         <!-- First Title Hero -->
-                        <h2 class="fw-bold pt-5">Esplora il nostro viaggio culinario e scopri la passione dietro il nostro
+                        <h2 class="fw-bold pt-5">Esplora il nostro viaggio culinario e scopri la passione dietro il
+                            nostro
                             servizio
                             di <span class="text-warning"> delivery food </span> </h2>
 
-                        <p class="mt-4 text-start">Benvenuto nel cuore pulsante della nostra avventura culinaria. La nostra
+                        <p class="mt-4 text-start">Benvenuto nel cuore pulsante della nostra avventura culinaria. La
+                            nostra
                             storia non
                             è
                             solo un
-                            racconto di consegne di cibo, ma un viaggio di passione, dedizione e amore per la gastronomia.
-                            Fondata da un gruppo di appassionati di cucina con un unico obiettivo: trasformare l'esperienza
+                            racconto di consegne di cibo, ma un viaggio di passione, dedizione e amore per la
+                            gastronomia.
+                            Fondata da un gruppo di appassionati di cucina con un unico obiettivo: trasformare
+                            l'esperienza
                             del delivery food in qualcosa di straordinario.</p>
                         <div class="aboutImgContainer mt-5">
                             <img class="aboutImg"
@@ -90,11 +94,19 @@ export default {
             <div class="row">
                 <div class="col-12">
                     <div class="sponsorLogo mt-5 d-flex justify-content-around">
-                        <img class="imageLogo img-fluid align-self-center" src="https://www.edigitalagency.com.au/wp-content/uploads/starbucks-logo-png.png" alt="">
-                        <img class="imageLogo img-fluid align-self-center" src="https://www.edigitalagency.com.au/wp-content/uploads/McDonalds-logo-png.png" alt="">
-                        <img class="imageLogo img-fluid align-self-center" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Burger_King_logo_%281999%29.svg/2024px-Burger_King_logo_%281999%29.svg.png" alt="">
-                        <img class="imageLogo img-fluid align-self-center" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Dominos_pizza_logo.svg/1200px-Dominos_pizza_logo.svg.png" alt="">
-                        <img class="imageLogo img-fluid align-self-center" src="https://upload.wikimedia.org/wikipedia/sco/thumb/b/bf/KFC_logo.svg/1200px-KFC_logo.svg.png" alt="">
+                        <img class="imageLogo img-fluid align-self-center"
+                            src="https://www.edigitalagency.com.au/wp-content/uploads/starbucks-logo-png.png" alt="">
+                        <img class="imageLogo img-fluid align-self-center"
+                            src="https://www.edigitalagency.com.au/wp-content/uploads/McDonalds-logo-png.png" alt="">
+                        <img class="imageLogo img-fluid align-self-center"
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Burger_King_logo_%281999%29.svg/2024px-Burger_King_logo_%281999%29.svg.png"
+                            alt="">
+                        <img class="imageLogo img-fluid align-self-center"
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Dominos_pizza_logo.svg/1200px-Dominos_pizza_logo.svg.png"
+                            alt="">
+                        <img class="imageLogo img-fluid align-self-center"
+                            src="https://upload.wikimedia.org/wikipedia/sco/thumb/b/bf/KFC_logo.svg/1200px-KFC_logo.svg.png"
+                            alt="">
                     </div>
                 </div>
             </div>
@@ -417,5 +429,4 @@ h2 {
 // importo variabili
 // @use './styles/partials/variables' as *;
 
-// ...qui eventuale SCSS di App.vue
-</style>
+// ...qui eventuale SCSS di App.vue</style>

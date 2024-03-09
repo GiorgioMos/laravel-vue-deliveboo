@@ -189,5 +189,16 @@ export default {
             }
         });
         return Math.round((total + Number.EPSILON) * 100) / 100
-    }
+    },
+    // recuperare immagini da backend 
+    getImage(img) {
+        let image;
+        if (img.startsWith("http")) {
+          image = img;
+        } else {
+          image = "http://localhost:8000/storage/" + img;
+        }
+        return new URL(image, import.meta.url).href;
+  
+      },
 }

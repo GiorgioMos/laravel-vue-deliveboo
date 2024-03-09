@@ -14,7 +14,7 @@
                             </div>
                         @else
                             @foreach ($products as $product)
-                                <div class="d-flex mb-4 rounded flex-row row card" id="card">
+                                <div class="d-flex align-items-center mb-4 flex-row row card" id="card">
                                     <!--  -->
                                     <div class="col-4 p-3">
 
@@ -27,7 +27,7 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="col-8">
+                                    <div class="col-6">
 
                                         <p class="text-capitalize fw-bold text-center my-2 textTeal fs-3">
                                             {{ $product->name }} </p>
@@ -39,10 +39,22 @@
                                             <h5 class="textTeal fw-bold">Prezzo </h5>
                                             <p class=" fw-light">{{ $product->price }} €</p>
                                         </div>
-                                        <p>Visibile : {{ $product->visible == 1 ? 'Si' : 'No' }}
-                                        </p>
+                                        <h5 class="textTeal fw-bold d-inline-block">Visibilità: </h5>
+
+                                        <span>
+                                            @if ($product->visible == 1)
+                                                <i class="fa-solid fa-check fa-xl text-success"></i>
+                                            @else
+                                                <i class="fa-solid fa-xmark fa-xl text-danger"></i>
+                                            @endif
+                                        </span>
 
 
+
+
+                                        {{-- chiusura card  --}}
+                                    </div>
+                                    <div class="col-2">
                                         <div class="d-flex justify-content-center align-items-center">
                                             <a href="{{ route('admin.products.edit', $product->id) }}"
                                                 class="btn btn-warning me-1"><i class="fa-solid fa-pencil"></i></a>
@@ -90,8 +102,6 @@
                                             <a href="{{ route('admin.products.show', $product->id) }}"
                                                 class="btn info-btn my-3"><i class="fa-solid fa-circle-info fa-2xl"></i></a>
                                         </div>
-
-                                        {{-- chiusura card  --}}
                                     </div>
                                 </div>
                             @endforeach
@@ -100,4 +110,9 @@
                 </div>
             </div>
         </div>
+        <style>
+            .card {
+                border-radius: 2rem;
+            }
+        </style>
     @endsection

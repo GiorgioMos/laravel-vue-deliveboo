@@ -87,12 +87,12 @@
                         </div>
 
                         {{-- img  --}}
-                        <div class="mb-3" id="formpic">
+                        <div class="mb-5" id="formpic">
                             <label for="img" class="form-label">Immagine <span class="text-danger">*</span></label>
-                            <div class="d-flex mt-2">
+                            <div class="d-flex mt-2 mb-5">
 
                                 <div>Tieni l'immagine caricata in precedenza
-                                    <div class="imgEditContainer">
+                                    <div class="imgEditContainer rounded">
                                         @if (str_starts_with($restaurant->img, 'http'))
                                             <img class="cardImg rounded" src={{ $restaurant->img }} alt="">
                                         @else

@@ -27,6 +27,8 @@ export default {
 		this.clearCart = functions.clearCart
 		this.getStorageValue = functions.getStorageValue
 		this.currentValue = functions.currentValue
+		this.getImage = functions.getImage
+
 
 
 	},
@@ -70,20 +72,6 @@ export default {
 				this.$router.push({ name: "home" }); // redireziona alla lista eventi
 			});
 		},
-		getImage(img) {
-
-			if (img) {
-
-				let image;
-				if (img.startsWith('http')) {
-					image = img;
-				} else {
-					image = asset('storage/' + img)
-				}
-
-				return new URL(image, import.meta.url).href
-			}
-		}
 	}
 }
 </script>
@@ -102,7 +90,7 @@ export default {
 			<div id="spacer" v-else class="row py-3 text-warning">
 				<div class="d-flex mt-4 mb-5 position-relative">
 					<div id="imgbox" class="imgBox rounded m-5 flex-column">
-						<img class="cardImg rounded" :src="getImage(restaurant?.img)" alt="">
+						<img class="cardImg rounded" :src="this.getImage(restaurant?.img)" alt="">
 						<div id="restaurant-info">
 							<h1 class="mb-4 fw-bold"> {{ restaurant?.name }} </h1>
 							<p class="my-1">🏠 {{ restaurant?.address }} </p>
@@ -124,7 +112,7 @@ export default {
 						:id="'product-' + product.id">
 						<article class="cards">
 							<figure class="card-image">
-								<img id="product-img" :src="product?.img" alt="Immagine-ristorante">
+								<img id="product-img" :src="this.getImage(product?.img)" alt="Immagine-ristorante">
 							</figure>
 							<div class="card-header d-flex flex-column">
 								<h4>{{ product?.name }}</h4>
