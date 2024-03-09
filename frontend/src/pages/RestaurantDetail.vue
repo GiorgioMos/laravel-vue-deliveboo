@@ -36,8 +36,11 @@ export default {
 		this.getRestaurantDetail();
 	},
 	mounted() {
+		this.ArrayCart()
+
 	},
 	updated() {
+
 		this.aggiornaCounter();
 
 		document.getElementById("clearCart").addEventListener("click", () =>

@@ -174,18 +174,32 @@ export default {
     },
     cartTotal: function() {
         let total=0
-        this.store.ArrayIdsInCart.forEach(element => {
-            if (element != 'restaurant_id') {
+
+        // ciclo sull'array degli id 
+        this.store.ArrayIdsInCart.forEach(id => {
+            // controllo di ciclare solo sugli id dei prodotti 
+            if (id != 'restaurant_id') {
 
                 // trasformo l'id in un numero (forse non serve ma non ho voglia di controllare)
-                const id=parseInt(element) 
-                // recuper il costo del prodotto 
-                const price=this.store.products[id-1]?.price
-                //recupero il valore associato alla chiave e lo strasformo in un numero, era una stringa
-                const value = parseInt(localStorage.getItem(element))
+                const nId=parseInt(id) 
+
+                // cerco il prodotto con quell'id tra quelli salvati con un ciclo
+                this.store.products.forEach(prodotto => {
+                    // check 
+                    if(prodotto.id==nId) {
+                        const price=prodotto?.price
+
+                        console.log(price)
+                        //recupero il valore associato alla chiave e lo strasformo in un numero, era una stringa
+                const value = parseInt(localStorage.getItem(id))
+
                 // a ogni giro sommo la quantità corrente con quella totale fuori dal ciclo 
                 let partialSum=price*value
                 total += partialSum
+                    }
+                });
+
+                
             }
         });
         return Math.round((total + Number.EPSILON) * 100) / 100
