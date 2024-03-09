@@ -90,19 +90,11 @@ export default {
             <div class="row">
                 <div class="col-12">
                     <div class="sponsorLogo mt-5 d-flex justify-content-around">
-                        <img class="imageLogo img-fluid align-self-center"
-                            src="https://www.edigitalagency.com.au/wp-content/uploads/starbucks-logo-png.png" alt="">
-                        <img class="imageLogo img-fluid align-self-center"
-                            src="https://www.edigitalagency.com.au/wp-content/uploads/McDonalds-logo-png.png" alt="">
-                        <img class="imageLogo img-fluid align-self-center"
-                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Burger_King_logo_%281999%29.svg/2024px-Burger_King_logo_%281999%29.svg.png"
-                            alt="">
-                        <img class="imageLogo img-fluid align-self-center"
-                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Dominos_pizza_logo.svg/1200px-Dominos_pizza_logo.svg.png"
-                            alt="">
-                        <img class="imageLogo img-fluid align-self-center"
-                            src="https://upload.wikimedia.org/wikipedia/sco/thumb/b/bf/KFC_logo.svg/1200px-KFC_logo.svg.png"
-                            alt="">
+                        <img class="imageLogo img-fluid align-self-center" src="https://www.edigitalagency.com.au/wp-content/uploads/starbucks-logo-png.png" alt="">
+                        <img class="imageLogo img-fluid align-self-center" src="https://www.edigitalagency.com.au/wp-content/uploads/McDonalds-logo-png.png" alt="">
+                        <img class="imageLogo img-fluid align-self-center" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Burger_King_logo_%281999%29.svg/2024px-Burger_King_logo_%281999%29.svg.png" alt="">
+                        <img class="imageLogo img-fluid align-self-center" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Dominos_pizza_logo.svg/1200px-Dominos_pizza_logo.svg.png" alt="">
+                        <img class="imageLogo img-fluid align-self-center" src="https://upload.wikimedia.org/wikipedia/sco/thumb/b/bf/KFC_logo.svg/1200px-KFC_logo.svg.png" alt="">
                     </div>
                 </div>
             </div>
