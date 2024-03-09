@@ -4,7 +4,7 @@ return [
     [
         'user_id' => '1',
         'name' => 'Trattoria delle Eccellenze di Eugenio',
-        'description' => 'Benvenuti a "Sapore di Roma"! 🍝 Un viaggio culinario tra le strade di Roma, dove ogni piatto racconta una storia di tradizione e passione. Dal primo morso al dolce finale, assaporate l\' autenticità della cucina romana! ✨',
+        'description' => 'Benvenuti a "Sapore di Roma"! Un viaggio culinario tra le strade di Roma, dove ogni piatto racconta una storia di tradizione e passione. Dal primo morso al dolce finale, assaporate l\' autenticità della cucina romana!',
         'city' => 'Roma',
         'address' => 'Via Roma, 123',
         'img' => 'https://voyageursintrepides.com/wp-content/uploads/2022/04/ou-manger-rome-meilleurs-restaurants-1.jpg',
@@ -15,7 +15,7 @@ return [
     [
         'user_id' => '2',
         'name' => 'Marco\'s Mamma Mia Trattoria',
-        'description' => ' 🍝 Viaggio culinario in Toscana, tra accoglienza calorosa e autentici sapori di Marco. Dalle ribollite alle pappardelle al cinghiale, ogni piatto è un omaggio alla tradizione toscana.🌿✨',
+        'description' => ' Viaggio culinario in Toscana, tra accoglienza calorosa e autentici sapori di Marco. Dalle ribollite alle pappardelle al cinghiale, ogni piatto è un omaggio alla tradizione toscana.',
         'city' => 'Firenze',
         'address' => 'Piazza del Duomo, 1',
         'img' => 'https://a.cdn-hotels.com/gdcs/production48/d483/0f6f0f60-32bd-460e-9ab5-7c748cd37545.jpg',
@@ -26,7 +26,7 @@ return [
     [
         'user_id' => '3',
         'name' => 'Ristorante Raoul & la Cucina del Giappone',
-        'description' => '🍣 Un\'esperienza gastronomica unica che fonde l\'eleganza di Raoul con l\'arte culinaria del Giappone. Dal sushi fresco ai piatti tradizionali, ogni creazione è una sinfonia di sapori raffinati. 🍱🌸',
+        'description' => 'Un\'esperienza gastronomica unica che fonde l\'eleganza di Raoul con l\'arte culinaria del Giappone. Dal sushi fresco ai piatti tradizionali, ogni creazione è una sinfonia di sapori raffinati.',
         'city' => 'Milano',
         'address' => 'Via Milano, 456',
         'img' => 'https://flawless.life/wp-content/uploads/2015/05/wickys-table.jpg',
@@ -37,7 +37,7 @@ return [
     [
         'user_id' => '4',
         'name' => 'Trattoria Francesco: Il Gusto Autentico',
-        'description' => '🦐 Un viaggio culinario tra freschezza e tradizione marina. Dalle specialità di pesce alle creazioni uniche di Francesco, ogni boccone racconta la nostra passione per il mare. 🌊🍽️✨',
+        'description' => ' Un viaggio culinario tra freschezza e tradizione marina. Dalle specialità di pesce alle creazioni uniche di Francesco, ogni boccone racconta la nostra passione per il mare.',
         'city' => 'Bologna',
         'address' => 'Via Bolognese, 789',
         'img' => 'https://media-assets.lacucinaitaliana.it/photos/61fabd448f675ad335f0d998/master/pass/la-rina-new-york.jpg',
@@ -48,7 +48,7 @@ return [
     [
         'user_id' => '5',
         'name' => 'Ristorante l\'ultimo arrivato da Giorgio',
-        'description' => '🦞 Esplorate sapori marini unici, dalle ostriche fresche alle grigliate di pesce. Ogni piatto è un\'ode alla freschezza del mare e alla maestria culinaria di Giorgio. 🌊🍴✨',
+        'description' => ' Esplorate sapori marini unici, dalle ostriche fresche alle grigliate di pesce. Ogni piatto è un\'ode alla freschezza del mare e alla maestria culinaria di Giorgio.',
         'city' => 'Milano',
         'address' => 'Via Lisbona, 101',
         'img' => 'https://flawless.life/wp-content/uploads/2019/07/i-migliori-ristoranti-di-pesce-di-milano-a-riccione.jpg',
@@ -59,7 +59,7 @@ return [
     [
         'user_id' => '6',
         'name' => 'Città del Dragone',
-        'description' => '🐉 Scoprite il magnifico mondo dei ravioli cinesi, dalla maestria artigianale ai sapori avvolgenti. Ogni raviolo, opera d\'arte culinaria, riflette la tradizione e la passione della nostra cucina. 🥟🏮✨',
+        'description' => 'Scoprite il magnifico mondo dei ravioli cinesi, dalla maestria artigianale ai sapori avvolgenti. Ogni raviolo, opera d\'arte culinaria, riflette la tradizione e la passione della nostra cucina.',
         'city' => 'Torino',
         'address' => 'Via Cigna, 28, 10155 Torino TO',
         'img' => 'https://www.hongkongcucciago.it/assets/img-temp/about/ristorante_cinese1.jpg',
@@ -70,7 +70,7 @@ return [
     [
         'user_id' => '7',
         'name' => 'Speedy Pizza',
-        'description' => '🍕 Assaporate l\'autentico gusto italiano con la nostra specialità: la pizza veloce. Da classiche margherite a creativi abbinamenti, ogni fetta è un\'esplosione di sapore e velocità. 🚀🍕✨',
+        'description' => 'Assaporate l\'autentico gusto italiano con la nostra specialità: la pizza veloce. Da classiche margherite a creativi abbinamenti, ogni fetta è un\'esplosione di sapore e velocità.',
         'city' => 'Roma',
         'address' => 'Via Napoli, 15, 00100 Roma RM',
         'img' => 'https://sagitairtest.p82.it/media/filer_public_thumbnails/filer_public/da/5f/da5ffb81-a0b3-4bfc-a357-895f9ee50399/pizzeria_charlie_one_0003.jpg__2048x1152_q85_crop_detail.jpg',
@@ -81,7 +81,7 @@ return [
     [
         'user_id' => '8',
         'name' => 'Mega Grill',
-        'description' => '🥩 Esplorate un paradiso carnivoro con la nostra specialità: carne grigliata. Dai filetti succulenti alle costate robuste, ogni boccone celebra sapori intensi e la maestria della griglia. 🥩🔥✨',
+        'description' => 'Esplorate un paradiso carnivoro con la nostra specialità: carne grigliata. Dai filetti succulenti alle costate robuste, ogni boccone celebra sapori intensi e la maestria della griglia.',
         'city' => 'Milano',
         'address' => 'Via Monte Rosa, 50, 20149 Milano MI',
         'img' => 'https://criocabin.com/wp-content/uploads/2020/10/5.jpg',
@@ -92,7 +92,7 @@ return [
     [
         'user_id' => '9',
         'name' => 'Gusto Greco',
-        'description' => 'Esplorate la magia della cucina greca con moussaka e souvlaki. Ogni piatto è un viaggio nei sapori autentici della Grecia, con ingredienti freschi e ricette tradizionali. 🍽️✨.',
+        'description' => 'Esplorate la magia della cucina greca con moussaka e souvlaki. Ogni piatto è un viaggio nei sapori autentici della Grecia, con ingredienti freschi e ricette tradizionali..',
         'city' => 'Firenze',
         'address' => 'Via Sant\'Egidio, 10, 50123 Firenze FI',
         'img' => 'https://www.ellenikoristorante.it/wp-content/uploads/2020/12/IMG_20201025_134246-scaled.jpg',
@@ -103,7 +103,7 @@ return [
     [
         'user_id' => '10',
         'name' => 'Veloce & Saporito',
-        'description' => 'Gustate la combinazione di velocità e sapore specializzato in panini 🍔. Dai classici cheeseburger alle creazioni gourmet, ogni panino è preparato con ingredienti freschi. 🍟🍔✨',
+        'description' => 'Gustate la combinazione di velocità e sapore specializzato in panini. Dai classici cheeseburger alle creazioni gourmet, ogni panino è preparato con ingredienti freschi.',
         'city' => 'Napoli',
         'address' => 'Via Roma, 20, 80100 Napoli NA',
         'img' => 'https://media-assets.ad-italia.it/photos/60f00993b4606eba81f3d3ef/16:9/w_2560%2Cc_limit/image00027.jpeg',
@@ -114,7 +114,7 @@ return [
     [
         'user_id' => '11',
         'name' => 'La Rustica',
-        'description' => 'La nostra pizzeria è rinomata per la crosta croccante, dove ogni pizza è un\'opera d\'arte culinaria. Da gusti classici a combinazioni uniche, vivrete un\'esperienza di sapore. 🍽️🔥🍕',
+        'description' => 'La nostra pizzeria è rinomata per la crosta croccante, dove ogni pizza è un\'opera d\'arte culinaria. Da gusti classici a combinazioni uniche, vivrete un\'esperienza di sapore.',
         'city' => 'Roma',
         'address' => 'Via Appia, 30, 00100 Roma RM',
         'img' => 'https://res.cloudinary.com/tf-lab/image/upload/restaurant/35f20cd8-c9d3-4808-afe5-5ebbb741522b/c21ee053-1b45-4d4f-903e-e76033134940.jpg',
@@ -125,7 +125,7 @@ return [
     [
         'user_id' => '12',
         'name' => 'Osteria del Sole',
-        'description' => 'Assaporate l\'autenticità della cucina bolognese. Dai tortellini fatti a mano a sfoglie di pasta fresca, ogni piatto racconta la storia del gusto emiliano. 🍝🍷✨',
+        'description' => 'Assaporate l\'autenticità della cucina bolognese. Dai tortellini fatti a mano a sfoglie di pasta fresca, ogni piatto racconta la storia del gusto emiliano.',
         'city' => 'Bologna',
         'address' => 'Via Mascarella, 20, 40100 Bologna BO',
         'img' => 'https://www.ristorazioneitalianamagazine.it/CMS/wp-content/uploads/2021/02/trattoria-citi.jpg',
@@ -136,7 +136,7 @@ return [
     [
         'user_id' => '13',
         'name' => 'Peking Duck',
-        'description' => 'Specialità l\'inconfondibile anatra pechinese. Da una croccante pelle dorata a una carne succulenta, ogni morso è un\'ode alla maestria della cucina cinese. 🦆🥢🌟',
+        'description' => 'Specialità l\'inconfondibile anatra pechinese. Da una croccante pelle dorata a una carne succulenta, ogni morso è un\'ode alla maestria della cucina cinese.',
         'city' => 'Milano',
         'address' => 'Via della Moscova, 25, 20121 Milano MI',
         'img' => 'https://flawless.life/wp-content/uploads/2020/02/I_migliori_ristoranti_cinesi_Milano_BonWei.jpg',
@@ -147,7 +147,7 @@ return [
     [
         'user_id' => '14',
         'name' => 'Ristorante Sakura',
-        'description' => 'Scoprite l\'autenticità giapponese con la nostra specialità: gli squisiti soba. Preparati con ingredienti freschi, i nostri soba offrono un\'esperienza culinaria unica. 🍜🌸',
+        'description' => 'Scoprite l\'autenticità giapponese con la nostra specialità: gli squisiti soba. Preparati con ingredienti freschi, i nostri soba offrono un\'esperienza culinaria unica.',
         'city' => 'Roma',
         'address' => 'Via delle Grazie, 10, 00100 Roma RM',
         'img' => 'https://firenzeurbanlifestyle.com/wp-content/uploads/2021/12/Foto-1-copertina-OK_ok-scaled-1.jpg',
@@ -158,7 +158,7 @@ return [
     [
         'user_id' => '15',
         'name' => 'Fast Pizza Express',
-        'description' => 'La nostra specialità è la classica pizza Margherita. Velocità e gusto si fondono in ogni morso, con ingredienti freschi e crosta perfettamente cotta. 🍕🏎️✨',
+        'description' => 'La nostra specialità è la classica pizza Margherita. Velocità e gusto si fondono in ogni morso, con ingredienti freschi e crosta perfettamente cotta.',
         'city' => 'Napoli',
         'address' => 'Via Toledo, 50, 80100 Napoli NA',
         'img' => 'https://lh5.googleusercontent.com/p/AF1QipMnFUnGnjGPQpMtDbGfzb7muLPXRD6VC2r6MdZz=w1440-h1080-k-no',
@@ -169,7 +169,7 @@ return [
     [
         'user_id' => '16',
         'name' => 'Ristorante Amalfi',
-        'description' => 'Esplorate i sapori autentici della cucina campana al Ristorante Amalfi. Ogni piatto è una celebrazione di ingredienti freschi. 🌊🌞',
+        'description' => 'Esplorate i sapori autentici della cucina campana al Ristorante Amalfi. Ogni piatto è una celebrazione di ingredienti freschi.',
         'city' => 'Amalfi',
         'address' => 'Via Positano, 15, 84011 Amalfi SA',
         'img' => 'https://travelamalficoast.travelmar.it/images/ristorante-lido-azzurro_347.jpg?v=5481',
@@ -180,7 +180,7 @@ return [
     [
         'user_id' => '17',
         'name' => 'Casa del Taco',
-        'description' => 'Ristorante dove il tocco piccante rende ogni boccone un\'esplosione di sapore. Le specialità di taco piccante vi conducono in un viaggio attraverso la vibrante cucina messicana. 🌮🔥',
+        'description' => 'Ristorante dove il tocco piccante rende ogni boccone un\'esplosione di sapore. Le specialità di taco piccante vi conducono in un viaggio attraverso la vibrante cucina messicana.',
         'city' => 'Roma',
         'address' => 'Via Guadalupe, 5, 00100 Roma RM',
         'img' => 'https://www.cucaramacara.it/wp-content/uploads/2022/02/IMG_0451-scaled.jpeg',
@@ -191,7 +191,7 @@ return [
     [
         'user_id' => '18',
         'name' => 'Sushi Master',
-        'description' => 'Eccellenza culinaria nel cuore di Milano, vista sul Duomo. Arte del sushi offre degustazione stellata, creazioni raffinate e vista mozzafiato sulla città. 🍣🏰',
+        'description' => 'Eccellenza culinaria nel cuore di Milano, vista sul Duomo. Arte del sushi offre degustazione stellata, creazioni raffinate e vista mozzafiato sulla città.',
         'city' => 'Milano',
         'address' => 'Via Nagoya, 10, 20100 Milano MI',
         'img' => 'https://ristorantesushitake.it/wp-content/uploads/2021/06/TOD_8975.jpg',
@@ -202,7 +202,7 @@ return [
     [
         'user_id' => '19',
         'name' => 'Taj Mahal',
-        'description' => 'Emblema cucina indiana tradizionale. Esperienza culinaria autentica, sapori ricchi e aromi speziati trasportano nelle vie di Delhi e Mumbai. 🍛🌶️🕌',
+        'description' => 'Emblema cucina indiana tradizionale. Esperienza culinaria autentica, sapori ricchi e aromi speziati trasportano nelle vie di Delhi e Mumbai.',
         'city' => 'Firenze',
         'address' => 'Via Jaipur, 20, 50100 Firenze FI',
         'img' => 'https://www.ristorantetara.it/gallery/files/Ristorante-indiano-tara-milano-gallery-27.jpg',
@@ -213,7 +213,7 @@ return [
     [
         'user_id' => '20',
         'name' => 'Green Garden',
-        'description' => 'Oasi culinaria di cucina vegetariana. In un ambiente arricchito da molte piante, esplorate piatti freschi e saporiti, dal pranzo nei giardini alle opzioni vegane creative. 🌿🍲✨',
+        'description' => 'Oasi culinaria di cucina vegetariana. In un ambiente arricchito da molte piante, esplorate piatti freschi e saporiti, dal pranzo nei giardini alle opzioni vegane creative.',
         'city' => 'Bologna',
         'address' => 'Via delle Erbe, 5, 40100 Bologna BO',
         'img' => 'https://www.ilgiardinogr.it/wp-content/uploads/2020/10/ilgiardino-green-restaurant.jpg',
@@ -224,7 +224,7 @@ return [
     [
         'user_id' => '21',
         'name' => 'Great Wall',
-        'description' => 'Ristorante con cucina Cinese del Sichuan. La nostra cucina trasporta gli amanti del cibo piccante e avvolgente in un viaggio culinario unico, con sapori audaci, ingredienti freschi e una miriade di spezie. 🌶️🥢',
+        'description' => 'Ristorante con cucina Cinese del Sichuan. La nostra cucina trasporta gli amanti del cibo piccante e avvolgente in un viaggio culinario unico, con sapori audaci, ingredienti freschi e una miriade di spezie.',
         'city' => 'Milano',
         'address' => 'Via Beijing, 8, 20100 Milano MI',
         'img' => 'https://i1.wp.com/www.kappuccio.com/wp-content/uploads/2020/01/IMG_1437-scaled.jpeg?fit=2048%2C1536&ssl=1',
@@ -235,7 +235,7 @@ return [
     [
         'user_id' => '22',
         'name' => 'Burger King',
-        'description' => 'Catena di fast food nota per i suoi deliziosi hamburger e la vasta gamma di menu. Burger King è famoso per il "Whopper", il suo iconico hamburger flame-grilled, e offre la modifica degli ordini secondo i propri gusti. 🍔👑✨',
+        'description' => 'Catena di fast food nota per i suoi deliziosi hamburger e la vasta gamma di menu. Burger King è famoso per il "Whopper", il suo iconico hamburger flame-grilled, e offre la modifica degli ordini secondo i propri gusti.',
         'city' => 'Roma',
         'address' => 'Via Hamburg, 12, 00100 Roma RM',
         'img' => 'https://dimages2.corriereobjects.it/files/og_thumbnail/uploads/2023/10/22/6534f4865b9b0.jpeg',
@@ -246,7 +246,7 @@ return [
     [
         'user_id' => '23',
         'name' => 'Olive Garden',
-        'description' => 'Ristorante tex-mex nel cuore di Napoli! Esplorate sapori audaci che fondono l\'entusiasmo messicano con il calore italiano. Dai burritos piccanti alle fajitas, ogni boccone è un viaggio nella tradizione tex-mex. 🌮🍹✨',
+        'description' => 'Ristorante tex-mex nel cuore di Napoli! Esplorate sapori audaci che fondono l\'entusiasmo messicano con il calore italiano. Dai burritos piccanti alle fajitas, ogni boccone è un viaggio nella tradizione tex-mex.',
         'city' => 'Napoli',
         'address' => 'Via Texas, 30, 80100 Napoli NA',
         'img' => 'https://www.abc27.com/wp-content/uploads/sites/55/2021/12/OliveGardenGettyImages-1326009258.jpg',
@@ -257,7 +257,7 @@ return [
     [
         'user_id' => '24',
         'name' => 'Fuego Latino',
-        'description' => 'Ristorante brasiliano con specialità picanha. Un\'esperienza culinaria appassionante, dove i sapori del Brasile si fondono con la grigliata perfetta, dal samba di aromi alle danze di spezie🍖🔥',
+        'description' => 'Ristorante brasiliano con specialità picanha. Un\'esperienza culinaria appassionante, dove i sapori del Brasile si fondono con la grigliata perfetta, dal samba di aromi alle danze di spezie.',
         'city' => 'Firenze',
         'address' => 'Via Rio de Janeiro, 15, 50100 Firenze FI',
         'img' => 'https://cdn.website.dish.co/media/b8/01/6165348/CHACARERO-VERONA-WhatsApp-Image-2023-02-23-at-12-27-11-jpeg.jpg',
@@ -268,7 +268,7 @@ return [
     [
         'user_id' => '25',
         'name' => 'Taste of India',
-        'description' => 'Benvenuti al Taste of India, viaggiate nella magia della cucina indiana con la nostra specialità, il biryani. Assaporate l\'esplosione di aromi, spezie e fragranze di questo piatto iconico. 🍛🌶️',
+        'description' => 'Benvenuti al Taste of India, viaggiate nella magia della cucina indiana con la nostra specialità, il biryani. Assaporate l\'esplosione di aromi, spezie e fragranze di questo piatto iconico.',
         'city' => 'Bari',
         'address' => 'Via Mumbai, 10, 70100 Bari BA',
         'img' => 'https://media-assets.lacucinaitaliana.it/photos/61fa91787f6b1a31f55f22ac/16:9/w_2560%2Cc_limit/iStock-162244500.jpg',
@@ -279,7 +279,7 @@ return [
     [
         'user_id' => '26',
         'name' => 'Ristorante Romantico',
-        'description' => 'Un rifugio chic dal fascino unico. Avvolto da luci soffuse e un\'atmosfera elegante, il nostro ambiente offre il contesto ideale per una cena romantica. 🕯️🍝💖',
+        'description' => 'Un rifugio chic dal fascino unico. Avvolto da luci soffuse e un\'atmosfera elegante, il nostro ambiente offre il contesto ideale per una cena romantica.',
         'city' => 'Verona',
         'address' => 'Corso Porta Nuova, 10, 37100 Verona VR',
         'img' => 'https://www.enotecasantalucia.it/wp-content/uploads/2023/10/LOCALE.jpg',
@@ -290,7 +290,7 @@ return [
     [
         'user_id' => '27',
         'name' => 'Sushi & Sashimi',
-        'description' => 'Benvenuti a Sushi & Sashimi, dove il mare incontra la tradizione giapponese a Genova. Specialità: sashimi di pesce prelibato, un\'esperienza di freschezza del mare. 🍣🌊✨',
+        'description' => 'Benvenuti a Sushi & Sashimi, dove il mare incontra la tradizione giapponese a Genova. Specialità: sashimi di pesce prelibato, un\'esperienza di freschezza del mare.',
         'city' => 'Genova',
         'address' => 'Via Tokyo, 5, 16100 Genova GE',
         'img' => 'https://images.squarespace-cdn.com/content/v1/63f52cb70db2e54d5c3fa9c6/fd088cf1-c2d9-4f1d-b179-72286bba52b1/IMG_6093.jpg',
@@ -301,7 +301,7 @@ return [
     [
         'user_id' => '28',
         'name' => 'Taverna Toscana',
-        'description' => 'Ristorante con bistecca fiorentina e vino Carmigiano. Sperimentate il sapore autentico della Toscana con carne grigliata e un vino ricco, prodotto localmente. 🥩🍷🌿',
+        'description' => 'Ristorante con bistecca fiorentina e vino Carmigiano. Sperimentate il sapore autentico della Toscana con carne grigliata e un vino ricco, prodotto localmente.',
         'city' => 'Siena',
         'address' => 'Piazza del Campo, 1, 53100 Siena SI',
         'img' => 'https://static.gamberorosso.it/2020/06/toscana-casale.jpg',
@@ -312,7 +312,7 @@ return [
     [
         'user_id' => '29',
         'name' => 'Ristorante del Mare',
-        'description' => 'Ristorante del Mare, menù inno alle delizie del blu. Capolavori marini dall\'antipasto alla grigliata mista, viaggiate nei sapori del mare in un ambiente accogliente e raffinato. 🐟🦐🌊',
+        'description' => 'Ristorante del Mare, menù inno alle delizie del blu. Capolavori marini dall\'antipasto alla grigliata mista, viaggiate nei sapori del mare in un ambiente accogliente e raffinato.',
         'city' => 'Napoli',
         'address' => 'Via dei Pescatori, 20, 80100 Napoli NA',
         'img' => 'https://www.osteriadelportobari.it/wp-content/uploads/2022/12/osteria-del-porto-1.jpg',
@@ -323,7 +323,7 @@ return [
     [
         'user_id' => '30',
         'name' => 'Il Gusto di Sicilia',
-        'description' => 'Ristorante siciliano dove il sapore dell\'isola si rivela nella nostra specialità: pane e panelle. Scoprite la tradizione siciliana con ogni morso, un connubio perfetto di croccantezza e cremosità. 🥖🌶️🌞',
+        'description' => 'Ristorante siciliano dove il sapore dell\'isola si rivela nella nostra specialità: pane e panelle. Scoprite la tradizione siciliana con ogni morso, un connubio perfetto di croccantezza e cremosità.',
         'city' => 'Palermo',
         'address' => 'Via Sicilia, 30, 90100 Palermo PA',
         'img' => 'https://siciliadagustare.com/wp-content/uploads/2020/12/giardino-di-pietra-esterno.jpg',
@@ -334,7 +334,7 @@ return [
     [
         'user_id' => '31',
         'name' => 'Piazza Pizza',
-        'description' => 'Specialità: Giro Pizza, un viaggio gustativo tra classiche margherite e creazioni gourmet. Ogni pizza è un tassello di questo avvincente percorso culinario. 🍕🎉✨',
+        'description' => 'Specialità: Giro Pizza, un viaggio gustativo tra classiche margherite e creazioni gourmet. Ogni pizza è un tassello di questo avvincente percorso culinario.',
         'city' => 'Firenze',
         'address' => 'Piazza della Signoria, 1, 50100 Firenze FI',
         'img' => 'https://malaterra.com/wp-content/uploads/2022/09/Chisiamo_slider_1_Malaterra-min-scaled.jpg',

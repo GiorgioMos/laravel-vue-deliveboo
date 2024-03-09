@@ -23,6 +23,7 @@ export default {
     <footer>
         <div class="container">
             <div class="row">
+                <hr class="my-4 bg-white">
                 <!-- Logo deliveboo -->
                 <div class="col-4">
                     <div class="logoFooter">
@@ -33,7 +34,7 @@ export default {
                             delivery food.</p>
                     </div>
                     <hr class="my-4 bg-white">
-
+                    <!-- Icon Brands -->
                     <div class="iconFooter">
                         <!-- Facebook -->
                         <div class="circle">

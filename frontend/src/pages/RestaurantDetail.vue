@@ -105,13 +105,21 @@ export default {
 						<img class="cardImg rounded" :src="getImage(restaurant?.img)" alt="">
 						<div id="restaurant-info">
 							<h1 class="mb-4 fw-bold"> {{ restaurant?.name }} </h1>
-							<p class="my-1">🏠 {{ restaurant?.address }} </p>
-							<p class="my-1">🌇 {{ restaurant?.city }}</p>
-							<p class="my-1">☎️ {{ restaurant?.telephone }}</p>
+							<p class="my-1">
+								<font-awesome-icon class="icon" icon="fa-solid fa-location" />
+								{{ restaurant?.address }}
+							</p>
+							<p class="my-1">
+								<font-awesome-icon class="icon" icon="fa-solid fa-city" />
+								{{ restaurant?.city }}
+							</p>
+							<p class="my-1">
+								<font-awesome-icon class="icon" icon="fa-solid fa-phone" />
+								{{ restaurant?.telephone }}
+							</p>
 						</div>
 					</div>
-					<div id="restaurant-desc"
-						class="d-flex flex-column m-3 align-items-start p-5 justify-content-center">
+					<div id="restaurant-desc" class="d-flex flex-column m-3 align-items-start p-5 justify-content-center">
 						<div class="my-4 mb-4 py-2 pt-5"> {{ restaurant?.description }} </div>
 						<button id="button" class="btn mt-1"><a :href="restaurant?.website">Sito Web</a></button>
 					</div>
