@@ -19,7 +19,16 @@ export default {
 
 	},
 	methods: {
+		getImage(img) {
+			let image;
+			if (img.startsWith("http")) {
+				image = img;
+			} else {
+				image = asset("storage/" + img);
+			}
 
+			return new URL(image, import.meta.url).href;
+		},
 	},
 	data() {
 		return {
@@ -73,24 +82,21 @@ export default {
 
 			<ul class="navbar-nav">
 
+				<!-- bottone accedi area riservata -->
+				<li class="nav-item">
+					<a class="btnNavbar rounded-pill px-4 mx-3" href="http://localhost:8000/admin">Area
+						Riservata</a>
+				</li>
+
 				<!-- bottone carrello offcanvas -->
 				<li class="nav-item">
-					<a class="btn rounded-pill btn-outline-light px-4" href="#" id="shopping-cart"
-						data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+					<a class="btnNavbar rounded-pill px-4" href="#" id="shopping-cart" data-bs-toggle="offcanvas"
+						data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
 						<font-awesome-icon icon="fa-solid fa-cart-shopping" />
-						<span class="text-white">{{ cartCounter() }} </span>
-
+						<span class="text-white ms-2">{{ cartCounter() }} </span>
 					</a>
+				</li>
 
-
-				</li>
-				<li class="nav-item">
-					<a class="btn btn-outline-light rounded-pill px-4 mx-3"
-						href="http://localhost:8000/login">Accedi</a>
-				</li>
-				<li class="nav-item">
-					<a class="btn rounded-pill bg-warning px-4" href="http://localhost:8000/register">Registrati</a>
-				</li>
 			</ul>
 		</div>
 	</nav>
@@ -100,16 +106,12 @@ export default {
 
 	<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
 		<div class="offcanvas-header">
-			<h5 class="offcanvas-title" id="offcanvasExampleLabel">Carrello: hai selezionato {{ cartCounter() }}
-				prodotti</h5>
+			<h3 class="offcanvas-title fw-bold" id="offcanvasExampleLabel">Carrello - {{ cartCounter() }}
+				prodotti</h3>
 			<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 		</div>
 		<div class="offcanvas-body">
 			<div id="offcanvas-body">
-
-				<!-- costo totale prodotti nel carrello  -->
-				<h5>TOTALE= {{ this.cartTotal() }}€</h5>
-
 
 				<!-- ciclo su tutti i prodotti con un v-for -->
 				<div v-for="prodotto in this.store.products">
@@ -118,25 +120,39 @@ export default {
 
 						<!-- DA STILICAZZOZARE -->
 						<!-- stampo i dati del prodotto e la quantità attraverso la funzione magica per richiamare i dati del localstorage -->
-						<span>{{ prodotto.name }} ({{ prodotto.price }}) ->
-							<span class="counter" :data-id="prodotto.id" :data-name="prodotto.name"
-								:id="prodotto.id + 'span'">
-								{{ this.getStorageValue(prodotto.id) ?? 0 }}</span>
-						</span>
+						<div class="row">
+							<div class="col-6 fw-bold mb-4">
+								{{ prodotto.name }}
+							</div>
+							<div class="col-6 fw-bold">{{ Math.round(((prodotto.price * this.getStorageValue(prodotto.id))
+								+ Number.EPSILON) * 100) / 100 }} </div>
+						</div>
 
-						<button class="btn btn-primary add" @click="this.cartAddElement(prodotto)">+</button>
+						<!-- Immagini, Counter e button aggiungi e rimuovi prodotto -->
+						<img class="imgCart" :src="getImage(prodotto?.img)" alt="">
 
-						<button class="btn btn-danger remove"
+						<button class="btn btn-secondary add ms-4 rounded-pill"
+							@click="this.cartAddElement(prodotto)">+</button>
+
+						<span class="counter m-3" :data-id="prodotto.id" :data-name="prodotto.name"
+							:id="prodotto.id + 'span'">
+							{{ this.getStorageValue(prodotto.id) ?? 0 }}</span>
+
+						<button class="btn btn-secondary remove rounded-pill"
 							@click="cartRemoveElement(prodotto); hideMinButton(prodotto.id)">-</button>
-						<p href="#" @click="fullCartRemoveElement(prodotto)">rimuovi</p>
+						<p href="" @click="fullCartRemoveElement(prodotto)">rimuovi</p>
+
 
 					</div>
 				</div>
+
+				<!-- costo totale prodotti nel carrello  -->
+				<h5>TOTALE {{ this.cartTotal() }} €</h5>
 			</div>
 
 			<!-- bottone svuota carrello  -->
-			<button data-bs-dismiss="offcanvas" :class="(cartCounter() > 0) ? 'd-inline-block' : 'd-none'"
-				id="clearCart" class="btn btn-primary" @click="this.clearCart(); this.ArrayCart()"> Svuota
+			<button data-bs-dismiss="offcanvas" :class="(cartCounter() > 0) ? 'd-inline-block' : 'd-none'" id="clearCart"
+				class="btn btn-primary" @click="this.clearCart(); this.ArrayCart()"> Svuota
 				carrello</button>
 
 			<!-- bottone checkout  -->
@@ -153,15 +169,21 @@ export default {
 	width: 8rem;
 }
 
+a {
+	text-decoration: none;
+}
+
 .page-navigation {
+	text-decoration: none !important;
 	color: white;
 	text-decoration: none;
-	margin: 0 2rem;
+	margin: 0 3rem;
+	font-weight: bold;
 }
 
 .page-navigation:hover {
 	text-decoration: underline;
-	color: yellow;
+	color: #066e7c;
 }
 
 font-awesome-icon {
@@ -173,7 +195,6 @@ font-awesome-icon:hover {
 }
 
 
-
 #offcanvasExample {
 	width: 45rem !important;
 	background-color: #242322e5;
@@ -181,5 +202,25 @@ font-awesome-icon:hover {
 
 #offcanvasExample>* {
 	color: white !important;
+}
+
+/* Navbar */
+
+.imgCart {
+	width: 12rem;
+	border-radius: 15px;
+}
+
+.btnNavbar {
+	color: white;
+	background-color: #066e7c;
+	padding: 10px;
+	border: 2px solid #f9b44b;
+	font-weight: bold;
+}
+
+.btnNavbar:hover {
+	background-color: #f9b44b;
+	color: black;
 }
 </style>
