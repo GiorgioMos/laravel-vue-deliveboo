@@ -21,7 +21,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 // TODO mettere qualcosa nella home di localhost
-
 Route::get('/restaurant/{id}', function ($id) {
 
     $restaurant = Restaurant::findOrFail($id);

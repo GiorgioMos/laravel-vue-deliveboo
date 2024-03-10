@@ -22,7 +22,7 @@
         @else
             {{-- --------------------INIZIO PAGINA ------------- --}}
             <div class="row d-flex justify-content-center">
-                <h1 class="py-3 text-center">{{ $product->name }}</h1>
+                <h1 class="py-3 text-center textYellow fw-bolder">{{ $product->name }}</h1>
                 <div>
 
                     <div class="d-flex justify-content-center">

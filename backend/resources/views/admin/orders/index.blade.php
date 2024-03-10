@@ -4,32 +4,57 @@
     <div class="container-fluid mt-4">
         <div class="row justify-content-center">
 
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Ordini') }}</div>
-                    <div class="card-body">
-                        <div id="cardBox" class="container">
-                            <div class="row">
+            <div class="col-md-10">
+                <div class="accordion" id="accordionExample">
 
-                                @foreach ($orders as $order)
-                                    <div class="col-4 mb-4 rounded d-flex flex-column align-items-center card"
-                                        id="card">
-                                        <h4 class="mt-4"><strong>codice ordine:</strong> {{ $order->id }}</h4>
+                    @foreach ($orders as $order)
+                        <div class="accordion-item mb-3">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#{{ $order->id }}" aria-expanded="false"
+                                    aria-controls="{{ $order->id }}">
 
-                                        <p><strong>Prezzo Totale : </strong> {{ $order->total_price }} €</p>
-                                        <p><strong>Data : </strong> {{ $order->date }}</p>
-                                        <p><strong>Nome : </strong> {{ $order->guest_name }}</p>
+                                    <div class="me-5 fs-5 fw-bolder">
+                                        <span class="textTeal">Codice ordine : </span> {{ $order->id }}
 
-                                        <a href="{{ route('admin.orders.show', $order->id) }}" class="btn info-btn my-3"><i
-                                                class="fa-solid fa-circle-info fa-2xl"></i></a>
-
-                                        {{-- chiusura card  --}}
                                     </div>
-                                @endforeach
+                                    <div class="ms-5">
+                                        {{ $order->date }}
+                                    </div>
+
+                                </button>
+                            </h2>
+                            <div id="{{ $order->id }}" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <p><span class="fw-bolder">Nome cliente : </span> {{ $order->guest_name }}</p>
+                                            <p><strong>Costo Totale : </strong> {{ $order->total_price }} €</p>
+                                        </div>
+                                        <div class="col-2">
+                                            <a href="{{ route('admin.orders.show', $order->id) }}"
+                                                class="btn info-btn my-3 bgTeal fw-bold text-white">Dettagli</a>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
+        <style>
+            .accordion {
+                padding: 3rem;
+                background-color: rgb(33, 37, 41);
+                border-radius: 1rem;
+            }
+
+            .btn:hover {
+                transform: scale(1.2);
+                background-color: #066e7c
+            }
+        </style>
     @endsection
