@@ -185,7 +185,7 @@ export default {
 // ...qui eventuale SCSS di App.vue
 
 input[type="checkbox"]:checked + label {
-  background-color: #ffc107;
+  background-color: #ff9900;
   color: #fff;
 }
 </style>

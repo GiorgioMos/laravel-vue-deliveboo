@@ -3,9 +3,9 @@
 @section('content')
     <div class="container mt-4">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="">
                 <div class="card bg-dark text-white">
-                    <h3 class="card-header text-center textYellow">{{ __('Login') }}</h3>
+                    <h3 class="card-header text-center textYellow fs-1">{{ __('Login') }}</h3>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">

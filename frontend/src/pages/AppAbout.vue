@@ -345,7 +345,7 @@ h2 {
     top: 800px;
     width: 75%;
     height: 670px;
-    background-color: #f9b44d;
+    background-color: #ff9900;
     z-index: -1;
     animation: slideFromLeftAnimation 4s ease forwards;
 }
@@ -399,7 +399,7 @@ h2 {
     padding: 20px 40px;
     border: 1px solid transparent;
     border-radius: 80px;
-    background-color: #f9b44d;
+    background-color: #ff9900;
     color: white;
 }
 

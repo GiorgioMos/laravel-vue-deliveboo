@@ -49,7 +49,7 @@ export default {
 
 <!-- logo a sinistra pagine al centro che riportano ai componenti e a destra carrello lohgin e registrazione -->
 <template>
-	<nav class="navbar navbar-expand-lg">
+	<nav class="navbar navbar-expand-lg m-0">
 		<div class="container">
 
 			<router-link :to="{ name: 'home' }">
@@ -198,26 +198,30 @@ a {
 	color: white;
 	background-color: #066e7c;
 	padding: 10px;
-	border: 2px solid #f9b44b;
+	border: 2px solid #ff9900;
 	font-weight: bold;
 }
 
 .btnNavbar:hover {
-	background-color: #f9b44b;
+	background-color: #ff9900;
 	color: black;
 }
 
 .page-navigation {
-	text-decoration: none !important;
-	color: white;
-	text-decoration: none;
-	margin: 0 3rem;
-	font-weight: bold;
+	margin: 0;
+	color: #066e7c;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 0.7rem 3rem; /* Aggiungi spazio intorno ai link */
+    height: 100%; /* Fai occupare tutta l'altezza */
+    display: flex; /* Usa flexbox per allineare verticalmente il testo */
+    align-items: center; /* Allinea verticalmente il testo al centro */
 }
 
 .page-navigation:hover {
-	text-decoration: underline;
-	color: #066e7c;
+	color: white;
+	background-color: #ff9900;
+	border-radius: 4rem;
 }
 
 font-awesome-icon {
@@ -227,6 +231,7 @@ font-awesome-icon {
 font-awesome-icon:hover {
 	color: white;
 }
+
 
 /* CARRELLO OFFCANVAS */
 
@@ -279,7 +284,7 @@ font-awesome-icon:hover {
 	width: 30px;
 	height: 30px;
 	border-radius: 50%;
-	background-color: #f9b44b;
+	background-color: #ff9900;
 	color: black;
 	font-size: 16px;
 	cursor: pointer;
@@ -287,13 +292,13 @@ font-awesome-icon:hover {
 }
 
 .circle-icon:hover {
-	background-color: #f9b44b;
+	background-color: #ff9900;
 	color: black;
 	transform: scale(1.2);
 }
 
 .cartName {
-	color: #f9b44b;
+	color: #ff9900;
 }
 
 
@@ -314,7 +319,7 @@ font-awesome-icon:hover {
 }
 
 .btnYellow {
-	background-color: #f9b44b;
+	background-color: #ff9900;
 	color: black;
 }
 </style>

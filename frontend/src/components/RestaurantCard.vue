@@ -132,7 +132,7 @@ a {
 .__favorit {
   background-color: #fff;
   border-radius: 8px;
-  color: #fc9d52;
+  color: #ff9900;
   position: absolute;
   right: 15px;
   top: 8px;
@@ -145,7 +145,7 @@ a {
 }
 
 .__favorit:hover {
-  background-color: #fc9d52;
+  background-color: #ff9900;
   color: #fff;
   text-decoration: none;
 }
@@ -179,7 +179,7 @@ a {
   display: inline-block;
   margin-right: 10px;
   font-size: 12px;
-  color: #fc9d52;
+  color: #ff9900;
   font-weight: bold;
   line-height: 100%;
 }

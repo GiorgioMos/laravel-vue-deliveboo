@@ -13,7 +13,7 @@ $themeColorAccent: crimson;
 }
 
 body {
-    font-family: sans-serif;
+    font-family: "Noto Serif", serif;
     background-color: $themeColorDark;
     color: $themeColorLight;
 }
@@ -69,11 +69,11 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .textYellow {
-    color: #f9b44d;
+    color: #ff9900;
 }
 
 .bgYellow {
-    background-color: #f9b44d;
+    background-color: #ff9900;
 
 }
 
