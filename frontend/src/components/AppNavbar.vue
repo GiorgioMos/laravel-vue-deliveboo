@@ -102,14 +102,15 @@ export default {
 	</nav>
 
 	<!------------------------------------------------ OFFCANVAS ---------------------------------------->
-	<!-- AUMENTARE DI DIMENSIONE E ABBELLIRE  -->
 
 	<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
 		<div class="offcanvas-header">
-			<h3 class="offcanvas-title fw-bold" id="offcanvasExampleLabel">Carrello - {{ cartCounter() }}
-				prodotti</h3>
+			<h3 class="offcanvas-title fw-bold cartName mt-3" id="offcanvasExampleLabel">Carrello
+				<!--  - {{ cartCounter() }} -->
+			</h3>
 			<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 		</div>
+		<hr>
 		<div class="offcanvas-body">
 			<div id="offcanvas-body">
 
@@ -117,60 +118,111 @@ export default {
 				<div v-for="prodotto in this.store.products">
 					<!-- controllo se l'id del prodotto corrisponde ad un id in localStorage e lo creo -->
 					<div v-if="this.store.ArrayIdsInCart.includes(prodotto.id.toString())">
-
-						<!-- DA STILICAZZOZARE -->
 						<!-- stampo i dati del prodotto e la quantità attraverso la funzione magica per richiamare i dati del localstorage -->
 						<div class="row">
-							<div class="col-6 fw-bold mb-4">
-								{{ prodotto.name }}
+							<!-- Immagine singolo prodotto -->
+							<div class="col-4">
+								<img class="imgCart mb-5" :src="getImage(prodotto?.img)" alt="">
 							</div>
-							<div class="col-6 fw-bold">{{ Math.round(((prodotto.price * this.getStorageValue(prodotto.id))
-								+ Number.EPSILON) * 100) / 100 }} </div>
+							<!-- Nome, prezzo e button rimuovi singolo prodotto -->
+							<div class="col-5">
+								<span class="col-6 fw-bold mb-4">
+									{{ prodotto.name }}
+								</span>
+								<div class="col-6 fw-bold mt-2 mb-5"> € {{ Math.round(((prodotto.price *
+									this.getStorageValue(prodotto.id))
+									+ Number.EPSILON) * 100) / 100 }}
+								</div>
+								<!-- Rimuove tutti i prodotti nel carrello -->
+								<p href="" @click="fullCartRemoveElement(prodotto)">Rimuovi</p>
+							</div>
+							<!-- Button aggiungi e rimuovi prodotto -->
+							<div class="col-3">
+
+								<!-- Aggiunge prodotto -->
+								<span class="add ms-4">
+									<span class="circle-icon btn" @click="this.cartAddElement(prodotto)">
+										<font-awesome-icon icon="fa-solid fa-plus" />
+									</span>
+								</span>
+
+								<!-- Numero totale prodotti -->
+								<span class="counter m-4 fw-bold" :data-id="prodotto.id" :data-name="prodotto.name"
+									:id="prodotto.id + 'span'">
+									{{ this.getStorageValue(prodotto.id) ?? 0 }}</span>
+
+								<!-- Rimuove prodotto -->
+								<span class="remove">
+									<span class="circle-icon btn"
+										@click="cartRemoveElement(prodotto); hideMinButton(prodotto.id)">
+										<font-awesome-icon icon="fa-solid fa-minus" />
+									</span>
+								</span>
+							</div>
 						</div>
-
-						<!-- Immagini, Counter e button aggiungi e rimuovi prodotto -->
-						<img class="imgCart" :src="getImage(prodotto?.img)" alt="">
-
-						<button class="btn btn-secondary add ms-4 rounded-pill"
-							@click="this.cartAddElement(prodotto)">+</button>
-
-						<span class="counter m-3" :data-id="prodotto.id" :data-name="prodotto.name"
-							:id="prodotto.id + 'span'">
-							{{ this.getStorageValue(prodotto.id) ?? 0 }}</span>
-
-						<button class="btn btn-secondary remove rounded-pill"
-							@click="cartRemoveElement(prodotto); hideMinButton(prodotto.id)">-</button>
-						<p href="" @click="fullCartRemoveElement(prodotto)">rimuovi</p>
-
-
 					</div>
 				</div>
 
-				<!-- costo totale prodotti nel carrello  -->
-				<h5>TOTALE {{ this.cartTotal() }} €</h5>
+				<!-- Costo totale prodotti nel carrello  -->
+				<div class="row">
+					<div class="col-9">
+						<h6 class="fs-5 fw-bold"> Totale </h6>
+					</div>
+					<div class="col-3">
+						<div class="fs-5 fw-bold text-end">
+							€ {{ this.cartTotal() }}
+						</div>
+					</div>
+				</div>
 			</div>
 
-			<!-- bottone svuota carrello  -->
-			<button data-bs-dismiss="offcanvas" :class="(cartCounter() > 0) ? 'd-inline-block' : 'd-none'" id="clearCart"
-				class="btn btn-primary" @click="this.clearCart(); this.ArrayCart()"> Svuota
-				carrello</button>
+			<div class="row">
+				<div class="col-8">
+					<!-- Button svuota carrello  -->
+					<button data-bs-dismiss="offcanvas" :class="(cartCounter() > 0) ? 'd-inline-block' : 'd-none'"
+						id="clearCart" class="btnCart" @click="this.clearCart(); this.ArrayCart()"> Svuota
+						carrello
+					</button>
+				</div>
+				<div class="col-4 text-end">
+					<!-- Button checkout  -->
+					<router-link :to="{ name: 'checkout' }">
+						<button data-bs-dismiss="offcanvas" v-if="cartCounter() > 0" id="order" class="btnCart btnYellow">
+							Procedi
+							all'ordine</button>
+					</router-link>
+				</div>
+			</div>
 
-			<!-- bottone checkout  -->
-			<router-link :to="{ name: 'checkout' }">
-				<button data-bs-dismiss="offcanvas" v-if="cartCounter() > 0" id="order" class="btn btn-primary"> Procedi
-					all'ordine</button>
-			</router-link>
+
+
+
 		</div>
 	</div>
 </template>
 
 <style scoped>
+/* NAVBAR */
 .logoDeliveboo {
 	width: 8rem;
 }
 
 a {
 	text-decoration: none;
+}
+
+
+.btnNavbar {
+	color: white;
+	background-color: #066e7c;
+	padding: 10px;
+	border: 2px solid #f9b44b;
+	font-weight: bold;
+}
+
+.btnNavbar:hover {
+	background-color: #f9b44b;
+	color: black;
 }
 
 .page-navigation {
@@ -194,32 +246,67 @@ font-awesome-icon:hover {
 	color: white;
 }
 
+/* CARRELLO OFFCANVAS */
 
 #offcanvasExample {
 	width: 45rem !important;
-	background-color: #242322e5;
+	/* background-color: #242322e5; */
+	background-color: rgb(35, 35, 35);
 }
 
 #offcanvasExample>* {
 	color: white !important;
 }
 
-/* Navbar */
-
 .imgCart {
 	width: 12rem;
-	border-radius: 15px;
+	height: 8rem;
+	object-fit: cover;
+	border-radius: 25px;
 }
 
-.btnNavbar {
-	color: white;
+.circle-icon {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background-color: #f9b44b;
+	color: black;
+	font-size: 16px;
+	cursor: pointer;
+	transition: transform 0.2s;
+}
+
+.circle-icon:hover {
+	background-color: #f9b44b;
+	color: black;
+	transform: scale(1.2);
+}
+
+.cartName {
+	color: #f9b44b;
+}
+
+
+.btnCart {
+	padding: 9px;
+	margin-top: 30px;
 	background-color: #066e7c;
-	padding: 10px;
-	border: 2px solid #f9b44b;
+	border: none;
+	border-radius: 10px;
+	color: white;
 	font-weight: bold;
+	font-size: 14px;
+	transition: transform 0.2s;
 }
 
-.btnNavbar:hover {
+.btnCart:hover {
+	transform: scale(1.1);
+}
+
+.btnYellow {
 	background-color: #f9b44b;
 	color: black;
 }
