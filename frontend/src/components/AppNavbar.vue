@@ -16,19 +16,11 @@ export default {
 		this.getStorageValue = functions.getStorageValue
 		this.cartCounter = functions.cartCounter
 		this.cartTotal = functions.cartTotal
+		this.getImage = functions.getImage
+
 
 	},
 	methods: {
-		getImage(img) {
-			let image;
-			if (img.startsWith("http")) {
-				image = img;
-			} else {
-				image = asset("storage/" + img);
-			}
-
-			return new URL(image, import.meta.url).href;
-		},
 	},
 	data() {
 		return {
@@ -122,7 +114,7 @@ export default {
 						<div class="row">
 							<!-- Immagine singolo prodotto -->
 							<div class="col-4">
-								<img class="imgCart mb-5" :src="getImage(prodotto?.img)" alt="">
+								<img class="imgCart mb-5" :src="this.getImage(prodotto?.img)" alt="">
 							</div>
 							<!-- Nome, prezzo e button rimuovi singolo prodotto -->
 							<div class="col-5">
@@ -130,8 +122,8 @@ export default {
 									{{ prodotto.name }}
 								</span>
 								<div class="col-6 fw-bold mt-2 mb-5"> € {{ Math.round(((prodotto.price *
-									this.getStorageValue(prodotto.id))
-									+ Number.EPSILON) * 100) / 100 }}
+				this.getStorageValue(prodotto.id))
+				+ Number.EPSILON) * 100) / 100 }}
 								</div>
 								<!-- Rimuove tutti i prodotti nel carrello -->
 								<p href="" @click="fullCartRemoveElement(prodotto)">Rimuovi</p>
@@ -187,7 +179,8 @@ export default {
 				<div class="col-4 text-end">
 					<!-- Button checkout  -->
 					<router-link :to="{ name: 'checkout' }">
-						<button data-bs-dismiss="offcanvas" v-if="cartCounter() > 0" id="order" class="btnCart btnYellow">
+						<button data-bs-dismiss="offcanvas" v-if="cartCounter() > 0" id="order"
+							class="btnCart btnYellow">
 							Procedi
 							all'ordine</button>
 					</router-link>
