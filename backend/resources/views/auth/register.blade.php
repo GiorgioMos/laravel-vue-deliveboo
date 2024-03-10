@@ -18,7 +18,7 @@
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
-                                        class="form-control @error('name') is-invalid @enderror" name="name"
+                                        class="form-control @error('name') is-invalid @enderror py-3 rounded-pill" name="name"
                                         value="{{ old('name') }}" required autocomplete="name" autofocus
                                         onkeyup="validateName()">
                                     <span id="name-error-message" class="invalid-feedback" role="alert"></span>
@@ -37,7 +37,7 @@
 
                                 <div class="col-md-6">
                                     <input id="surname" type="text"
-                                        class="form-control @error('surname') is-invalid @enderror" name="surname"
+                                        class="form-control @error('surname') is-invalid @enderror py-3 rounded-pill" name="surname"
                                         value="{{ old('surname') }}" required autocomplete="surname" autofocus
                                         onkeyup="validateSurname()">
                                     <span id="surname-error-message" class="invalid-feedback" role="alert"></span>
@@ -57,7 +57,7 @@
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
-                                        class="form-control @error('email') is-invalid @enderror" name="email"
+                                        class="form-control @error('email') is-invalid @enderror py-3 rounded-pill" name="email"
                                         value="{{ old('email') }}" required autocomplete="email" onkeyup="validateEmail()">
                                     <span id="email-error-message" class="invalid-feedback" role="alert"></span>
                                     @error('email')
@@ -75,7 +75,7 @@
                                     <span style="color: red;">*</span></label>
                                 <div class="col-md-6">
                                     <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror" name="password"
+                                        class="form-control @error('password') is-invalid @enderror py-3 rounded-pill" name="password"
                                         required autocomplete="new-password" onkeyup="checkPasswordMatch()">
                                     <span id="password-error-message" class="invalid-feedback" role="alert"></span>
                                     @error('password')
@@ -90,7 +90,7 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }} <span
                                         style="color: red;">*</span></label>
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control"
+                                    <input id="password-confirm" type="password" class="form-control py-3 rounded-pill"
                                         name="password_confirmation" required onkeyup="checkPasswordMatch()"
                                         autocomplete="new-password">
                                     <span id="password-confirm-message" class="mt-1"></span>
@@ -103,7 +103,7 @@
                                     <span style="color: red;">*</span></label>
                                 <div class="col-md-6">
                                     <input id="address" type="text"
-                                        class="form-control @error('address') is-invalid @enderror" name="address"
+                                        class="form-control @error('address') is-invalid @enderror py-3 rounded-pill" name="address"
                                         value="{{ old('address') }}" required autocomplete="address" autofocus
                                         onkeyup="validateAddress()">
                                     <span id="address-error-message" class="invalid-feedback" role="alert"></span>
@@ -123,7 +123,7 @@
                                         style="color: red;">*</span></label>
                                 <div class="col-md-6">
                                     <input id="p_iva" type="text"
-                                        class="form-control @error('p_iva') is-invalid @enderror" name="p_iva"
+                                        class="form-control @error('p_iva') is-invalid @enderror py-3 rounded-pill" name="p_iva"
                                         value="{{ old('p_iva') }}" required autocomplete="p_iva" autofocus
                                         onkeyup="validatePiva()">
                                     <span id="p_iva-error-message" class="invalid-feedback" role="alert"></span>
@@ -141,7 +141,7 @@
                                     <span style="color: red;">*</span></label>
                                 <div class="col-md-6">
                                     <input id="telephone" type="text"
-                                        class="form-control @error('telephone') is-invalid @enderror" name="telephone"
+                                        class="form-control @error('telephone') is-invalid @enderror py-3 rounded-pill" name="telephone"
                                         value="{{ old('telephone') }}" required autocomplete="telephone" autofocus
                                         onkeyup="validateTelephone()">
                                     <span id="telephone-error-message" class="invalid-feedback" role="alert"></span>

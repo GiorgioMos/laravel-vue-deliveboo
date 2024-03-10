@@ -17,7 +17,7 @@
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
-                                        class="form-control @error('email') is-invalid @enderror" name="email"
+                                        class="form-control @error('email') is-invalid @enderror py-3 rounded-pill" name="email"
                                         value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                     @error('email')
@@ -34,7 +34,7 @@
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror" name="password"
+                                        class="form-control @error('password') is-invalid @enderror py-3 rounded-pill" name="password"
                                         required autocomplete="current-password">
 
                                     @error('password')
