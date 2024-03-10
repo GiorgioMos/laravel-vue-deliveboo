@@ -44,6 +44,7 @@ export default {
         this.getStorageValue = functions.getStorageValue
         this.cartCounter = functions.cartCounter
         this.cartTotal = functions.cartTotal
+        this.getImage = functions.getImage
 
 
 
@@ -188,27 +189,79 @@ export default {
                 <div v-else>
 
                     <!------------------------------------ CORPO PAGINA  ------------------------------------------------->
-                    <h1>checkout TOTALE->{{ this.cartTotal() }}€</h1>
+                    <h1 class="textYellow text-center mb-5 fw-bolder">CHECKOUT</h1>
                     <!-- nome ristorante corrente  -->
-                    <h2>{{ this.store.restaurants[getStorageValue('restaurant_id') - 1]?.name }}</h2>
+                    <div class="d-flex justify-content-center gap-5">
+                        <div class="text-center">
+                            <h3 class="">Stai ordinando da:</h3>
+                            <h2 class="textYellow">{{ this.store.restaurants[getStorageValue('restaurant_id') - 1]?.name
+                                }}</h2>
+                        </div>
+                        <div class="text-center">
+                            <h3 class="">Totale</h3>
+                            <h2 class="textYellow">{{ this.cartTotal() }}€</h2>
+                        </div>
+                    </div>
 
                     <div>
+                        <h2 class="textYellow fw-bolder mt-5">Prodotti:</h2>
+                        <hr class="my-3 bgYellow">
 
                         <!-- stampo tutti i prodotti in carrello  -->
-                        <div v-for="prodotto in this.store.products">
-
+                        <div v-for="prodotto in this.store.products" class="col-6 my-5">
                             <!-- controllo se l'id del prodotto corrisponde ad un id in localStorage e lo creo -->
                             <div v-if="this.store.ArrayIdsInCart.includes(prodotto.id.toString())">
-
                                 <!-- stampo i dati del prodotto e la quantità attraverso la funzione magica per richiamare i dati del localstorage -->
-                                <span>{{ prodotto.name }} ({{ prodotto.price }}) -> <span class="counter"
-                                        :data-id="prodotto.id" :data-name="prodotto.name" :id="prodotto.id + 'span'">{{
-            this.getStorageValue(prodotto.id) ?? 0 }}</span></span>
-                                <button class="btn btn-primary add" @click="this.cartAddElement(prodotto)">+</button>
-                                <button class="btn btn-danger remove"
-                                    @click="cartRemoveElement(prodotto); hideMinButton(prodotto.id)">-</button>
-                                <a href="#" @click="fullCartRemoveElement(prodotto)">rimuovi</a>
+                                <div class="row">
+                                    <!-- Immagine singolo prodotto -->
+                                    <div class="col-4 d-flex align-items-center">
+                                        <div class="boxImg">
+                                            <img class="imgCart mb-5" :src="this.getImage(prodotto?.img)" alt="">
+                                        </div>
+                                    </div>
+                                    <!-- Nome, prezzo e button rimuovi singolo prodotto -->
+                                    <div class="col-3 d-flex flex-column justify-content-center">
+                                        <router-link
+                                            :to="{ name: 'restaurant-detail', params: { id: prodotto?.restaurant_id } }">
+                                            <span class="col-6 fs-4 cart-title">
+                                                {{ prodotto.name }}
+                                            </span>
+                                        </router-link>
+                                        <div class="col-4 fw-bold my-2"> € {{ Math.round(((prodotto.price *
+            this.getStorageValue(prodotto.id)) + Number.EPSILON) * 100) / 100 }}
+                                        </div>
+                                    </div>
+                                    <!-- Button aggiungi e rimuovi prodotto -->
+                                    <div
+                                        class="col-3 d-flex flex-column aling-items-center justify-content-center text-center">
 
+                                        <!-- Aggiunge prodotto -->
+                                        <span class="add">
+                                            <span class="circle-icon btn" @click="this.cartAddElement(prodotto)">
+                                                <font-awesome-icon icon="fa-solid fa-plus" />
+                                            </span>
+                                        </span>
+                                        <!-- Numero totale prodotti -->
+                                        <span class="counter my-2 fw-bold" :data-id="prodotto.id"
+                                            :data-name="prodotto.name" :id="prodotto.id + 'span'">
+                                            {{ this.getStorageValue(prodotto.id) ?? 0 }}</span>
+                                        <!-- Rimuove prodotto -->
+                                        <span class="remove">
+                                            <span class="circle-icon btn"
+                                                @click="cartRemoveElement(prodotto); hideMinButton(prodotto.id)">
+                                                <font-awesome-icon icon="fa-solid fa-minus" />
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="col-2 d-flex align-items-center">
+                                        <!-- Rimuove tutti i prodotti nel carrello -->
+                                        <div>
+
+                                            <p class="btn btn-dark text-danger rounded-pill"
+                                                @click="fullCartRemoveElement(prodotto)">Rimuovi</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -218,7 +271,8 @@ export default {
                         <div class="row">
 
 
-                            <h2 class="mt-5">Inserisci i tuoi dati per completare l'ordine</h2>
+                            <h2 class="mt-5 textYellow">Inserisci i tuoi dati per completare l'ordine</h2>
+                            <hr class="my-3 bgYellow">
                             <form method="POST" enctype="multipart/form-data" @submit.prevent="submitForm"
                                 class="needs-validation col-8">
 
@@ -286,7 +340,7 @@ export default {
 
                         <button :disabled="!isFormValid" class="btn btn-warning rounded-pill text-white"
                             @click="createBraintree()">Seleziona la
-                            modalità di pagamento</button>
+                            modalità di pagamento <font-awesome-icon :icon="['fas', 'money-bill']" /></button>
                     </div>
                     <!-- BRAINTREE  -->
                     <div id="braintreeContainer">
@@ -304,9 +358,10 @@ export default {
 
 
                     <div class="d-flex justify-content-center">
-                        <button :disabled="!isFormValid || !isPaymentValid" class="btn btn-danger my-5"
-                            data-bs-toggle="modal" data-bs-target="#staticBackdrop" @click="confirmOrder">CONFERMA
-                            ORDINE</button>
+                        <button :disabled="!isFormValid || !isPaymentValid"
+                            class="btn btn-danger my-5 rounded-pill px-4 py-3 fw-bolder" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop" @click="confirmOrder">CONFERMA
+                            ORDINE <font-awesome-icon icon="fa-solid fa-cart-shopping" /></button>
                     </div>
 
 
@@ -437,5 +492,71 @@ export default {
 .has-success input {
     border-color: green !important;
     border-width: 2px;
+}
+
+/* immagini e box */
+.boxImg {
+    width: 8rem;
+    height: 6rem;
+    overflow: hidden;
+    border-radius: 25px;
+}
+
+.imgCart {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 25px;
+    transition: transform 0.2s;
+}
+
+.boxImg:hover .imgCart {
+    transform: scale(1.1);
+}
+
+.circle-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ff9900;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.circle-icon:hover {
+    background-color: #ff9900;
+    color: black;
+    transform: scale(1.2);
+}
+
+.cartName {
+    color: #ff9900;
+}
+
+
+.btnCart {
+    padding: 9px;
+    margin-top: 30px;
+    background-color: #066e7c;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    transition: transform 0.2s;
+}
+
+.btnCart:hover {
+    transform: scale(1.1);
+}
+
+.btnYellow {
+    background-color: #ff9900;
+    color: black;
 }
 </style>
