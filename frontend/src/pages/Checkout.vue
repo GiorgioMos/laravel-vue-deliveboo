@@ -156,8 +156,7 @@ export default {
 
                                 <!-- stampo i dati del prodotto e la quantità attraverso la funzione magica per richiamare i dati del localstorage -->
                                 <span>{{ prodotto.name }} ({{ prodotto.price }}) -> <span class="counter"
-                                        :data-id="prodotto.id" :data-name="prodotto.name" :id="prodotto.id + 'span'">{{
-            this.getStorageValue(prodotto.id) ?? 0 }}</span></span>
+                                        :data-id="prodotto.id" :data-name="prodotto.name" :id="prodotto.id + 'span'">{{ this.getStorageValue(prodotto.id) ?? 0 }}</span></span>
                                 <button class="btn btn-primary add" @click="this.cartAddElement(prodotto)">+</button>
                                 <button class="btn btn-danger remove"
                                     @click="cartRemoveElement(prodotto); hideMinButton(prodotto.id)">-</button>
@@ -179,7 +178,7 @@ export default {
                                 <div
                                     :class="['mb-3', { 'has-error': !validateField(name), 'has-success': formData.name }]">
                                     <label for="name" class="form-label">Nome <span style="color: red;">*</span></label>
-                                    <input type="text" class="form-control" id="name" name="name"
+                                    <input type="text" class="form-control py-3 rounded-pill" id="name" name="name"
                                         v-model="formData.name" required>
                                 </div>
                                 <!-- LASTNAME  -->
@@ -188,7 +187,7 @@ export default {
                                     :class="['mb-3', { 'has-error': !validateField(lastname), 'has-success': formData.lastname }]">
                                     <label for="lastname" class="form-label">Cognome <span
                                             style="color: red;">*</span></label>
-                                    <input type="text" class="form-control" id="lastname" name="lastname"
+                                    <input type="text" class="form-control py-3 rounded-pill" id="lastname" name="lastname"
                                         v-model="formData.lastname" required>
                                 </div>
 
@@ -197,7 +196,7 @@ export default {
                                     :class="['mb-3', { 'has-error': !validateField(email), 'has-success': formData.email }]">
                                     <label for="email" class="form-label">email <span
                                             style="color: red;">*</span></label>
-                                    <input type="email" class="form-control" id="email" name="email"
+                                    <input type="email" class="form-control py-3 rounded-pill" id="email" name="email"
                                         v-model="formData.email" required>
                                 </div>
                                 <!-- TELEPHONE -->
@@ -205,7 +204,7 @@ export default {
                                     :class="['mb-3', { 'has-error': !validateField(telephone), 'has-success': formData.telephone }]">
                                     <label for="telephone" class="form-label">telefono <span
                                             style="color: red;">*</span></label>
-                                    <input type="number" class="form-control" id="telephone" name="telephone"
+                                    <input type="number" class="form-control py-3 rounded-pill" id="telephone" name="telephone"
                                         v-model="formData.telephone" required>
                                 </div>
                                 <!-- ADDRESS -->
@@ -213,7 +212,7 @@ export default {
                                     :class="['mb-3', { 'has-error': !validateField(address), 'has-success': formData.address }]">
                                     <label for="address" class="form-label">indirizzo <span
                                             style="color: red;">*</span></label>
-                                    <input type="text" class="form-control" id="address" name="address"
+                                    <input type="text" class="form-control py-3 rounded-pill" id="address" name="address"
                                         v-model="formData.address" required>
                                 </div>
                             </form>
