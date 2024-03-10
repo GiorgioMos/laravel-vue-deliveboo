@@ -21,21 +21,7 @@ body {
 
 
 
-input[type="checkbox"]:checked+label {
-    background-color: #f9b44d;
-    color: #fff;
-    border-color: white;
-}
 
-input[type="checkbox"]+label:hover {
-    background-color: #f9b44d;
-    border-color: white;
-}
-
-input[type="checkbox"]+label {
-    border-color: #f9b44d;
-    color: #f9b44d;
-}
 
 // per togliere le freccette al type number
 input[type="number"]::-webkit-inner-spin-button,

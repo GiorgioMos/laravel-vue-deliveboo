@@ -201,6 +201,22 @@
         </div>
     </div>
     <style>
+        input[type="checkbox"]:checked+label {
+            background-color: #f9b44d;
+            color: #fff;
+            border-color: white;
+        }
+
+        input[type="checkbox"]+label:hover {
+            background-color: #f9b44d;
+            border-color: white;
+        }
+
+        input[type="checkbox"]+label {
+            border-color: #f9b44d;
+            color: #f9b44d;
+        }
+
         label {
             font-weight: 800;
         }
