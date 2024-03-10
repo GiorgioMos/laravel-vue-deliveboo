@@ -10,6 +10,7 @@ use App\Http\Requests\StoreRestaurantRequest;
 
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 
 class RestaurantController extends Controller
@@ -19,9 +20,8 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        $restaurants = Restaurant::all();
 
-        return view('admin.restaurants.index', compact("restaurants"));
+        return abort(404);
     }
 
     /**
@@ -80,9 +80,19 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        $categories = Category::all();
 
-        return view("admin.restaurants.show", compact("restaurant", "categories"));
+        $currentUser = Auth::id();
+        // prendo l'id del ristorante collegato all'utente
+        $current_restaurant = Restaurant::select('id')->where('user_id', $currentUser)->first();
+        if ($current_restaurant->id !== $restaurant->id) {
+            return abort(404);
+        } else {
+
+
+            $categories = Category::all();
+
+            return view("admin.restaurants.show", compact("restaurant", "categories"));
+        }
     }
 
     /**

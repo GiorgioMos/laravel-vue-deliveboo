@@ -4,7 +4,7 @@
     <div class="container py-3">
 
         <div class="row">
-            <h1>Insert new product</h1>
+            <h1 class="text-center textYellow">Inserisci un nuovo prodotto</h1>
             @isset($errore)
                 <div class="alert alert-danger">
                     <strong>{{ $errore }}</strong>
@@ -12,8 +12,8 @@
             @endisset
         </div>
 
-        <div class="row">
-            <div class="col-6">
+        <div class="row justify-content-center textYellow">
+            <div class="col-10">
                 @if (!isset($restaurant_id))
                     <div class="alert alert-danger">
                         <strong>non hai ancora creato un ristorante</strong>
@@ -23,6 +23,7 @@
                         class="needs-validation">
                         {{-- cross scripting request forgery --}}
                         @csrf
+                        <p>I campi con <span class="text-danger">*</span> sono obbligatori </p>
 
                         {{-- name  --}}
                         <div class="mb-3">
@@ -98,14 +99,35 @@
                             </div>
                         </div>
 
-                        <p>I campi con * sono obbligatori</p>
-
-                        <button type="submit" class="btn btn-dark" id="registration_submit" disabled>Crea</button>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-dark bgTeal fw-bold mb-5 text-white"
+                                id="registration_submit" disabled>Crea</button>
+                        </div>
                     </form>
                 @endif
             </div>
         </div>
     </div>
+    <style>
+        label {
+            font-weight: 800;
+        }
+
+        input {
+            border-width: 2px !important;
+        }
+
+        #registration_submit:hover {
+            background-color: #066e7c !important;
+            transform: scale(1.2);
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 1.5rem;
+        }
+    </style>
 @endsection
 
 <script>
@@ -173,23 +195,6 @@
         checkFormValidity();
     }
 
-
-    //serve?
-
-    // function validateVisible() {
-    //     var visible = document.getElementById('visible').checked;
-    //     var visibleErrorMessage = document.getElementById('visible-error-message');
-
-    //     if (visible) {
-    //         document.getElementById('visible-hidden').value = 1;
-    //         visibleErrorMessage.innerHTML = '';
-    //     } else {
-    //         document.getElementById('visible-hidden').value = 0;
-    //         visibleErrorMessage.innerHTML = '';
-    //     }
-    // }
-
-    // Funzione per abilitare o disabilitare il pulsante di invio del form
     function checkFormValidity() {
         var name = document.getElementById('name').value;
         var description = document.getElementById('description').value;

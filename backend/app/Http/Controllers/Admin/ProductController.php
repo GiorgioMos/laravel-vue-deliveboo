@@ -120,7 +120,6 @@ class ProductController extends Controller
         } else {
             $validated["img"] = $product->img;
         }
-
         $product->update($validated);
         return redirect()->route('admin.products.index');
     }
