@@ -3,6 +3,8 @@
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductsController;
 use App\Http\Controllers\Api\RestaurantController;
+use App\Http\Controllers\Api\OrderController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,3 +32,6 @@ Route::get("/categories", [CategoryController::class, "index"]);
 
 // products show
 Route::get("/products", [ProductsController::class, "index"]);
+
+// orders post
+Route::post("/orders", [OrderController::class, "store"]);

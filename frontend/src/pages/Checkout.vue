@@ -18,7 +18,11 @@ export default {
                 lastname: '',
                 email: '',
                 telephone: '',
+                notes: '',
+                city: '',
                 address: ''
+
+
             },
             isPaymentValid: false // Aggiunto per tenere traccia dello stato di validità del pagamento
         }
@@ -98,8 +102,49 @@ export default {
                 });
             });
         },
-        confirmOrder() {
+        getDataOggi() {
+            const oggi = new Date();
+            const anno = oggi.getFullYear();
+            let mese = oggi.getMonth() + 1; // i mesi partono da 0 (0 = gennaio)
+            mese = mese < 10 ? '0' + mese : mese; // aggiunge lo zero davanti se il mese è inferiore a 10
+            let giorno = oggi.getDate();
+            giorno = giorno < 10 ? '0' + giorno : giorno; // aggiunge lo zero davanti se il giorno è inferiore a 10
 
+            return `${anno}-${mese}-${giorno}`;
+        },
+        confirmOrder() {
+            const products = [];
+            this.store.ArrayIdsInCart.forEach(id => {
+                // Controlla di ciclare solo sugli id dei prodotti
+                if (id !== 'restaurant_id') {
+                    products.push({
+                        id: id,
+                        quantity: parseInt(localStorage.getItem(id))
+                    });
+                }
+            });
+
+            const formData = {
+                total_price: this.cartTotal(),
+                date: this.getDataOggi(),
+                notes: document.getElementById("notes").value,
+                guest_name: document.getElementById("name").value,
+                guest_surname: document.getElementById("lastname").value,
+                guest_telephone: document.getElementById("telephone").value,
+                guest_email: document.getElementById("email").value,
+                guest_address: document.getElementById("address").value,
+                guest_city: document.getElementById("city").value,
+                products: products
+            };
+            axios.post('http://localhost:8000/api/orders', formData)
+                .then(response => {
+                    // Gestisci la risposta dal server, ad esempio visualizzando un messaggio di successo
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    // Gestisci gli errori, ad esempio visualizzando un messaggio di errore
+                    console.error(error.response.data);
+                });
             setTimeout(() => {
 
                 this.clearCart()
@@ -114,8 +159,9 @@ export default {
 
             }, 4000)
 
-            //svuoto il carrello
-        }
+
+        },
+
     }
 }
 </script>
@@ -142,7 +188,6 @@ export default {
 
                     <!------------------------------------ CORPO PAGINA  ------------------------------------------------->
                     <h1>checkout TOTALE->{{ this.cartTotal() }}€</h1>
-
                     <!-- nome ristorante corrente  -->
                     <h2>{{ this.store.restaurants[getStorageValue('restaurant_id') - 1]?.name }}</h2>
 
@@ -173,7 +218,8 @@ export default {
 
 
                             <h2 class="mt-5">Inserisci i tuoi dati per completare l'ordine</h2>
-                            <form @submit.prevent="submitForm" class="needs-validation col-8">
+                            <form method="POST" enctype="multipart/form-data" @submit.prevent="submitForm"
+                                class="needs-validation col-8">
 
                                 <!-- NAME -->
                                 <div
@@ -215,6 +261,22 @@ export default {
                                             style="color: red;">*</span></label>
                                     <input type="text" class="form-control" id="address" name="address"
                                         v-model="formData.address" required>
+                                </div>
+                                <!-- CITTA' -->
+                                <div
+                                    :class="['mb-3', { 'has-error': !validateField(city), 'has-success': formData.city }]">
+                                    <label for="city" class="form-label">città <span
+                                            style="color: red;">*</span></label>
+                                    <input type="text" class="form-control" id="city" name="city"
+                                        v-model="formData.city" required>
+                                </div>
+                                <!-- NOTE trasformare in textarea-->
+                                <div
+                                    :class="['mb-3', { 'has-error': !validateField(notes), 'has-success': formData.notes }]">
+                                    <label for="notes" class="form-label">Note <span
+                                            style="color: red;">*</span></label>
+                                    <input type="text" class="form-control" id="notes" name="notes"
+                                        v-model="formData.notes" required>
                                 </div>
                             </form>
                         </div>
