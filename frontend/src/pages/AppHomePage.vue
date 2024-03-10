@@ -90,25 +90,30 @@ export default {
       } else if (this.categoriesSelected == []) {
         restaurants_box.classList = "container d-none";
       } */
+      this.showingRestaurantList = [];
 
       this.restaurants.forEach((restaurant) => {
         var metaCategories = restaurant
           .getAttribute("meta-categories")
           .split(",");
         var showRestaurant = true; // Assumiamo inizialmente che l'elemento debba essere mostrato
+        this.showingRestaurantList.push(restaurant);
 
         this.categoriesSelected.forEach((cat) => {
           if (!metaCategories.includes(cat.toString())) {
             // Se una delle categorie selezionate non è presente nell'array di categorie dell'elemento, non mostriamo l'elemento
             showRestaurant = false;
+            this.showingRestaurantList.splice(
+              this.showingRestaurantList.indexOf(restaurant),
+              1
+            );
           }
+
           if (showRestaurant) {
             restaurant.classList.remove("d-none");
             //gestisce le slide e le carte al loro interno
             restaurant.parentNode.classList.remove("d-none");
             restaurant.parentNode.classList.add("swiper-slide");
-
-            console.log(restaurant.parentNode, restaurant.parentNode.classList);
           } else {
             restaurant.classList.add("d-none");
             //gestisce le slide e le carte al loro interno
@@ -117,6 +122,14 @@ export default {
           }
         });
       });
+      console.log(this.showingRestaurantList);
+      if (this.showingRestaurantList.length == 0) {
+        document.getElementById("restaurant_message").innerHTML =
+          "Non abbiamo trovato ristoranti che rispettino le tue scelte";
+      } else {
+        document.getElementById("restaurant_message").innerHTML =
+          "Potrebbero interessarti";
+      }
     },
   },
 };
