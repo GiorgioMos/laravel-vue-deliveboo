@@ -82,10 +82,10 @@ export default {
 
 				<!-- bottone carrello offcanvas -->
 				<li class="nav-item">
-					<a class="btnNavbar rounded-pill px-4" href="#" id="shopping-cart" data-bs-toggle="offcanvas"
+					<a  class="btnNavbar rounded-pill px-4" href="#" id="shopping-cart" data-bs-toggle="offcanvas"
 						data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
 						<font-awesome-icon icon="fa-solid fa-cart-shopping" />
-						<span class="text-white ms-2">{{ cartCounter() }} </span>
+						<span v-if="this.cartTotal() != 0 " class="text-white ms-2">{{ cartCounter() }} </span>
 					</a>
 				</li>
 

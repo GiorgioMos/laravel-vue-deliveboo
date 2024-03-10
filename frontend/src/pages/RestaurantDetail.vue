@@ -43,9 +43,11 @@ export default {
 
 		this.aggiornaCounter();
 
-		document.getElementById("clearCart").addEventListener("click", () =>
-			this.aggiornaCounter()
-		)
+		if (document.getElementById("clearCart")) {
+			document.getElementById("clearCart").addEventListener("click", () =>
+				this.aggiornaCounter()
+			)
+		}
 
 	},
 	methods: {
@@ -146,8 +148,8 @@ export default {
 												:id="product.id + 'span'"> {{ this.currentValue(product) }} </span>
 											<button id="cart-add" class="btn add"
 												@click="cartAddElement(product); hideMinButton(product?.id)">+</button>
-											<a class="remove" href="#"
-												@click="fullCartRemoveElement(product)">rimuovi</a>
+											<!-- <a class="remove" href="#"
+												@click="fullCartRemoveElement(product)">rimuovi</a> -->
 										</div>
 									</article>
 								</div>
