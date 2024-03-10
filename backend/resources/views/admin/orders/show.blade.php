@@ -15,9 +15,21 @@
                 <strong>Hai cercato una pagina che non esiste :(</strong>
             </div>
             <div>
-                <a href="{{ route('admin.dashboard') }}" class="btn btn-secondary"> torna alla Dashboard</a>
+                <a href="{{ route('admin.dashboard') }}" class="btn bgTeal text-white"> torna alla Dashboard</a>
             </div>
         </div>
+        <style>
+            .btn:hover {
+                transform: scale(1.2);
+                background-color: #066e7c
+            }
+
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+                border-radius: 1.5rem;
+            }
+        </style>
     @else
         <div class="container">
             <div id="container" class="row d-flex justify-content-center rounded mt-5">

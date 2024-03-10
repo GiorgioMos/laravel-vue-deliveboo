@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('content')
     <div class="container py-3">
@@ -16,12 +16,27 @@
 
                 @endphp
                 @if ($current_restaurant->id !== $restaurant->id)
-                    <div class="alert alert-danger">
-                        <strong>Hai cercato una pagina che non esiste :( </strong>
+                    <div class="container">
+
+                        <div class="alert alert-danger my-5">
+                            <strong>Hai cercato una pagina che non esiste :(</strong>
+                        </div>
+                        <div>
+                            <a href="{{ route('admin.dashboard') }}" class="btn bgTeal text-white"> torna alla Dashboard</a>
+                        </div>
                     </div>
-                    <div>
-                        <a href="{{ route('admin.products.index') }}" class="btn btn-secondary"> torna ai tuoi prodotti</a>
-                    </div>
+                    <style>
+                        .btn:hover {
+                            transform: scale(1.2);
+                            background-color: #066e7c
+                        }
+
+                        .btn {
+                            padding: 0.8rem 1.5rem;
+                            font-size: 1rem;
+                            border-radius: 1.5rem;
+                        }
+                    </style>
                 @else
                     <form action="{{ route('admin.restaurants.update', $restaurant->id) }}" method="POST"
                         enctype="multipart/form-data">
