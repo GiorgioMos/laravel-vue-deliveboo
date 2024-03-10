@@ -23,7 +23,7 @@
                         class="needs-validation">
                         {{-- cross scripting request forgery --}}
                         @csrf
-                        <p>Tutti i campi sono obbligatori <span class="text-danger">*</span></p>
+                        <p>I campi con <span class="text-danger">*</span> sono obbligatori </p>
 
                         {{-- name  --}}
                         <div class="mb-3">
@@ -120,6 +120,12 @@
         #registration_submit:hover {
             background-color: #066e7c !important;
             transform: scale(1.2);
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 1.5rem;
         }
     </style>
 @endsection

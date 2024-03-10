@@ -198,6 +198,12 @@
             background-color: #f9b44d !important;
             transform: scale(1.2);
         }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 1.5rem;
+        }
     </style>
 @endsection
 

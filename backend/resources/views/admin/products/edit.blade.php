@@ -29,7 +29,8 @@
                         {{-- cross scripting request forgery --}}
                         @csrf
                         @method('PUT')
-                        <p>Tutti i campi sono obbligatori <span class="text-danger">*</span></p>
+                        <p>I campi con <span class="text-danger">*</span> sono obbligatori </p>
+
 
                         {{-- name  --}}
                         <div class="mb-3">
@@ -123,9 +124,10 @@
                                 </div>
                             </div>
                         </div>
-
-                        <button id="submitButton" type="submit" class="btn bgYellow fw-bold mb-5 text-white"
-                            disabled>Edit</button>
+                        <div class="d-flex justify-content-center">
+                            <button id="submitButton" type="submit" class="btn bgYellow fw-bold mb-5 text-white"
+                                disabled>Edit</button>
+                        </div>
                     </form>
                 @endif
             </div>
@@ -143,6 +145,12 @@
         #submitButton:hover {
             background-color: #f9b44d !important;
             transform: scale(1.2);
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 1.5rem;
         }
     </style>
 @endsection
