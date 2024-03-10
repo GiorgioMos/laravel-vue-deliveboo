@@ -101,6 +101,7 @@ export default {
                     });
                 });
             });
+
         },
         getDataOggi() {
             const oggi = new Date();
@@ -201,7 +202,8 @@ export default {
 
                                 <!-- stampo i dati del prodotto e la quantità attraverso la funzione magica per richiamare i dati del localstorage -->
                                 <span>{{ prodotto.name }} ({{ prodotto.price }}) -> <span class="counter"
-                                        :data-id="prodotto.id" :data-name="prodotto.name" :id="prodotto.id + 'span'">{{ this.getStorageValue(prodotto.id) ?? 0 }}</span></span>
+                                        :data-id="prodotto.id" :data-name="prodotto.name" :id="prodotto.id + 'span'">{{
+            this.getStorageValue(prodotto.id) ?? 0 }}</span></span>
                                 <button class="btn btn-primary add" @click="this.cartAddElement(prodotto)">+</button>
                                 <button class="btn btn-danger remove"
                                     @click="cartRemoveElement(prodotto); hideMinButton(prodotto.id)">-</button>
@@ -233,8 +235,8 @@ export default {
                                     :class="['mb-3', { 'has-error': !validateField(lastname), 'has-success': formData.lastname }]">
                                     <label for="lastname" class="form-label">Cognome <span
                                             style="color: red;">*</span></label>
-                                    <input type="text" class="form-control py-3 rounded-pill" id="lastname" name="lastname"
-                                        v-model="formData.lastname" required>
+                                    <input type="text" class="form-control py-3 rounded-pill" id="lastname"
+                                        name="lastname" v-model="formData.lastname" required>
                                 </div>
 
                                 <!-- EMAIL  -->
@@ -250,23 +252,23 @@ export default {
                                     :class="['mb-3', { 'has-error': !validateField(telephone), 'has-success': formData.telephone }]">
                                     <label for="telephone" class="form-label">telefono <span
                                             style="color: red;">*</span></label>
-                                    <input type="number" class="form-control py-3 rounded-pill" id="telephone" name="telephone"
-                                        v-model="formData.telephone" required>
+                                    <input type="number" class="form-control py-3 rounded-pill" id="telephone"
+                                        name="telephone" v-model="formData.telephone" required>
                                 </div>
                                 <!-- ADDRESS -->
                                 <div
                                     :class="['mb-3', { 'has-error': !validateField(address), 'has-success': formData.address }]">
                                     <label for="address" class="form-label">indirizzo <span
                                             style="color: red;">*</span></label>
-                                    <input type="text" class="form-control py-3 rounded-pill" id="address" name="address"
-                                        v-model="formData.address" required>
+                                    <input type="text" class="form-control py-3 rounded-pill" id="address"
+                                        name="address" v-model="formData.address" required>
                                 </div>
                                 <!-- CITTA' -->
                                 <div
                                     :class="['mb-3', { 'has-error': !validateField(city), 'has-success': formData.city }]">
-                                    <label for="city" class="form-label">città <span
+                                    <label for="city" class="form-label">Città <span
                                             style="color: red;">*</span></label>
-                                    <input type="text" class="form-control" id="city" name="city"
+                                    <input type="text" class="form-control py-3 rounded-pill" id="city" name="city"
                                         v-model="formData.city" required>
                                 </div>
                                 <!-- NOTE trasformare in textarea-->
@@ -274,24 +276,30 @@ export default {
                                     :class="['mb-3', { 'has-error': !validateField(notes), 'has-success': formData.notes }]">
                                     <label for="notes" class="form-label">Note <span
                                             style="color: red;">*</span></label>
-                                    <input type="text" class="form-control" id="notes" name="notes"
+                                    <input type="text" class="form-control py-3 rounded-pill" id="notes" name="notes"
                                         v-model="formData.notes" required>
                                 </div>
                             </form>
                         </div>
                     </div>
+                    <div class="d-flex justify-content-center col-8 py-5">
 
-                    <button :disabled="!isFormValid" class="btn btn-primary" @click="createBraintree()">Seleziona la
-                        modalità di pagamento</button>
+                        <button :disabled="!isFormValid" class="btn btn-warning rounded-pill text-white"
+                            @click="createBraintree()">Seleziona la
+                            modalità di pagamento</button>
+                    </div>
                     <!-- BRAINTREE  -->
                     <div id="braintreeContainer">
                         <div id="dropin-container" class="col-8"></div>
                     </div>
 
                     <!-- bottone submit per confermare i dati di pagamento  -->
-                    <button :disabled="!isFormValid" id="submit-button"
-                        class="btn button--small button--green d-none">Conferma
-                        Selezione</button>
+                    <div class="d-flex justify-content-center col-8 ">
+
+                        <button :disabled="!isFormValid" id="submit-button"
+                            class="btn button--small button--green d-none rounded-pill">Conferma
+                            Selezione</button>
+                    </div>
 
 
 
@@ -333,6 +341,30 @@ export default {
 <style lang="scss">
 // importo il foglio di stile generale dell'applicazione, non-scoped
 @use '../styles/general.scss';
+
+
+// BRAINTREE 
+.braintree-card {
+    background-color: rgb(5, 5, 5) !important;
+}
+
+.braintree-form__notice-of-collection {
+    display: none;
+}
+
+.number,
+.expirationDate,
+.braintree-form-expiration,
+.braintree-form-number {
+    border-radius: 2rem;
+    background-color: white;
+    border-width: 2px !important;
+}
+
+.braintree-form__label {
+    color: white !important;
+    font-weight: bolder !important;
+}
 </style>
 
 <style scoped lang="scss">
