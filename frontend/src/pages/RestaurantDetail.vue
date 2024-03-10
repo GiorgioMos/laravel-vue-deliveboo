@@ -112,9 +112,9 @@ export default {
 							</p>
 						</div>
 					</div>
-					<div id="restaurant-desc" class="d-flex flex-column m-3 align-items-start p-5 justify-content-center">
-						<div class="my-4 mb-4 py-2 pt-5"> {{ restaurant?.description }} </div>
-						<button id="button" class="btn mt-1"><a :href="restaurant?.website">Sito Web</a></button>
+					<div id="restaurant-desc" class="d-flex flex-column mt-5 align-items-start p-5 justify-content-center">
+						<div class="mt-5"> {{ restaurant?.description }} </div>
+						<button id="button" class="btn mt-5"><a :href="restaurant?.website">Sito Web</a></button>
 					</div>
 				</div>
 
@@ -137,9 +137,9 @@ export default {
 												alt="Immagine-ristorante">
 										</figure>
 										<div class="card-header d-flex flex-column">
-											<h4>{{ product?.name }}</h4>
-											<p>{{ product?.description }}</p>
-											<p>Prezzo: {{ product?.price }} €</p>
+											<h4 class="fw-bold text-white">{{ product?.name }}</h4>
+											<p class="cardDescription">{{ product?.description }}</p>
+											<p> € {{ product?.price }}</p>
 										</div>
 										<div class="card-footer">
 											<button id="cart-remove" class="btn remove"
@@ -149,7 +149,7 @@ export default {
 											<button id="cart-add" class="btn add"
 												@click="cartAddElement(product); hideMinButton(product?.id)">+</button>
 											<!-- <a class="remove" href="#"
-												@click="fullCartRemoveElement(product)">rimuovi</a> -->
+																																														@click="fullCartRemoveElement(product)">rimuovi</a> -->
 										</div>
 									</article>
 								</div>
@@ -158,14 +158,14 @@ export default {
 						</div>
 
 					</div>
-					<!-- BOTTONE GO BACK TO HOMEPAGE -->
-					<div class="row d-flex justify-content-end">
-						<div class="col-2 py-3">
-							<router-link :to="{ name: 'home' }" class="btn btn-info">
-								<span>Go Back</span>
-							</router-link>
-						</div>
-					</div>
+				</div>
+			</div>
+			<!-- BOTTONE GO BACK TO HOMEPAGE -->
+			<div class="row d-flex justify-content-end">
+				<div class="col-2">
+					<router-link :to="{ name: 'home' }" class="btn btn-info">
+						<span>Torna indietro</span>
+					</router-link>
 				</div>
 			</div>
 		</div>
@@ -386,5 +386,11 @@ img {
 	background-color: #060113;
 	border: 1px solid #066E7C;
 	transform: scale(1.2);
+}
+
+.cardDescription {
+	height: 100px;
+	line-height: 2rem;
+	margin-top: 20px;
 }
 </style>
