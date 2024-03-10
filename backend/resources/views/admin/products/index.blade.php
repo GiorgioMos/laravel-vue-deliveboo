@@ -54,54 +54,57 @@
 
                                         {{-- chiusura card  --}}
                                     </div>
-                                    <div class="col-2">
-                                        <div class="d-flex justify-content-center align-items-center">
-                                            <a href="{{ route('admin.products.edit', $product->id) }}"
-                                                class="btn btn-warning me-1"><i class="fa-solid fa-pencil"></i></a>
+
+                                    {{-- contenitori bottoni in colonna  --}}
+                                    <div class="col-2 d-flex flex-column gap-3 justify-content-center align-items-center">
+
+                                        {{-- EDIT  --}}
+                                        <a href="{{ route('admin.products.edit', $product->id) }}"
+                                            class="btn btn-warning me-1"><i class="fa-solid fa-pencil"></i></a>
 
 
-                                            {{-- Btn per triggerare modal --}}
-                                            <button type="button" class="btn btn-danger inline-block"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModal{{ $product->id }}">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                            </button>
+                                        {{-- Btn per triggerare modal --}}
+                                        <button type="button" class="btn btn-danger inline-block" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal{{ $product->id }}">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
 
-                                            {{-- Modal per eliminare product --}}
-                                            <div class="modal fade" id="exampleModal{{ $product->id }}" tabindex="-1"
-                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                                                Elimina
-                                                                Ristorante</h1>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p class="modal-title fs-6" id="exampleModalLabel">
-                                                                Vuoi
-                                                                eliminare "{{ $product->name }}" ?</p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-bs-dismiss="modal">No</button>
-                                                            <form id="deleteForm{{ $product->id }}"
-                                                                action="{{ route('admin.products.destroy', $product->id) }}"
-                                                                method="POST" class="d-inline-block">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit"
-                                                                    class="btn btn-danger btnModel">Si</button>
-                                                            </form>
-                                                        </div>
+                                        {{-- Modal per eliminare product --}}
+                                        <div class="modal fade" id="exampleModal{{ $product->id }}" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                                            Elimina
+                                                            Ristorante</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p class="modal-title fs-6" id="exampleModalLabel">
+                                                            Vuoi
+                                                            eliminare "{{ $product->name }}" ?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">No</button>
+                                                        <form id="deleteForm{{ $product->id }}"
+                                                            action="{{ route('admin.products.destroy', $product->id) }}"
+                                                            method="POST" class="d-inline-block">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit"
+                                                                class="btn btn-danger btnModel">Si</button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <a href="{{ route('admin.products.show', $product->id) }}"
-                                                class="btn info-btn my-3"><i class="fa-solid fa-circle-info fa-2xl"></i></a>
                                         </div>
+
+                                        {{-- INFO  --}}
+                                        <a href="{{ route('admin.products.show', $product->id) }}" class="btn info-btn"><i
+                                                class="fa-solid fa-circle-info fa-2xl textTeal"></i></a>
                                     </div>
                                 </div>
                             @endforeach
@@ -113,6 +116,10 @@
         <style>
             .card {
                 border-radius: 2rem;
+            }
+
+            .btn:hover {
+                transform: scale(1.2)
             }
         </style>
     @endsection

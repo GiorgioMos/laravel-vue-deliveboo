@@ -177,8 +177,7 @@
 
 
                         <div class="d-flex justify-content-center">
-                            <button id="submitButton"
-                                class="form-validation btn bgYellow fw-bold mb-5 text-white{{ Route::currentRouteName() == 'admin.restaurants.show' ? 'bg-secondary' : '' }}"
+                            <button id="submitButton" class="form-validation btn bgYellow fw-bold mb-5 text-white"
                                 disabled>Modifica</button>
                         </div>
                     </form>

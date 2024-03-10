@@ -26,10 +26,12 @@ input[type="checkbox"]:checked+label {
     color: #fff;
     border-color: white;
 }
+
 input[type="checkbox"]+label:hover {
     background-color: #f9b44d;
     border-color: white;
 }
+
 input[type="checkbox"]+label {
     border-color: #f9b44d;
     color: #f9b44d;
@@ -70,22 +72,25 @@ input[type="number"]::-webkit-outer-spin-button {
 #card {
     background-color: #ffffffc5;
 }
+
 .textTeal {
-color: #066e7c;
+    color: #066e7c;
 }
+
 .bgTeal {
     background-color: #066e7c;
 
 }
+
 .textYellow {
     color: #f9b44d;
-    }
-    .bgYellow {
-        background-color: #f9b44d;
-        padding: 0.8rem 1.5rem;
-        font-size: 1rem;
-        border-radius: 1.5rem;
-    }
+}
+
+.bgYellow {
+    background-color: #f9b44d;
+
+}
+
 .imgEditContainer {
     height: 15rem;
     width: 20rem;
@@ -95,6 +100,7 @@ color: #066e7c;
     justify-content: center;
     align-items: center;
 }
+
 #formpic {
     height: 18rem;
 }

@@ -4,7 +4,7 @@
     <div class="container position-relative">
         <div class="row d-flex justify-content-center">
             <h1 class="py-3 text-center">{{ $restaurant->name }}</h1>
-            <div class="">
+            <div>
                 <div class="d-flex justify-content-center">
 
                     <div class="imgBoxShow rounded mb-5">
@@ -55,13 +55,15 @@
 
             </div>
             <div class="py-3 text-center">
-                <a href="{{ route('admin.restaurants.edit', $restaurant->id) }}"
-                    class="btn bgYellow fw-bold mb-5 text-white">Modifica</a>
+                <div class="py-3 text-center">
+                    <a href="{{ route('admin.restaurants.edit', $restaurant->id) }}"
+                        class="btn bgYellow fw-bold mb-5 text-white">Modifica</a>
+                </div>
             </div>
 
         </div>
 
-        {{-- div quadratone bianco sfondo  ORRIBILE, VI PREGO CAMBIATELO --}}
+        {{-- div quadratone bianco sfondo --}}
         <div id="backsquare" class="position-absolute start-50 translate-middle">
         </div>
     </div>

@@ -4,11 +4,11 @@
     <div class="container py-3">
 
         <div class="row">
-            <h1>Edit Product</h1>
+            <h1 class="text-center textYellow">Modifica il prodotto</h1>
         </div>
 
-        <div class="row">
-            <div class="col-6">
+        <div class="row justify-content-center textYellow">
+            <div class="col-10">
                 @php
                     use App\Models\Restaurant;
                     $currentUser = Auth::id();
@@ -29,6 +29,8 @@
                         {{-- cross scripting request forgery --}}
                         @csrf
                         @method('PUT')
+                        <p>Tutti i campi sono obbligatori <span class="text-danger">*</span></p>
+
                         {{-- name  --}}
                         <div class="mb-3">
                             <label for="name" class="form-label">Nome <span style="color: red;">*</span></label>
@@ -72,26 +74,36 @@
                         </div>
 
                         {{-- img  --}}
-                        <div class="mb-3">
-                            <label for="img" class="form-label">Immagine <span style="color: red;">*</span></label>
-                            <div>Tieni l'immagine caricata in precedenza -> <div class="imgEditContainer">
-                                    @if (str_starts_with($product->img, 'http'))
-                                        <img class="cardImg rounded" src={{ $product->img }} alt="">
-                                    @else
-                                        <img class="cardImg rounded" src={{ asset('storage/' . $product->img) }}
-                                            alt="">
-                                    @endif
-                                </div>
-                                <p>o carica una nuova immagine</p>
-                            </div>
-                            <input type="file" class="form-control @error('img') is-invalid @enderror" id="img"
-                                name="img" value="{{ old('img') ?? $product->img }}">
+                        <div class="mb-5" id="formpic">
+                            <label for="img" class="form-label">Immagine <span class="text-danger">*</span></label>
+                            <div class="d-flex mt-2 mb-5">
 
-                            {{-- error message --}}
-                            <span id="img-error-message" class="invalid-feedback" role="alert"></span>
-                            @error('img')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                                <div>Tieni l'immagine caricata in precedenza
+                                    <div class="imgEditContainer rounded">
+                                        @if (str_starts_with($product->img, 'http'))
+                                            <img class="cardImg rounded" src={{ $product->img }} alt="">
+                                        @else
+                                            <img class="cardImg rounded" src={{ asset('storage/' . $product->img) }}
+                                                alt="">
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center mx-5">
+                                    <p class="fs-4">oppure</p>
+                                </div>
+                                <div>
+                                    <p>Carica una nuova immagine</p>
+                                    <input type="file" class="form-control @error('img') is-invalid @enderror"
+                                        id="img" name="img" value="{{ old('img') ?? $product->img }}"
+                                        onchange="setPreviewPic()">
+
+                                    {{-- error message --}}
+                                    <span id="img-error-message" class="invalid-feedback" role="alert"></span>
+                                    @error('img')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
 
                         {{-- visible  --}}
@@ -112,14 +124,27 @@
                             </div>
                         </div>
 
-                        <p>I campi con * sono obbligatori</p>
-
-                        <button id="submitButton" type="submit" class="btn btn-dark" disabled>Edit</button>
+                        <button id="submitButton" type="submit" class="btn bgYellow fw-bold mb-5 text-white"
+                            disabled>Edit</button>
                     </form>
                 @endif
             </div>
         </div>
     </div>
+    <style>
+        label {
+            font-weight: 800;
+        }
+
+        input {
+            border-width: 2px !important;
+        }
+
+        #submitButton:hover {
+            background-color: #f9b44d !important;
+            transform: scale(1.2);
+        }
+    </style>
 @endsection
 
 <script>
