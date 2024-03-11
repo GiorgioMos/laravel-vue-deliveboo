@@ -98,22 +98,22 @@ export default {
 						<img class="cardImg rounded" :src="this.getImage(restaurant?.img)" alt="">
 						<div id="restaurant-info">
 							<h1 class="mb-4 fw-bold"> {{ restaurant?.name }} </h1>
-							<p class="my-1">
-								<font-awesome-icon class="icon" icon="fa-solid fa-location" />
+							<p class="my-1 text-white fw-bold">
+								<font-awesome-icon class="icon mx-3" icon="fa-solid fa-location" />
 								{{ restaurant?.address }}
 							</p>
-							<p class="my-1">
-								<font-awesome-icon class="icon" icon="fa-solid fa-city" />
+							<p class="my-1 text-white fw-bold">
+								<font-awesome-icon class="icon icon mx-3" icon="fa-solid fa-city" />
 								{{ restaurant?.city }}
 							</p>
-							<p class="my-1">
-								<font-awesome-icon class="icon" icon="fa-solid fa-phone" />
+							<p class="my-1 text-white fw-bold">
+								<font-awesome-icon class="icon icon mx-3" icon="fa-solid fa-phone" />
 								{{ restaurant?.telephone }}
 							</p>
 						</div>
 					</div>
 					<div id="restaurant-desc" class="d-flex flex-column mt-5 align-items-start p-5 justify-content-center">
-						<div class="mt-5"> {{ restaurant?.description }} </div>
+						<div class="restaurantDescription"> {{ restaurant?.description }} </div>
 						<button id="button" class="btn mt-5"><a :href="restaurant?.website">Sito Web</a></button>
 					</div>
 				</div>
@@ -149,7 +149,7 @@ export default {
 											<button id="cart-add" class="btn add"
 												@click="cartAddElement(product); hideMinButton(product?.id)">+</button>
 											<!-- <a class="remove" href="#"
-											@click="fullCartRemoveElement(product)">rimuovi</a> -->
+																																																																												@click="fullCartRemoveElement(product)">rimuovi</a> -->
 										</div>
 									</article>
 								</div>
@@ -259,6 +259,10 @@ li {
 	list-style-type: none;
 }
 
+.restaurantDescription {
+	margin-top: 10rem;
+}
+
 #restaurant-desc {
 	font-size: 1.2rem;
 	width: 60rem;
@@ -279,11 +283,11 @@ li {
 	background-color: #3d3737;
 	padding: 1rem;
 	width: 35rem;
-	height: 16rem;
+	height: 14rem;
 	border-radius: 15px;
 	bottom: 500px;
 	left: 750px;
-	opacity: 0.85;
+	opacity: 0.90;
 }
 
 #restaurant-info:hover {

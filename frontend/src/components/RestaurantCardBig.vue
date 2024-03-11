@@ -1,6 +1,4 @@
 <script>
-import functions from "../functions.js";
-
 export default {
   name: "RestaurantCard",
   props: ["item"],
@@ -9,9 +7,6 @@ export default {
       id_categories: [],
     };
   },
-  created() {
-    this.getImage = functions.getImage;
-  },
   mounted() {
     this.item.category.forEach((element) => {
       this.id_categories.push(element.id);
@@ -19,7 +14,17 @@ export default {
 
     this.id_categories = this.id_categories.join(",");
   },
-  methods: {},
+  methods: {
+    getImage(img) {
+      let image;
+      if (img.startsWith("http")) {
+        image = img;
+      } else {
+        image = "http://localhost:8000/storage/" + img;
+      }
+      return new URL(image, import.meta.url).href;
+    },
+  },
 };
 </script>
 
@@ -59,20 +64,19 @@ export default {
       </router-link>
     </div>
   </div> -->
-  <div
-    class="card-restaurant px-5 my-5 mb-5"
-    id="card-display"
-    :meta-categories="this.id_categories"
-  >
+  <div class="card d-flex" :meta-categories="this.id_categories">
     <router-link
       :to="{ name: 'restaurant-detail', params: { id: item.id } }"
       class="text-decoration-none fw-bold"
       id="router-link"
     >
-      <div class="text-box">
+      <div class="text-box px-4">
         <div class="text-center">
-          <p style="color: #ff9900" class="fw-bold fs-5">{{ item.name }}</p>
+          <h2 style="color: #ff9900" class="fw-bold">{{ item.name }}</h2>
           <p class="my-4">{{ item.address }}</p>
+          <span>
+            {{ item.description }}
+          </span>
 
           <ul
             class="list-group list-group-horizontal justify-content-center flex-wrap my-4"
@@ -100,7 +104,6 @@ export default {
 // importo variabili
 // @use './styles/partials/variables' as *;
 
-// ...qui eventuale SCSS di TagList
 .imageBox img {
   width: 90%;
   height: 90%;
@@ -113,14 +116,14 @@ export default {
 .background_square {
   padding: 2rem;
   width: 80%;
-  height: 75%;
-  transform: rotate(-2deg);
+  height: 80%;
+  transform: rotate(-1deg);
   background-color: #ff9900;
   border-radius: 30px;
   z-index: -1;
   position: absolute;
   top: 10%;
-  right: 7%;
+  right: 5%;
 }
 .imageBox {
   padding: 2rem;
@@ -136,8 +139,6 @@ export default {
 .list-group-item {
   background-color: transparent;
   border-color: #060113;
-
-  font-size: small;
 }
 
 .card {
@@ -157,22 +158,124 @@ export default {
 }
 
 #router-link {
-  padding: 2rem;
   color: white;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-content: center;
   height: 100%;
-  font-size: small;
-  border: solid 1px #060113;
 }
 
-#router-link:hover {
-  /* border: solid 1px #ff9900; */
-  border-radius: 30px;
-  background-color: rgba($color: white, $alpha: 0.05);
-  transform: scale(1.1);
-  transition: 0.2s ease;
+/* // ...qui eventuale SCSS di TagList
+
+
+
+
+a {
+  text-decoration: none;
+  color: black;
 }
+
+.imageBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  height: 10rem;
+  width: 100%;
+}
+
+.imageBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.__area {
+  color: #7c7671;
+  margin-top: 100px;
+}
+
+.__card {
+  max-width: 350px;
+  margin: auto;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  color: unset;
+}
+.__card:hover {
+  color: unset;
+  text-decoration: none;
+}
+.__img {
+  border-radius: 10px;
+}
+
+.__favorit {
+  background-color: #fff;
+  border-radius: 8px;
+  color: #fc9d52;
+  position: absolute;
+  right: 15px;
+  top: 8px;
+  padding: 3px 4px;
+  font-size: 22px;
+  line-height: 100%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  border: 0;
+}
+.__favorit:hover {
+  background-color: #fc9d52;
+  color: #fff;
+  text-decoration: none;
+}
+.__card_detail {
+  box-shadow: 0 4px 15px rgba(175, 77, 0, 0.13);
+  padding: 13px;
+  border-radius: 8px;
+  margin: -30px 10px 0;
+  position: relative;
+  z-index: 2;
+  background-color: #fff;
+}
+.__card_detail h4 {
+  color: #474340;
+  line-height: 100%;
+  font-weight: bold;
+}
+.__card_detail p {
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+}
+.__type span {
+  background-color: #feefe3;
+  padding: 5px 10px 7px;
+  border-radius: 5px;
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 12px;
+  color: #fc9d52;
+  font-weight: bold;
+  line-height: 100%;
+}
+.__detail {
+  margin-top: 5px;
+}
+.__detail i {
+  font-size: 21px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.__detail i:nth-child(3) {
+  margin-left: 15px;
+}
+.__detail span {
+  font-size: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 2px;
+} */
 </style>

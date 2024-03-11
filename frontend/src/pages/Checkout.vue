@@ -18,7 +18,6 @@ export default {
                 lastname: '',
                 email: '',
                 telephone: '',
-                notes: '',
                 city: '',
                 address: ''
 
@@ -163,7 +162,14 @@ export default {
 
 
         },
-
+        getFormValue(id) {
+            if (document.getElementById(id)) {
+                return document.getElementById(id).value
+            }
+            else {
+                return "nada"
+            }
+        }
     }
 }
 </script>
@@ -328,10 +334,9 @@ export default {
                                 <!-- NOTE trasformare in textarea-->
                                 <div
                                     :class="['mb-3', { 'has-error': !validateField(notes), 'has-success': formData.notes }]">
-                                    <label for="notes" class="form-label">Note <span
-                                            style="color: red;">*</span></label>
-                                    <input type="text" class="form-control py-3 rounded-pill" id="notes" name="notes"
-                                        v-model="formData.notes" required>
+                                    <label for="notes" class="form-label">Note</label>
+                                    <textarea name="notes" id="notes" cols="30" rows="10" class="form-control py-3"
+                                        v-model="formData.notes"></textarea>
                                 </div>
                             </form>
                         </div>
@@ -376,7 +381,19 @@ export default {
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    Ordine Completato con successo! stai per essere reindirizzato alla HOME.
+                                    <h5 class="mb-5">Grazie <span class="fw-bolder fs-4">{{ getFormValue('name')
+                                            }}</span>,
+                                        il tuo ordine è stato completato
+                                        con
+                                        <span class="text-success fw-bolder fs-4">successo</span>!
+                                    </h5>
+                                    <p>Importo pagato: <span class="text-success fw-bolder">{{ this.cartTotal() }}
+                                            €</span>
+                                    </p>
+                                    <p>Indirizzo: <span class="fw-bolder">{{ getFormValue('address') }}, {{
+                                            getFormValue('city') }}</span></p>
+
+                                    <h5 class="mt-5"> stai per essere reindirizzato alla HOME.</h5>
                                 </div>
 
                             </div>
@@ -401,31 +418,39 @@ export default {
 // BRAINTREE 
 
 
-.braintree-dropin div {
+.braintree-dropin div,
+.braintree-dropin,
+.braintree-loaded .braintree-upper-container:before {
     color: white !important;
-    background-color: rgb(0, 0, 0) !important;
+    font-weight: 600;
+    // background-color: rgb(38, 36, 36) !important;
+    background-color: black;
+    border-radius: 2rem;
+    border-width: 3px;
 }
 
-#expiration {
+.braintree-form-number,
+.braintree-form__hosted-field {
     background-color: white !important;
+    padding: 0 2rem;
+    border-radius: 2rem;
+    border-width: 2px;
 }
 
-
-.braintree-form__notice-of-collection {
+.braintree-form__notice-of-collection,
+.braintree-placeholder {
     display: none;
 }
 
-.number,
-.expirationDate,
-.braintree-form-expiration,
-.braintree-form-number {
-    border-radius: 2rem;
-    background-color: white;
-    border-width: 2px !important;
+.braintree-sheet__header {
+    padding: 1.5rem 3rem 0.5rem 3rem;
+    align-items: center;
+    justify-content: center;
 }
 
+
 .braintree-form__label {
-    color: white !important;
+    // color: white !important;
     font-weight: bolder !important;
 }
 </style>
@@ -492,6 +517,10 @@ export default {
 
 
 // CSS VALIDAZIONE 
+#notes {
+    border-radius: 1rem;
+}
+
 .has-error input {
     border-color: red !important;
     border-width: 2px;

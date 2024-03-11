@@ -1,6 +1,7 @@
 <script>
 import RestaurantList from "../components/RestaurantList.vue";
 import JumboSwiper from "../components/JumboSwiper.vue";
+import RestaurantSwiper from "../components/RestaurantSwiper.vue";
 import { store } from "../store.js"; //state management
 import axios from "axios"; //importo Axios
 import functions from "../functions.js";
@@ -10,6 +11,7 @@ export default {
   components: {
     RestaurantList,
     JumboSwiper,
+    RestaurantSwiper,
   },
   created() {
     this.ArrayCart = functions.ArrayCart; // recupera funzione in gunction.js
@@ -21,6 +23,7 @@ export default {
       categoriesSelected: [],
       restaurants: [],
       visibleRestaurants: [],
+      showingRestaurants: [],
     };
   },
   beforeMount() {
@@ -67,7 +70,7 @@ export default {
     // funzione search
     search(id_categoria) {
       //seleziono tutti i ristoranti
-      this.restaurants = document.querySelectorAll(".card");
+      this.restaurants = document.querySelectorAll(".card-restaurant");
       this.restaurants_box = document.getElementById("card-box");
 
       // controllo se una categoria è presente nell'array delle categorie selezionate e in caso lo pusho o lo rimuovo
@@ -79,6 +82,7 @@ export default {
         if (this.categoriesSelected.length == 0) {
           //se non ci sono categorie selezionate non mostro il componente
           this.restaurants_box.classList.add("d-none");
+          document.getElementById("restaurant_message").innerHTML = "";
         }
       } else {
         this.categoriesSelected.push(id_categoria);
@@ -90,46 +94,34 @@ export default {
       } else if (this.categoriesSelected == []) {
         restaurants_box.classList = "container d-none";
       } */
-      this.showingRestaurantList = [];
 
       this.restaurants.forEach((restaurant) => {
         var metaCategories = restaurant
           .getAttribute("meta-categories")
           .split(",");
         var showRestaurant = true; // Assumiamo inizialmente che l'elemento debba essere mostrato
-        this.showingRestaurantList.push(restaurant);
-
+        this.showingRestaurants.push(restaurant);
         this.categoriesSelected.forEach((cat) => {
           if (!metaCategories.includes(cat.toString())) {
             // Se una delle categorie selezionate non è presente nell'array di categorie dell'elemento, non mostriamo l'elemento
             showRestaurant = false;
-            this.showingRestaurantList.splice(
-              this.showingRestaurantList.indexOf(restaurant),
-              1
-            );
           }
 
           if (showRestaurant) {
             restaurant.classList.remove("d-none");
             //gestisce le slide e le carte al loro interno
-            restaurant.parentNode.classList.remove("d-none");
-            restaurant.parentNode.classList.add("swiper-slide");
           } else {
             restaurant.classList.add("d-none");
+            this.showingRestaurants.splice(
+              this.showingRestaurants.indexOf(restaurant),
+              1
+            );
+
             //gestisce le slide e le carte al loro interno
-            restaurant.parentNode.classList.add("d-none");
-            restaurant.parentNode.classList.remove("swiper-slide");
           }
         });
       });
-      console.log(this.showingRestaurantList);
-      if (this.showingRestaurantList.length == 0) {
-        document.getElementById("restaurant_message").innerHTML =
-          "Non abbiamo trovato ristoranti che rispettino le tue scelte";
-      } else {
-        document.getElementById("restaurant_message").innerHTML =
-          "Potrebbero interessarti";
-      }
+      console.log(this.showingRestaurants);
     },
   },
 };
@@ -137,6 +129,8 @@ export default {
 
 <template>
   <JumboSwiper />
+
+  <RestaurantSwiper />
 
   <div class="container my-5">
     <div class="row text-center my-5">
@@ -161,7 +155,8 @@ export default {
           autocomplete="off"
         />
         <label
-          class="btn btn-outline-warning form-label rounded"
+          class="btn form-label rounded-pill"
+          style="background-color: #ff9900"
           :for="'category' + category.id"
         >
           {{ category.name }}

@@ -1,38 +1,34 @@
 <script>
-import RestaurantCard from "../components/RestaurantCard.vue";
+import RestaurantCardBig from "../components/RestaurantCardBig.vue";
 import { store } from "../store.js"; //state management
 import axios from "axios"; //importo Axios
-
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
 
 // Import Swiper styles
 import "swiper/css";
 
-import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 // import required modules
-import { Autoplay, Pagination } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
 
 export default {
-  name: "RestaurantList",
+  name: "RestaurantSwiper",
   components: {
-    RestaurantCard,
     Swiper,
     SwiperSlide,
+    RestaurantCardBig,
   },
   data() {
     return {
       store,
-    };
-  },
-  setup() {
-    return {
-      modules: [Pagination, Autoplay],
+      modules: [Autoplay, Navigation],
     };
   },
   mounted() {
     this.getRestaurants();
+    console.log(store.restaurants);
   },
   methods: {
     getRestaurants() {
@@ -76,23 +72,34 @@ export default {
 </script>
 
 <template>
-  <div id="card-box" class="d-none row">
-    <RestaurantCard
-      class="col-lg-6 col-12"
-      v-for="restaurant in store.restaurants"
-      :item="restaurant"
-    />
+  <div class="container">
+    <h1 class="text-center section-title fs-1">I Ristoranti:</h1>
+    <swiper
+      :slidesPerView="1"
+      :spaceBetween="30"
+      :loop="true"
+      :autoplay="{ delay: 2000, disableOnInteraction: false }"
+      :modules="modules"
+      class="box"
+    >
+      <swiper-slide v-for="restaurant in store.restaurants">
+        <RestaurantCardBig :item="restaurant" />
+      </swiper-slide>
+    </swiper>
   </div>
 </template>
 
-<style lang="scss">
-// importo il foglio di stile generale dell'applicazione, non-scoped
-@use "../styles/general.scss";
-</style>
+<style scoped>
+.section-title {
+  margin: 8rem 0 3rem 0;
+}
+.box {
+  display: flex;
+  justify-content: center;
 
-<style scoped lang="scss">
-// importo variabili
-// @use './styles/partials/variables' as *;
-
-// ...qui eventuale SCSS di App.vue
+  align-content: center;
+  overflow: hidden;
+  margin: 3rem 0 6rem 0;
+  height: 33rem;
+}
 </style>
