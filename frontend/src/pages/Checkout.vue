@@ -334,8 +334,7 @@ export default {
                                 <!-- NOTE trasformare in textarea-->
                                 <div
                                     :class="['mb-3', { 'has-error': !validateField(notes), 'has-success': formData.notes }]">
-                                    <label for="notes" class="form-label">Note <span
-                                            style="color: red;">*</span></label>
+                                    <label for="notes" class="form-label">Note</label>
                                     <textarea name="notes" id="notes" cols="30" rows="10" class="form-control py-3"
                                         v-model="formData.notes"></textarea>
                                 </div>

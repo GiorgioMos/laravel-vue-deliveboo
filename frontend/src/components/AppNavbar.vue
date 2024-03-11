@@ -57,19 +57,16 @@ export default {
         </div>
       </router-link>
 
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="page-navigation" href="#">Ristoranti</a>
-        </li>
-        <li class="nav-item">
-          <router-link :to="{ name: 'about' }">
-            <p class="page-navigation" href="/about">Chi Siamo</p>
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <a class="page-navigation" href="#">Prodotti</a>
-        </li>
-      </ul>
+			<ul class="navbar-nav gap-5">
+				<li class="nav-item">
+					<a class="page-navigation nav-center" href="#">Ristoranti</a>
+				</li>
+				<li class="nav-item">
+					<router-link :to="{ name: 'about' }">
+						<p class="page-navigation nav-center" href="/about">Chi Siamo</p>
+					</router-link>
+				</li>
+			</ul>
 
       <ul class="navbar-nav">
         <!-- bottone accedi area riservata -->
@@ -272,12 +269,26 @@ a {
   text-decoration: none;
 }
 
+.nav-center{
+	color: white !important;
+	background-color: #066e7c;
+	padding: 10px;
+	border: 2px solid #ff9900;
+	font-weight: bold;
+	border-radius: 30px;
+	transition: .15s ease-in;
+}
+.nav-center:hover{
+	background-color: #ff9900;
+	color: black !important;
+}
 .btnNavbar {
-  color: white;
-  background-color: #066e7c;
-  padding: 10px;
-  border: 2px solid #ff9900;
-  font-weight: bold;
+	color: white;
+	background-color: #066e7c;
+	padding: 10px;
+	border: 2px solid #ff9900;
+	font-weight: bold;
+	transition: .15s ease-in;
 }
 
 .btnNavbar:hover {
@@ -286,14 +297,15 @@ a {
 }
 
 .page-navigation {
-  margin: 0;
-  color: #066e7c;
-  font-weight: bold;
-  font-size: 1.2rem;
-  padding: 0.7rem 3rem; /* Aggiungi spazio intorno ai link */
-  height: 100%; /* Fai occupare tutta l'altezza */
-  display: flex; /* Usa flexbox per allineare verticalmente il testo */
-  align-items: center; /* Allinea verticalmente il testo al centro */
+	margin: 0;
+	color: #066e7c;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 0.7rem 3rem; /* Aggiungi spazio intorno ai link */
+    height: 100%; /* Fai occupare tutta l'altezza */
+    display: flex; /* Usa flexbox per allineare verticalmente il testo */
+    align-items: center; /* Allinea verticalmente il testo al centro */
+	transition: .15s ease-in;
 }
 
 .page-navigation:hover {

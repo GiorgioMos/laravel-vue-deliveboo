@@ -234,6 +234,11 @@
             padding: 0.8rem 1.5rem;
             font-size: 1rem;
             border-radius: 1.5rem;
+            transition: .15s ease-in;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
         }
     </style>
 @endsection
