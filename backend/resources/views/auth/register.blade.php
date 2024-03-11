@@ -4,16 +4,16 @@
     <div class="container mt-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card bg-dark">
-                    <h3 class="card-header text-center textYellow">{{ __('Registrati') }}</h3>
+                <div class="">
+                    <h1 class="card-header text-center textYellow">{{ __('Registrati') }}</h1>
 
-                    <div class="card-body">
+                    <div class="card-body bgOrange ps-5 my-5 orangeDiv p-4">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
 
                             {{-- name --}}
                             <div class="mb-4 row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }} <span
+                                <label for="name" class="col-md-4 col-form-label text-white fs-5 text-md-right">{{ __('Name') }} <span
                                         style="color: red;">*</span></label>
 
                                 <div class="col-md-6">
@@ -32,7 +32,7 @@
 
                             {{-- surname --}}
                             <div class="mb-4 row">
-                                <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('Surname') }}
+                                <label for="surname" class="col-md-4 col-form-label text-white fs-5 text-md-right">{{ __('Surname') }}
                                     <span style="color: red;">*</span></label>
 
                                 <div class="col-md-6">
@@ -52,7 +52,7 @@
                             {{-- email --}}
                             <div class="mb-4 row">
                                 <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }} <span
+                                    class="col-md-4 col-form-label text-white fs-5 ext-md-right">{{ __('E-Mail Address') }} <span
                                         style="color: red;">*</span></label>
 
                                 <div class="col-md-6">
@@ -71,7 +71,7 @@
 
                             {{-- password --}}
                             <div class="mb-4 row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}
+                                <label for="password" class="col-md-4 col-form-label text-white fs-5 text-md-right">{{ __('Password') }}
                                     <span style="color: red;">*</span></label>
                                 <div class="col-md-6">
                                     <input id="password" type="password"
@@ -87,7 +87,7 @@
                             </div>
                             <div class="mb-4 row">
                                 <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }} <span
+                                    class="col-md-4 col-form-label text-white fs-5 text-md-right">{{ __('Confirm Password') }} <span
                                         style="color: red;">*</span></label>
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control py-3 rounded-pill"
@@ -99,7 +99,7 @@
 
                             {{-- address --}}
                             <div class="mb-4 row">
-                                <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}
+                                <label for="address" class="col-md-4 col-form-label text-white fs-5 text-md-right">{{ __('Address') }}
                                     <span style="color: red;">*</span></label>
                                 <div class="col-md-6">
                                     <input id="address" type="text"
@@ -119,7 +119,7 @@
                             {{-- p_iva --}}
                             <div class="mb-4 row">
                                 <label for="p_iva"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Partita IVA') }} <span
+                                    class="col-md-4 col-form-label text-white fs-5 text-md-right">{{ __('Partita IVA') }} <span
                                         style="color: red;">*</span></label>
                                 <div class="col-md-6">
                                     <input id="p_iva" type="text"
@@ -136,8 +136,8 @@
                             </div>
 
                             {{-- telephone --}}
-                            <div class="mb-4 row">
-                                <label for="telephone" class="col-md-4 col-form-label text-md-right">{{ __('Telefono') }}
+                            <div class=" row">
+                                <label for="telephone" class="col-md-4 col-form-label text-white fs-5 text-md-right">{{ __('Telefono') }}
                                     <span style="color: red;">*</span></label>
                                 <div class="col-md-6">
                                     <input id="telephone" type="text"
@@ -152,10 +152,10 @@
                                     @enderror
                                 </div>
                             </div>
-
-                            <div class="mb-4 row mb-0">
+                            
+                            <div class="my-5 row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button id="registration_submit" type="submit" class="btn bgTeal text-white"
+                                    <button id="registration_submit" type="submit" class="btn bgOrange rounded-pill"
                                         disabled>
                                         {{ __('Register') }}
                                     </button>
@@ -163,20 +163,33 @@
                             </div>
                         </form>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
     <style>
-        .btn.bgTeal:hover {
-            background-color: #066e7c;
-            transform: scale(1.2)
+        .btn {
+            background: #060113;
+            border: solid 2px #ff9900;
+            color: white;
+        }
+
+        .btn.bgOrange:hover {
+            background: white;
+            color: #060113;
+            border: solid 2px #060113;
+            transition: 
         }
 
         label {
             color: #066e7c;
             font-size: 1.25rem;
             font-weight: bolder;
+        }
+
+        .orangeDiv {
+            border-radius: 2rem;
         }
     </style>
 @endsection

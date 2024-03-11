@@ -133,7 +133,7 @@ export default {
 					<div v-else>
 						<h2 class="my-3 fw-bold" style="color: white">I Nostri Piatti</h2>
 						<div class="d-flex row">
-							<div class="col-4" v-for="product in restaurant?.products">
+							<div class="" v-for="product in restaurant?.products">
 								<div v-if="product?.visible == 1" class="product card-list my-5"
 									:id="'product-' + product.id">
 									<article class="cards">

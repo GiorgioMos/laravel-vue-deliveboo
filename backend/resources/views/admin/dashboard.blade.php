@@ -79,18 +79,38 @@
 
             <!-- Il ristorante è stato creato -->
         @else
+        <div>
+            <img class="imgSfondo" src="img/logoDeliveboo.png" alt="">
+        
+            <div>
+                <h1 class="fw-bold text-center mb-5 display-3"> Benvenuto\a, <span class="text-warning">
+                    {{ Auth::user()->name }}! </span>
+                </h1>
+            </div>
             <!-- Il ristorante non è stato creato -->
-            <div class="py-3">
-                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.restaurants.create' ? 'bg-secondary' : '' }}"
+            <div class="d-flex justify-content-center">
+                <a style="text-decoration: none" class="nav-link {{ Route::currentRouteName() == 'admin.restaurants.create' ? 'bg-secondary' : '' }}"
                     href="{{ route('admin.restaurants.create') }}">
-                    <button type="button" class="btn btn-dark">Crea ristorante</button>
+                    <button class="btn bgOrange rounded-pill fs-2 p-3">Crea ristorante</button>
                 </a>
             </div>
+        </div>
         @endif
     </div>
 @endsection
 
 <style>
+    .btn {
+        background: #060113 !important;
+        border: solid 2px #ff9900 !important;
+        color: white !important;
+    }
+
+    .btn.bgOrange:hover {
+        background: #ff9900 !important;
+        color: #060113 !important; 
+    }
+
     .imgSfondo {
         position: absolute;
         z-index: -1;
