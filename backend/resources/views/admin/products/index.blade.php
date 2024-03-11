@@ -8,9 +8,9 @@
                 <div id="cardBox" class="container">
                     <div class="row">
                         {{-- se l'utente non ha un ristorante associato vede un messaggio di errore --}}
-                        @if (!isset($products))
+                        @if (count($products) == 0)
                             <div class="alert alert-danger">
-                                <strong>non hai ancora creato un ristorante</strong>
+                                <strong>Non hai ancora creato un prodotto.</strong>
                             </div>
                         @else
                             @foreach ($products as $product)
@@ -77,7 +77,7 @@
                                                     <div class="modal-header">
                                                         <h1 class="modal-title fs-5" id="exampleModalLabel">
                                                             Elimina
-                                                            Ristorante</h1>
+                                                            Prodotto</h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>

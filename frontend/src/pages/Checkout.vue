@@ -205,7 +205,7 @@ export default {
                         </div>
                         <div class="text-center">
                             <h3 class="">Totale</h3>
-                            <h2 class="textYellow">{{ this.cartTotal() }}€</h2>
+                            <h2 class="textYellow"> € {{ this.cartTotal() }}</h2>
                         </div>
                     </div>
 
@@ -233,7 +233,7 @@ export default {
                                                 {{ prodotto.name }}
                                             </span>
                                         </router-link>
-                                        <div class="col-5 fw-bold my-2"> € {{ Math.round(((prodotto.price *
+                                        <div class="fw-bold my-2"> € {{ Math.round(((prodotto.price *
             this.getStorageValue(prodotto.id)) + Number.EPSILON) * 100) / 100 }}
                                         </div>
                                     </div>
@@ -387,8 +387,8 @@ export default {
                                         con
                                         <span class="text-success fw-bolder fs-4">successo</span>!
                                     </h5>
-                                    <p>Importo pagato: <span class="text-success fw-bolder">{{ this.cartTotal() }}
-                                            €</span>
+                                    <p>Importo pagato: <span class="text-success fw-bolder">€ {{ this.cartTotal() }}
+                                        </span>
                                     </p>
                                     <p>Indirizzo: <span class="fw-bolder">{{ getFormValue('address') }}, {{
                                             getFormValue('city') }}</span></p>
