@@ -18,7 +18,6 @@ export default {
                 lastname: '',
                 email: '',
                 telephone: '',
-                notes: '',
                 city: '',
                 address: ''
 
@@ -337,8 +336,8 @@ export default {
                                     :class="['mb-3', { 'has-error': !validateField(notes), 'has-success': formData.notes }]">
                                     <label for="notes" class="form-label">Note <span
                                             style="color: red;">*</span></label>
-                                    <input type="text" class="form-control py-3 rounded-pill" id="notes" name="notes"
-                                        v-model="formData.notes" required>
+                                    <textarea name="notes" id="notes" cols="30" rows="10" class="form-control py-3"
+                                        v-model="formData.notes"></textarea>
                                 </div>
                             </form>
                         </div>
@@ -519,6 +518,10 @@ export default {
 
 
 // CSS VALIDAZIONE 
+#notes {
+    border-radius: 1rem;
+}
+
 .has-error input {
     border-color: red !important;
     border-width: 2px;
