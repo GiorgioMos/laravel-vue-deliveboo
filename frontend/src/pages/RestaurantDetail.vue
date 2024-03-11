@@ -245,8 +245,8 @@ export default {
 	border: solid 1px #ff9900;
 }
 
-.btn-close::after {
-	color: white;
+.btn-close {
+	filter: brightness(0) invert(1);
 }
 
 .modal-header button {

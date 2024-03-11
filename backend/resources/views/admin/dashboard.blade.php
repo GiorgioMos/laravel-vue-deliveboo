@@ -24,7 +24,8 @@
                 <div class="cardContainer d-flex">
                     <div class="col-4 mx-2">
                         <div class="card">
-                            <div class="card-header fw-bold fs-3"> <i class="fa-solid fa-user fs-1 mx-4 teal"></i> Il tuo Account </div>
+                            <div class="card-header fw-bold fs-3"> <i class="fa-solid fa-user fs-1 mx-4 teal"></i> Il tuo
+                                Account </div>
                             <div class="card-body">
                                 <h5 class="fw-bold">Nome: <span class="teal fw-bold">{{ Auth::user()->name }}</h5></span>
                                 <h5 class="fw-bold">Cognome: <span class="teal fw-bold"> {{ Auth::user()->surname }}</h5>
@@ -94,8 +95,9 @@
         position: absolute;
         z-index: -1;
         width: 10px;
-        bottom: 150px;
+        top: -100;
         opacity: 0.1;
+        transform: scale(0.8)
     }
 
 
