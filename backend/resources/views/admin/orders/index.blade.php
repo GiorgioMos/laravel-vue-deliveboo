@@ -15,7 +15,7 @@
                                     aria-controls="{{ $order->id }}">
 
                                     <div class="me-5 fs-5 fw-bolder">
-                                        <span class="textTeal">Codice ordine : </span> {{ $order->id }}
+                                        <span class="textTeal">Ordine </span> #{{ $order->id }}
 
                                     </div>
                                     <div class="ms-5">
@@ -34,7 +34,7 @@
                                         </div>
                                         <div class="col-2">
                                             <a href="{{ route('admin.orders.show', $order->id) }}"
-                                                class="btn info-btn my-3 bgTeal fw-bold text-white">Dettagli</a>
+                                                class="btn info-btn my-3 bgTeal fw-bold">Dettagli</a>
                                         </div>
 
                                     </div>
@@ -52,9 +52,35 @@
                 border-radius: 1rem;
             }
 
+
+
+
+
+            .accordion-item {
+                background-color: rgb(33, 37, 41) !important;
+                border: none !important;
+
+            }
+
+            .accordion-button {
+                margin-bottom: 0.5rem !important;
+            }
+
+            .accordion-item * {
+                background-color: #f5f5f5 !important;
+                border: none !important;
+                color: black;
+                font-weight: bold !important;
+                font-family: "Poppins", sans-serif !important;
+                border-radius: 1rem
+            }
+
             .btn:hover {
                 transform: scale(1.2);
-                background-color: #066e7c
+            }
+
+            .info-btn {
+                border: 2px solid black !important;
             }
         </style>
     @endsection
