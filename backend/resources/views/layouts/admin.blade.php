@@ -66,7 +66,7 @@
                         @endif
                     @else
                         <li class="nav-item dropdown text-white">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle page-navigation" href="#"
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle page-navigation btnNavbar" href="#"
                                 role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
@@ -160,7 +160,7 @@
 
                             {{-- CHART  --}}
                             <li class="nav-item h5">
-                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.chart.chart' ? 'Sidebarselected' : '' }}"
+                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.' ? 'Sidebarselected' : '' }}"
                                     href="{{ route('admin.') }}">
                                     <i class="fa-solid fa-chart-line"></i></i> Statistiche
                                 </a>
@@ -243,6 +243,7 @@
         height: 70%;
         border-radius: 2rem;
         padding: 0 1rem;
+        padding-top: 1rem;
     }
 
     #MainContainer {
