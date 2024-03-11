@@ -437,6 +437,15 @@ export default {
     border-width: 2px;
 }
 
+.braintree-methods--active:not(.braintree-methods--edit) .braintree-method--active .braintree-method__label {
+    padding-left: 1rem;
+}
+
+.braintree-large-button,
+.braintree-toggle {
+    display: none !important;
+}
+
 .braintree-form__notice-of-collection,
 .braintree-placeholder {
     display: none;
