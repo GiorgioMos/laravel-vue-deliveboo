@@ -78,7 +78,7 @@ export default {
 <template>
   <div id="card-box" class="d-none row">
     <RestaurantCard
-      class="col-6"
+      class="col-lg-6 col-12"
       v-for="restaurant in store.restaurants"
       :item="restaurant"
     />
@@ -95,8 +95,4 @@ export default {
 // @use './styles/partials/variables' as *;
 
 // ...qui eventuale SCSS di App.vue
-
-.container {
-  min-height: 100vh;
-}
 </style>
