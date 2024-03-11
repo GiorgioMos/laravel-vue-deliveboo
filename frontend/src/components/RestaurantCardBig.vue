@@ -82,7 +82,7 @@ export default {
             class="list-group list-group-horizontal justify-content-center flex-wrap my-4"
           >
             <li
-              class="list-group-item rounded-pill btn btn-outline-dark m-2"
+              class="list-group-item rounded-pill btn m-2"
               style="background-color: #ff9900"
               v-for="cat in item.category"
             >
@@ -138,7 +138,7 @@ export default {
 }
 .list-group-item {
   background-color: transparent;
-  color: white;
+  border-color: #060113;
 }
 
 .card {

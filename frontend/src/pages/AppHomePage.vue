@@ -122,13 +122,6 @@ export default {
         });
       });
       console.log(this.showingRestaurants);
-
-      if (this.showingRestaurants.lenght == 0) {
-        document.getElementById("restaurant_message").innerHTML = "test";
-      } else {
-        document.getElementById("restaurant_message").innerHTML =
-          "Potrebbero Interessarti test";
-      }
     },
   },
 };
@@ -162,7 +155,8 @@ export default {
           autocomplete="off"
         />
         <label
-          class="btn btn-outline-warning form-label rounded"
+          class="btn form-label rounded-pill"
+          style="background-color: #ff9900"
           :for="'category' + category.id"
         >
           {{ category.name }}
