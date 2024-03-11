@@ -125,8 +125,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <button id="submitButton" type="submit" class="btn bgYellow fw-bold mb-5 text-white"
-                                disabled>Edit</button>
+                            <button id="submitButton" type="submit" class="btn  fw-bold mb-5" disabled>Modifica</button>
                         </div>
                     </form>
                 @endif
@@ -134,6 +133,16 @@
         </div>
     </div>
     <style>
+        #submitButton {
+            border: 1px solid #ff9900;
+            color: white
+        }
+
+        #submitButton:hover {
+            background-color: #ff9900;
+            color: black
+        }
+
         label {
             font-weight: 800;
         }
@@ -143,16 +152,7 @@
 
         }
 
-        #submitButton:hover {
-            background-color: #f9b44d !important;
-            transform: scale(1.15);
-            transition: .15s ease-in-out;
-        }
 
-        #submitButton:not(:hover) {
-            transition: transform 0.2s ease-in;
-            transform: scale(1);
-        }
 
         .btn {
             padding: 0.8rem 1.5rem;

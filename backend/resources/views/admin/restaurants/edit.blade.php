@@ -192,7 +192,7 @@
 
 
                         <div class="d-flex justify-content-center">
-                            <button id="submitButton" class="form-validation btn bgYellow fw-bold mb-5 text-white"
+                            <button id="submitButton" class="form-validation btn  fw-bold mb-5 "
                                 disabled>Modifica</button>
                         </div>
                     </form>
@@ -202,19 +202,20 @@
     </div>
     <style>
         input[type="checkbox"]:checked+label {
-            background-color: #f9b44d;
+            background-color: #ff9900;
             color: #fff;
             border-color: white;
         }
 
         input[type="checkbox"]+label:hover {
-            background-color: #f9b44d;
+            background-color: #ff9900;
             border-color: white;
         }
 
         input[type="checkbox"]+label {
-            border-color: #f9b44d;
-            color: #f9b44d;
+            border-color: #ff9900;
+            color: #ff9900;
+            margin-right: 0.5rem
         }
 
         label {
@@ -225,10 +226,7 @@
             border-width: 2px !important;
         }
 
-        .form-validation:hover {
-            background-color: #f9b44d !important;
-            transform: scale(1.2);
-        }
+
 
         .btn {
             padding: 0.8rem 1.5rem;
@@ -237,8 +235,14 @@
             transition: .15s ease-in;
         }
 
-        .btn:hover {
-            transform: scale(1.1);
+        #submitButton {
+            border: 1px solid #ff9900;
+            color: white
+        }
+
+        #submitButton:hover {
+            background-color: #ff9900;
+            color: black
         }
     </style>
 @endsection

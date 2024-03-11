@@ -34,7 +34,7 @@
                                         </div>
                                         <div class="col-2">
                                             <a href="{{ route('admin.orders.show', $order->id) }}"
-                                                class="btn info-btn my-3 bgTeal fw-bold">Dettagli</a>
+                                                class="btn info-btn my-3  fw-bold">Dettagli</a>
                                         </div>
 
                                     </div>
@@ -75,8 +75,9 @@
                 border-radius: 1rem
             }
 
-            .btn:hover {
-                transform: scale(1.2);
+            .info-btn:hover {
+                background-color: black !important;
+                color: white
             }
 
             .info-btn {

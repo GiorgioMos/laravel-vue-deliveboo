@@ -100,8 +100,8 @@
                         </div>
 
                         <div class="d-flex justify-content-center">
-                            <button type="submit" class="btn btn-dark bgTeal fw-bold mb-5 text-white"
-                                id="registration_submit" disabled>Crea</button>
+                            <button type="submit" class="btn  fw-bold mb-5 " id="registration_submit"
+                                disabled>Crea</button>
                         </div>
                     </form>
                 @endif
@@ -117,15 +117,22 @@
             border-width: 2px !important;
         }
 
-        #registration_submit:hover {
-            background-color: #066e7c !important;
-            transform: scale(1.2);
-        }
+
 
         .btn {
             padding: 0.8rem 1.5rem;
             font-size: 1rem;
             border-radius: 1.5rem;
+        }
+
+        #registration_submit {
+            border: 1px solid #ff9900;
+            color: white
+        }
+
+        #registration_submit:hover {
+            background-color: #ff9900;
+            color: black
         }
     </style>
 @endsection

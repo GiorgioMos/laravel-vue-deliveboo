@@ -20,11 +20,6 @@
                 </div>
             </div>
             <style>
-                .btn:hover {
-                    transform: scale(1.2);
-                    background-color: #066e7c
-                }
-
                 .btn {
                     padding: 0.8rem 1.5rem;
                     font-size: 1rem;
@@ -75,12 +70,11 @@
 
                     </div>
                     <div class="py-3 text-center d-flex justify-content-center align-items-center gap-5">
-                        <a id="back" href="{{ route('admin.products.index') }}"
-                            class=" fw-bold btn bgTeal text-white">Torna
+                        <a id="back" href="{{ route('admin.products.index') }}" class=" fw-bold btn">Torna
                             alla lista dei
                             prodotti</a>
                         <a id="edit" href="{{ route('admin.products.edit', $product->id) }}"
-                            class="btn bgYellow fw-bold text-white">Modifica</a>
+                            class="btn fw-bold">Modifica</a>
                     </div>
                 </div>
                 {{-- div quadratone bianco sfondo --}}
@@ -105,14 +99,16 @@
             border-radius: 1.5rem;
         }
 
-        #edit:hover {
-            background-color: #f9b44d !important;
-            transform: scale(1.2);
+        #back,
+        #edit {
+            border: 1px solid #ff9900 !important;
+            color: white
         }
 
-        #back:hover {
-            background-color: #066e7c !important;
-            transform: scale(1.2);
+        #back:hover,
+        #edit:hover {
+            background-color: #ff9900 !important;
+            color: black
         }
     </style>
 @endsection

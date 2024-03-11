@@ -90,7 +90,8 @@
 
                 </div>
                 <div class="py-3 text-center">
-                    <a href="{{ route('admin.orders.index') }}" class="btn bgTeal text-white">Torna alla Lista Ordini</a>
+                    <a href="{{ route('admin.orders.index') }}" class="btn rounded-pill backBtn">Torna alla Lista
+                        Ordini</a>
                 </div>
             </div>
         </div>
@@ -116,9 +117,14 @@
             width: 10rem;
         }
 
-        .btn:hover {
-            transform: scale(1.2);
-            background-color: #066e7c
+        .backBtn:hover {
+            background-color: #ff9900;
+            color: black
+        }
+
+        .backBtn {
+            border: 1px solid #ff9900;
+            color: white
         }
 
         .imgBoxIndexOrder:hover {

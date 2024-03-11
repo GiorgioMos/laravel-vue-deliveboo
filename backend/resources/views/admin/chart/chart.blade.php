@@ -3,7 +3,7 @@
 @section('content')
     <div style="width: 80%; margin: auto;">
         <canvas id="barChart"></canvas>
-        <div onclick="myChart.resetZoom();" class="btn btn-warning mt-5 px-3 py-1 fw-bold text-white">Reset zoom</div>
+        <div onclick="myChart.resetZoom();" class="btn btnReset rounded-pill mt-5 px-3 py-1 fw-bold">Reset zoom</div>
     </div>
 
     <script>
@@ -73,4 +73,15 @@
             }
         });
     </script>
+    <style>
+        .btnReset {
+            border: 1px solid #ff9900;
+            color: white
+        }
+
+        .btnReset:hover {
+            background-color: #ff9900;
+            color: black
+        }
+    </style>
 @endsection

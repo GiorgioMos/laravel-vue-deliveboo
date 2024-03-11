@@ -47,7 +47,7 @@
                         <p class="fs-5 fw-light">{{ $restaurant->description }}</p>
                     </div>
                     <div class="col-8">
-                        <h4 class="textYellow fw-bold">Categorie</h4>
+                        <h4 class="textYellow fw-bold mb-3">Categorie</h4>
                         @foreach ($restaurant->category as $category)
                             <div class="badge customBadge bgTeal">{{ $category->name }}</div>
                         @endforeach
@@ -60,8 +60,8 @@
             </div>
             <div class="py-3 text-center">
                 <div class="py-3 text-center">
-                    <a href="{{ route('admin.restaurants.edit', $restaurant->id) }}"
-                        class="btn bgYellow fw-bold mb-5 text-white">Modifica</a>
+                    <a href="{{ route('admin.restaurants.edit', $restaurant->id) }}" id="editBtn"
+                        class="btn fw-bold mb-5">Modifica</a>
                 </div>
             </div>
 
@@ -70,6 +70,16 @@
 
 
     <style>
+        #editBtn {
+            border: 1px solid #ff9900;
+            color: white
+        }
+
+        #editBtn:hover {
+            background-color: #ff9900;
+            color: black
+        }
+
         #backsquare {
             height: 200%;
             width: 70rem;
@@ -90,11 +100,6 @@
             font-size: 1rem;
             border-radius: 1.5rem;
             transition: .15s ease-in;
-        }
-
-        .btn:hover {
-            background-color: #f9b44d !important;
-            transform: scale(1.1);
         }
     </style>
 @endsection
