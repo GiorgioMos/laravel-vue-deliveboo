@@ -154,9 +154,7 @@ export default {
                 <span class="counter m-4 fw-bold" :data-id="prodotto.id" :data-name="prodotto.name"
                   :id="prodotto.id + 'span'">
                   {{ this.getStorageValue(prodotto.id) ?? 0 }}</span>
-                <span class="counter m-4 fw-bold" :data-id="prodotto.id" :data-name="prodotto.name"
-                  :id="prodotto.id + 'span'">
-                  {{ this.getStorageValue(prodotto.id) ?? 0 }}</span>
+
                 <!-- Aggiunge prodotto -->
                 <span class="add">
                   <span class="circle-icon btn" @click="this.cartAddElement(prodotto)">
