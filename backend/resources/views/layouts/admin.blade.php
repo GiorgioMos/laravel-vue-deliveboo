@@ -21,6 +21,8 @@
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body>
@@ -146,6 +148,14 @@
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.orders.index' ? 'Sidebarselected' : '' }}"
                                     href="{{ route('admin.orders.index') }}">
                                     <i class="fa-solid fa-box-archive me-2"></i> Ordini
+                                </a>
+                            </li>
+
+                            {{-- CHART  --}}
+                            <li class="nav-item">
+                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.chart.chart' ? 'Sidebarselected' : '' }}"
+                                    href="{{ route('admin.') }}">
+                                    <i class="fa-solid fa-chart-line"></i></i> Statistiche
                                 </a>
                             </li>
                         @else

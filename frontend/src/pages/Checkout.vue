@@ -227,7 +227,7 @@ export default {
                                                 {{ prodotto.name }}
                                             </span>
                                         </router-link>
-                                        <div class="col-4 fw-bold my-2"> € {{ Math.round(((prodotto.price *
+                                        <div class="col-5 fw-bold my-2"> € {{ Math.round(((prodotto.price *
             this.getStorageValue(prodotto.id)) + Number.EPSILON) * 100) / 100 }}
                                         </div>
                                     </div>
@@ -399,9 +399,17 @@ export default {
 
 
 // BRAINTREE 
-.braintree-card {
-    background-color: rgb(5, 5, 5) !important;
+
+
+.braintree-dropin div {
+    color: white !important;
+    background-color: rgb(0, 0, 0) !important;
 }
+
+#expiration {
+    background-color: white !important;
+}
+
 
 .braintree-form__notice-of-collection {
     display: none;

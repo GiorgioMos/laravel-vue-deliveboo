@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Models\Category;
 use App\Models\Restaurant;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ChartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 
 // TODO mettere qualcosa nella home di localhost
 Route::get('/restaurant/{id}', function ($id) {
@@ -42,7 +44,7 @@ Route::middleware(['auth'])
 
         Route::resource('products', ProductController::class);
         Route::resource('orders', OrderController::class);
-
+        Route::get('/chart', [ChartController::class, 'barChart']);
         Route::resource('categories', CategoryController::class);
     });
 
