@@ -11,15 +11,16 @@
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
 
-                            {{-- name --}}
+                            {{-- Name --}}
                             <div class="mb-4 row">
-                                <label for="name" class="col-md-4 col-form-label text-white fs-5 text-md-right">{{ __('Name') }} <span
+                                <label for="name"
+                                    class="col-md-4 col-form-label text-white fs-5 text-md-right">{{ __('Nome') }} <span
                                         style="color: red;">*</span></label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
-                                        class="form-control @error('name') is-invalid @enderror py-3 rounded-pill" name="name"
-                                        value="{{ old('name') }}" required autocomplete="name" autofocus
+                                        class="form-control @error('name') is-invalid @enderror py-3 rounded-pill"
+                                        name="name" value="{{ old('name') }}" required autocomplete="name" autofocus
                                         onkeyup="validateName()">
                                     <span id="name-error-message" class="invalid-feedback" role="alert"></span>
                                     @error('name')
@@ -30,16 +31,17 @@
                                 </div>
                             </div>
 
-                            {{-- surname --}}
+                            {{-- Cognome --}}
                             <div class="mb-4 row">
-                                <label for="surname" class="col-md-4 col-form-label text-white fs-5 text-md-right">{{ __('Surname') }}
+                                <label for="surname"
+                                    class="col-md-4 col-form-label text-white fs-5 text-md-right">{{ __('Cognome') }}
                                     <span style="color: red;">*</span></label>
 
                                 <div class="col-md-6">
                                     <input id="surname" type="text"
-                                        class="form-control @error('surname') is-invalid @enderror py-3 rounded-pill" name="surname"
-                                        value="{{ old('surname') }}" required autocomplete="surname" autofocus
-                                        onkeyup="validateSurname()">
+                                        class="form-control @error('surname') is-invalid @enderror py-3 rounded-pill"
+                                        name="surname" value="{{ old('surname') }}" required autocomplete="surname"
+                                        autofocus onkeyup="validateSurname()">
                                     <span id="surname-error-message" class="invalid-feedback" role="alert"></span>
                                     @error('surname')
                                         <span class="invalid-feedback" role="alert">
@@ -49,16 +51,17 @@
                                 </div>
                             </div>
 
-                            {{-- email --}}
+                            {{-- Email --}}
                             <div class="mb-4 row">
                                 <label for="email"
-                                    class="col-md-4 col-form-label text-white fs-5 ext-md-right">{{ __('E-Mail Address') }} <span
-                                        style="color: red;">*</span></label>
+                                    class="col-md-4 col-form-label text-white fs-5 ext-md-right">{{ __('Indirizzo Email') }}
+                                    <span style="color: red;">*</span></label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
-                                        class="form-control @error('email') is-invalid @enderror py-3 rounded-pill" name="email"
-                                        value="{{ old('email') }}" required autocomplete="email" onkeyup="validateEmail()">
+                                        class="form-control @error('email') is-invalid @enderror py-3 rounded-pill"
+                                        name="email" value="{{ old('email') }}" required autocomplete="email"
+                                        onkeyup="validateEmail()">
                                     <span id="email-error-message" class="invalid-feedback" role="alert"></span>
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -69,14 +72,15 @@
                             </div>
 
 
-                            {{-- password --}}
+                            {{-- Password --}}
                             <div class="mb-4 row">
-                                <label for="password" class="col-md-4 col-form-label text-white fs-5 text-md-right">{{ __('Password') }}
+                                <label for="password"
+                                    class="col-md-4 col-form-label text-white fs-5 text-md-right">{{ __('Password') }}
                                     <span style="color: red;">*</span></label>
                                 <div class="col-md-6">
                                     <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror py-3 rounded-pill" name="password"
-                                        required autocomplete="new-password" onkeyup="checkPasswordMatch()">
+                                        class="form-control @error('password') is-invalid @enderror py-3 rounded-pill"
+                                        name="password" required autocomplete="new-password" onkeyup="checkPasswordMatch()">
                                     <span id="password-error-message" class="invalid-feedback" role="alert"></span>
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -87,8 +91,8 @@
                             </div>
                             <div class="mb-4 row">
                                 <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-white fs-5 text-md-right">{{ __('Confirm Password') }} <span
-                                        style="color: red;">*</span></label>
+                                    class="col-md-4 col-form-label text-white fs-5 text-md-right">{{ __('Conferma Password') }}
+                                    <span style="color: red;">*</span></label>
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control py-3 rounded-pill"
                                         name="password_confirmation" required onkeyup="checkPasswordMatch()"
@@ -97,15 +101,16 @@
                                 </div>
                             </div>
 
-                            {{-- address --}}
+                            {{-- Indirizzo --}}
                             <div class="mb-4 row">
-                                <label for="address" class="col-md-4 col-form-label text-white fs-5 text-md-right">{{ __('Address') }}
+                                <label for="address"
+                                    class="col-md-4 col-form-label text-white fs-5 text-md-right">{{ __('Indirizzo') }}
                                     <span style="color: red;">*</span></label>
                                 <div class="col-md-6">
                                     <input id="address" type="text"
-                                        class="form-control @error('address') is-invalid @enderror py-3 rounded-pill" name="address"
-                                        value="{{ old('address') }}" required autocomplete="address" autofocus
-                                        onkeyup="validateAddress()">
+                                        class="form-control @error('address') is-invalid @enderror py-3 rounded-pill"
+                                        name="address" value="{{ old('address') }}" required autocomplete="address"
+                                        autofocus onkeyup="validateAddress()">
                                     <span id="address-error-message" class="invalid-feedback" role="alert"></span>
                                     @error('address')
                                         <span class="invalid-feedback" role="alert">
@@ -119,13 +124,13 @@
                             {{-- p_iva --}}
                             <div class="mb-4 row">
                                 <label for="p_iva"
-                                    class="col-md-4 col-form-label text-white fs-5 text-md-right">{{ __('Partita IVA') }} <span
-                                        style="color: red;">*</span></label>
+                                    class="col-md-4 col-form-label text-white fs-5 text-md-right">{{ __('Partita IVA') }}
+                                    <span style="color: red;">*</span></label>
                                 <div class="col-md-6">
                                     <input id="p_iva" type="text"
-                                        class="form-control @error('p_iva') is-invalid @enderror py-3 rounded-pill" name="p_iva"
-                                        value="{{ old('p_iva') }}" required autocomplete="p_iva" autofocus
-                                        onkeyup="validatePiva()">
+                                        class="form-control @error('p_iva') is-invalid @enderror py-3 rounded-pill"
+                                        name="p_iva" value="{{ old('p_iva') }}" required autocomplete="p_iva"
+                                        autofocus onkeyup="validatePiva()">
                                     <span id="p_iva-error-message" class="invalid-feedback" role="alert"></span>
                                     @error('p_iva')
                                         <span class="invalid-feedback" role="alert">
@@ -137,13 +142,14 @@
 
                             {{-- telephone --}}
                             <div class=" row">
-                                <label for="telephone" class="col-md-4 col-form-label text-white fs-5 text-md-right">{{ __('Telefono') }}
+                                <label for="telephone"
+                                    class="col-md-4 col-form-label text-white fs-5 text-md-right">{{ __('Telefono') }}
                                     <span style="color: red;">*</span></label>
                                 <div class="col-md-6">
                                     <input id="telephone" type="text"
-                                        class="form-control @error('telephone') is-invalid @enderror py-3 rounded-pill" name="telephone"
-                                        value="{{ old('telephone') }}" required autocomplete="telephone" autofocus
-                                        onkeyup="validateTelephone()">
+                                        class="form-control @error('telephone') is-invalid @enderror py-3 rounded-pill"
+                                        name="telephone" value="{{ old('telephone') }}" required
+                                        autocomplete="telephone" autofocus onkeyup="validateTelephone()">
                                     <span id="telephone-error-message" class="invalid-feedback" role="alert"></span>
                                     @error('telephone')
                                         <span class="invalid-feedback" role="alert">
@@ -152,12 +158,12 @@
                                     @enderror
                                 </div>
                             </div>
-                            
+
                             <div class="my-5 row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button id="registration_submit" type="submit" class="btn bgOrange rounded-pill"
                                         disabled>
-                                        {{ __('Register') }}
+                                        {{ __('Registrati') }}
                                     </button>
                                 </div>
                             </div>
@@ -179,7 +185,7 @@
             background: white;
             color: #060113;
             border: solid 2px #060113;
-            transition: 
+            transition:
         }
 
         label {
