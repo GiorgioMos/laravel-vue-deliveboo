@@ -13,13 +13,13 @@ class NewContact extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $lead;
+    public $dataMail;
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($_dataMail)
     {
-        //
+        $this->dataMail = $_dataMail;
     }
 
     /**
@@ -28,8 +28,8 @@ class NewContact extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            replyTo: $this->lead->address,
-            subject: 'New Contact',
+            from: "orders@deliveboo.com",
+            subject: 'Nuovo Ordine',
         );
     }
 
@@ -51,5 +51,10 @@ class NewContact extends Mailable
     public function attachments(): array
     {
         return [];
+    }
+    public function build()
+    {
+        return $this->subject('Sample Email')
+            ->view('emails.new-contact-mail'); // Create a corresponding view file in resources/views/emails
     }
 }

@@ -15,12 +15,14 @@ class OrderController extends Controller
     {
         $validated = $request->validated();
         $newOrder = new Order();
-        $newOrder->fill($validated);
-        $new_lead = new Order();
-        $new_lead->fill($validated);
+        $dataMail = new Order();
+        $dataMail->fill($validated);
 
+        $newOrder->fill($validated);
+
+        $email = $validated["guest_name"] . "." . $validated["guest_surname"] . "@gmail.com";
         $newOrder->save();
-        Mail::to('sandbox.smtp.mailtrap.io')->send(new NewContact($new_lead));
+        Mail::to($email)->send(new NewContact($dataMail));
 
         // mi arriva nella request un array di oggetti key value con id e quantità, lo chiamo PRODUCTS
         foreach ($request->products as $product) {
