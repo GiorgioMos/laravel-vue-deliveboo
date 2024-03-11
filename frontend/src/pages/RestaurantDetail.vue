@@ -112,7 +112,8 @@ export default {
 							</p>
 						</div>
 					</div>
-					<div id="restaurant-desc" class="d-flex flex-column mt-5 align-items-start p-5 justify-content-center">
+					<div id="restaurant-desc"
+						class="d-flex flex-column mt-5 align-items-start p-5 justify-content-center">
 						<div class="restaurantDescription"> {{ restaurant?.description }} </div>
 						<button id="button" class="btn mt-5"><a :href="restaurant?.website">Sito Web</a></button>
 					</div>
@@ -125,10 +126,10 @@ export default {
 					</div>
 					<div v-else>
 						<h2 class="my-3">I Nostri Piatti</h2>
-						<div class="d-flex justify-content-center gap-4">
+						<div class="d-flex row">
 
 
-							<div v-for="product in restaurant?.products">
+							<div class="col-4" v-for="product in restaurant?.products">
 								<div v-if="product?.visible == 1" class="product card-list my-5"
 									:id="'product-' + product.id">
 									<article class="cards">
