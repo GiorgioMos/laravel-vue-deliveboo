@@ -6,7 +6,7 @@
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 {{-- favicon --}}
-<link rel="icon" type="image/svg+xml" href="/img/favicon-deliveboo.png" />
+<link rel="icon" type="image/svg+xml" href="/img/favicon-32x32.png" />
 {{-- font --}}
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -44,7 +44,7 @@
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center text-light" href="{{ url('http://localhost:5000/') }}">
                     <div>
-                        <img class="logoDeliveboo" src="/img/logoDeliveboo.png" alt="logoDeliveboo" />
+                        <img class="logoDeliveboo" src="/img/delivebooOrange.png" alt="logoDeliveboo" />
                     </div>
                     {{-- config('app.name', 'Laravel') --}}
                 </a>
