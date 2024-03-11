@@ -130,11 +130,11 @@ export default {
 					<div v-if="restaurant?.products == 0">
 						<h1>Questo ristorante al momento non ha prodotti disponibili</h1>
 					</div>
-					<div v-else>
+					<div v-else class="w-100">
 						<h2 class="my-3 fw-bold" style="color: white">I Nostri Piatti</h2>
 						<div class="d-flex row">
-							<div class="" v-for="product in restaurant?.products">
-								<div v-if="product?.visible == 1" class="product card-list my-5"
+							<div class="col-4" v-for="product in  restaurant?.products ">
+								<div v-if="product?.visible == 1" class="product  card-list my-5"
 									:id="'product-' + product.id">
 									<article class="cards">
 										<figure class="card-image">
