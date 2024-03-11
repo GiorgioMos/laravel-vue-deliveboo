@@ -68,7 +68,7 @@
                         @if (Route::has('register'))
                             <li class="nav-item ">
                                 <a class="nav-link page-navigation btnNavbar"
-                                    href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    href="{{ route('register') }}">{{ __('Registrati') }}</a>
                             </li>
                         @endif
                     @else

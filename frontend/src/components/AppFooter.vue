@@ -27,10 +27,11 @@ export default {
                 <!-- Logo deliveboo -->
                 <div class="col-4">
                     <div class="logoFooter">
-                        <img class="logoDeliveboo" src="/img/logoDeliveboo.png" alt="">
+                        <img class="logoDeliveboo" src="/img/logoDelivebooOrange.png" alt="">
                     </div>
                     <div>
-                        <p class="fw-bold mt-5 mb-5">Scopri l'emozione del gusto a portata di clic con il nostro servizio di delivery food.</p>
+                        <p class="fw-bold mt-5 mb-5">Scopri l'emozione del gusto a portata di clic con il nostro servizio di
+                            delivery food.</p>
                     </div>
                     <hr class="my-4 bg-white">
                     <!-- Icon Brands -->
@@ -75,7 +76,7 @@ export default {
                                     <a href="#">Ristoranti</a>
                                 </li>
                                 <li class="nav-item">
-					                <router-link :to="{ name: 'about' }">
+                                    <router-link :to="{ name: 'about' }">
                                         <p>Chi Siamo</p>
                                     </router-link>
                                 </li>
@@ -188,7 +189,7 @@ footer {
 
 .nav-item a:hover {
     color: #ff9900;
-	transform: scale(1);
+    transform: scale(1);
 }
 
 .linkFooter {
