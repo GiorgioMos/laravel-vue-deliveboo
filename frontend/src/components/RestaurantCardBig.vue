@@ -20,9 +20,8 @@ export default {
       if (img.startsWith("http")) {
         image = img;
       } else {
-        image = asset("storage/" + img);
+        image = "http://localhost:8000/storage/" + img;
       }
-
       return new URL(image, import.meta.url).href;
     },
   },
@@ -65,31 +64,37 @@ export default {
       </router-link>
     </div>
   </div> -->
-  <div class="card btn btn-outline-light" :meta-categories="this.id_categories">
+  <div class="card d-flex" :meta-categories="this.id_categories">
     <router-link
       :to="{ name: 'restaurant-detail', params: { id: item.id } }"
       class="text-decoration-none fw-bold"
       id="router-link"
     >
-      <div class="imageBox">
-        <img :src="getImage(item.img)" class="restaurant-image" />
-      </div>
-      <div class="text-box px-2">
-        <div class="">
-          <h3>{{ item.name }}</h3>
-          <p>{{ item.address }}</p>
+      <div class="text-box px-4">
+        <div class="text-center">
+          <h2 style="color: #ff9900" class="fw-bold">{{ item.name }}</h2>
+          <p class="my-4">{{ item.address }}</p>
+          <span>
+            {{ item.description }}
+          </span>
 
           <ul
-            class="list-group list-group-horizontal justify-content-center flex-wrap"
+            class="list-group list-group-horizontal justify-content-center flex-wrap my-4"
           >
             <li
               class="list-group-item rounded-pill btn btn-outline-dark m-2"
+              style="background-color: #ff9900"
               v-for="cat in item.category"
             >
               {{ cat.name }}
             </li>
           </ul>
         </div>
+      </div>
+      <div class="imageBox" style="position: relative">
+        <img :src="getImage(item.img)" class="restaurant-image" />
+
+        <div class="background_square"></div>
       </div>
     </router-link>
   </div>
@@ -100,16 +105,32 @@ export default {
 // @use './styles/partials/variables' as *;
 
 .imageBox img {
-  width: 100%;
-  height: 15rem;
+  width: 90%;
+  height: 90%;
   object-fit: cover;
 
   border-radius: 30px;
   margin: 0;
 }
 
+.background_square {
+  padding: 2rem;
+  width: 80%;
+  height: 80%;
+  transform: rotate(-1deg);
+  background-color: #ff9900;
+  border-radius: 30px;
+  z-index: -1;
+  position: absolute;
+  top: 10%;
+  right: 5%;
+}
 .imageBox {
   padding: 2rem;
+  width: 60%;
+  height: 100%;
+  transform: rotate(-1deg);
+  z-index: 1;
 }
 
 .list-group {
@@ -121,7 +142,6 @@ export default {
 }
 
 .card {
-  border: 1px solid white;
   color: white;
 
   background-color: #060113;
@@ -129,19 +149,23 @@ export default {
   height: 100%;
   padding: 0;
 }
+.text-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  height: 100%;
+}
 
 #router-link {
   color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: center;
+  height: 100%;
 }
-.btn:hover {
-  #router-link {
-    color: black;
-  }
-  .list-group-item {
-    background-color: #060113;
-    color: white;
-  }
-}
+
 /* // ...qui eventuale SCSS di TagList
 
 

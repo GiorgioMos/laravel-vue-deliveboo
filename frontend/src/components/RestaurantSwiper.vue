@@ -75,14 +75,14 @@ export default {
   <div class="container">
     <h1 class="text-center section-title fs-1">I Ristoranti:</h1>
     <swiper
-      :slidesPerView="3"
+      :slidesPerView="1"
       :spaceBetween="30"
       :loop="true"
-      :autoplay="{ delay: 4000, disableOnInteraction: false }"
+      :autoplay="{ delay: 2000, disableOnInteraction: false }"
       :modules="modules"
       class="box"
     >
-      <swiper-slide v-for="restaurant in store.restaurants" class="col-3">
+      <swiper-slide v-for="restaurant in store.restaurants">
         <RestaurantCardBig :item="restaurant" />
       </swiper-slide>
     </swiper>
@@ -91,7 +91,7 @@ export default {
 
 <style scoped>
 .section-title {
-  margin: 10rem 0;
+  margin: 8rem 0 3rem 0;
 }
 .box {
   display: flex;
@@ -99,7 +99,7 @@ export default {
 
   align-content: center;
   overflow: hidden;
-  margin: 14rem 0;
+  margin: 3rem 0 6rem 0;
   height: 33rem;
 }
 </style>
