@@ -44,8 +44,10 @@
                     {{-- config('app.name', 'Laravel') --}}
                 </a>
 
-                <a class="nav-link page-navigation" href="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</a>
-                <a class="nav-link page-navigation" href="{{ url('http://localhost:5000/') }}">{{ __('Home') }}</a>
+                <a class="nav-link page-navigation btnNavbar"
+                    href="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</a>
+                <a class="nav-link page-navigation btnNavbar"
+                    href="{{ url('http://localhost:5000/') }}">{{ __('Home') }}</a>
 
 
 
@@ -70,8 +72,9 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right text-white" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</a>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                <a class="dropdown-item drop-style"
+                                    href="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</a>
+                                <a class="dropdown-item drop-style" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
@@ -84,7 +87,7 @@
                         </li>
                     @endguest
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ route('logout') }}"
+                        <a class="nav-link text-white btnNavbar" href="{{ route('logout') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="fa-solid fa-sign-out-alt fa-lg fa-fw me-2"></i> {{ __('Logout') }}
                         </a>
@@ -107,9 +110,8 @@
                 <nav id="sidebarMenu" class=" bg-dark navbar-dark sidebar w-100">
                     <ul class="nav h-100 flex-column justify-content-evenly">
 
-
-                        <li class="nav-item">
-                            <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.dashboard' ? 'Sidebarselected' : '' }}"
+                        <li class="nav-item h5">
+                            <a class="nav-link text-white font {{ Route::currentRouteName() == 'admin.dashboard' ? 'Sidebarselected' : '' }}"
                                 href="{{ route('admin.dashboard') }}">
                                 <i class="fa-solid fa-tachometer-alt fa-lg fa-fw me-2"></i> Dashboard
                             </a>
@@ -125,7 +127,7 @@
                         @endphp
                         {{-- controllo se esiste un ristorante associato all'utente e se esiste creo il link --}}
                         @if (isset($restaurant->id))
-                            <li class="nav-item">
+                            <li class="nav-item h5">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.restaurants.show' ? 'Sidebarselected' : '' }}"
                                     href="{{ route('admin.restaurants.show', $restaurant->id) }}">
                                     <i class="fa-solid fa-utensils me-2"></i> Il tuo ristorante
@@ -133,7 +135,7 @@
                             </li>
 
                             {{-- products --}}
-                            <li class="nav-item">
+                            <li class="nav-item h5">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.products.index' ? 'Sidebarselected' : '' }}"
                                     href="{{ route('admin.products.index') }}">
                                     <i class="fa-solid fa-bowl-food me-2"></i> Prodotti
@@ -141,7 +143,7 @@
                             </li>
 
                             {{-- add products --}}
-                            <li class="nav-item">
+                            <li class="nav-item h5">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.products.create' ? 'Sidebarselected' : '' }}"
                                     href="{{ route('admin.products.create') }}">
                                     <i class="fa-solid fa-plus me-2"></i> Crea Prodotti
@@ -149,7 +151,7 @@
                             </li>
 
                             {{-- order --}}
-                            <li class="nav-item">
+                            <li class="nav-item h5">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.orders.index' ? 'Sidebarselected' : '' }}"
                                     href="{{ route('admin.orders.index') }}">
                                     <i class="fa-solid fa-box-archive me-2"></i> Ordini
@@ -157,7 +159,7 @@
                             </li>
 
                             {{-- CHART  --}}
-                            <li class="nav-item">
+                            <li class="nav-item h5">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.chart.chart' ? 'Sidebarselected' : '' }}"
                                     href="{{ route('admin.') }}">
                                     <i class="fa-solid fa-chart-line"></i></i> Statistiche
@@ -165,18 +167,14 @@
                             </li>
                         @else
                             {{-- add restaurants --}}
-                            <li class="nav-item">
+                            <li class="nav-item h5">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.restaurants.create' ? 'Sidebarselected' : '' }}"
                                     href="{{ route('admin.restaurants.create') }}">
                                     <i class="fa-solid fa-utensils me-2"></i> Crea Ristorante
                                 </a>
                             </li>
                         @endif
-
-
-
                     </ul>
-
                 </nav>
             </div>
             <main class="col-md-9 col-lg-9 px-md-4 d-flex justify-content-center">
@@ -187,7 +185,37 @@
 
     </div>
 </body>
-<style>
+<style scoped>
+    /* navbar style */
+    .btnNavbar {
+        color: white;
+        background-color: #066e7c;
+        padding: 10px;
+        border: 2px solid #ff9900;
+        font-weight: bold;
+        transition: .15s ease-in;
+        border-radius: 30px;
+        text-decoration: none;
+        padding: 0.7rem 2.5rem !important;
+    }
+
+    .btnNavbar:hover {
+        color: black !important;
+        text-decoration: none !important;
+        background-color: #ff9900;
+    }
+
+    /* /navbar style */
+
+    .Sidebarselected {
+        background: #066e7c;
+        transition: .15s ease-in;
+    }
+
+    .Sidebarselected:hover {
+        background: #ff9900;
+    }
+
     .logoDeliveboo {
         width: 8rem;
     }
@@ -214,7 +242,7 @@
     #sidebarMenu {
         height: 70%;
         border-radius: 2rem;
-        padding: 0 1rem
+        padding: 0 1rem;
     }
 
     #MainContainer {
@@ -226,7 +254,7 @@
         padding: 1rem 2rem;
     }
 
-    .Sidebarselected {
-        background: #066e7c
+    .drop-style {
+        color: black !important;
     }
 </style>

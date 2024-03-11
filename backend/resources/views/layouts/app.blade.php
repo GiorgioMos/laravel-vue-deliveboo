@@ -72,7 +72,7 @@
                         @endif
                     @else
                         <li class="nav-item dropdown text-white">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle page-navigation" href="#"
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle page-navigation btnNavbar" href="#"
                                 role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
@@ -92,10 +92,10 @@
                         </li>
                     @endguest
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ route('logout') }}"
+                        {{-- <a class="nav-link text-white btnNavbar" href="{{ route('logout') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="fa-solid fa-sign-out-alt fa-lg fa-fw me-2"></i> {{ __('Logout') }}
-                        </a>
+                        </a> --}}
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
@@ -274,7 +274,6 @@
 
     .nav-item a {
         text-decoration: none;
-        color: white;
         font-weight: bold;
     }
 
