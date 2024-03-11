@@ -135,7 +135,7 @@ export default {
     <hr class="my-4" style="color: #ff9900; min-height: 10px" />
   </div>
 
-  <div class="container my-5">
+  <div class="container my-5" id="categories-selection">
     <div class="row text-center my-5">
       <h2>Scegli una categoria, Al resto ci pensiamo noi</h2>
     </div>
@@ -172,6 +172,7 @@ export default {
     </div>
 
     <!-- componente che fa lo show dei ristoranti -->
+
     <RestaurantList />
 
     <!-- sezione degli sponsor  -->
