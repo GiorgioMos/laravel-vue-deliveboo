@@ -118,8 +118,12 @@
                 border-radius: 2rem;
             }
 
+            .btn {
+                transition: .15s ease-in;
+            }
+
             .btn:hover {
-                transform: scale(1.2)
+                transform: scale(1.1)
             }
         </style>
     @endsection

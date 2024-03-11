@@ -89,11 +89,12 @@
             padding: 0.8rem 1.5rem;
             font-size: 1rem;
             border-radius: 1.5rem;
+            transition: .15s ease-in;
         }
 
         .btn:hover {
             background-color: #f9b44d !important;
-            transform: scale(1.2);
+            transform: scale(1.1);
         }
     </style>
 @endsection
