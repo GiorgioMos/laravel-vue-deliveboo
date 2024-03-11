@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreOrderRequest;
+use App\Mail\NewContact;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -14,8 +16,11 @@ class OrderController extends Controller
         $validated = $request->validated();
         $newOrder = new Order();
         $newOrder->fill($validated);
-        $newOrder->save();
+        $new_lead = new Order();
+        $new_lead->fill($validated);
 
+        $newOrder->save();
+        Mail::to('sandbox.smtp.mailtrap.io')->send(new NewContact($new_lead));
 
         // mi arriva nella request un array di oggetti key value con id e quantità, lo chiamo PRODUCTS
         foreach ($request->products as $product) {
