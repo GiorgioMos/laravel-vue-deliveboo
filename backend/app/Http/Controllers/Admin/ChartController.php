@@ -21,6 +21,21 @@ class ChartController extends Controller
         })->get();
         $array_prezzi = [];
         $array_date = [];
+
+        // ordina date 
+        // La funzione principale per ordinare le date
+        function ordinaDate(array $dates): array
+        {
+            // Ordina l'array di date utilizzando una funzione di callback anonima
+            usort($dates, function ($date1, $date2) {
+                return strtotime($date1) - strtotime($date2);
+            });
+
+            // Restituisce l'array ordinato
+            return $dates;
+        }
+
+
         foreach ($orders as $order) {
             $value = (float)$order->total_price;
             array_push($array_prezzi, $value);
@@ -28,10 +43,12 @@ class ChartController extends Controller
 
             # code...
         };
-        // Replace this with your actual data retrieval logic
+
+        $date_ordinate = ordinaDate($array_date);
+
         $data = [
 
-            'labels' => $array_date,
+            'labels' => $date_ordinate,
             'data' => $array_prezzi,
         ];
         return view('admin.chart.chart', compact('data'));

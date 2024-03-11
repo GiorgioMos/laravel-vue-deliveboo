@@ -21,7 +21,12 @@
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
+
+    {{-- SCRIPT CHARTJS --}}
+    @vite(['node_modules\chartjs-plugin-zoom\dist\chartjs-plugin-zoom.min.js'])
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 </head>
 
