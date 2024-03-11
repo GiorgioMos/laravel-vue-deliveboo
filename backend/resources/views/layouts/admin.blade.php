@@ -39,7 +39,7 @@
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center text-light" href="{{ url('http://localhost:5000/') }}">
                     <div>
-                        <img class="logoDeliveboo" src="/img/logoDeliveboo.png" alt="logoDeliveboo" />
+                        <img class="logoDeliveboo" src="/img/delivebooOrange.png" alt="logoDeliveboo" />
                     </div>
                     {{-- config('app.name', 'Laravel') --}}
                 </a>
