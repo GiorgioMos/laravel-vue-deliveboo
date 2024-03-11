@@ -76,12 +76,12 @@ export default {
 </script>
 
 <template>
-  <div id="card-box" class="d-none">
-    <h3 id="restaurant_message" class="text-center my-5"></h3>
-
-    <div v-for="restaurant in store.restaurants">
-      <RestaurantCard :item="restaurant" />
-    </div>
+  <div id="card-box" class="d-none row">
+    <RestaurantCard
+      class="col-lg-6 col-12"
+      v-for="restaurant in store.restaurants"
+      :item="restaurant"
+    />
   </div>
 </template>
 
@@ -95,19 +95,4 @@ export default {
 // @use './styles/partials/variables' as *;
 
 // ...qui eventuale SCSS di App.vue
-
-.container {
-  min-height: 100vh;
-}
-
-.swiper {
-  width: 100%;
-  height: 100%;
-}
-
-.swiper-slide {
-  text-align: center;
-
-  /* Center slide text vertically */
-}
 </style>
