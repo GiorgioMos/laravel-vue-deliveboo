@@ -149,7 +149,7 @@ export default {
 											<button id="cart-add" class="btn add"
 												@click="cartAddElement(product); hideMinButton(product?.id)">+</button>
 											<!-- <a class="remove" href="#"
-																																														@click="fullCartRemoveElement(product)">rimuovi</a> -->
+											@click="fullCartRemoveElement(product)">rimuovi</a> -->
 										</div>
 									</article>
 								</div>
