@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->decimal('total_price', $precision = 8, $scale = 2); //se si spacca lui torna qui e sistema
             $table->date('date');
-            $table->string('notes');
+            $table->string('notes')->nullable();
             $table->string('guest_name', 100);
             $table->string('guest_surname', 100);
             $table->string('guest_telephone', 100);

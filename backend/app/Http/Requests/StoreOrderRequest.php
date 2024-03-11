@@ -24,7 +24,7 @@ class StoreOrderRequest extends FormRequest
     {
         return [
             "total_price" => ["required", "min:2", "max:100"],
-            "notes" => ["max:255"],
+            "notes" => ["nullable", "max:255"],
             "guest_city" => ["required", "min:2", "max:100"],
             "guest_address" => ["required", "min:2", "max:255"],
             "guest_telephone" => ["required", "min:2", "max:100"],
