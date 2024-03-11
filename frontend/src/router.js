@@ -29,12 +29,15 @@ const router = createRouter({
       name: "checkout",
       component: Checkout,
     },
+    /*     {
+      path: "/",
+      name: "restaurants",
+      component: RestaurantListPage,
+    }, */
     /*       path: "",
           name: "",
           component: ,
           props: true,*/
-
-
   ],
 });
 
