@@ -49,19 +49,18 @@ export default {
     <div class="container">
       <router-link :to="{ name: 'home' }">
         <div class="navbar-brand text-light">
-          <img
-            class="logoDeliveboo"
-            src="/img/logoDeliveboo.png"
-            alt="logoDeliveboo"
-          />
+          <img class="logoDeliveboo" src="/img/logoDeliveboo.png" alt="logoDeliveboo" />
         </div>
       </router-link>
 
       <ul class="navbar-nav gap-5">
-        <li class="nav-item">
-          <a class="page-navigation nav-center" href="#categories-selection"
-            >Ristoranti</a
-          >
+        <li v-if="this.$route.name === 'home'" class="nav-item">
+          <a class="page-navigation nav-center" href="#categories-selection">Ristoranti</a>
+        </li>
+        <li v-else class="nav-item">
+          <router-link :to="{ name: 'home' }">
+            <a class="page-navigation nav-center" href="#categories-selection">Ristoranti</a>
+          </router-link>
         </li>
         <li class="nav-item">
           <router-link :to="{ name: 'about' }">
@@ -73,26 +72,15 @@ export default {
       <ul class="navbar-nav">
         <!-- bottone accedi area riservata -->
         <li class="nav-item">
-          <a
-            class="btnNavbar rounded-pill px-4 mx-3"
-            href="http://localhost:8000/admin"
-            >Area Riservata</a
-          >
+          <a class="btnNavbar rounded-pill px-4 mx-3" href="http://localhost:8000/admin">Area Riservata</a>
         </li>
 
         <!-- bottone carrello offcanvas -->
         <li class="nav-item">
-          <a
-            class="btnNavbar rounded-pill px-4"
-            href="#"
-            id="shopping-cart"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasExample"
-            aria-controls="offcanvasExample"
-          >
+          <a class="btnNavbar rounded-pill px-4" href="#" id="shopping-cart" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
             <font-awesome-icon icon="fa-solid fa-cart-shopping" />
-            <span v-if="this.cartTotal() != 0" class="text-white ms-2"
-              >{{ cartCounter() }}
+            <span v-if="this.cartTotal() != 0" class="text-white ms-2">{{ cartCounter() }}
             </span>
           </a>
         </li>
@@ -102,59 +90,35 @@ export default {
 
   <!------------------------------------------------ OFFCANVAS ---------------------------------------->
 
-  <div
-    class="offcanvas offcanvas-end"
-    tabindex="-1"
-    id="offcanvasExample"
-    aria-labelledby="offcanvasExampleLabel"
-  >
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
-      <h3
-        class="offcanvas-title fw-bold cartName mt-3"
-        id="offcanvasExampleLabel"
-      >
+      <h3 class="offcanvas-title fw-bold cartName mt-3" id="offcanvasExampleLabel">
         Carrello
         <!--  - {{ cartCounter() }} -->
       </h3>
-      <button
-        type="button"
-        class="btn-close"
-        data-bs-dismiss="offcanvas"
-        aria-label="Close"
-      ></button>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <hr />
     <div class="offcanvas-body">
-      <div
-        id="offcanvas-body"
-        class="d-flex flex-column justify-content-around h-100"
-      >
+      <div id="offcanvas-body" class="d-flex flex-column justify-content-around h-100">
         <!-- ciclo su tutti i prodotti con un v-for -->
         <div v-for="prodotto in this.store.products">
           <!-- controllo se l'id del prodotto corrisponde ad un id in localStorage e lo creo -->
-          <div
-            v-if="this.store.ArrayIdsInCart.includes(prodotto.id.toString())"
-          >
+          <div v-if="this.store.ArrayIdsInCart.includes(prodotto.id.toString())">
             <!-- stampo i dati del prodotto e la quantità attraverso la funzione magica per richiamare i dati del localstorage -->
             <div class="row">
               <!-- Immagine singolo prodotto -->
               <div class="col-4">
                 <div class="boxImg">
-                  <img
-                    class="imgCart mb-5"
-                    :src="this.getImage(prodotto?.img)"
-                    alt=""
-                  />
+                  <img class="imgCart mb-5" :src="this.getImage(prodotto?.img)" alt="" />
                 </div>
               </div>
               <!-- Nome, prezzo e button rimuovi singolo prodotto -->
               <div class="col-5">
-                <router-link
-                  :to="{
-                    name: 'restaurant-detail',
-                    params: { id: prodotto?.restaurant_id },
-                  }"
-                >
+                <router-link :to="{
+        name: 'restaurant-detail',
+        params: { id: prodotto?.restaurant_id },
+      }">
                   <span class="col-6 fs-4 mb-4 cart-title">
                     {{ prodotto.name }}
                   </span>
@@ -162,18 +126,15 @@ export default {
                 <div class="col-6 fw-bold mt-2 mb-5">
                   €
                   {{
-                    Math.round(
-                      (prodotto.price * this.getStorageValue(prodotto.id) +
-                        Number.EPSILON) *
-                        100
-                    ) / 100
-                  }}
+        Math.round(
+          (prodotto.price * this.getStorageValue(prodotto.id) +
+            Number.EPSILON) *
+          100
+        ) / 100
+      }}
                 </div>
                 <!-- Rimuove tutti i prodotti nel carrello -->
-                <p
-                  class="btn btn-dark text-danger rounded-pill"
-                  @click="fullCartRemoveElement(prodotto)"
-                >
+                <p class="btn btn-dark text-danger rounded-pill" @click="fullCartRemoveElement(prodotto)">
                   Rimuovi
                 </p>
               </div>
@@ -181,31 +142,20 @@ export default {
               <div class="col-3">
                 <!-- Rimuove prodotto -->
                 <span class="remove">
-                  <span
-                    class="circle-icon btn"
-                    @click="
-                      cartRemoveElement(prodotto);
-                      hideMinButton(prodotto.id);
-                    "
-                  >
+                  <span class="circle-icon btn" @click="
+        cartRemoveElement(prodotto);
+      hideMinButton(prodotto.id);
+      ">
                     <font-awesome-icon icon="fa-solid fa-minus" />
                   </span>
                 </span>
                 <!-- Numero totale prodotti -->
-                <span
-                  class="counter m-4 fw-bold"
-                  :data-id="prodotto.id"
-                  :data-name="prodotto.name"
-                  :id="prodotto.id + 'span'"
-                >
-                  {{ this.getStorageValue(prodotto.id) ?? 0 }}</span
-                >
+                <span class="counter m-4 fw-bold" :data-id="prodotto.id" :data-name="prodotto.name"
+                  :id="prodotto.id + 'span'">
+                  {{ this.getStorageValue(prodotto.id) ?? 0 }}</span>
                 <!-- Aggiunge prodotto -->
                 <span class="add">
-                  <span
-                    class="circle-icon btn"
-                    @click="this.cartAddElement(prodotto)"
-                  >
+                  <span class="circle-icon btn" @click="this.cartAddElement(prodotto)">
                     <font-awesome-icon icon="fa-solid fa-plus" />
                   </span>
                 </span>
@@ -228,28 +178,19 @@ export default {
           <div class="row mb-3">
             <div class="col-8">
               <!-- Button svuota carrello  -->
-              <button
-                data-bs-dismiss="offcanvas"
-                :class="cartCounter() > 0 ? 'd-inline-block' : 'd-none'"
-                id="clearCart"
-                class="btnCart rounded-pill"
-                @click="
-                  this.clearCart();
-                  this.ArrayCart();
-                "
-              >
+              <button data-bs-dismiss="offcanvas" :class="cartCounter() > 0 ? 'd-inline-block' : 'd-none'"
+                id="clearCart" class="btnCart rounded-pill" @click="
+        this.clearCart();
+      this.ArrayCart();
+      ">
                 Svuota carrello
               </button>
             </div>
             <div class="col-4 text-end">
               <!-- Button checkout  -->
               <router-link :to="{ name: 'checkout' }">
-                <button
-                  data-bs-dismiss="offcanvas"
-                  v-if="cartCounter() > 0"
-                  id="order"
-                  class="btnCart btnYellow rounded-pill"
-                >
+                <button data-bs-dismiss="offcanvas" v-if="cartCounter() > 0" id="order"
+                  class="btnCart btnYellow rounded-pill">
                   Procedi all'ordine
                 </button>
               </router-link>
@@ -280,10 +221,12 @@ a {
   border-radius: 30px;
   transition: 0.15s ease-in;
 }
+
 .nav-center:hover {
   background-color: #ff9900;
   color: black !important;
 }
+
 .btnNavbar {
   color: white;
   background-color: #060113;
@@ -303,10 +246,14 @@ a {
   color: #060113;
   font-weight: bold;
   font-size: 1.2rem;
-  padding: 0.7rem 3rem; /* Aggiungi spazio intorno ai link */
-  height: 100%; /* Fai occupare tutta l'altezza */
-  display: flex; /* Usa flexbox per allineare verticalmente il testo */
-  align-items: center; /* Allinea verticalmente il testo al centro */
+  padding: 0.7rem 3rem;
+  /* Aggiungi spazio intorno ai link */
+  height: 100%;
+  /* Fai occupare tutta l'altezza */
+  display: flex;
+  /* Usa flexbox per allineare verticalmente il testo */
+  align-items: center;
+  /* Allinea verticalmente il testo al centro */
   transition: 0.15s ease-in;
 }
 
@@ -332,7 +279,7 @@ font-awesome-icon:hover {
   background-color: rgb(35, 35, 35);
 }
 
-#offcanvasExample > * {
+#offcanvasExample>* {
   color: white !important;
 }
 

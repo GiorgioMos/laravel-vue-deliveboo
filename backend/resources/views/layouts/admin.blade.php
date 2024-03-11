@@ -208,7 +208,8 @@
     /* /navbar style */
 
     .Sidebarselected {
-        background: #066e7c;
+        background: #ff9900;
+
         transition: .15s ease-in;
     }
 

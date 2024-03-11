@@ -11,9 +11,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet"
-    />
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
 
 <head>
     <meta charset="utf-8">
@@ -112,100 +111,7 @@
         @yield('content')
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="row">
-                <hr class="my-4 bg-white">
-                <!-- Logo deliveboo -->
-                <div class="col-4">
-                    <div class="logoFooter">
-                        <img class="logoDeliveboo" src="/img/logoDeliveboo.png" alt="">
-                    </div>
-                    <div>
-                        <p class="fw-bold mt-5 mb-5">Scopri l'emozione del gusto a portata di clic con il nostro
-                            servizio di delivery food.</p>
-                    </div>
-                    <hr class="my-4 bg-white">
-                    <!-- Icon Brands -->
-                    <div class="iconFooter">
-                        <!-- Facebook -->
-                        <div class="circle">
-                            <a class="btnIcon m-1" href="#" role="button">
-                                <i class="fa-brands fa-facebook fa-xl" style="color: white"></i>
-                            </a>
-                        </div>
 
-                        <!-- Twitter -->
-                        <div class="circle">
-                            <a class="btnIcon m-1" href="#" role="button">
-                                <i class="fa-brands fa-twitter fa-xl" style="color: white"></i>
-                            </a>
-                        </div>
-
-                        <!-- Instagram -->
-                        <div class="circle">
-                            <a class="btnIcon m-1" href="#" role="button">
-                                <i class="fa-brands fa-instagram fa-xl" style="color: white"></i>
-                            </a>
-                        </div>
-
-                        <!-- WhatsApp -->
-                        <div class="circle">
-                            <a class="btnIcon m-1" href="#" role="button">
-                                <i class="fa-brands fa-whatsapp fa-xl" style="color: white"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Copyright footer -->
-                    <div class="mt-5" id="copyright">&copy; 2024 - 2024 www.deliveboo.it</div>
-                </div>
-                <!-- Link central column -->
-                <div class="col-4">
-                    {{-- <div class="linkFooter d-flex flex-column justify-content-center align-items-center ">
-                        <div class="link">
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a href="#">Ristoranti</a>
-                                </li>
-                                <li class="nav-item">
-                                    <router-link :to="{ name: 'about' }">
-                                        <p>Chi Siamo</p>
-                                    </router-link>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#">Prodotti</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div> --}}
-                </div>
-                <!-- Image column dx -->
-                <div class="col-4">
-                    <h4 class="fw-bold">Seguici su Instagram</h4>
-                    <div class="row">
-                        <div class="boxImage">
-                            <img src="https://assets.website-files.com/61d3a7155d89b79cad2b9e32/61d3a7155d89b7fae62b9e7a_Instagram-02-restaurante-x-template.jpg"
-                                alt="">
-                        </div>
-                        <div class="boxImage">
-                            <img src="https://assets.website-files.com/61d3a7155d89b79cad2b9e32/61d3a7155d89b70dea2b9e94_Instagram-01-restaurante-x-template.jpg"
-                                alt="">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="boxImage">
-                            <img src="https://assets.website-files.com/61d3a7155d89b79cad2b9e32/61d3a7155d89b767fd2b9e7d_Instagram-03-restaurante-x-template-p-500.jpeg"
-                                alt="">
-                        </div>
-                        <div class="boxImage">
-                            <img src="https://assets.website-files.com/61d3a7155d89b79cad2b9e32/61d3a7155d89b768c62b9e7b_Instagram-05-restaurante-x-template-p-500.jpeg"
-                                alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
 </body>
 
 <style>
