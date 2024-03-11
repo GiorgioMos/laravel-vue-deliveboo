@@ -73,12 +73,12 @@ export default {
 
 <template>
   <div class="container">
-    <h1 class="text-center section-title fs-1">I Ristoranti:</h1>
+    <h1 class="text-center section-title fs-1 fw-bold">I Ristoranti:</h1>
     <swiper
       :slidesPerView="1"
       :spaceBetween="30"
       :loop="true"
-      :autoplay="{ delay: 2000, disableOnInteraction: false }"
+      :autoplay="{ delay: 2500, disableOnInteraction: false }"
       :modules="modules"
       class="box"
     >

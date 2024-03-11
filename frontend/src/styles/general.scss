@@ -1,35 +1,33 @@
 //Importo le variabili per l'utilizzo all'interno di QUESTO file
-@use './partials/_variables.scss' as *;
+@use "./partials/_variables.scss" as *;
 
 //Importo bootstrap per l'utilizzo nell'app
 @import "bootstrap/scss/bootstrap";
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: "Noto Serif", serif;
-    background-color: $themeColorDark;
-    color: $themeColorLight;
+  font-family: "Poppins", sans-serif;
+  background-color: $themeColorDark;
+  color: $themeColorLight;
 }
 
 .textTeal {
-    color: #066e7c;
+  color: #066e7c;
 }
 
 .bgTeal {
-    background-color: #066e7c;
-
+  background-color: #066e7c;
 }
 
 .textYellow {
-    color: #ff9900;
+  color: #ff9900;
 }
 
 .bgYellow {
-    background-color: #ff9900;
-
+  background-color: #ff9900;
 }

@@ -128,9 +128,12 @@ export default {
 </script>
 
 <template>
-  <JumboSwiper />
+  <JumboSwiper class="my-5" />
 
   <RestaurantSwiper />
+  <div class="container">
+    <hr class="my-4" style="color: #ff9900; min-height: 10px" />
+  </div>
 
   <div class="container my-5">
     <div class="row text-center my-5">
@@ -164,8 +167,49 @@ export default {
       </div>
     </div>
 
+    <div class="container">
+      <hr class="my-4" style="color: #ff9900; min-height: 10px" />
+    </div>
+
     <!-- componente che fa lo show dei ristoranti -->
     <RestaurantList />
+
+    <!-- sezione degli sponsor  -->
+    <section class="sponsor">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="sponsorLogo mt-5 d-flex justify-content-around">
+              <img
+                class="imageLogo img-fluid align-self-center"
+                src="https://www.edigitalagency.com.au/wp-content/uploads/starbucks-logo-png.png"
+                alt=""
+              />
+              <img
+                class="imageLogo img-fluid align-self-center"
+                src="https://www.edigitalagency.com.au/wp-content/uploads/McDonalds-logo-png.png"
+                alt=""
+              />
+              <img
+                class="imageLogo img-fluid align-self-center"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Burger_King_logo_%281999%29.svg/2024px-Burger_King_logo_%281999%29.svg.png"
+                alt=""
+              />
+              <img
+                class="imageLogo img-fluid align-self-center"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Dominos_pizza_logo.svg/1200px-Dominos_pizza_logo.svg.png"
+                alt=""
+              />
+              <img
+                class="imageLogo img-fluid align-self-center"
+                src="https://upload.wikimedia.org/wikipedia/sco/thumb/b/bf/KFC_logo.svg/1200px-KFC_logo.svg.png"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -182,5 +226,33 @@ export default {
 input[type="checkbox"]:checked + label {
   background-color: #ff9900;
   color: #fff;
+}
+
+// css spnsor section
+
+.sponsor {
+  margin-top: 4rem;
+}
+
+.sponsorLogo {
+  border: 1px solid white;
+  width: 100%;
+  height: 200px;
+  background-color: rgb(6, 110, 124, 0.4);
+  border-radius: 30px;
+}
+
+hr {
+  height: 12px;
+}
+.imageLogo {
+  max-width: 100%;
+  max-height: 150px;
+  transition: transform 0.4s ease;
+  cursor: pointer;
+}
+
+.imageLogo:hover {
+  transform: scale(1.2);
 }
 </style>
