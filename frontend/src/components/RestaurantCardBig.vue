@@ -1,6 +1,4 @@
 <script>
-import functions from "../functions.js";
-
 export default {
   name: "RestaurantCard",
   props: ["item"],
@@ -9,9 +7,6 @@ export default {
       id_categories: [],
     };
   },
-  created() {
-    this.getImage = functions.getImage;
-  },
   mounted() {
     this.item.category.forEach((element) => {
       this.id_categories.push(element.id);
@@ -19,7 +14,18 @@ export default {
 
     this.id_categories = this.id_categories.join(",");
   },
-  methods: {},
+  methods: {
+    getImage(img) {
+      let image;
+      if (img.startsWith("http")) {
+        image = img;
+      } else {
+        image = asset("storage/" + img);
+      }
+
+      return new URL(image, import.meta.url).href;
+    },
+  },
 };
 </script>
 
@@ -59,27 +65,33 @@ export default {
       </router-link>
     </div>
   </div> -->
-  <div
-    class="card-restaurant card bg-transparent border-dark"
-    id="card-display"
-    :meta-categories="this.id_categories"
-  >
-    <div class="text-center m-2 __area">
-      <router-link :to="{ name: 'restaurant-detail', params: { id: item.id } }">
-        <a href="#" class="__card">
-          <div class="imageBox">
-            <img :src="this.getImage(item.img)" class="img-fluid __img" />
-          </div>
-          <div class="__card_detail text-left">
-            <h5>{{ item.name }}</h5>
-            <p>{{ item.address }}</p>
-            <div class="__type">
-              <span v-for="cat in item.category">{{ cat.name }}</span>
-            </div>
-          </div>
-        </a>
-      </router-link>
-    </div>
+  <div class="card btn btn-outline-light" :meta-categories="this.id_categories">
+    <router-link
+      :to="{ name: 'restaurant-detail', params: { id: item.id } }"
+      class="text-decoration-none fw-bold"
+      id="router-link"
+    >
+      <div class="imageBox">
+        <img :src="getImage(item.img)" class="restaurant-image" />
+      </div>
+      <div class="text-box px-2">
+        <div class="">
+          <h3>{{ item.name }}</h3>
+          <p>{{ item.address }}</p>
+
+          <ul
+            class="list-group list-group-horizontal justify-content-center flex-wrap"
+          >
+            <li
+              class="list-group-item rounded-pill btn btn-outline-dark m-2"
+              v-for="cat in item.category"
+            >
+              {{ cat.name }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </router-link>
   </div>
 </template>
 
@@ -87,7 +99,54 @@ export default {
 // importo variabili
 // @use './styles/partials/variables' as *;
 
-// ...qui eventuale SCSS di TagList
+.imageBox img {
+  width: 100%;
+  height: 15rem;
+  object-fit: cover;
+
+  border-radius: 30px;
+  margin: 0;
+}
+
+.imageBox {
+  padding: 2rem;
+}
+
+.list-group {
+  text-decoration: none;
+}
+.list-group-item {
+  background-color: transparent;
+  color: white;
+}
+
+.card {
+  border: 1px solid white;
+  color: white;
+
+  background-color: #060113;
+  border-radius: 30px;
+  height: 100%;
+  padding: 0;
+}
+
+#router-link {
+  color: white;
+}
+.btn:hover {
+  #router-link {
+    color: black;
+  }
+  .list-group-item {
+    background-color: #060113;
+    color: white;
+  }
+}
+/* // ...qui eventuale SCSS di TagList
+
+
+
+
 a {
   text-decoration: none;
   color: black;
@@ -121,12 +180,10 @@ a {
   display: inline-block;
   color: unset;
 }
-
 .__card:hover {
   color: unset;
   text-decoration: none;
 }
-
 .__img {
   border-radius: 10px;
 }
@@ -134,7 +191,7 @@ a {
 .__favorit {
   background-color: #fff;
   border-radius: 8px;
-  color: #ff9900;
+  color: #fc9d52;
   position: absolute;
   right: 15px;
   top: 8px;
@@ -145,13 +202,11 @@ a {
   z-index: 1;
   border: 0;
 }
-
 .__favorit:hover {
-  background-color: #ff9900;
+  background-color: #fc9d52;
   color: #fff;
   text-decoration: none;
 }
-
 .__card_detail {
   box-shadow: 0 4px 15px rgba(175, 77, 0, 0.13);
   padding: 13px;
@@ -161,19 +216,16 @@ a {
   z-index: 2;
   background-color: #fff;
 }
-
 .__card_detail h4 {
   color: #474340;
   line-height: 100%;
   font-weight: bold;
 }
-
 .__card_detail p {
   font-size: 13px;
   font-weight: bold;
   margin-bottom: 0.4rem;
 }
-
 .__type span {
   background-color: #feefe3;
   padding: 5px 10px 7px;
@@ -181,29 +233,25 @@ a {
   display: inline-block;
   margin-right: 10px;
   font-size: 12px;
-  color: #ff9900;
+  color: #fc9d52;
   font-weight: bold;
   line-height: 100%;
 }
-
 .__detail {
   margin-top: 5px;
 }
-
 .__detail i {
   font-size: 21px;
   display: inline-block;
   vertical-align: middle;
 }
-
 .__detail i:nth-child(3) {
   margin-left: 15px;
 }
-
 .__detail span {
   font-size: 16px;
   display: inline-block;
   vertical-align: middle;
   margin-left: 2px;
-}
+} */
 </style>

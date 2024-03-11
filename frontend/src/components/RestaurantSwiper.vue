@@ -1,38 +1,34 @@
 <script>
-import RestaurantCard from "../components/RestaurantCard.vue";
+import RestaurantCardBig from "../components/RestaurantCardBig.vue";
 import { store } from "../store.js"; //state management
 import axios from "axios"; //importo Axios
-
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
 
 // Import Swiper styles
 import "swiper/css";
 
-import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 // import required modules
-import { Autoplay, Pagination } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
 
 export default {
-  name: "RestaurantList",
+  name: "RestaurantSwiper",
   components: {
-    RestaurantCard,
     Swiper,
     SwiperSlide,
+    RestaurantCardBig,
   },
   data() {
     return {
       store,
-    };
-  },
-  setup() {
-    return {
-      modules: [Pagination, Autoplay],
+      modules: [Autoplay, Navigation],
     };
   },
   mounted() {
     this.getRestaurants();
+    console.log(store.restaurants);
   },
   methods: {
     getRestaurants() {
@@ -76,38 +72,34 @@ export default {
 </script>
 
 <template>
-  <div id="card-box" class="d-none">
-    <h3 id="restaurant_message" class="text-center my-5"></h3>
-
-    <div v-for="restaurant in store.restaurants">
-      <RestaurantCard :item="restaurant" />
-    </div>
+  <div class="container">
+    <h1 class="text-center section-title fs-1">I Ristoranti:</h1>
+    <swiper
+      :slidesPerView="3"
+      :spaceBetween="30"
+      :loop="true"
+      :autoplay="{ delay: 4000, disableOnInteraction: false }"
+      :modules="modules"
+      class="box"
+    >
+      <swiper-slide v-for="restaurant in store.restaurants" class="col-3">
+        <RestaurantCardBig :item="restaurant" />
+      </swiper-slide>
+    </swiper>
   </div>
 </template>
 
-<style lang="scss">
-// importo il foglio di stile generale dell'applicazione, non-scoped
-@use "../styles/general.scss";
-</style>
-
-<style scoped lang="scss">
-// importo variabili
-// @use './styles/partials/variables' as *;
-
-// ...qui eventuale SCSS di App.vue
-
-.container {
-  min-height: 100vh;
+<style scoped>
+.section-title {
+  margin: 10rem 0;
 }
+.box {
+  display: flex;
+  justify-content: center;
 
-.swiper {
-  width: 100%;
-  height: 100%;
-}
-
-.swiper-slide {
-  text-align: center;
-
-  /* Center slide text vertically */
+  align-content: center;
+  overflow: hidden;
+  margin: 14rem 0;
+  height: 33rem;
 }
 </style>
