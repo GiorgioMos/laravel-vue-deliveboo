@@ -72,8 +72,8 @@
                         @endif
                     @else
                         <li class="nav-item dropdown text-white">
-                            <a id="navbarDropdown" class="nav-link page-navigation btnNavbar" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link page-navigation btnNavbar"
+                                href="{{ route('admin.dashboard') }}">
                                 {{ Auth::user()->name }}
                             </a>
 

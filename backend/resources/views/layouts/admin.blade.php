@@ -66,7 +66,8 @@
                         @endif
                     @else
                         <li class="nav-item dropdown text-white">
-                            <a class="nav-link page-navigation btnNavbar" href="#" role="button" v-pre>
+                            <a class="nav-link page-navigation btnNavbar" href="{{ route('admin.dashboard') }}"
+                                role="button" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
 
