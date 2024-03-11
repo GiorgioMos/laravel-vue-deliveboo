@@ -109,6 +109,10 @@ export default {
   transform: scale(1.1);
   cursor: pointer;
 }
+.imageBox:not(:hover) img {
+  transition: transform 0.4s ease;
+  transform: scale(1);
+}
 .imageBox img {
   width: 90%;
   height: 90%;

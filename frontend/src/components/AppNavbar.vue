@@ -57,16 +57,18 @@ export default {
         </div>
       </router-link>
 
-			<ul class="navbar-nav gap-5">
-				<li class="nav-item">
-					<a class="page-navigation nav-center" href="#">Ristoranti</a>
-				</li>
-				<li class="nav-item">
-					<router-link :to="{ name: 'about' }">
-						<p class="page-navigation nav-center" href="/about">Chi Siamo</p>
-					</router-link>
-				</li>
-			</ul>
+      <ul class="navbar-nav gap-5">
+        <li class="nav-item">
+          <a class="page-navigation nav-center" href="#categories-selection"
+            >Ristoranti</a
+          >
+        </li>
+        <li class="nav-item">
+          <router-link :to="{ name: 'about' }">
+            <p class="page-navigation nav-center" href="/about">Chi Siamo</p>
+          </router-link>
+        </li>
+      </ul>
 
       <ul class="navbar-nav">
         <!-- bottone accedi area riservata -->
@@ -269,26 +271,26 @@ a {
   text-decoration: none;
 }
 
-.nav-center{
-	color: white !important;
-	background-color: #066e7c;
-	padding: 10px;
-	border: 2px solid #ff9900;
-	font-weight: bold;
-	border-radius: 30px;
-	transition: .15s ease-in;
+.nav-center {
+  color: white !important;
+  background-color: #060113;
+  padding: 10px;
+  border: 2px solid #ff9900;
+  font-weight: bold;
+  border-radius: 30px;
+  transition: 0.15s ease-in;
 }
-.nav-center:hover{
-	background-color: #ff9900;
-	color: black !important;
+.nav-center:hover {
+  background-color: #ff9900;
+  color: black !important;
 }
 .btnNavbar {
-	color: white;
-	background-color: #066e7c;
-	padding: 10px;
-	border: 2px solid #ff9900;
-	font-weight: bold;
-	transition: .15s ease-in;
+  color: white;
+  background-color: #060113;
+  padding: 10px;
+  border: 2px solid #ff9900;
+  font-weight: bold;
+  transition: 0.15s ease-in;
 }
 
 .btnNavbar:hover {
@@ -297,15 +299,15 @@ a {
 }
 
 .page-navigation {
-	margin: 0;
-	color: #066e7c;
-    font-weight: bold;
-    font-size: 1.2rem;
-    padding: 0.7rem 3rem; /* Aggiungi spazio intorno ai link */
-    height: 100%; /* Fai occupare tutta l'altezza */
-    display: flex; /* Usa flexbox per allineare verticalmente il testo */
-    align-items: center; /* Allinea verticalmente il testo al centro */
-	transition: .15s ease-in;
+  margin: 0;
+  color: #060113;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 0.7rem 3rem; /* Aggiungi spazio intorno ai link */
+  height: 100%; /* Fai occupare tutta l'altezza */
+  display: flex; /* Usa flexbox per allineare verticalmente il testo */
+  align-items: center; /* Allinea verticalmente il testo al centro */
+  transition: 0.15s ease-in;
 }
 
 .page-navigation:hover {
@@ -315,7 +317,7 @@ a {
 }
 
 font-awesome-icon {
-  color: yellow;
+  color: #ff9900;
 }
 
 font-awesome-icon:hover {
@@ -392,7 +394,7 @@ font-awesome-icon:hover {
 .btnCart {
   padding: 9px;
   margin-top: 30px;
-  background-color: #066e7c;
+  background-color: #060113;
   border: none;
   border-radius: 10px;
   color: white;

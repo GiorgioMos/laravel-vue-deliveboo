@@ -74,18 +74,18 @@
                         @endif
                     @else
                         <li class="nav-item dropdown text-white">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle page-navigation btnNavbar" href="#"
-                                role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link page-navigation btnNavbar"
+                                href="{{ route('admin.dashboard') }}">
                                 {{ Auth::user()->name }}
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right text-white" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</a>
+                            <div class="text-white" aria-labelledby="navbarDropdown">
+                                {{-- <a class="dropdown-item" href="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
-                                </a>
+                                </a> --}}
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
@@ -315,7 +315,7 @@
     /* stile header */
     .btnNavbar {
         color: white;
-        background-color: #066e7c;
+        background-color: #060113;
         padding: 10px;
         border: 2px solid #ff9900;
         font-weight: bold;

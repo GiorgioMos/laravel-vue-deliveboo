@@ -140,11 +140,18 @@
 
         input {
             border-width: 2px !important;
+
         }
 
         #submitButton:hover {
             background-color: #f9b44d !important;
-            transform: scale(1.2);
+            transform: scale(1.15);
+            transition: .15s ease-in-out;
+        }
+
+        #submitButton:not(:hover) {
+            transition: transform 0.2s ease-in;
+            transform: scale(1);
         }
 
         .btn {

@@ -80,6 +80,10 @@ export default {
   transform: scale(1.1);
   cursor: pointer;
 }
+.swiperOptions:not(:hover) img {
+  transition: transform 0.4s ease;
+  transform: scale(1);
+}
 
 .swiperOptions {
   border-radius: 30px;

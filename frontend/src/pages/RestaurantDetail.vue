@@ -1,11 +1,8 @@
 <script>
-import { store } from "../store.js" //state management
-import axios from 'axios'; //importo Axios
-import functions from '../functions.js'
+import { store } from "../store.js"; //state management
+import axios from "axios"; //importo Axios
+import functions from "../functions.js";
 import * as bootstrap from "bootstrap";
-
-
-
 
 export default {
 	name: "RestaurantDetail",
@@ -15,70 +12,75 @@ export default {
 			store,
 			restaurant: null,
 			error: false,
-		}
+		};
 	},
 	created() {
-		this.aggiornaCounter = functions.aggiornaCounter
-		this.ArrayCart = functions.ArrayCart
-		this.hideMinButton = functions.hideMinButton
-		this.cartAddElement = functions.cartAddElement
-		this.cartRemoveElement = functions.cartRemoveElement
-		this.fullCartRemoveElement = functions.fullCartRemoveElement
-		this.clearCart = functions.clearCart
-		this.getStorageValue = functions.getStorageValue
-		this.currentValue = functions.currentValue
-		this.getImage = functions.getImage
-
-
-
+		this.aggiornaCounter = functions.aggiornaCounter;
+		this.ArrayCart = functions.ArrayCart;
+		this.hideMinButton = functions.hideMinButton;
+		this.cartAddElement = functions.cartAddElement;
+		this.cartRemoveElement = functions.cartRemoveElement;
+		this.fullCartRemoveElement = functions.fullCartRemoveElement;
+		this.clearCart = functions.clearCart;
+		this.getStorageValue = functions.getStorageValue;
+		this.currentValue = functions.currentValue;
+		this.getImage = functions.getImage;
 	},
 	beforeMount() {
 		this.getRestaurantDetail();
 	},
 	mounted() {
-		this.ArrayCart()
-
+		this.ArrayCart();
 	},
 	updated() {
-
 		this.aggiornaCounter();
 
 		if (document.getElementById("clearCart")) {
-			document.getElementById("clearCart").addEventListener("click", () =>
-				this.aggiornaCounter()
-			)
+			document
+				.getElementById("clearCart")
+				.addEventListener("click", () => this.aggiornaCounter());
 		}
-
 	},
 	methods: {
 		getRestaurantDetail() {
-			let url = this.store.apiRestaurants + this.store.restaurantsEndPoint + this.id;
+			let url =
+				this.store.apiRestaurants + this.store.restaurantsEndPoint + this.id;
 
-			axios.get(url).then(result => {
-				if (result.status === 200) {
-					if (result.data.success) {
-						this.restaurant = result.data.payload;
-					} else {
-						console.error("Ops... non siamo in grado di soddisfare la richiesta.");
-						this.error = true;
+			axios
+				.get(url)
+				.then((result) => {
+					if (result.status === 200) {
+						if (result.data.success) {
+							this.restaurant = result.data.payload;
+						} else {
+							console.error(
+								"Ops... non siamo in grado di soddisfare la richiesta."
+							);
+							this.error = true;
+						}
+					} else if (result.status === 301) {
+						console.error("Ops... ciò che cerchi non si trova più qui.");
+					} else if (result.status === 400) {
+						console.error(
+							"Ops... non riusciamo a comprendere ciò che hai richiesto."
+						);
+					} else if (result.status === 404) {
+						console.error(
+							"Ops... non riusciamo a trovare ciò che hai richiesto."
+						);
+					} else if (result.status === 500) {
+						console.error(
+							"Ops... ci scusiamo per l'inconveniente, stiamo spegnendo l'incendio."
+						);
 					}
-
-				} else if (result.status === 301) {
-					console.error("Ops... ciò che cerchi non si trova più qui.");
-				} else if (result.status === 400) {
-					console.error("Ops... non riusciamo a comprendere ciò che hai richiesto.");
-				} else if (result.status === 404) {
-					console.error("Ops... non riusciamo a trovare ciò che hai richiesto.");
-				} else if (result.status === 500) {
-					console.error("Ops... ci scusiamo per l'inconveniente, stiamo spegnendo l'incendio.");
-				}
-			}).catch(errore => {
-				console.error(errore);
-				this.$router.push({ name: "home" }); // redireziona alla lista eventi
-			});
+				})
+				.catch((errore) => {
+					console.error(errore);
+					this.$router.push({ name: "home" }); // redireziona alla lista eventi
+				});
 		},
-	}
-}
+	},
+};
 </script>
 
 <template>
@@ -92,12 +94,12 @@ export default {
 			</div>
 
 			<!-- SEZIONE JUMBO RISTORANTE -->
-			<div id="spacer" v-else class="row py-3 text-warning">
+			<div id="spacer" v-else class="row py-3" style="color: #ff9900">
 				<div class="d-flex mt-4 mb-5 position-relative">
 					<div id="imgbox" class="imgBox rounded m-5 flex-column">
-						<img class="cardImg rounded" :src="this.getImage(restaurant?.img)" alt="">
+						<img class="cardImg rounded" :src="this.getImage(restaurant?.img)" alt="" />
 						<div id="restaurant-info">
-							<h1 class="mb-4 fw-bold"> {{ restaurant?.name }} </h1>
+							<h1 class="mb-4 fw-bold">{{ restaurant?.name }}</h1>
 							<p class="my-1 text-white fw-bold">
 								<font-awesome-icon class="icon mx-3" icon="fa-solid fa-location" />
 								{{ restaurant?.address }}
@@ -113,9 +115,13 @@ export default {
 						</div>
 					</div>
 					<div id="restaurant-desc"
-						class="d-flex flex-column mt-5 align-items-start p-5 justify-content-center">
-						<div class="restaurantDescription"> {{ restaurant?.description }} </div>
-						<button id="button" class="btn mt-5"><a :href="restaurant?.website">Sito Web</a></button>
+						class="text-center d-flex flex-column my-5 align-items-start py-5 justify-content-center">
+						<div class="restaurantDescription">
+							{{ restaurant?.description }}
+						</div>
+						<button id="button" class="btn rounded-pill my-3">
+							<a :href="restaurant?.website" class="fs-6">Sito Web</a>
+						</button>
 					</div>
 				</div>
 
@@ -125,47 +131,56 @@ export default {
 						<h1>Questo ristorante al momento non ha prodotti disponibili</h1>
 					</div>
 					<div v-else>
-						<h2 class="my-3">I Nostri Piatti</h2>
+						<h2 class="my-3 fw-bold" style="color: white">I Nostri Piatti</h2>
 						<div class="d-flex row">
-
-
 							<div class="col-4" v-for="product in restaurant?.products">
 								<div v-if="product?.visible == 1" class="product card-list my-5"
 									:id="'product-' + product.id">
 									<article class="cards">
 										<figure class="card-image">
 											<img id="product-img" :src="this.getImage(product?.img)"
-												alt="Immagine-ristorante">
+												alt="Immagine-ristorante" />
 										</figure>
 										<div class="card-header d-flex flex-column">
 											<h4 class="fw-bold text-white">{{ product?.name }}</h4>
-											<p class="cardDescription">{{ product?.description }}</p>
-											<p> € {{ product?.price }}</p>
+											<p class="cardDescription text-white text-center">
+												{{ product?.description }}
+											</p>
+											<p>€ {{ product?.price }}</p>
 										</div>
 										<div class="card-footer">
-											<button id="cart-remove" class="btn remove"
-												@click="cartRemoveElement(product); hideMinButton(product?.id)">-</button>
+											<button id="cart-remove" class="btn remove" @click="
+			cartRemoveElement(product);
+		hideMinButton(product?.id);
+		">
+												-
+											</button>
 											<span class="counter mx-4" :data-id="product.id" :data-name="product.name"
-												:id="product.id + 'span'"> {{ this.currentValue(product) }} </span>
-											<button id="cart-add" class="btn add"
-												@click="cartAddElement(product); hideMinButton(product?.id)">+</button>
+												:id="product.id + 'span'">
+												{{ this.currentValue(product) }}
+											</span>
+											<button id="cart-add" class="btn add" @click="
+			cartAddElement(product);
+		hideMinButton(product?.id);
+		">
+												+
+											</button>
 											<!-- <a class="remove" href="#"
 																																																																												@click="fullCartRemoveElement(product)">rimuovi</a> -->
 										</div>
 									</article>
 								</div>
-
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>
 			<!-- BOTTONE GO BACK TO HOMEPAGE -->
 			<div class="row d-flex justify-content-end">
 				<div class="col-2">
-					<router-link :to="{ name: 'home' }" class="btn btn-info">
-						<span>Torna indietro</span>
+					<router-link :to="{ name: 'home' }" class="btn rounded-pill"
+						style="background-color: #ff9900; border: solid 1px #ff9900">
+						Torna indietro
 					</router-link>
 				</div>
 			</div>
@@ -175,19 +190,23 @@ export default {
 		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="exampleModalLabel">Attenzione</h1>
+					<div class="modal-header d-flex justify-content-center">
+						<h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Attenzione</h1>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
-					<div class="modal-body text-dark">
+					<div class="modal-body">
 						Stai già ordinando da un'altro ristorante
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" @click="this.clearCart(); this.ArrayCart()"
-							data-bs-dismiss="modal">Svuota carrello</button>
-						<a :href="'http://localhost:5000/restaurants/' + getStorageValue('restaurant_id')"
-							class="btn btn-primary">Ristorante in corso</a>
-
+						<button type="button" class="btn btn-danger" @click="
+			this.clearCart();
+		this.ArrayCart();
+		" data-bs-dismiss="modal">
+							Svuota carrello
+						</button>
+						<a :href="'http://localhost:5000/restaurants/' +
+			getStorageValue('restaurant_id')
+			" class="btn bgYellow">Ristorante in corso</a>
 					</div>
 				</div>
 			</div>
@@ -197,7 +216,7 @@ export default {
 
 <style lang="scss">
 // importo il foglio di stile generale dell'applicazione, non-scoped
-@use '../styles/general.scss';
+@use "../styles/general.scss";
 </style>
 
 <style scoped lang="scss">
@@ -205,6 +224,34 @@ export default {
 // @use './styles/partials/variables' as *;
 
 // ...qui eventuale SCSS di App.vue
+.modal-content {
+	background-color: #060113 !important;
+	border-color: #ff9900;
+	color: white !important;
+}
+
+.modal-footer,
+.modal-header {
+	border: none;
+}
+
+.modal-footer .btn-danger:hover {
+	background-color: #060113;
+	border: solid 1px red;
+}
+
+.modal-footer .bgYellow:hover {
+	background-color: #060113;
+	border: solid 1px #ff9900;
+}
+
+.btn-close::after {
+	color: white;
+}
+
+.modal-header button {
+	color: white;
+}
 
 h2 {
 	text-align: center;
@@ -221,15 +268,15 @@ button>a {
 
 #button {
 	background-color: #060113;
-	border: solid 2px #066E7C;
+	border: solid 2px #ff9900;
 	border-radius: 20px;
-	padding: 10px 20px;
-	transition: .15s ease-in;
-	margin: 0 30%;
+	padding: 0.5rem 1rem;
+	transition: 0.15s ease-in;
+	margin: 0 auto;
 }
 
 #button:hover {
-	background-color: #066E7C;
+	background-color: #ff9900;
 }
 
 .cardImg {
@@ -281,14 +328,13 @@ li {
 #restaurant-info {
 	position: absolute;
 	transition: transform 0.2s;
-	background-color: #3d3737;
-	padding: 1rem;
-	width: 35rem;
-	height: 14rem;
+	background-color: rgba($color: #060113, $alpha: 0.8);
+	border: #ff9900 solid 1px;
+	padding: 3rem;
+
 	border-radius: 15px;
-	bottom: 500px;
+	bottom: 550px;
 	left: 750px;
-	opacity: 0.90;
 }
 
 #restaurant-info:hover {
@@ -308,17 +354,17 @@ img {
 }
 
 .cards {
-	background-color: #3d3737;
-	box-shadow: 0 0 0 1px rgba(#000, .05), 0 20px 50px 0 rgba(#000, .1);
+	background-color: #060113;
+	box-shadow: 0 0 0 1px rgba(#000, 0.05), 0 20px 50px 0 rgba(#000, 0.1);
 	border-radius: 15px;
 	overflow: hidden;
 	padding: 1.25rem;
 	position: relative;
-	transition: .15s ease-in;
+	transition: 0.15s ease-in;
 
 	&:hover,
 	&:focus-within {
-		box-shadow: 0 0 0 2px #066E7C, 0 10px 60px 0 rgba(#000, .1);
+		box-shadow: 0 0 0 1px #ff9900, 0 10px 60px 0 rgba(#000, 0.1);
 		transform: translatey(-5px);
 	}
 }
@@ -344,21 +390,25 @@ img {
 	justify-content: center;
 }
 
+#go-back-btn:hover {
+	background-color: #ff9900;
+	color: #000;
+}
+
 //css bottoni prodotti
 
 #cart-remove {
-
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: #066E7C;
+	background-color: #060113;
 	height: 2rem;
 	width: 2rem;
 	border-radius: 50%;
-	color: #F59754;
+	color: #f59754;
 	text-align: center;
 	line-height: 1rem;
-	border: 1px solid #F59754;
+	border: 1px solid #f59754;
 	transition: background-color 0.3s ease;
 	transition: border 0.3s ease;
 	transition: transform 0.2s;
@@ -366,7 +416,7 @@ img {
 
 #cart-remove:hover {
 	background-color: #060113;
-	border: 1px solid #066E7C;
+	border: 1px solid #ff9900;
 	transform: scale(1.2);
 }
 
@@ -374,14 +424,14 @@ img {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: #066E7C;
+	background-color: #060113;
 	height: 2rem;
 	width: 2rem;
 	border-radius: 50%;
-	color: #F59754;
+	color: #f59754;
 	text-align: center;
 	line-height: 1rem;
-	border: 1px solid #F59754;
+	border: 1px solid #f59754;
 	transition: background-color 0.3s ease;
 	transition: border 0.3s ease;
 	transition: transform 0.2s;
@@ -389,7 +439,7 @@ img {
 
 #cart-add:hover {
 	background-color: #060113;
-	border: 1px solid #066E7C;
+	border: 1px solid #ff9900;
 	transform: scale(1.2);
 }
 
