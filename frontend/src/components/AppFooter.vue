@@ -163,7 +163,7 @@ footer {
 }
 
 .circle:hover {
-    box-shadow: rgb(249, 180, 77) 0px 8px 29px, rgb(249, 180, 77) 0px 0px 21px, rgba(249, 180, 77, 0.75) 0px 4px 15px, rgba(249, 180, 77, 0.75) 0px 3px 60px, rgba(249, 180, 77, 0.75) 0px 0px 5px
+    box-shadow: #ff9900 0px 8px 29px, #ff9900 0px 0px 21px, #ff9900 0px 4px 15px, #ff9900 0px 3px 60px, #ff9900 0px 0px 5px
 }
 
 .circle a {
@@ -187,8 +187,8 @@ footer {
 }
 
 .nav-item a:hover {
-    text-decoration: underline;
-    color: #f9b44d;
+    color: #ff9900;
+	transform: scale(1);
 }
 
 .linkFooter {

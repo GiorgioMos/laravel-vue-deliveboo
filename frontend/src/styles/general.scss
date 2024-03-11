@@ -11,7 +11,25 @@
 }
 
 body {
-    font-family: sans-serif;
+    font-family: "Noto Serif", serif;
     background-color: $themeColorDark;
     color: $themeColorLight;
+}
+
+.textTeal {
+    color: #066e7c;
+}
+
+.bgTeal {
+    background-color: #066e7c;
+
+}
+
+.textYellow {
+    color: #ff9900;
+}
+
+.bgYellow {
+    background-color: #ff9900;
+
 }

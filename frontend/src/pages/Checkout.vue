@@ -18,7 +18,11 @@ export default {
                 lastname: '',
                 email: '',
                 telephone: '',
+                notes: '',
+                city: '',
                 address: ''
+
+
             },
             isPaymentValid: false // Aggiunto per tenere traccia dello stato di validità del pagamento
         }
@@ -40,6 +44,7 @@ export default {
         this.getStorageValue = functions.getStorageValue
         this.cartCounter = functions.cartCounter
         this.cartTotal = functions.cartTotal
+        this.getImage = functions.getImage
 
 
 
@@ -97,9 +102,51 @@ export default {
                     });
                 });
             });
+
+        },
+        getDataOggi() {
+            const oggi = new Date();
+            const anno = oggi.getFullYear();
+            let mese = oggi.getMonth() + 1; // i mesi partono da 0 (0 = gennaio)
+            mese = mese < 10 ? '0' + mese : mese; // aggiunge lo zero davanti se il mese è inferiore a 10
+            let giorno = oggi.getDate();
+            giorno = giorno < 10 ? '0' + giorno : giorno; // aggiunge lo zero davanti se il giorno è inferiore a 10
+
+            return `${anno}-${mese}-${giorno}`;
         },
         confirmOrder() {
+            const products = [];
+            this.store.ArrayIdsInCart.forEach(id => {
+                // Controlla di ciclare solo sugli id dei prodotti
+                if (id !== 'restaurant_id') {
+                    products.push({
+                        id: id,
+                        quantity: parseInt(localStorage.getItem(id))
+                    });
+                }
+            });
 
+            const formData = {
+                total_price: this.cartTotal(),
+                date: this.getDataOggi(),
+                notes: document.getElementById("notes").value,
+                guest_name: document.getElementById("name").value,
+                guest_surname: document.getElementById("lastname").value,
+                guest_telephone: document.getElementById("telephone").value,
+                guest_email: document.getElementById("email").value,
+                guest_address: document.getElementById("address").value,
+                guest_city: document.getElementById("city").value,
+                products: products
+            };
+            axios.post('http://localhost:8000/api/orders', formData)
+                .then(response => {
+                    // Gestisci la risposta dal server, ad esempio visualizzando un messaggio di successo
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    // Gestisci gli errori, ad esempio visualizzando un messaggio di errore
+                    console.error(error.response.data);
+                });
             setTimeout(() => {
 
                 this.clearCart()
@@ -114,8 +161,9 @@ export default {
 
             }, 4000)
 
-            //svuoto il carrello
-        }
+
+        },
+
     }
 }
 </script>
@@ -141,28 +189,79 @@ export default {
                 <div v-else>
 
                     <!------------------------------------ CORPO PAGINA  ------------------------------------------------->
-                    <h1>checkout TOTALE->{{ this.cartTotal() }}€</h1>
-
+                    <h1 class="textYellow text-center mb-5 fw-bolder">CHECKOUT</h1>
                     <!-- nome ristorante corrente  -->
-                    <h2>{{ this.store.restaurants[getStorageValue('restaurant_id') - 1]?.name }}</h2>
+                    <div class="d-flex justify-content-center gap-5">
+                        <div class="text-center">
+                            <h3 class="">Stai ordinando da:</h3>
+                            <h2 class="textYellow">{{ this.store.restaurants[getStorageValue('restaurant_id') - 1]?.name
+                                }}</h2>
+                        </div>
+                        <div class="text-center">
+                            <h3 class="">Totale</h3>
+                            <h2 class="textYellow">{{ this.cartTotal() }}€</h2>
+                        </div>
+                    </div>
 
                     <div>
+                        <h2 class="textYellow fw-bolder mt-5">Prodotti:</h2>
+                        <hr class="my-3 bgYellow">
 
                         <!-- stampo tutti i prodotti in carrello  -->
-                        <div v-for="prodotto in this.store.products">
-
+                        <div v-for="prodotto in this.store.products" class="col-6 my-5">
                             <!-- controllo se l'id del prodotto corrisponde ad un id in localStorage e lo creo -->
                             <div v-if="this.store.ArrayIdsInCart.includes(prodotto.id.toString())">
-
                                 <!-- stampo i dati del prodotto e la quantità attraverso la funzione magica per richiamare i dati del localstorage -->
-                                <span>{{ prodotto.name }} ({{ prodotto.price }}) -> <span class="counter"
-                                        :data-id="prodotto.id" :data-name="prodotto.name" :id="prodotto.id + 'span'">{{
-            this.getStorageValue(prodotto.id) ?? 0 }}</span></span>
-                                <button class="btn btn-primary add" @click="this.cartAddElement(prodotto)">+</button>
-                                <button class="btn btn-danger remove"
-                                    @click="cartRemoveElement(prodotto); hideMinButton(prodotto.id)">-</button>
-                                <a href="#" @click="fullCartRemoveElement(prodotto)">rimuovi</a>
+                                <div class="row">
+                                    <!-- Immagine singolo prodotto -->
+                                    <div class="col-4 d-flex align-items-center">
+                                        <div class="boxImg">
+                                            <img class="imgCart mb-5" :src="this.getImage(prodotto?.img)" alt="">
+                                        </div>
+                                    </div>
+                                    <!-- Nome, prezzo e button rimuovi singolo prodotto -->
+                                    <div class="col-3 d-flex flex-column justify-content-center">
+                                        <router-link
+                                            :to="{ name: 'restaurant-detail', params: { id: prodotto?.restaurant_id } }">
+                                            <span class="col-6 fs-4 cart-title">
+                                                {{ prodotto.name }}
+                                            </span>
+                                        </router-link>
+                                        <div class="col-5 fw-bold my-2"> € {{ Math.round(((prodotto.price *
+            this.getStorageValue(prodotto.id)) + Number.EPSILON) * 100) / 100 }}
+                                        </div>
+                                    </div>
+                                    <!-- Button aggiungi e rimuovi prodotto -->
+                                    <div
+                                        class="col-3 d-flex flex-column aling-items-center justify-content-center text-center">
 
+                                        <!-- Aggiunge prodotto -->
+                                        <span class="add">
+                                            <span class="circle-icon btn" @click="this.cartAddElement(prodotto)">
+                                                <font-awesome-icon icon="fa-solid fa-plus" />
+                                            </span>
+                                        </span>
+                                        <!-- Numero totale prodotti -->
+                                        <span class="counter my-2 fw-bold" :data-id="prodotto.id"
+                                            :data-name="prodotto.name" :id="prodotto.id + 'span'">
+                                            {{ this.getStorageValue(prodotto.id) ?? 0 }}</span>
+                                        <!-- Rimuove prodotto -->
+                                        <span class="remove">
+                                            <span class="circle-icon btn"
+                                                @click="cartRemoveElement(prodotto); hideMinButton(prodotto.id)">
+                                                <font-awesome-icon icon="fa-solid fa-minus" />
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="col-2 d-flex align-items-center">
+                                        <!-- Rimuove tutti i prodotti nel carrello -->
+                                        <div>
+
+                                            <p class="btn btn-dark text-danger rounded-pill"
+                                                @click="fullCartRemoveElement(prodotto)">Rimuovi</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -172,14 +271,16 @@ export default {
                         <div class="row">
 
 
-                            <h2 class="mt-5">Inserisci i tuoi dati per completare l'ordine</h2>
-                            <form @submit.prevent="submitForm" class="needs-validation col-8">
+                            <h2 class="mt-5 textYellow">Inserisci i tuoi dati per completare l'ordine</h2>
+                            <hr class="my-3 bgYellow">
+                            <form method="POST" enctype="multipart/form-data" @submit.prevent="submitForm"
+                                class="needs-validation col-8">
 
                                 <!-- NAME -->
                                 <div
                                     :class="['mb-3', { 'has-error': !validateField(name), 'has-success': formData.name }]">
                                     <label for="name" class="form-label">Nome <span style="color: red;">*</span></label>
-                                    <input type="text" class="form-control" id="name" name="name"
+                                    <input type="text" class="form-control py-3 rounded-pill" id="name" name="name"
                                         v-model="formData.name" required>
                                 </div>
                                 <!-- LASTNAME  -->
@@ -188,8 +289,8 @@ export default {
                                     :class="['mb-3', { 'has-error': !validateField(lastname), 'has-success': formData.lastname }]">
                                     <label for="lastname" class="form-label">Cognome <span
                                             style="color: red;">*</span></label>
-                                    <input type="text" class="form-control" id="lastname" name="lastname"
-                                        v-model="formData.lastname" required>
+                                    <input type="text" class="form-control py-3 rounded-pill" id="lastname"
+                                        name="lastname" v-model="formData.lastname" required>
                                 </div>
 
                                 <!-- EMAIL  -->
@@ -197,7 +298,7 @@ export default {
                                     :class="['mb-3', { 'has-error': !validateField(email), 'has-success': formData.email }]">
                                     <label for="email" class="form-label">email <span
                                             style="color: red;">*</span></label>
-                                    <input type="email" class="form-control" id="email" name="email"
+                                    <input type="email" class="form-control py-3 rounded-pill" id="email" name="email"
                                         v-model="formData.email" required>
                                 </div>
                                 <!-- TELEPHONE -->
@@ -205,39 +306,62 @@ export default {
                                     :class="['mb-3', { 'has-error': !validateField(telephone), 'has-success': formData.telephone }]">
                                     <label for="telephone" class="form-label">telefono <span
                                             style="color: red;">*</span></label>
-                                    <input type="number" class="form-control" id="telephone" name="telephone"
-                                        v-model="formData.telephone" required>
+                                    <input type="number" class="form-control py-3 rounded-pill" id="telephone"
+                                        name="telephone" v-model="formData.telephone" required>
                                 </div>
                                 <!-- ADDRESS -->
                                 <div
                                     :class="['mb-3', { 'has-error': !validateField(address), 'has-success': formData.address }]">
                                     <label for="address" class="form-label">indirizzo <span
                                             style="color: red;">*</span></label>
-                                    <input type="text" class="form-control" id="address" name="address"
-                                        v-model="formData.address" required>
+                                    <input type="text" class="form-control py-3 rounded-pill" id="address"
+                                        name="address" v-model="formData.address" required>
+                                </div>
+                                <!-- CITTA' -->
+                                <div
+                                    :class="['mb-3', { 'has-error': !validateField(city), 'has-success': formData.city }]">
+                                    <label for="city" class="form-label">Città <span
+                                            style="color: red;">*</span></label>
+                                    <input type="text" class="form-control py-3 rounded-pill" id="city" name="city"
+                                        v-model="formData.city" required>
+                                </div>
+                                <!-- NOTE trasformare in textarea-->
+                                <div
+                                    :class="['mb-3', { 'has-error': !validateField(notes), 'has-success': formData.notes }]">
+                                    <label for="notes" class="form-label">Note <span
+                                            style="color: red;">*</span></label>
+                                    <input type="text" class="form-control py-3 rounded-pill" id="notes" name="notes"
+                                        v-model="formData.notes" required>
                                 </div>
                             </form>
                         </div>
                     </div>
+                    <div class="d-flex justify-content-center col-8 py-5">
 
-                    <button :disabled="!isFormValid" class="btn btn-primary" @click="createBraintree()">Seleziona la
-                        modalità di pagamento</button>
+                        <button :disabled="!isFormValid" class="btn btn-warning rounded-pill text-white"
+                            @click="createBraintree()">Seleziona la
+                            modalità di pagamento <font-awesome-icon :icon="['fas', 'money-bill']" /></button>
+                    </div>
                     <!-- BRAINTREE  -->
                     <div id="braintreeContainer">
                         <div id="dropin-container" class="col-8"></div>
                     </div>
 
                     <!-- bottone submit per confermare i dati di pagamento  -->
-                    <button :disabled="!isFormValid" id="submit-button"
-                        class="btn button--small button--green d-none">Conferma
-                        Selezione</button>
+                    <div class="d-flex justify-content-center col-8 ">
+
+                        <button :disabled="!isFormValid" id="submit-button"
+                            class="btn button--small button--green d-none rounded-pill">Conferma
+                            Selezione</button>
+                    </div>
 
 
 
                     <div class="d-flex justify-content-center">
-                        <button :disabled="!isFormValid || !isPaymentValid" class="btn btn-danger my-5"
-                            data-bs-toggle="modal" data-bs-target="#staticBackdrop" @click="confirmOrder">CONFERMA
-                            ORDINE</button>
+                        <button :disabled="!isFormValid || !isPaymentValid"
+                            class="btn btn-danger my-5 rounded-pill px-4 py-3 fw-bolder" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop" @click="confirmOrder">CONFERMA
+                            ORDINE <font-awesome-icon icon="fa-solid fa-cart-shopping" /></button>
                     </div>
 
 
@@ -272,6 +396,38 @@ export default {
 <style lang="scss">
 // importo il foglio di stile generale dell'applicazione, non-scoped
 @use '../styles/general.scss';
+
+
+// BRAINTREE 
+
+
+.braintree-dropin div {
+    color: white !important;
+    background-color: rgb(0, 0, 0) !important;
+}
+
+#expiration {
+    background-color: white !important;
+}
+
+
+.braintree-form__notice-of-collection {
+    display: none;
+}
+
+.number,
+.expirationDate,
+.braintree-form-expiration,
+.braintree-form-number {
+    border-radius: 2rem;
+    background-color: white;
+    border-width: 2px !important;
+}
+
+.braintree-form__label {
+    color: white !important;
+    font-weight: bolder !important;
+}
 </style>
 
 <style scoped lang="scss">
@@ -344,5 +500,71 @@ export default {
 .has-success input {
     border-color: green !important;
     border-width: 2px;
+}
+
+/* immagini e box */
+.boxImg {
+    width: 8rem;
+    height: 6rem;
+    overflow: hidden;
+    border-radius: 25px;
+}
+
+.imgCart {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 25px;
+    transition: transform 0.2s;
+}
+
+.boxImg:hover .imgCart {
+    transform: scale(1.1);
+}
+
+.circle-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ff9900;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.circle-icon:hover {
+    background-color: #ff9900;
+    color: black;
+    transform: scale(1.2);
+}
+
+.cartName {
+    color: #ff9900;
+}
+
+
+.btnCart {
+    padding: 9px;
+    margin-top: 30px;
+    background-color: #066e7c;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    transition: transform 0.2s;
+}
+
+.btnCart:hover {
+    transform: scale(1.1);
+}
+
+.btnYellow {
+    background-color: #ff9900;
+    color: black;
 }
 </style>

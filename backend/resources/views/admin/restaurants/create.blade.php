@@ -1,10 +1,11 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('content')
     <div class="container py-3">
 
         <div class="row">
-            <h1>Insert new restaurant</h1>
+            <h1 class="text-center textYellow">Inserisci un nuovo ristorante</h1>
+
             @isset($errore)
                 <div class="alert alert-danger">
                     <strong>{{ $errore }}</strong>
@@ -12,12 +13,13 @@
             @endisset
         </div>
 
-        <div class="row">
-            <div class="col-6">
+        <div class="row justify-content-center textYellow">
+            <div class="col-10">
                 <form class="needs-validation" action="{{ route('admin.restaurants.store') }}" method="POST"
                     enctype="multipart/form-data">
                     {{-- cross scripting request forgery --}}
                     @csrf
+                    <p>I campi con <span class="text-danger">*</span> sono obbligatori </p>
 
                     {{-- name  --}}
                     <div class="mb-3">
@@ -111,7 +113,6 @@
                         @enderror
                     </div>
 
-                    <p>I campi con * sono obbligatori</p>
 
                     <p id="category-error-message" class="text-danger">Inserisci almeno una categoria</p>
                     @isset($categories)
@@ -128,12 +129,50 @@
                     @endisset
 
                     <br>
-
-                    <button type="submit" class="btn btn-dark" id="registration_submit" disabled>Crea</button>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-dark bgTeal fw-bold mb-5 text-white"
+                            id="registration_submit" disabled>Crea</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
+    <style>
+        input[type="checkbox"]:checked+label {
+            background-color: #f9b44d;
+            color: #fff;
+            border-color: white;
+        }
+
+        input[type="checkbox"]+label:hover {
+            background-color: #f9b44d;
+            border-color: white;
+        }
+
+        input[type="checkbox"]+label {
+            border-color: #f9b44d;
+            color: #f9b44d;
+        }
+
+        label {
+            font-weight: 800;
+        }
+
+        input {
+            border-width: 2px !important;
+        }
+
+        #registration_submit:hover {
+            background-color: #066e7c !important;
+            transform: scale(1.2);
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 1.5rem;
+        }
+    </style>
 @endsection
 
 <script>

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\File;
 
 class StoreOrderRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class StoreOrderRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,17 @@ class StoreOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "total_price" => ["required", "min:2", "max:100"],
+            "notes" => ["max:255"],
+            "guest_city" => ["required", "min:2", "max:100"],
+            "guest_address" => ["required", "min:2", "max:255"],
+            "guest_telephone" => ["required", "min:2", "max:100"],
+            "guest_name" => ["required", "min:2", "max:100"],
+            "guest_surname" => ["required", "min:2", "max:100"],
+            "guest_email" => ["required", "min:2", "max:100"],
+            "date" => ["required", "min:2", "max:100"],
+            "products.*.id" => ["exists:products,id"], // Validazione per ogni id di prodotto
+            "products.*.quantity" => ["required", "integer", "min:1"], // Validazione per ogni quantità di prodotto
         ];
     }
 }

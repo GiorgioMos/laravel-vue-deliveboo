@@ -11,14 +11,14 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 /* import specific icons */
-import { faHome, faShoppingCart, faLocation, faCity, faPhone, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faShoppingCart, faLocation, faCity, faPhone, faPlus, faMinus, faMoneyBill } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faInstagram, faTwitter, faWhatsapp, faYoutube } from "@fortawesome/free-brands-svg-icons";
 
 // importo il router
 import { router } from "./router";
 
 /* add icons to the library */
-library.add(faHome, faShoppingCart, faFacebook, faInstagram, faTwitter, faWhatsapp, faYoutube, faLocation, faCity, faPhone, faPlus, faMinus);
+library.add(faHome, faShoppingCart, faFacebook, faInstagram, faTwitter, faWhatsapp, faYoutube, faLocation, faCity, faPhone, faPlus, faMinus, faMoneyBill);
 
 
 window.vue = {};

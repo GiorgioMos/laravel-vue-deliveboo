@@ -27,6 +27,8 @@ export default {
 		this.clearCart = functions.clearCart
 		this.getStorageValue = functions.getStorageValue
 		this.currentValue = functions.currentValue
+		this.getImage = functions.getImage
+
 
 
 	},
@@ -34,13 +36,18 @@ export default {
 		this.getRestaurantDetail();
 	},
 	mounted() {
+		this.ArrayCart()
+
 	},
 	updated() {
+
 		this.aggiornaCounter();
 
-		document.getElementById("clearCart").addEventListener("click", () =>
-			this.aggiornaCounter()
-		)
+		if (document.getElementById("clearCart")) {
+			document.getElementById("clearCart").addEventListener("click", () =>
+				this.aggiornaCounter()
+			)
+		}
 
 	},
 	methods: {
@@ -70,20 +77,6 @@ export default {
 				this.$router.push({ name: "home" }); // redireziona alla lista eventi
 			});
 		},
-		getImage(img) {
-
-			if (img) {
-
-				let image;
-				if (img.startsWith('http')) {
-					image = img;
-				} else {
-					image = asset('storage/' + img)
-				}
-
-				return new URL(image, import.meta.url).href
-			}
-		}
 	}
 }
 </script>
@@ -102,7 +95,7 @@ export default {
 			<div id="spacer" v-else class="row py-3 text-warning">
 				<div class="d-flex mt-4 mb-5 position-relative">
 					<div id="imgbox" class="imgBox rounded m-5 flex-column">
-						<img class="cardImg rounded" :src="getImage(restaurant?.img)" alt="">
+						<img class="cardImg rounded" :src="this.getImage(restaurant?.img)" alt="">
 						<div id="restaurant-info">
 							<h1 class="mb-4 fw-bold"> {{ restaurant?.name }} </h1>
 							<p class="my-1">
@@ -119,67 +112,82 @@ export default {
 							</p>
 						</div>
 					</div>
-					<div id="restaurant-desc" class="d-flex flex-column m-3 align-items-start p-5 justify-content-center">
-						<div class="my-4 mb-4 py-2 pt-5"> {{ restaurant?.description }} </div>
-						<button id="button" class="btn mt-1"><a :href="restaurant?.website">Sito Web</a></button>
+					<div id="restaurant-desc" class="d-flex flex-column mt-5 align-items-start p-5 justify-content-center">
+						<div class="mt-5"> {{ restaurant?.description }} </div>
+						<button id="button" class="btn mt-5"><a :href="restaurant?.website">Sito Web</a></button>
 					</div>
 				</div>
 
 				<!-- SEZIONE PRODOTTI RISTORANTE -->
-				<h2 class="my-3">I Nostri Piatti</h2>
 				<div class="d-flex justify-content-center gap-4">
-					<div v-for="product in restaurant?.products" class="product card-list my-5"
-						:id="'product-' + product.id">
-						<article class="cards">
-							<figure class="card-image">
-								<img id="product-img" :src="product?.img" alt="Immagine-ristorante">
-							</figure>
-							<div class="card-header d-flex flex-column">
-								<h4>{{ product?.name }}</h4>
-								<p>{{ product?.description }}</p>
-								<p>Prezzo: {{ product?.price }} €</p>
-							</div>
-							<div class="card-footer">
-								<button id="cart-remove" class="btn remove"
-									@click="cartRemoveElement(product); hideMinButton(product?.id)">-</button>
-								<span class="counter mx-4" :data-id="product.id" :data-name="product.name"
-									:id="product.id + 'span'"> {{ this.currentValue(product) }} </span>
-								<button id="cart-add" class="btn add"
-									@click="cartAddElement(product); hideMinButton(product?.id)">+</button>
-								<a class="remove" href="#" @click="fullCartRemoveElement(product)">rimuovi</a>
-							</div>
-						</article>
+					<div v-if="restaurant?.products == 0">
+						<h1>Questo ristorante al momento non ha prodotti disponibili</h1>
 					</div>
-				</div>
-				<!-- BOTTONE GO BACK TO HOMEPAGE -->
-				<div class="row d-flex justify-content-end">
-					<div class="col-2 py-3">
-						<router-link :to="{ name: 'home' }" class="btn btn-info">
-							<span>Go Back</span>
-						</router-link>
+					<div v-else>
+						<h2 class="my-3">I Nostri Piatti</h2>
+						<div class="d-flex justify-content-center gap-4">
+
+
+							<div v-for="product in restaurant?.products">
+								<div v-if="product?.visible == 1" class="product card-list my-5"
+									:id="'product-' + product.id">
+									<article class="cards">
+										<figure class="card-image">
+											<img id="product-img" :src="this.getImage(product?.img)"
+												alt="Immagine-ristorante">
+										</figure>
+										<div class="card-header d-flex flex-column">
+											<h4 class="fw-bold text-white">{{ product?.name }}</h4>
+											<p class="cardDescription">{{ product?.description }}</p>
+											<p> € {{ product?.price }}</p>
+										</div>
+										<div class="card-footer">
+											<button id="cart-remove" class="btn remove"
+												@click="cartRemoveElement(product); hideMinButton(product?.id)">-</button>
+											<span class="counter mx-4" :data-id="product.id" :data-name="product.name"
+												:id="product.id + 'span'"> {{ this.currentValue(product) }} </span>
+											<button id="cart-add" class="btn add"
+												@click="cartAddElement(product); hideMinButton(product?.id)">+</button>
+											<!-- <a class="remove" href="#"
+																																														@click="fullCartRemoveElement(product)">rimuovi</a> -->
+										</div>
+									</article>
+								</div>
+
+							</div>
+						</div>
+
 					</div>
 				</div>
 			</div>
+			<!-- BOTTONE GO BACK TO HOMEPAGE -->
+			<div class="row d-flex justify-content-end">
+				<div class="col-2">
+					<router-link :to="{ name: 'home' }" class="btn btn-info">
+						<span>Torna indietro</span>
+					</router-link>
+				</div>
+			</div>
 		</div>
-	</div>
 
-	<!-- Modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="exampleModalLabel">Attenzione</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body text-dark">
-					Stai già ordinando da un'altro ristorante
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" @click="this.clearCart(); this.ArrayCart()"
-						data-bs-dismiss="modal">Svuota carrello</button>
-					<a :href="'http://localhost:5000/restaurants/' + getStorageValue('restaurant_id')"
-						class="btn btn-primary">Ristorante in corso</a>
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">Attenzione</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body text-dark">
+						Stai già ordinando da un'altro ristorante
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" @click="this.clearCart(); this.ArrayCart()"
+							data-bs-dismiss="modal">Svuota carrello</button>
+						<a :href="'http://localhost:5000/restaurants/' + getStorageValue('restaurant_id')"
+							class="btn btn-primary">Ristorante in corso</a>
 
+					</div>
 				</div>
 			</div>
 		</div>
@@ -378,5 +386,11 @@ img {
 	background-color: #060113;
 	border: 1px solid #066E7C;
 	transform: scale(1.2);
+}
+
+.cardDescription {
+	height: 100px;
+	line-height: 2rem;
+	margin-top: 20px;
 }
 </style>

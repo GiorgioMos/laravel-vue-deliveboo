@@ -16,19 +16,9 @@ export default {
     this.getStorageValue = functions.getStorageValue;
     this.cartCounter = functions.cartCounter;
     this.cartTotal = functions.cartTotal;
+    this.getImage = functions.getImage;
   },
-  methods: {
-    getImage(img) {
-      let image;
-      if (img.startsWith("http")) {
-        image = img;
-      } else {
-        image = asset("storage/" + img);
-      }
-
-      return new URL(image, import.meta.url).href;
-    },
-  },
+  methods: {},
   data() {
     return {
       store,
@@ -55,7 +45,7 @@ export default {
 
 <!-- logo a sinistra pagine al centro che riportano ai componenti e a destra carrello lohgin e registrazione -->
 <template>
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg m-0">
     <div class="container">
       <router-link :to="{ name: 'home' }">
         <div class="navbar-brand text-light">
@@ -102,7 +92,9 @@ export default {
             aria-controls="offcanvasExample"
           >
             <font-awesome-icon icon="fa-solid fa-cart-shopping" />
-            <span class="text-white ms-2">{{ cartCounter() }} </span>
+            <span v-if="this.cartTotal() != 0" class="text-white ms-2"
+              >{{ cartCounter() }}
+            </span>
           </a>
         </li>
       </ul>
@@ -134,7 +126,10 @@ export default {
     </div>
     <hr />
     <div class="offcanvas-body">
-      <div id="offcanvas-body">
+      <div
+        id="offcanvas-body"
+        class="d-flex flex-column justify-content-around h-100"
+      >
         <!-- ciclo su tutti i prodotti con un v-for -->
         <div v-for="prodotto in this.store.products">
           <!-- controllo se l'id del prodotto corrisponde ad un id in localStorage e lo creo -->
@@ -145,17 +140,26 @@ export default {
             <div class="row">
               <!-- Immagine singolo prodotto -->
               <div class="col-4">
-                <img
-                  class="imgCart mb-5"
-                  :src="getImage(prodotto?.img)"
-                  alt=""
-                />
+                <div class="boxImg">
+                  <img
+                    class="imgCart mb-5"
+                    :src="this.getImage(prodotto?.img)"
+                    alt=""
+                  />
+                </div>
               </div>
               <!-- Nome, prezzo e button rimuovi singolo prodotto -->
               <div class="col-5">
-                <span class="col-6 fw-bold mb-4">
-                  {{ prodotto.name }}
-                </span>
+                <router-link
+                  :to="{
+                    name: 'restaurant-detail',
+                    params: { id: prodotto?.restaurant_id },
+                  }"
+                >
+                  <span class="col-6 fs-4 mb-4 cart-title">
+                    {{ prodotto.name }}
+                  </span>
+                </router-link>
                 <div class="col-6 fw-bold mt-2 mb-5">
                   €
                   {{
@@ -167,30 +171,15 @@ export default {
                   }}
                 </div>
                 <!-- Rimuove tutti i prodotti nel carrello -->
-                <p href="" @click="fullCartRemoveElement(prodotto)">Rimuovi</p>
+                <p
+                  class="btn btn-dark text-danger rounded-pill"
+                  @click="fullCartRemoveElement(prodotto)"
+                >
+                  Rimuovi
+                </p>
               </div>
               <!-- Button aggiungi e rimuovi prodotto -->
               <div class="col-3">
-                <!-- Aggiunge prodotto -->
-                <span class="add ms-4">
-                  <span
-                    class="circle-icon btn"
-                    @click="this.cartAddElement(prodotto)"
-                  >
-                    <font-awesome-icon icon="fa-solid fa-plus" />
-                  </span>
-                </span>
-
-                <!-- Numero totale prodotti -->
-                <span
-                  class="counter m-4 fw-bold"
-                  :data-id="prodotto.id"
-                  :data-name="prodotto.name"
-                  :id="prodotto.id + 'span'"
-                >
-                  {{ this.getStorageValue(prodotto.id) ?? 0 }}</span
-                >
-
                 <!-- Rimuove prodotto -->
                 <span class="remove">
                   <span
@@ -203,50 +192,70 @@ export default {
                     <font-awesome-icon icon="fa-solid fa-minus" />
                   </span>
                 </span>
+                <!-- Numero totale prodotti -->
+                <span
+                  class="counter m-4 fw-bold"
+                  :data-id="prodotto.id"
+                  :data-name="prodotto.name"
+                  :id="prodotto.id + 'span'"
+                >
+                  {{ this.getStorageValue(prodotto.id) ?? 0 }}</span
+                >
+                <!-- Aggiunge prodotto -->
+                <span class="add">
+                  <span
+                    class="circle-icon btn"
+                    @click="this.cartAddElement(prodotto)"
+                  >
+                    <font-awesome-icon icon="fa-solid fa-plus" />
+                  </span>
+                </span>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Costo totale prodotti nel carrello  -->
-        <div class="row">
+        <div v-if="this.cartTotal() != 0" class="row mt-auto">
+          <hr />
           <div class="col-9">
             <h6 class="fs-5 fw-bold">Totale</h6>
           </div>
           <div class="col-3">
-            <div class="fs-5 fw-bold text-end">€ {{ this.cartTotal() }}</div>
+            <div class="fs-5 fw-bold fs-4 text-end">
+              € {{ this.cartTotal() }}
+            </div>
           </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-8">
-          <!-- Button svuota carrello  -->
-          <button
-            data-bs-dismiss="offcanvas"
-            :class="cartCounter() > 0 ? 'd-inline-block' : 'd-none'"
-            id="clearCart"
-            class="btnCart"
-            @click="
-              this.clearCart();
-              this.ArrayCart();
-            "
-          >
-            Svuota carrello
-          </button>
-        </div>
-        <div class="col-4 text-end">
-          <!-- Button checkout  -->
-          <router-link :to="{ name: 'checkout' }">
-            <button
-              data-bs-dismiss="offcanvas"
-              v-if="cartCounter() > 0"
-              id="order"
-              class="btnCart btnYellow"
-            >
-              Procedi all'ordine
-            </button>
-          </router-link>
+          <div class="row mb-3">
+            <div class="col-8">
+              <!-- Button svuota carrello  -->
+              <button
+                data-bs-dismiss="offcanvas"
+                :class="cartCounter() > 0 ? 'd-inline-block' : 'd-none'"
+                id="clearCart"
+                class="btnCart rounded-pill"
+                @click="
+                  this.clearCart();
+                  this.ArrayCart();
+                "
+              >
+                Svuota carrello
+              </button>
+            </div>
+            <div class="col-4 text-end">
+              <!-- Button checkout  -->
+              <router-link :to="{ name: 'checkout' }">
+                <button
+                  data-bs-dismiss="offcanvas"
+                  v-if="cartCounter() > 0"
+                  id="order"
+                  class="btnCart btnYellow rounded-pill"
+                >
+                  Procedi all'ordine
+                </button>
+              </router-link>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -267,26 +276,30 @@ a {
   color: white;
   background-color: #066e7c;
   padding: 10px;
-  border: 2px solid #f9b44b;
+  border: 2px solid #ff9900;
   font-weight: bold;
 }
 
 .btnNavbar:hover {
-  background-color: #f9b44b;
+  background-color: #ff9900;
   color: black;
 }
 
 .page-navigation {
-  text-decoration: none !important;
-  color: white;
-  text-decoration: none;
-  margin: 0 3rem;
+  margin: 0;
+  color: #066e7c;
   font-weight: bold;
+  font-size: 1.2rem;
+  padding: 0.7rem 3rem; /* Aggiungi spazio intorno ai link */
+  height: 100%; /* Fai occupare tutta l'altezza */
+  display: flex; /* Usa flexbox per allineare verticalmente il testo */
+  align-items: center; /* Allinea verticalmente il testo al centro */
 }
 
 .page-navigation:hover {
-  text-decoration: underline;
-  color: #066e7c;
+  color: white;
+  background-color: #ff9900;
+  border-radius: 4rem;
 }
 
 font-awesome-icon {
@@ -309,11 +322,35 @@ font-awesome-icon:hover {
   color: white !important;
 }
 
-.imgCart {
+/* titolo */
+.cart-title {
+  color: whitesmoke;
+  font-weight: 600;
+}
+
+.cart-title:hover {
+  color: #066e7c;
+  transition: 300ms;
+}
+
+/* immagini e box */
+.boxImg {
   width: 12rem;
   height: 8rem;
+  overflow: hidden;
+  border-radius: 25px;
+}
+
+.imgCart {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 25px;
+  transition: transform 0.2s;
+}
+
+.boxImg:hover .imgCart {
+  transform: scale(1.1);
 }
 
 .circle-icon {
@@ -323,7 +360,7 @@ font-awesome-icon:hover {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: #f9b44b;
+  background-color: #ff9900;
   color: black;
   font-size: 16px;
   cursor: pointer;
@@ -331,13 +368,13 @@ font-awesome-icon:hover {
 }
 
 .circle-icon:hover {
-  background-color: #f9b44b;
+  background-color: #ff9900;
   color: black;
   transform: scale(1.2);
 }
 
 .cartName {
-  color: #f9b44b;
+  color: #ff9900;
 }
 
 .btnCart {
@@ -357,7 +394,7 @@ font-awesome-icon:hover {
 }
 
 .btnYellow {
-  background-color: #f9b44b;
+  background-color: #ff9900;
   color: black;
 }
 </style>

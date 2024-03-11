@@ -1,13 +1,13 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('content')
     <div class="container py-3">
         <div class="row">
-            <h1>Modifica il tuo ristorante</h1>
+            <h1 class="text-center textYellow">Modifica il tuo ristorante</h1>
         </div>
 
-        <div class="row">
-            <div class="col-6">
+        <div class="row justify-content-center textYellow">
+            <div class="col-10">
                 @php
                     use App\Models\Restaurant;
                     $currentUser = Auth::id();
@@ -16,22 +16,38 @@
 
                 @endphp
                 @if ($current_restaurant->id !== $restaurant->id)
-                    <div class="alert alert-danger">
-                        <strong>Hai cercato una pagina che non esiste :( </strong>
+                    <div class="container">
+
+                        <div class="alert alert-danger my-5">
+                            <strong>Hai cercato una pagina che non esiste :(</strong>
+                        </div>
+                        <div>
+                            <a href="{{ route('admin.dashboard') }}" class="btn bgTeal text-white"> torna alla Dashboard</a>
+                        </div>
                     </div>
-                    <div>
-                        <a href="{{ route('admin.products.index') }}" class="btn btn-secondary"> torna ai tuoi prodotti</a>
-                    </div>
+                    <style>
+                        .btn:hover {
+                            transform: scale(1.2);
+                            background-color: #066e7c
+                        }
+
+                        .btn {
+                            padding: 0.8rem 1.5rem;
+                            font-size: 1rem;
+                            border-radius: 1.5rem;
+                        }
+                    </style>
                 @else
                     <form action="{{ route('admin.restaurants.update', $restaurant->id) }}" method="POST"
                         enctype="multipart/form-data">
                         {{-- cross scripting request forgery --}}
                         @csrf
                         @method('PUT')
+                        <p>Tutti i campi sono obbligatori <span class="text-danger">*</span></p>
 
                         {{-- name  --}}
                         <div class="mb-3">
-                            <label for="name" class="form-label">Nome</label>
+                            <label for="name" class="form-label">Nome <span class="text-danger">*</span></label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
                                 name="name" value="{{ old('name') ?? $restaurant->name }}" required
                                 onkeyup="validateName()">
@@ -45,7 +61,8 @@
 
                         {{-- description  --}}
                         <div class="mb-3">
-                            <label for="description" class="form-label">Descrizione</label>
+                            <label for="description" class="form-label">Descrizione <span
+                                    class="text-danger">*</span></label>
                             <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description"
                                 name="description" required minlength="10" max="255" onkeyup="validateDescription()">{{ old('description') ?? $restaurant->description }}</textarea>
 
@@ -58,7 +75,7 @@
 
                         {{-- city  --}}
                         <div class="mb-3">
-                            <label for="city" class="form-label">Città</label>
+                            <label for="city" class="form-label">Città <span class="text-danger">*</span></label>
                             <input type="text" class="form-control @error('city') is-invalid @enderror" id="city"
                                 name="city" value="{{ old('city') ?? $restaurant->city }}" required
                                 onkeyup="validateCity()">
@@ -72,7 +89,7 @@
 
                         {{-- address  --}}
                         <div class="mb-3">
-                            <label for="address" class="form-label">Indirizzo</label>
+                            <label for="address" class="form-label">Indirizzo <span class="text-danger">*</span></label>
                             <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
                                 name="address" value="{{ old('address') ?? $restaurant->address }}" required
                                 onkeyup="validateAddress()">
@@ -85,31 +102,41 @@
                         </div>
 
                         {{-- img  --}}
-                        <div class="mb-3">
-                            <label for="img" class="form-label">Immagine</label>
-                            <div>Tieni l'immagine caricata in precedenza -> <div class="imgEditContainer">
-                                    @if (str_starts_with($restaurant->img, 'http'))
-                                        <img class="cardImg rounded" src={{ $restaurant->img }} alt="">
-                                    @else
-                                        <img class="cardImg rounded" src={{ asset('storage/' . $restaurant->img) }}
-                                            alt="">
-                                    @endif
-                                </div>
-                                <p>o carica una nuova immagine</p>
-                            </div>
-                            <input type="file" class="form-control @error('img') is-invalid @enderror" id="img"
-                                name="img" value="{{ old('img') ?? $restaurant->img }}" onchange="setPreviewPic()">
+                        <div class="mb-5" id="formpic">
+                            <label for="img" class="form-label">Immagine <span class="text-danger">*</span></label>
+                            <div class="d-flex mt-2 mb-5">
 
-                            {{-- error message --}}
-                            <span id="img-error-message" class="invalid-feedback" role="alert"></span>
-                            @error('img')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                                <div>Tieni l'immagine caricata in precedenza
+                                    <div class="imgEditContainer rounded">
+                                        @if (str_starts_with($restaurant->img, 'http'))
+                                            <img class="cardImg rounded" src={{ $restaurant->img }} alt="">
+                                        @else
+                                            <img class="cardImg rounded" src={{ asset('storage/' . $restaurant->img) }}
+                                                alt="">
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center mx-5">
+                                    <p class="fs-4">oppure</p>
+                                </div>
+                                <div>
+                                    <p>Carica una nuova immagine</p>
+                                    <input type="file" class="form-control @error('img') is-invalid @enderror"
+                                        id="img" name="img" value="{{ old('img') ?? $restaurant->img }}"
+                                        onchange="setPreviewPic()">
+
+                                    {{-- error message --}}
+                                    <span id="img-error-message" class="invalid-feedback" role="alert"></span>
+                                    @error('img')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
 
                         {{-- telephone  --}}
                         <div class="mb-3">
-                            <label for="telephone" class="form-label">Telefono</label>
+                            <label for="telephone" class="form-label">Telefono <span class="text-danger">*</span></label>
                             <input type="text" class="form-control @error('telephone') is-invalid @enderror"
                                 id="telephone" name="telephone" value="{{ old('telephone') ?? $restaurant->telephone }}"
                                 required minlength="6" maxlength="15" onkeyup="validateTelephone()">
@@ -123,7 +150,7 @@
 
                         {{-- website  --}}
                         <div class="mb-3">
-                            <label for="website" class="form-label">Sito web</label>
+                            <label for="website" class="form-label">Sito web <span class="text-danger">*</span></label>
                             <input type="text" class="form-control @error('website') is-invalid @enderror"
                                 id="website" name="website" value="{{ old('website') ?? $restaurant->website }}"
                                 required onkeyup="validateWebsite()">
@@ -134,6 +161,8 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+                        <label for="categories[]" class="form-label d-block">Categorie <span
+                                class="text-danger">*</span></label>
 
                         @foreach ($categories as $category)
                             @if ($restaurant->category->contains($category))
@@ -161,11 +190,9 @@
                             @endif
                         @endforeach
 
-                        <p>Tutti i campi sono obbligatori</p>
 
-                        <div>
-                            <button id="submitButton"
-                                class="form-validation btn btn-dark{{ Route::currentRouteName() == 'admin.restaurants.show' ? 'bg-secondary' : '' }}"
+                        <div class="d-flex justify-content-center">
+                            <button id="submitButton" class="form-validation btn bgYellow fw-bold mb-5 text-white"
                                 disabled>Modifica</button>
                         </div>
                     </form>
@@ -173,6 +200,42 @@
             </div>
         </div>
     </div>
+    <style>
+        input[type="checkbox"]:checked+label {
+            background-color: #f9b44d;
+            color: #fff;
+            border-color: white;
+        }
+
+        input[type="checkbox"]+label:hover {
+            background-color: #f9b44d;
+            border-color: white;
+        }
+
+        input[type="checkbox"]+label {
+            border-color: #f9b44d;
+            color: #f9b44d;
+        }
+
+        label {
+            font-weight: 800;
+        }
+
+        input {
+            border-width: 2px !important;
+        }
+
+        .form-validation:hover {
+            background-color: #f9b44d !important;
+            transform: scale(1.2);
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 1.5rem;
+        }
+    </style>
 @endsection
 
 <script>
