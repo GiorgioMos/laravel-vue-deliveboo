@@ -3,69 +3,72 @@
 @section('content')
     <div class="container mt-4">
         <div class="row justify-content-center">
-            <div class="">
-                <div class="card bg-dark text-white">
-                    <h3 class="card-header text-center textYellow fs-1">{{ __('Login') }}</h3>
+            <div class="col-8">
+                <div class="text-white">
+                    <h1 class="card-header text-center textOrange py-5 fs-1">{{ __('Login') }}</h1>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
 
-                            <div class="mb-4 row">
-                                <label for="email"
-                                    class="col-md-4 fs-5 textTeal fw-bolder col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="email" type="email"
-                                        class="form-control @error('email') is-invalid @enderror py-3 rounded-pill" name="email"
-                                        value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                            <div class="bgOrange p-4 mb-5 orangeDiv">
+                                <div class="mb-4 row">
+                                    <label for="email"
+                                        class="col-md-4 fs-5 text-white fw-bolder col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+    
+                                    <div class="col-md-6">
+                                        <input id="email" type="email"
+                                            class="form-control @error('email') is-invalid @enderror py-3 rounded-pill" name="email"
+                                            value="{{ old('email') }}" required autocomplete="email" autofocus>
+    
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="mb-4 row">
-                                <label for="password"
-                                    class="col-md-4 fs-5 textTeal fw-bolder col-form-label text-md-right">{{ __('Password') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror py-3 rounded-pill" name="password"
-                                        required autocomplete="current-password">
-
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+    
+                                <div class="row">
+                                    <label for="password"
+                                        class="col-md-4 fs-5 text-white fw-bolder col-form-label text-md-right">{{ __('Password') }}</label>
+    
+                                    <div class="col-md-6">
+                                        <input id="password" type="password"
+                                            class="form-control @error('password') is-invalid @enderror py-3 rounded-pill" name="password"
+                                            required autocomplete="current-password">
+    
+                                        @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="mb-4 row">
-                                <div class="col-md-6 offset-md-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                                            {{ old('remember') ? 'checked' : '' }}>
-
-                                        <label class="form-check-label textYellow" for="remember">
-                                            {{ __('Remember Me') }}
-                                        </label>
+                                <div class="mt-4 row">
+                                    <div class="col-md-6 offset-md-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="remember" id="remember"
+                                                {{ old('remember') ? 'checked' : '' }}>
+    
+                                            <label class="form-check-label" for="remember">
+                                                {{ __('Remember Me') }}
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
+
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn bgTeal text-white">
+                                    <button type="submit" class="btn bgOrange rounded-pill mx-5">
                                         {{ __('Login') }}
                                     </button>
 
                                     @if (Route::has('password.request'))
-                                        <a class="btn btn-link text-decoration-none textTeal"
+                                        <a class=" text-decoration-none textOrange"
                                             href="{{ route('password.request') }}">
                                             {{ __('Forgot Your Password?') }}
                                         </a>
@@ -79,13 +82,29 @@
         </div>
     </div>
     <style>
-        .btn.bgTeal:hover {
-            background-color: #066e7c;
-            transform: scale(1.2)
+        .btn {
+            background: #060113;
+            border: solid 2px #ff9900;
+            color: white;
         }
+
+        .btn.bgOrange:hover {
+            background: #ff9900;
+            color: #060113;
+            transition: 
+        }
+
 
         .btn.textTeal:hover {
             color: #098e9f;
+        }
+
+        .textOrange {
+            color: #ff9900;
+        }
+
+        .orangeDiv {
+            border-radius: 2rem;
         }
     </style>
 @endsection

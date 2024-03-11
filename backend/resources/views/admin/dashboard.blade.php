@@ -18,13 +18,13 @@
                 <h1 class="fw-bold text-center mb-5 display-3"> Benvenuto\a, <span class="text-warning">
                         {{ Auth::user()->name }}! </span>
                 </h1>
-                <h2 class="fw-bold">Il tuo riepilogo:</h2>
+                <h2 class="fw-bold my-5">Il tuo riepilogo:</h2>
 
                 <img class="imgSfondo" src="img/logoDeliveboo.png" alt="">
                 <div class="cardContainer d-flex">
                     <div class="col-4 mx-2">
                         <div class="card">
-                            <div class="card-header fw-bold fs-3"> <i class="fa-solid fa-user fs-1 teal"></i> USER </div>
+                            <div class="card-header fw-bold fs-3"> <i class="fa-solid fa-user fs-1 mx-4 teal"></i> Il tuo Account </div>
                             <div class="card-body">
                                 <h5 class="fw-bold">Nome: <span class="teal fw-bold">{{ Auth::user()->name }}</h5></span>
                                 <h5 class="fw-bold">Cognome: <span class="teal fw-bold"> {{ Auth::user()->surname }}</h5>
@@ -37,8 +37,8 @@
                     </div>
                     <div class="col-4 mx-2">
                         <div class="card">
-                            <div class="card-header fw-bold fs-3"><i class="fa-solid fa-utensils fs-1 teal"></i>
-                                RISTORANTE
+                            <div class="card-header fw-bold fs-3"><i class="fa-solid fa-utensils fs-1 mx-4 teal"></i>
+                                Il tuo Ristorante
                             </div>
                             <div class="card-body">
                                 <h5 class=" fw-bold">Creato il: {{ $restaurantData->created_at }} </h5>
@@ -54,8 +54,8 @@
                     <div class="col-4 mx-2">
                         <div class="card">
                             <div class="card-header fw-bold fs-3">
-                                <i class="fa-solid fa-burger fs-1 teal"></i>
-                                PRODOTTI
+                                <i class="fa-solid fa-burger fs-1 mx-4 teal"></i>
+                                I tuoi Prodotti
                             </div>
                             <div class="card-body">
                                 @foreach ($products as $products)
@@ -91,17 +91,13 @@
 
 <style>
     .imgSfondo {
-        position: relative;
-        z-index: 1;
+        position: absolute;
+        z-index: -1;
         width: 10px;
         bottom: 150px;
         opacity: 0.1;
     }
 
-    .cardContainer {
-        position: relative;
-        bottom: 1100px
-    }
 
     .card-body {
         height: 250px

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container position-relative">
+    <div class="container">
         <div class="row d-flex justify-content-center">
             <h1 class="py-3 text-center">{{ $restaurant->name }}</h1>
             <div>
@@ -15,7 +15,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="row justify-content-center">
+                <div class="row justify-content-center position-relative">
 
                     <div class="d-flex justify-content-center col-8">
 
@@ -36,6 +36,10 @@
                                 <h4 class="textYellow fw-bold">Sito Web </h4>
                                 <p class="fs-5 fw-light">{{ $restaurant->website }}</p>
                             </div>
+                        </div>
+
+                        {{-- div quadratone bianco sfondo --}}
+                        <div id="backsquare" class="position-absolute start-50 translate-middle">
                         </div>
                     </div>
                     <div class="d-flex flex-column col-8">
@@ -62,20 +66,16 @@
             </div>
 
         </div>
-
-        {{-- div quadratone bianco sfondo --}}
-        <div id="backsquare" class="position-absolute start-50 translate-middle">
-        </div>
     </div>
 
 
     <style>
         #backsquare {
-            height: 40rem;
+            height: 200%;
             width: 70rem;
             background-color: #242322e5;
             border-radius: 3rem;
-            top: 70%;
+            top: 50%;
             z-index: -100;
         }
 
