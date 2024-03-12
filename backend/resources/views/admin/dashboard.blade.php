@@ -48,7 +48,7 @@
                                 <h5 class=" fw-bold">{{ $restaurantData->city }} </h5>
                                 <h5 class=" fw-bold">{{ $restaurantData->address }} </h5>
                                 <h5 class=" fw-bold">{{ $restaurantData->telephone }} </h5>
-                                <h5 class=" fw-bold">{{ $restaurantData->website }} </h5>
+                                <a class=" fw-bold fs-5" style="color: #ff9900; cursor:pointer; text-decoration: none">website</a>
                             </div>
                         </div>
                     </div>
