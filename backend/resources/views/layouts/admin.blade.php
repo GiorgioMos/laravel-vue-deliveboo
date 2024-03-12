@@ -127,10 +127,10 @@
                             $currentUser = Auth::id();
                             // prendo l'id del ristorante collegato all'utente
                             $restaurant = Restaurant::select('id')->where('user_id', $currentUser)->first();
-                            $products = Product::all()->where('restaurant_id', $restaurant->id);
-                            $orders = Order::whereHas('products', function ($query) use ($restaurant) {
-                                $query->where('restaurant_id', $restaurant->id);
-                            })->get();
+                            // $products = Product::all()->where('restaurant_id', $restaurant->id);
+                            // $orders = Order::whereHas('products', function ($query) use ($restaurant) {
+                            //     $query->where('restaurant_id', $restaurant->id);
+                            // })->get();
                         @endphp
                         {{-- controllo se esiste un ristorante associato all'utente e se esiste creo il link --}}
                         @if (isset($restaurant->id))
@@ -140,15 +140,13 @@
                                     <i class="fa-solid fa-utensils me-2"></i> Il tuo ristorante
                                 </a>
                             </li>
-                            @if (count($products) > 0)
-                                {{-- products --}}
-                                <li class="nav-item h5">
-                                    <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.products.index' ? 'Sidebarselected' : '' }}"
-                                        href="{{ route('admin.products.index') }}">
-                                        <i class="fa-solid fa-bowl-food me-2"></i> Prodotti
-                                    </a>
-                                </li>
-                            @endif
+                            {{-- products --}}
+                            <li class="nav-item h5">
+                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.products.index' ? 'Sidebarselected' : '' }}"
+                                    href="{{ route('admin.products.index') }}">
+                                    <i class="fa-solid fa-bowl-food me-2"></i> Prodotti
+                                </a>
+                            </li>
 
                             {{-- add products --}}
                             <li class="nav-item h5">
@@ -157,23 +155,21 @@
                                     <i class="fa-solid fa-plus me-2"></i> Crea Prodotti
                                 </a>
                             </li>
-                            @if (count($orders) > 0)
-                                {{-- order --}}
-                                <li class="nav-item h5">
-                                    <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.orders.index' ? 'Sidebarselected' : '' }}"
-                                        href="{{ route('admin.orders.index') }}">
-                                        <i class="fa-solid fa-box-archive me-2"></i> Ordini
-                                    </a>
-                                </li>
+                            {{-- order --}}
+                            <li class="nav-item h5">
+                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.orders.index' ? 'Sidebarselected' : '' }}"
+                                    href="{{ route('admin.orders.index') }}">
+                                    <i class="fa-solid fa-box-archive me-2"></i> Ordini
+                                </a>
+                            </li>
 
-                                {{-- CHART  --}}
-                                <li class="nav-item h5">
-                                    <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.' ? 'Sidebarselected' : '' }}"
-                                        href="{{ route('admin.') }}">
-                                        <i class="fa-solid fa-chart-line"></i></i> Statistiche
-                                    </a>
-                                </li>
-                            @endif
+                            {{-- CHART  --}}
+                            <li class="nav-item h5">
+                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.' ? 'Sidebarselected' : '' }}"
+                                    href="{{ route('admin.') }}">
+                                    <i class="fa-solid fa-chart-line"></i></i> Statistiche
+                                </a>
+                            </li>
                         @else
                             {{-- add restaurants --}}
                             <li class="nav-item h5">
